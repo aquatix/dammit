@@ -1,0 +1,362 @@
+/*
+ * dammIT plain StyleSheet
+ * Created by Michiel Scholten
+ * mbscholt at aquariusoft dot org
+ * 
+ * Version 0.2.01 :: 2004-04-12
+ */
+
+/*** The body tag ***/
+body
+{
+        background: #FFFFFF; 
+        color: #000000;
+        margin: 0px 0px 0px 0px;
+        font-family: Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
+        font-size: 80%;
+}
+/*body{font-size:0.8em;}*/
+
+/*** Headers ***/
+h1
+{
+	color: #000000;
+	background: transparent;
+	font-size: 175%;
+	font-weight: bold;
+}
+
+h2
+{ 
+	font-size: 130%;
+	font-weight: bold; 
+	color: #000000;
+	background: transparent;
+	border: 1px solid #C0C0C0;
+	border-width: 0px 0px 1px 0px;
+	padding-bottom: 0px;
+}
+
+h3
+{ 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 100%; 
+	font-weight: bold; 
+	background: #transparent;
+	color: #000000;
+	border: 1px #C0C0C0 solid;
+	padding: 2px 4px 2px 4px;
+}
+
+h4
+{ 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold; 
+	color: #aa0000;
+	background: transparent;
+	display: inline;
+}
+
+h5
+{ 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold; 
+	color: #aa0000;
+	background: transparent;
+	display: inline;
+}
+
+h6
+{ 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold; 
+	color: #aa0000;
+	background: transparent;
+	display: inline;
+}
+
+/*** Various html objects ***/
+a, a:visited
+{
+	color:#000000;
+	background: transparent;
+}
+
+a:hover
+{
+	color: #4076a3;
+	background: transparent;
+}
+
+.blogmark a
+{
+}
+
+a img
+{
+	border: none;
+}
+
+abbr, acronym
+{
+	border-bottom: 1px dotted #C0C0C0;
+	cursor: help;
+}
+
+img
+{
+	border: 0px;
+}
+
+input, textarea
+{
+	border:1px solid #C0C0C0;
+	background:#FFFFFF;
+	color: #000000;
+}
+
+em
+{
+	color:#000;
+	font-weight: bold;
+	background: transparent;
+}
+
+pre
+{
+	font-size: 120%;
+}
+
+p
+{
+	text-align: justify;
+	padding: 2px 4px 2px 4px;
+}
+
+li
+{
+	list-style-type: square;
+}
+
+/*** Various blocks ***/
+#logo
+{
+/*
+	top: 0px;
+	position: absolute;
+	left: 0px;
+	width: 176px;
+	height: 71px;
+	padding: 1px 1px 1px 1px;
+	background: #4f91c9;
+	color: #fff;
+	text-align: left;
+	border: 1px #000 solid;
+	z-index: 5;
+*/
+	display:none;
+}
+
+#logo a
+{
+	border: none;
+}
+
+#left-navbar
+{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 120px;
+	min-height: 100px;
+	z-index: 5;
+	float: left;
+	padding: 15px 10px 0px 10px;
+	background: transparent;
+	color: #000000;
+	text-align: left;
+	border: 1px #C0C0C0 solid;
+	border-width: 0px 1px 0px 0px;
+}
+
+#left-navbar a
+{
+	color: gray;
+	background: transparent;
+	font-size: 100%;
+	text-decoration: none;
+	border-bottom: 0px;
+}
+
+#left-navbar a:hover
+{
+	text-decoration: underline;
+}
+
+#left-navbar ul
+{
+	margin-top: 0px;
+	padding-top: 0px;
+	padding-left: 8px;
+	margin-left: 8px;
+	margin-bottom: 4px;
+	padding-top: 4px;
+}
+
+#left-navbar li
+{
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.nav-header
+{
+	font-weight: bold;
+	border: 1px solid #FFFFFF;
+	border-width: 0px 0px 1px 0px;
+	padding-bottom: 0px;
+}
+
+.nav-section
+{
+	font-weight: bold;
+	border: 1px solid #FFFFFF;
+	border-width: 0px 0px 0px 0px;
+	padding-bottom: 0px;
+}
+
+#main-content
+{
+	position: relative;
+	top: 0px;
+	left: 0px;
+/*	min-width: 500px;*/
+	min-height: 75%;
+	margin-right: 0px;
+	padding-left: 145px;
+	padding-right: 5px;
+/*	padding: 90px 45px 4px 75px;*/
+	background: #transparent;
+	color: inherit;
+	z-index: 4;
+}
+
+.images
+{
+	margin-top: 5px;
+	padding-top: 5px;
+	text-align: center;
+	border: 1px solid #FFFFFF;
+	border-width: 1px 0px 0px 0px;
+}
+
+.pageversion
+{
+	font-size: 70%;
+}
+
+/* Blocks within content block */
+#last-modified
+{
+	font-size: 75%;
+	background: transparent;
+	color: inherit;
+	padding: 2px 0px 0px;
+	border: 1px solid #C0C0C0;
+	border-width: 1px 0px 0px 0px;
+	position: relative;
+	margin-top: 10px;
+	text-align: right;
+}
+
+.rant, .blogmark
+{
+	margin-left: 10px;
+}
+
+.rantinfo
+{
+	font-size: 75%;
+	background: transparent;
+	color: inherit;
+	padding: 2px 4px 2px 4px;
+	border: 1px dotted #C0C0C0;
+	position: relative;
+	text-align: right;
+}
+
+.rantsnav
+{
+	font-size: 100%;
+	background: transparent;
+	color: inherit;
+	padding: 2px 4px 2px 4px;
+	border: 1px dotted #C0C0C0;
+	position: relative;
+	text-align: left;
+	margin-top: 10px;
+}
+
+.edit
+{
+	font-size: 75%;
+	background: transparent;
+	color: #C0C0C0;
+	border: 1px solid #C0C0C0;
+	border-width: 0px 0px 1px 0px;
+	text-align: left;
+}
+
+.quote
+{
+	background: transparent;
+	color: #606060;
+	border: 2px solid #C0C0C0;
+	border-width: 0px 0px 0px 1px;
+	text-align: left;
+}
+
+#whitebox
+{
+	position: relative;
+	padding: 10px 10px 10px 10px;
+	background: #FFFFFF;
+	color: inherit;
+	z-index: 4;
+	border: 1px #000 solid;
+}
+
+#morphix
+{
+	position: relative;
+	right: 10px;
+}
+
+/*** Tables ***/
+.tdHeader
+{
+	background: #000;
+	color: #FFFFFF;
+	text-align: left;
+}
+
+.tdOdd
+{
+	background: transparent;
+	color: #000000;
+}
+
+.tdEven
+{
+	background: #C0C0C0;
+	color: #000000;
+}
+
+/*** Notes ***/
+/*
+border-width:
+	This property is a shorthand for the border-top-width, border-right-width, border-bottom-width, and border-left-width properties.
+
+*/
+
+/*** EOF ***/

@@ -1,0 +1,663 @@
+/*
+ * dammIT stylesheet - blue
+ * Created by Michiel Scholten
+ * mbscholt at aquariusoft dot org
+ * 
+ * Version 0.3.14 :: 2005-01-11
+ */
+
+/*** The body tag ***/
+body
+{
+	margin: 5px 10px 5px 10px;
+	padding: 5px 25px 5px 100px;
+
+        background: #99CCFF; 
+        color: #000000;
+        font-family: Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
+        font-size: 80%;
+}
+
+/*** Headers ***/
+h1
+{
+	color: #454545;
+	background: transparent;
+	font-size: 175%;
+	font-weight: bold;
+}
+
+h2
+{ 
+	border-width: 0px 0px 1px 0px;
+	padding-bottom: 0px;
+	
+	font-size: 130%;
+	font-weight: bold; 
+	color: #707070;
+	background: transparent;
+	border: 1px solid #4F91C9;
+	border-width: 0px 0px 1px 0px;
+	padding-bottom: 0px;
+}
+
+h3
+{
+	padding: 2px 4px 2px 4px;
+
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 110%; 
+	font-weight: bold; 
+	background: transparent;
+	color: #707070;
+	border: none;
+	padding: 2px 4px 2px 4px;
+}
+
+h4
+{ 
+	display: inline;
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold; 
+	color: #aa0000;
+	background: transparent;
+	display: inline;
+}
+
+h5
+{ 
+	display: inline;
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold; 
+	color: #aa0000;
+	background: transparent;
+	display: inline;
+}
+
+h6
+{ 
+	display: inline;
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold; 
+	color: #aa0000;
+	background: transparent;
+	display: inline;
+}
+
+/*** Various html objects ***/
+a
+{
+	color:#000000;
+	background: transparent;
+	text-decoration: none;
+	border-bottom: 1px dotted #4076a3;
+}
+
+a:hover
+{
+	color: #4076a3;
+	background: transparent;
+	border-bottom: 1px solid #4076a3;
+}
+
+img
+{
+	border: 0px;
+}
+
+/* turn off borders so we don't need border=0 on image links */
+:link img, :visited img
+{
+	border: 0;
+}
+
+a img
+{
+	border: none;
+}
+
+abbr, acronym
+{
+	border-bottom: 1px dotted #A0A0A0;
+	cursor: help;
+}
+
+input, textarea, button
+{
+	border:1px solid #4F91C9;
+	background:#DDEEFF;
+	color: #000000;
+}
+
+textarea
+{
+	width: 100%;
+}
+
+input:focus, textarea:focus
+{
+	border: 1px solid #346085;
+	background: #FFFFFF;
+}
+
+em
+{
+	color:#4076a3;
+	background: transparent;
+}
+
+pre
+{
+	margin: 5px 0 5px 0;
+	padding: 5px 0 5px 0;
+	overflow: auto;
+/*	background: #C9C961;*/
+	background:#DDEEFF;
+	font: 1em "Courier New", monospace;
+}
+
+p
+{
+	text-align: justify;
+	padding: 2px 4px 2px 4px;
+}
+
+li
+{
+	list-style-type: square;
+}
+
+blockquote
+{
+	background: transparent;
+	text-align: justify;
+	border: 2px solid #4F91C9;
+	border-width: 0px 0px 0px 2px;
+	margin-left: 15px;
+	padding-left: 5px;
+}
+
+
+/*** Various blocks ***/
+#logo
+{
+	top: 25px;
+	position: absolute;
+	left: 8px;
+	width: 176px;
+	height: 71px;
+	z-index: 5;
+
+	/*padding: 1px 1px 1px 1px;*/
+	padding: 0;
+	background: #4f91c9;
+	color: #fff;
+	text-align: left;
+	border: 1px #000 solid;
+}
+
+	#logo a
+	{
+		border: none;
+	}
+
+#left-navbar
+{
+	position: absolute;
+	padding: 15px 10px 0px 10px;
+	top: 120px;
+	left: 25px;
+	width: 120px;
+	min-height: 100px;
+	float: left;
+
+	background: #4F91C9;
+	color: #fff;
+	text-align: left;
+	border: 1px #000 solid;
+}
+
+	#left-navbar a
+	{
+		color: white;
+		background: transparent;
+		font-size: 100%;
+		text-decoration: none;
+		border-bottom: 0px;
+	}
+
+	#left-navbar a:hover
+	{
+		text-decoration: underline;
+	}
+
+	#left-navbar ul, #main-content-nav ul
+	{
+		margin-top: 0px;
+		padding-top: 0px;
+		padding-left: 8px;
+		margin-left: 8px;
+		margin-bottom: 4px;
+		padding-top: 4px;
+
+	}
+
+	#left-navbar li, #main-content-nav li
+	{
+		padding-left: 0;
+		margin-left: 0;
+
+	}
+
+	#left-navbar .nav-header
+	{
+		font-weight: bold;
+		border: 1px solid #FFFFFF;
+		border-width: 0px 0px 1px 0px;
+		padding-bottom: 0px;
+	}
+
+#main-nav ul
+{
+	padding-left: 0;
+	margin-left: 0;
+
+}
+
+	#main-nav li
+	{
+		margin-left: -15px;
+
+		list-style-type: none;
+	}
+
+	#main-nav a
+	{
+		width: 100%;
+		display: block;
+		padding: 1px 2px 1px 2px;
+	}
+
+	#main-nav a:hover
+	{
+		color: #000;
+		background-color: #DDEEFF;
+		padding: 0px 1px 0px 1px;
+	/*	border: 1px solid #000000;*/
+		border: 1px solid #346085;
+	}
+
+	#main-nav a:hover::after, 
+	#main-nav .main.a:focus::after {
+		content: " [" attr(accesskey) "]";
+	}
+
+	.images
+	{
+		margin-top: 5px;
+		padding-top: 5px;
+		text-align: center;
+		border: 1px solid #FFFFFF;
+		border-width: 1px 0px 0px 0px;
+	}
+
+	.images ul
+	{
+		padding-left: 1em;
+		padding-right: 1em;
+		margin: 0;
+	}
+
+	.images ul li
+	{
+		list-style-type: none;
+		list-style-image: none;
+		padding-left: 1em;
+		padding-right: 1em;
+		margin: 0;
+	}
+
+
+.nav-section
+{
+	font-weight: bold;
+	border: 1px solid #FFFFFF;
+	border-width: 0px 0px 0px 0px;
+	padding-bottom: 0px;
+}
+
+#license
+{
+	float: right;
+	right: 45px;
+	top: 40px;
+}
+
+#main-content
+{
+	padding: 90px 190px 4px 75px;
+
+/*	min-height: 120em;*/
+	min-height: 130em;
+
+	background: #FFFFFF;
+	color: inherit;
+	border: 1px #000 solid;
+}
+
+	#main-content ul li
+	{
+		list-style-image: url(images/bullet.gif);
+	}
+
+	.ie-warning
+	{
+		border: 1px solid #FF0000;
+		padding: 5px;
+	}
+
+
+#main-content-nav
+{
+
+	position: absolute;
+	top: 100px;
+	right: 40px;
+	width: 150px;
+
+/*
+	position: fixed;
+	top: 0;
+	right: -20px;
+	width: 150px;
+*/
+	border: 1px dashed #000;
+	border-width: 0px 0px 0px 1px;
+	padding: 0.5em;
+}
+
+	#main-content-nav .images
+	{
+		border: 1px solid #707070;
+		border-width: 1px 0px 0px 0px;
+	}
+
+	#main-content-nav .nav-header
+	{
+		font-weight: bold;
+		border: 1px solid #000000;
+		border-width: 0px 0px 1px 0px;
+		padding-bottom: 0px;
+	}
+
+
+	#main-content-nav .images ul li
+	{
+		list-style-type: none;
+		list-style-image: none;
+		padding-left: 1em;
+		padding-right: 1em;
+		margin: 0;
+	}
+
+.pageversion
+{
+	font-size: 70%;
+}
+
+#addcomment
+{
+	padding: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+	border: 1px dotted #4F91C9;
+	font-size: 90%;
+}
+
+.error
+{
+	color: #DD0000;
+}
+
+/* Blocks within content block */
+#last-modified
+{
+	position: relative;
+	margin-top: 10px;
+
+	font-size: 75%;
+	background: transparent;
+	color: inherit;
+	padding: 2px 0px 0px;
+	border: 1px solid #4F91C9;
+	border-width: 1px 0px 0px 0px;
+	text-align: right;
+}
+
+.rant, .blogmark
+{
+	margin-left: 10px;
+}
+
+	.rant .info, .blogmark .info
+	{
+		font-size: 75%;
+		background: transparent;
+		color: inherit;
+	}
+
+	.rant .info
+	{
+		padding: 2px 0px 2px 4px;
+		border: 1px dotted #4F91C9;
+		border-width: 1px 0px 1px 0px;
+		position: relative;
+		text-align: right;
+	}
+
+	.blogmark .info
+	{
+		margin: 0;
+		padding: 0;
+		text-align: right;
+	}
+
+	.blogmark a
+	{
+		text-decoration: none;
+		border-bottom: 1px dotted #333;
+	}
+
+	.blogmark h3
+	{
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+
+	.blogmark p
+	{
+	/*
+		padding-top: 0;
+		padding-left: 15px;
+	*/
+		padding: 0 0 0 15px;
+		margin: 0;
+	}
+
+	.rant p, blogmark p
+	{
+		font-family: 'Trebuchet MS', 'Bitstream Vera Sans', Verdana, Arial, 'Lucida Sans', 'Lucida Sans Unicode', Helvetica, sans-serif;
+	}
+
+	.blogmark blockquote p
+	{
+		padding-left: 0;
+	}
+
+	.blogmark .edit
+	{
+		margin-left: 15px;
+	}
+
+
+/* Item in rantlist -> overview of rants */
+.rantitem, .rantitemsamedate
+{
+	height: 1.2em;
+
+	border-top: 1px solid #5dabed;
+}
+
+.rantitemsamedate
+{
+	border: 0px;
+/*	margin-left: 5px;*/
+}
+
+	.rantitem .date, .rantitemsamedate .date
+	{
+		float: left;
+		font-size: 75%;
+		width: 30px;
+		height: 1em;
+		padding-left: 15px;
+		z-index: 6;
+	}
+
+	.rantitem a, .rantitemsamedate a
+	{
+		width: 100%;
+		display: block;
+		border: 0;
+	}
+
+	.rantitem a:hover, .rantitemsamedate a:hover
+	{
+		background-color: #DDEEFF;
+		display: block;
+		border: 0;
+	}
+
+.mininav
+{
+	font-size: 75%;
+	background: transparent;
+	color: inherit;
+	padding: 2px 0px 2px 0px;
+	border: 1px dotted #4F91C9;
+	border-width: 1px 0px 1px 0px;
+	position: relative;
+	text-align: left;
+	margin-top: 10px;
+}
+
+	.mininav .heading
+	{
+		font-weight: bold;
+	}
+
+.edit
+{
+	font-size: 75%;
+	background: transparent;
+	color: #4F91C9;
+	border: 1px solid #4F91C9;
+	border-width: 0px 0px 1px 0px;
+	text-align: left;
+}
+
+.quote
+{
+	padding: 0;
+	margin: 0;
+}
+
+p.quote
+{
+	padding: 2px 0px 2px 0px;
+}
+
+#whitebox
+{
+	position: relative;
+	padding: 10px 10px 10px 10px;
+	background: #FFFFFF;
+	color: inherit;
+	z-index: 4;
+	border: 1px #000 solid;
+}
+
+#morphix
+{
+	position: relative;
+	right: 10px;
+}
+
+.comment
+{
+	margin: 10px;
+	padding: 10px;
+	padding-left: 0px;
+}
+
+	.comment_info
+	{
+		padding-bottom: 5px;
+		color: #707070;
+		font-size: 90%;
+	}
+
+	.comment_nr
+	{
+		color: #707070;
+		font-size: 130%;
+	}
+
+	.comment_nr_disabled
+	{
+		color: #DD0000;
+		font-size: 130%;
+	}
+
+	.comment_datestamp, .comment_name
+	{
+	}
+
+	.comment_message
+	{
+		border: 2px solid #4F91C9;
+		border-width: 0px 0px 0px 2px;
+		margin-left: 15px;
+		padding-left: 5px;
+	}
+
+/*** Tables ***/
+.tdHeader
+{
+	background: #4F91C9;
+	color: #FFFFFF;
+	text-align: left;
+}
+
+.tdOdd
+{
+	background: transparent;
+	color: #000000;
+}
+
+.tdEven
+{
+	background: #ABCBE9;
+	color: #000000;
+}
+
+/*** Notes ***/
+/*
+border-width:
+	This property is a shorthand for the border-top-width, border-right-width, border-bottom-width, and border-left-width properties.
+*/
+
+/*** EOF ***/
