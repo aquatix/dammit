@@ -1,7 +1,7 @@
 <?php
 /*
  * Blog module - HTML methods
- * Version: 0.4.01 2006-04-28
+ * Version: 0.4.02 2006-04-29
  */
 
 
@@ -20,7 +20,6 @@
  * modified
  * modifiedDate
  * location
- * blogmark
  * nrOfComments
  */
 function buildRants( $rants )
@@ -70,10 +69,6 @@ function buildRants( $rants )
 		$rantsHTML = $rantsHTML . "<a href=\"index.php?rantid=" . $rants[$i]['messageID'] . "\">" . $rants[$i]["nrOfComments"] . " " . $commentText . "</a> | ";
 		
 		$rantsHTML = $rantsHTML . $rants[$i]['location'] . " | ";
-		if ( $rants[$i]["blogmark"] > -1 )
-		{
-			$rantsHTML = $rantsHTML . "<a href=\"blogmarks.php?item=" . $rants[$i]["blogmark"] . "\">Blogmark</a> | ";
-		}
 		$rantsHTML = $rantsHTML . "Posted " . getTime($rants[$i]['date']) . " ]</div>\n</div>\n\n";
 	}
 	return $rantsHTML;

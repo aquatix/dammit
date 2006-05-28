@@ -1,7 +1,7 @@
 <?php
 /*
  * File containing the page template [start of the page] of the blog
- * Version: 0.4.01 :: 2006-04-28
+ * Version: 0.4.02 2006-04-29
  */
 
 /*
@@ -141,6 +141,10 @@ $page .= "\t<div id=\"main-content-nav\">\n";
    $page .= "\t\t<form action=\"search.php\" method=\"post\"><input type=\"text\" name=\"searchkey\" size=\"12\" maxlength=\"250\"/><input name=\"searchbtn\" value=\"Find\" type=\"submit\"/></form>\n";
    $page .= "\t</div>\n";
  */
+if (!isset($searchkey))
+{
+	$searchkey = '';
+} 
 $page .= "\t\t<form action=\"search.php\" method=\"post\"><div><input type=\"text\" class=\"searchfield\" name=\"searchkey\" size=\"12\" maxlength=\"250\" value=\"" . $searchkey . "\" /><input name=\"searchbtn\" value=\"Find\" type=\"submit\" /></div></form>\n";
 
 

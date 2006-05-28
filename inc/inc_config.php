@@ -6,6 +6,7 @@
 
 /*** Site settings ***/
 $skel['testing'] = false;
+//$skel['testing'] = true;
 
 $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
@@ -23,8 +24,10 @@ $skel['basePath'] = '/home/mbscholt/www/';
 if (true == $skel['testing'])
 {
 	//$skel['baseHref'] = 'http://aquariusoft.org/projects/blog/';
+	/*
 	$skel['baseHref'] = '/projects/blog/';
 	$skel['basePath'] = '/var/www/projects/blog/';
+	*/
 }
 
 $skel['startyear'] = '2003';

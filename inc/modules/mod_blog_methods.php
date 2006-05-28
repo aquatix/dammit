@@ -1,7 +1,7 @@
 <?php
 /*
  * Blog module - methods
- * Version: 0.3.14 2005-09-21
+ * Version: 0.4.01 2006-04-29
  */
 
 
@@ -871,7 +871,7 @@ function getComments( $skel, $rantId )
 
 
 /*
- * Add new smplog_comment to DB
+ * Add new comment to DB
  *
  * Should be validated before reaching this function [e.g., $email should be valid in case of $wantsNotifications
  *   and $message && $name != empty
@@ -914,7 +914,7 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 	}
 
 	$query = 'INSERT INTO smplog_comment ' .
-		'SET smplog_rantid=' . $rantId . ', date="' . $time . '", ip="' . $ipaddr . '", client="'. getenv("HTTP_USER_AGENT") .'", name="' . $name . '", email="' . $email . '", wantnotifications=' . $wantnotificationsint . ', uri="' . $uri . '", message="' . $message .
+		'SET rantid=' . $rantId . ', date="' . $time . '", ip="' . $ipaddr . '", client="'. getenv("HTTP_USER_AGENT") .'", name="' . $name . '", email="' . $email . '", wantnotifications=' . $wantnotificationsInt . ', uri="' . $uri . '", message="' . $message .
 		'", state=1;';
 
 	$querysuccess = mysql_query($query, $skel["dbLink"]);
@@ -939,8 +939,8 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 	// Mail configuration
 	//$body = "\nA smplog_comment has been added by " . $name . " [" . $email . "].\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\n" . $skel["baseHref"] . "index.php?rantid=" . $rantId . "&action=remove\n\n";
 	//$body = "\nA smplog_comment has been added by " . $name . " [" . $email . "].\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\n\n";
-	$body = "\nA smplog_comment has been added by " . $name . " [" . $email . "].\nTime of comment: " . $time . "\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $rantsInfo[0]["title"] . " [date: " . $rantsInfo[0]["date"] . "]\nhttp://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\n\n";
-	$body .= "== smplog_comment ======\n" . $unescapedMessage . "\n";
+	$body = "\nA comment has been added by " . $name . " [" . $email . "].\nTime of comment: " . $time . "\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $rantsInfo[0]["title"] . " [date: " . $rantsInfo[0]["date"] . "]\nhttp://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\n\n";
+	$body .= "== comment ======\n" . $unescapedMessage . "\n";
 
 	//$emailresult = sendEmail($skel, $skel["mailFrom"], $skel["mailFromName"], $skel["mailTo"], $skel["mailSubject"] . " about \"" . $rantsInfo[0]["title"] . "\" [date: " . $rantsInfo[0]["date"] . "]", $body);
 	$emailresult = sendEmail($skel, $skel["mailFrom"], $skel["mailFromName"], $skel["mailTo"], $skel["mailSubject"] . " about \"" . $rantsInfo[0]["title"] . "\"", $body);
@@ -951,7 +951,7 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 	}
 
 	/* Now send everybody that reacted on the post and wanted a notification an e-mail */
-	$body = "\nA smplog_comment has been added by " . $name . " to posting\n" . $rantsInfo[0]["title"] . " [posted " . $rantsInfo[0]["date"] . "]\nhttp://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\nTime of comment: " . $time . "\n\n== smplog_comment ======\n" . $unescapedMessage . "\n\n== End of smplog_comment ======\nIf you receive this message and don't know why you're getting it, please check the uri provided, http://" . $skel["servername"] . $skel["baseHref"] . " or e-mail to " . $skel["mainEmail"];
+	$body = "\nA comment has been added by " . $name . " to posting\n" . $rantsInfo[0]["title"] . " [posted " . $rantsInfo[0]["date"] . "]\nhttp://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\nTime of comment: " . $time . "\n\n== comment ======\n" . $unescapedMessage . "\n\n== End of comment ======\nIf you receive this message and don't know why you're getting it, please check the uri provided, http://" . $skel["servername"] . $skel["baseHref"] . " or e-mail to " . $skel["mainEmail"];
 
 	/* Get all e-mail addresses that had the checkbox checked */
 
