@@ -1,7 +1,7 @@
 <?php
 /*
  * File containing the page template [start of the page] of the blog
- * Version: 0.4.02 2006-04-29
+ * Version: 0.4.03 2006-04-30
  */
 
 /*
@@ -166,11 +166,12 @@ foreach ( array_keys($skel["nav_sections"]) as $navsection_name )
 
 $page .= "\t\t<div class=\"images\">\n";
 $page .= "\t\t\t<ul>\n";
-$page .= "\t\t\t\t<li><a href=\"http://www.technorati.com/profile/aquatix/3133231/41b298b8585eafc9e8c55a0b30c90f65\" title=\"My Technorati profile\"><img src=\"images/technorati.gif\" alt=\"Technorati profile\"/></a></li>\n";
+$page .= "\t\t\t\t<li><a href=\"http://www.debian.org/\" title=\"Debian GNU/Linux\"><img src=\"images/debian.png\" alt=\"Debian GNU/Linux\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.fark.com/\" title=\"Fark.com\"><img src=\"images/fark.png\" alt=\"Fark.com\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://dwlt.net/tapestry/\" title=\"Tapestry comics\"><img src=\"images/gotcomics.png\" alt=\"Got comics\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.deviantart.com/\" title=\"deviantART\"><img src=\"images/deviantart_logo.gif\" alt=\"deviantART logo\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.scripting.com/\"><img src=\"images/thanksdave.jpg\" title=\"My thanks to Dave Winer for his visionary role in the development of weblogs, RSS, podcasting, SOAP, XML-RPC, OPML, and outliners.\" alt=\"Thanks Dave\" /></a></li>\n";
+$page .= "\t\t\t\t<li><a href=\"http://www.technorati.com/profile/aquatix/3133231/41b298b8585eafc9e8c55a0b30c90f65\" title=\"My Technorati profile\"><img src=\"images/technorati.gif\" alt=\"Technorati profile\"/></a></li>\n";
 $page .= "\t\t\t</ul>\n";
 $page .= "\t\t</div>\n";
 

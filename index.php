@@ -1,6 +1,6 @@
 <?php
-$lastmodified = "2006-04-28";
-$page_version = "0.4.01";
+$lastmodified = "2006-05-02";
+$page_version = "0.4.02";
 $dateofcreation = "2003-12-21";
 
 $page_name = "home";
@@ -135,7 +135,7 @@ if ( $subpage == "plan" )
 		$prevNext = getNextPrevRant($skel, $rant[0]["date"]);
 
 		$prev = "";
-		if ($prevNext["prev"]["title"] != "")
+		if (isset($prevNext["prev"]["title"]) && "" != $prevNext["prev"]["title"])
 		{
 			$prev = "<a href=\"index.php?rantid=" . $prevNext["prev"]["messageID"] . "\">&laquo;&nbsp;" . $prevNext["prev"]["title"] . "</a>";
 		} else
@@ -143,7 +143,7 @@ if ( $subpage == "plan" )
 			$prev = "<a href=\"index.php\">Home</a>";
 		}
 		$next = "";
-		if ($prevNext["next"]["title"] != "")
+		if (isset($prevNext["next"]["title"]) && "" != $prevNext["next"]["title"])
 		{
 			$next = "<a href=\"index.php?rantid=" . $prevNext["next"]["messageID"] . "\">" . $prevNext["next"]["title"] . "&nbsp;&raquo;</a>";
 		} else

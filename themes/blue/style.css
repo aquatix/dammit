@@ -206,11 +206,13 @@ blockquote
 	background-position: top left;
 	background-repeat: no-repeat;
 	padding-top: 20px;
+	padding-top: 17px;
 	text-align: justify;
 	border: 2px solid #4F91C9;
 	border-width: 0px 0px 0px 2px;
 	margin-left: 15px;
 	padding-left: 5px;
+	padding-left: 25px;
 }
 
 
@@ -487,19 +489,38 @@ blockquote
 	margin-left: 10px;
 }
 
-	.rant .info, .blogmark .info
+	.rant h3
+	{
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+
+	.rant .info, .blogmark .info, .rant .related
 	{
 		font-size: 75%;
 		background: transparent;
 		color: inherit;
 	}
-
+/*
 	.rant .info
 	{
 		padding: 2px 0px 2px 4px;
 		border: 1px dotted #4F91C9;
 		border-width: 1px 0px 1px 0px;
 		position: relative;
+		text-align: right;
+	}
+*/
+	.rant .info
+	{
+		margin-left: 4px;
+		margin-top: 1em;
+		padding: .2em;
+		background: #e6ebf0;
+	}
+
+	.rant .related
+	{
 		text-align: right;
 	}
 
@@ -580,13 +601,6 @@ blockquote
 		display: block;
 		border: 0;
 	}
-
-.inpostinfo
-{
-	font-size: 75%;
-/*	text-align: right;*/
-	margin-bottom: 1em;
-}
 
 .mininav
 {

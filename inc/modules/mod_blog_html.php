@@ -1,7 +1,7 @@
 <?php
 /*
  * Blog module - HTML methods
- * Version: 0.4.02 2006-04-29
+ * Version: 0.4.03 2006-04-30
  */
 
 
@@ -32,17 +32,19 @@ function buildRants( $rants )
 		$thisDate = getNormalDate($rants[$i]['date']);
 		if ($thisDate != $previousDate)
 		{
-			$rantsHTML = $rantsHTML . '<h2>' . $thisDate . "</h2>\n";
+			$rantsHTML .= '<h2>' . $thisDate . "</h2>\n";
 			$previousDate = $thisDate;
 		}
 		/* Title */
-		$rantsHTML = $rantsHTML . "<div class=\"rant\">\n<h3>" . $rants[$i]['title'] . "</h3>\n";
-		/* Rant itself */
-		$rantsHTML = $rantsHTML . $rants[$i]['message'] . "\n";
+		$rantsHTML .= "<div class=\"rant\">\n<h3>" . $rants[$i]['title'] . "</h3>\n";
 		/* Info about the rant entry */
-		$rantsHTML = $rantsHTML . "<div class=\"info\">[ ";
+		$rantsHTML .= "<div class=\"info\">";
+		$rantsHTML .= $rants[$i]['location'] . " | ";
+		$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . "</div>\n";
+		/* Rant itself */
+		$rantsHTML .= $rants[$i]['message'] . "\n";
 
-		//if (true === isLoggedIn())
+		$rantsHTML .= "<div class=\"related\">";
 		if (true == isLoggedIn())
 		{
 			$rantsHTML .= "<a href=\"root.php?action=editrant&amp;rantid=" . $rants[$i]['messageID'] . "\">Edit</a> | ";
@@ -53,12 +55,12 @@ function buildRants( $rants )
 			/* Modified at least once */
 			if ($rants[$i]['modified'] == 1)
 			{
-				$rantsHTML = $rantsHTML . 'Modified 1 time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
+				$rantsHTML .= 'Modified 1 time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
 			} else
 			{
-				$rantsHTML = $rantsHTML . 'Modified ' . $rants[$i]['modified'] . ' times, last time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
+				$rantsHTML .= 'Modified ' . $rants[$i]['modified'] . ' times, last time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
 			}
-			$rantsHTML = $rantsHTML . " | ";
+			$rantsHTML .= " | ";
 		}
 		
 		$commentText = "comments";
@@ -66,10 +68,10 @@ function buildRants( $rants )
 		{
 			$commentText = "comment";
 		}
-		$rantsHTML = $rantsHTML . "<a href=\"index.php?rantid=" . $rants[$i]['messageID'] . "\">" . $rants[$i]["nrOfComments"] . " " . $commentText . "</a> | ";
+		$rantsHTML .= "<a href=\"index.php?rantid=" . $rants[$i]['messageID'] . "\">" . $rants[$i]["nrOfComments"] . " " . $commentText . "&nbsp;&raquo;</a>";
 		
-		$rantsHTML = $rantsHTML . $rants[$i]['location'] . " | ";
-		$rantsHTML = $rantsHTML . "Posted " . getTime($rants[$i]['date']) . " ]</div>\n</div>\n\n";
+		$rantsHTML .= "</div>\n";
+		$rantsHTML .= "</div>\n\n";
 	}
 	return $rantsHTML;
 }
@@ -166,30 +168,30 @@ function buildMarks( $marks )
 		$thisDate = getNormalDate($marks[$i]['date']);
 		if ($thisDate != $previousDate)
 		{
-			$marksHTML = $marksHTML . '<h2>' . $thisDate . "</h2>\n";
+			$marksHTML .= '<h2>' . $thisDate . "</h2>\n";
 			$previousDate = $thisDate;
 		}
 		/* Title */
-		$marksHTML = $marksHTML . "<div class=\"blogmark\">\n<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
+		$marksHTML .= "<div class=\"blogmark\">\n<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
 		/* Rant itself */
-		$marksHTML = $marksHTML . $marks[$i]['message'] . "\n";
+		$marksHTML .= $marks[$i]['message'] . "\n";
 		/* Info about the rant entry */
-		$marksHTML = $marksHTML . "<div class=\"info\">[ ";
+		$marksHTML .= "<div class=\"info\">[ ";
 		if ($marks[$i]['modified'] > 0)
 		{
 			/* Modified at least once */
 			if ($marks[$i]['modified'] == 1)
 			{
-				$marksHTML = $marksHTML . 'Modified 1 time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
+				$marksHTML .= 'Modified 1 time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
 			} else
 			{
-				$marksHTML = $marksHTML . 'Modified ' . $marks[$i]['modified'] . ' times, last time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
+				$marksHTML .= 'Modified ' . $marks[$i]['modified'] . ' times, last time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
 			}
-			$marksHTML = $marksHTML . " | ";
+			$marksHTML .= " | ";
 		}
-		$marksHTML = $marksHTML . "<a href=\"blogmarks.php?markid=" . $marks[$i]["id"] . "\">blogmark</a> | ";
-		$marksHTML = $marksHTML . $marks[$i]['location'] . " | ";
-		$marksHTML = $marksHTML . "Posted " . getTime($marks[$i]['date']) . " ]</div>\n</div>\n\n";
+		$marksHTML .= "<a href=\"blogmarks.php?markid=" . $marks[$i]["id"] . "\">blogmark</a> | ";
+		$marksHTML .= $marks[$i]['location'] . " | ";
+		$marksHTML .= "Posted " . getTime($marks[$i]['date']) . " ]</div>\n</div>\n\n";
 	}
 	return $marksHTML;
 }
@@ -203,24 +205,7 @@ function buildInPostMarks( $marks )
 		/* Title */
 		$marksHTML .= "<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
 		/* Rant itself */
-		$marksHTML = $marksHTML . $marks[$i]['message'] . "\n";
-		/* Info about the rant entry */
-		$marksHTML = $marksHTML . "<div class=\"inpostinfo\">[ ";
-		if ($marks[$i]['modified'] > 0)
-		{
-			/* Modified at least once */
-			if ($marks[$i]['modified'] == 1)
-			{
-				$marksHTML = $marksHTML . 'Modified 1 time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
-			} else
-			{
-				$marksHTML = $marksHTML . 'Modified ' . $marks[$i]['modified'] . ' times, last time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
-			}
-			$marksHTML = $marksHTML . " | ";
-		}
-		$marksHTML = $marksHTML . "<a href=\"blogmarks.php?markid=" . $marks[$i]["id"] . "\">blogmark</a> | ";
-		$marksHTML = $marksHTML . $marks[$i]['location'] . " | ";
-		$marksHTML = $marksHTML . "Posted " . getTime($marks[$i]['date']) . " on " . getNormalDate($marks[$i]['date']) . " ]</div>\n\n";
+		$marksHTML .= $marks[$i]['message'] . "\n";
 	}
 	return $marksHTML;
 }
@@ -244,12 +229,12 @@ function buildCondensedMarks( $marks )
 			/* Modified at least once */
 			if ($marks[$i]['modified'] == 1)
 			{
-				$marksHTML = $marksHTML . 'Modified 1 time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
+				$marksHTML .= 'Modified 1 time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
 			} else
 			{
-				$marksHTML = $marksHTML . 'Modified ' . $marks[$i]['modified'] . ' times, last time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
+				$marksHTML .= 'Modified ' . $marks[$i]['modified'] . ' times, last time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
 			}
-			$marksHTML = $marksHTML . " | ";
+			$marksHTML .= " | ";
 		}
 		$marksHTML .= $marks[$i]['location'];
 		$marksHTML .= " | <a href=\"" . markUri($marks[$i]) . "\">" . getMonthDate($marks[$i]['date']) . ", " . getTime($marks[$i]['date']) . "</a>";
@@ -369,7 +354,7 @@ function generateFeed($skel, $filename, $feedtitle, $body)
 
 	$feed .= "\t\t<image>\n";
 	$feed .= "\t\t\t<title>" . $skel["sitename"] . "</title>\n";
-	$feed .= "\t\t\t<uri>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</uri>\n";
+	$feed .= "\t\t\t<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
 	$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	$feed .= "\t\t\t<width>" . $skel["logoWidth"] . "</width>\n";
 	$feed .= "\t\t\t<height>" . $skel["logoHeight"] . "</height>\n";
@@ -381,7 +366,7 @@ function generateFeed($skel, $filename, $feedtitle, $body)
 	$feed .= "\t\t<dc:creator>" . $skel["rssEmail"] . "</dc:creator>\n";
 	$feed .= "\t\t<dc:date>" . date('Y-m-d\TH:i:s+01:00') . "</dc:date>\n";
 	$feed .= "\t\t<admin:generatorAgent rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "\" />\n";
-	$feed .= "\t\t<sy:updatePeriod>houriy</sy:updatePeriod>\n";
+	$feed .= "\t\t<sy:updatePeriod>hourly</sy:updatePeriod>\n";
 	$feed .= "\t\t<sy:updateFrequency>1</sy:updateFrequency>\n";
 	$feed .= "\t\t<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>\n";
 
@@ -569,11 +554,11 @@ function generateBlogFeed($rants, $skel)
 {
 	$feed  = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
 	$feed .= "<rss version=\"2.0\"\n";
-	$feed .= "xmlns:dc=\"http://puri.org/dc/elements/1.1/\"\n";
-	$feed .= "xmlns:sy=\"http://puri.org/rss/1.0/modules/syndication/\"\n";
+	$feed .= "xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n";
+	$feed .= "xmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\"\n";
 	$feed .= "xmlns:admin=\"http://webns.net/mvcb/\"\n";
 	$feed .= "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
-	$feed .= "xmlns:content=\"http://puri.org/rss/1.0/modules/content/\">\n";
+	$feed .= "xmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n";
 
 
 	$feed .= "<channel>\n";
@@ -585,7 +570,7 @@ function generateBlogFeed($rants, $skel)
 
 	$feed .= "<image>\n";
 	$feed .= "<title>" . $skel["sitename"] . "</title>\n";
-	$feed .= "<uri>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</uri>\n";
+	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	$feed .= "<width>176</width>\n";
 	$feed .= "<height>71</height>\n";
@@ -598,7 +583,7 @@ function generateBlogFeed($rants, $skel)
 	$feed .= "<dc:creator>" . $skel["rssEmail"] . "</dc:creator>\n";
 	$feed .= "<dc:date>" . date('Y-m-d\TH:i:s+01:00') . "</dc:date>\n";
 	$feed .= "<admin:generatorAgent rdf:resource=\"" . $skel["servername"] . $skel["baseHref"] . "\" />\n";
-	$feed .= "<sy:updatePeriod>houriy</sy:updatePeriod>\n";
+	$feed .= "<sy:updatePeriod>hourly</sy:updatePeriod>\n";
 	$feed .= "<sy:updateFrequency>1</sy:updateFrequency>\n";
 	$feed .= "<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>\n";
 
@@ -646,11 +631,11 @@ function generateBlogWithCommentsFeed($rants, $skel)
 {
 	$feed  = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
 	$feed .= "<rss version=\"2.0\"\n";
-	$feed .= "xmlns:dc=\"http://puri.org/dc/elements/1.1/\"\n";
-	$feed .= "xmlns:sy=\"http://puri.org/rss/1.0/modules/syndication/\"\n";
+	$feed .= "xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n";
+	$feed .= "xmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\"\n";
 	$feed .= "xmlns:admin=\"http://webns.net/mvcb/\"\n";
 	$feed .= "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
-	$feed .= "xmlns:content=\"http://puri.org/rss/1.0/modules/content/\">\n";
+	$feed .= "xmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n";
 
 
 	$feed .= "<channel>\n";
@@ -662,7 +647,7 @@ function generateBlogWithCommentsFeed($rants, $skel)
 
 	$feed .= "<image>\n";
 	$feed .= "<title>" . $skel["sitename"] . "</title>\n";
-	$feed .= "<uri>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</uri>\n";
+	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	$feed .= "<width>176</width>\n";
 	$feed .= "<height>71</height>\n";
@@ -675,7 +660,7 @@ function generateBlogWithCommentsFeed($rants, $skel)
 	$feed .= "<dc:creator>" . $skel["rssEmail"] . "</dc:creator>\n";
 	$feed .= "<dc:date>" . date('Y-m-d\TH:i:s+01:00') . "</dc:date>\n";
 	$feed .= "<admin:generatorAgent rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "\" />\n";
-	$feed .= "<sy:updatePeriod>houriy</sy:updatePeriod>\n";
+	$feed .= "<sy:updatePeriod>hourly</sy:updatePeriod>\n";
 	$feed .= "<sy:updateFrequency>1</sy:updateFrequency>\n";
 	$feed .= "<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>\n";
 
@@ -699,9 +684,9 @@ function generateBlogWithCommentsFeed($rants, $skel)
 			$rantcomments = "<br /><hr /><p><b>Comments:</b></p>\n";
 			for ($j = 0; $j < count($comments); $j++)
 			{
-				if ($comments[$j]['uri'] != '')
+				if ($comments[$j]['url'] != '')
 				{
-					$rantcomments .= "<a href=\"" . $comments[$j]['uri'] . "\">" . $comments[$j]["name"] . "</a>";
+					$rantcomments .= "<a href=\"" . $comments[$j]['url'] . "\">" . $comments[$j]["name"] . "</a>";
 				} else
 				{
 					$rantcomments .= $comments[$j]["name"];
@@ -745,7 +730,7 @@ function generateBlogWithCommentsFeed($rants, $skel)
  * user
  * ip
  * title
- * uri
+ * url
  * location
  * message
  * modified
@@ -755,11 +740,11 @@ function generateBlogmarkFeed($marks, $skel)
 {
 	$feed  = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
 	$feed .= "<rss version=\"2.0\"\n";
-	$feed .= "xmlns:dc=\"http://puri.org/dc/elements/1.1/\"\n";
-	$feed .= "xmlns:sy=\"http://puri.org/rss/1.0/modules/syndication/\"\n";
+	$feed .= "xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n";
+	$feed .= "xmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\"\n";
 	$feed .= "xmlns:admin=\"http://webns.net/mvcb/\"\n";
 	$feed .= "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
-	$feed .= "xmlns:content=\"http://puri.org/rss/1.0/modules/content/\">\n";
+	$feed .= "xmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n";
 
 	$feed .= "<channel>\n";
 	//$feed .= "<title>dammIT blogmarks</title>\n";
@@ -771,7 +756,7 @@ function generateBlogmarkFeed($marks, $skel)
 	$feed .= "<image>\n";
 	//$feed .= "<title>dammIT</title>\n";
 	$feed .= "<title>" . $skel["sitename"] . "</title>\n";
-	$feed .= "<uri>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</uri>\n";
+	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	$feed .= "<width>176</width>\n";
 	$feed .= "<height>71</height>\n";
@@ -786,7 +771,7 @@ function generateBlogmarkFeed($marks, $skel)
 	$feed .= "<dc:creator>" . $skel["rssEmail"] . "</dc:creator>\n";
 	$feed .= "<dc:date>" . date('Y-m-d\TH:i:s+01:00') . "</dc:date>\n";
 	$feed .= "<admin:generatorAgent rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "\" />\n";
-	$feed .= "<sy:updatePeriod>houriy</sy:updatePeriod>\n";
+	$feed .= "<sy:updatePeriod>hourly</sy:updatePeriod>\n";
 	$feed .= "<sy:updateFrequency>1</sy:updateFrequency>\n";
 	$feed .= "<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>\n";
 
@@ -803,10 +788,10 @@ function generateBlogmarkFeed($marks, $skel)
 		$feed .= "<item>\n";
 		$feed .= "<title>" . $marks[$i]['title'] . "</title>\n";
 		/* Atom links, usable in the future when I come around to implement an Atom feed
-		$feed .= "<link rel=\"alternate\" type=\"application/xhtml+xml\" href=\"" . $skel["baseHref"] . markuri($marks[$i]) . "\" />\n";
-		$feed .= "<link rel=\"related\" type=\"text/html\" href=\"" . $marks[$i]['uri'] . "\" />\n";
+		$feed .= "<link rel=\"alternate\" type=\"application/xhtml+xml\" href=\"" . $skel["baseHref"] . markurl($marks[$i]) . "\" />\n";
+		$feed .= "<link rel=\"related\" type=\"text/html\" href=\"" . $marks[$i]['url'] . "\" />\n";
 		*/
-		$feed .= "<link>" . $marks[$i]['uri'] . "</link>\n";
+		$feed .= "<link>" . $marks[$i]['url'] . "</link>\n";
 		$feed .= "<content:encoded><![CDATA[" . $marks[$i]['message'] . "<p>Location: " . $marks[$i]['location'] . "</p>]]></content:encoded>\n";
 		$feed .= "<dc:subject></dc:subject>\n";
 		$feed .= "<dc:creator>Michiel</dc:creator>\n";

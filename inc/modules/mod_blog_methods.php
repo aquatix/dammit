@@ -1,7 +1,7 @@
 <?php
 /*
  * Blog module - methods
- * Version: 0.4.01 2006-04-29
+ * Version: 0.4.02 2006-04-30
  */
 
 
@@ -12,7 +12,7 @@ function login( $skel, $user, $pass )
 {
 	/* verify user/pass combo with db */
 	$query = 'SELECT smplog_user.pass, smplog_user.id FROM smplog_user WHERE smplog_user.username="' . $user . '";';
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -43,7 +43,7 @@ function getNrOfRants($skel)
 {
 	$query = 'SELECT count(*) FROM smplog_rant;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -62,7 +62,7 @@ function getNrOfComments( $skel, $rantId )
 {
 	$query = 'SELECT count(*) FROM smplog_comment WHERE smplog_comment.rantid = ' . $rantId . ' AND smplog_comment.state=1;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -81,7 +81,7 @@ function isRantMine( $skel, $rantId )
 {
 	$query = "SELECT user FROM smplog_rant WHERE smplog_rant.messageid=" . $rantId . ";";
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -97,7 +97,7 @@ function areCommentsEnabled($skel, $rantid)
 {
 	$query = "SELECT commentsenabled FROM smplog_rant WHERE smplog_rant.messageid=" . $rantid . ";";
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -127,7 +127,7 @@ function getRants( $skel, $offset, $number )
 
 	$query = 'SELECT messageid, date, user, ip, title, message, modified, modifieddate, location, commentsenabled FROM smplog_rant ORDER BY date DESC LIMIT ' . $offset . ', ' . $number . ';';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -161,7 +161,7 @@ function getRantByID( $skel, $id )
 
 	$query = 'SELECT messageid, date, user, ip, title, message, modified, modifieddate, location, commentsenabled FROM smplog_rant WHERE messageid = ' . $id . ';';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -194,7 +194,7 @@ function getNextPrevRant($skel, $rantDate)
 
 	$query = 'SELECT messageid, date, title FROM smplog_rant WHERE date > "' . $rantDate . '" ORDER BY date ASC LIMIT 1;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -206,7 +206,7 @@ function getNextPrevRant($skel, $rantDate)
 
 	$query = 'SELECT messageid, date, title FROM smplog_rant WHERE date < "' . $rantDate . '" ORDER BY date DESC LIMIT 1;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -229,7 +229,7 @@ function findRants( $skel, $searchkey )
 
 	$query = 'SELECT messageid, date, user, ip, title, message, modified, modifieddate, location, commentsenabled FROM smplog_rant WHERE message LIKE "%' . $searchkey . '%" OR title LIKE "%' . $searchkey . '%" ORDER BY date DESC;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -268,7 +268,7 @@ function getRantsInfo( $skel, $id )
 
 	//	echo $query;
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -302,7 +302,7 @@ function getRantsFromYear( $skel, $year )
 
 	//echo $query;
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -334,7 +334,7 @@ function getRantlist( $skel )
 
 	$query = 'SELECT messageid, date, user, title, modified, modifieddate FROM smplog_rant;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -360,7 +360,7 @@ function getRantYears( $skel )
 {
 	$query = 'SELECT DISTINCT YEAR(date) FROM smplog_rant ORDER BY YEAR(date) ASC;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 
 	if ( mysql_num_rows( $result ) > 0 )
 	{
@@ -420,13 +420,19 @@ function addRant( $skel, $title, $location, $rant )
 	$time = date("Y-m-d G:i:s", time());
 
 	/* Whatever... */
-	$user_id = $_SESSION['userid'];
+	if (isset($_SESSION) && isset($_SESSION['userid']))
+	{
+		$user_id = $_SESSION['userid'];
+	} else
+	{
+		$user_id = 1;
+	}
 
 	$query = 'INSERT INTO smplog_rant ' .
 		'SET date="' . $time . '", user="' . $user_id . '", ip="' . $ipaddr . '", title="'. $title .'", location="' . $location . '", message="' . $rant .
 		'", modified=0, modifieddate="0000-00-00 00:00:00";';
 
-	$result = mysql_query($query, $skel["dbLink"]);
+	$result = mysql_query($query, $skel['dbLink']);
 }
 
 
@@ -442,7 +448,7 @@ function editRant( $skel, $title, $location, $rant, $rantid )
 		'FROM smplog_rant ' .
 		'WHERE messageid = ' . $rantid . ';';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -466,7 +472,7 @@ function editRant( $skel, $title, $location, $rant, $rantid )
 		'", modified=' . ($timesModified + 1) . ', modifieddate=NOW() ' .
 		'WHERE messageid=' . $rantid . ';';
 
-	$result = mysql_query($query, $skel["dbLink"]);
+	$result = mysql_query($query, $skel['dbLink']);
 }
 
 
@@ -491,7 +497,7 @@ function getMarks( $skel, $offset, $number )
 
 	$query = 'SELECT id, date, user, ip, title, uri, location, message, modified, modifieddate FROM smplog_blogmark ORDER BY date DESC LIMIT ' . $offset . ', ' . $number . ';';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -523,7 +529,7 @@ function findMarks( $skel, $searchkey )
 
 	$query = 'SELECT id, date, user, ip, title, uri, location, message, modified, modifieddate FROM smplog_blogmark WHERE message LIKE "%' . $searchkey . '%" OR title LIKE "%' . $searchkey . '%" ORDER BY date DESC;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -560,7 +566,7 @@ function getMarksPerMonth( $skel, $year )
 	// SELECT COUNT(Id) From smplog_blogmark WHERE MONTH(smplog_blogmark.date)=11 AND YEAR(smplog_blogmark.date) = 2004;
 	// SELECT DISTINCT MONTH(smplog_blogmark.date) AS M FROM smplog_blogmark WHERE YEAR(smplog_blogmark.date) = 2004 ORDER BY MONTH(smplog_blogmark.date) ASC;
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -587,7 +593,7 @@ function getMarksPerYear( $skel )
 	// SELECT COUNT(Id) From smplog_blogmark WHERE MONTH(smplog_blogmark.date)=11 AND YEAR(smplog_blogmark.date) = 2004;
 	// SELECT DISTINCT MONTH(smplog_blogmark.date) AS M FROM smplog_blogmark WHERE YEAR(smplog_blogmark.date) = 2004 ORDER BY MONTH(smplog_blogmark.date) ASC;
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -612,7 +618,7 @@ function getMarkMonths( $skel, $year )
 	// SELECT COUNT(Id) From smplog_blogmark WHERE MONTH(smplog_blogmark.date)=11 AND YEAR(smplog_blogmark.date) = 2004;
 	// SELECT DISTINCT MONTH(smplog_blogmark.date) AS M FROM smplog_blogmark WHERE YEAR(smplog_blogmark.date) = 2004 ORDER BY MONTH(smplog_blogmark.date) ASC;
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -756,7 +762,7 @@ function addMark( $skel, $title, $uri, $location, $description )
 		'SET date="' . $time . '", user="' . $user_id . '", ip="' . $ipaddr . '", title="'. $title .'", uri="' . $uri . '", location="' . $location . '", message="' . $description .
 		'", modified=0, modifieddate="0000-00-00 00:00:00";';
 
-	$result = mysql_query($query, $skel["dbLink"]);
+	$result = mysql_query($query, $skel['dbLink']);
 }
 
 
@@ -780,7 +786,7 @@ function editMark( $skel, $title, $location, $rant, $rantid )
 		'", modified=0, modifieddate=NOW() ' .
 		'WHERE messageid=' . $rantid . ';';
 
-	$result = mysql_query($query, $skel["dbLink"]);
+	$result = mysql_query($query, $skel['dbLink']);
 }
 
 
@@ -791,7 +797,7 @@ function getNrOfMarks($skel)
 {
 	$query = 'SELECT count(*) FROM smplog_blogmark;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
@@ -806,7 +812,7 @@ function getNrOfMarks($skel)
 
 function markUri($mark)
 {
-	return "blogmarks.php?year=" . getYear($mark["date"]) . "&amp;month=" . getMonth($mark["date"]) . "#uri" . $mark["id"];
+	return 'blogmarks.php?year=' . getYear($mark['date']) . '&amp;month=' . getMonth($mark['date']) . '#uri' . $mark['id'];
 }
 
 
@@ -824,7 +830,7 @@ function marksToRant($skel)
 	{
 		return 'No new blogmarks this week';
 	}
-	$rant = '<p>The blogmarks of this week:</p>';
+	$rant = "<p>Interesting links of this week:</p>\n";
 	$rant .= buildInPostMarks($marks);
 
 	addRant( $skel, $title, $location, $rant );
@@ -873,7 +879,7 @@ function getAllComments( $skel, $rantId, $wantallcomments )
 		$query = 'SELECT id, rantid, date, ip, client, name, email, wantnotifications, uri, message, state FROM smplog_comment WHERE smplog_comment.rantid = ' . $rantId . ' AND smplog_comment.state=1 ORDER BY Date ASC;';
 	}
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
@@ -953,7 +959,7 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 		'SET rantid=' . $rantId . ', date="' . $time . '", ip="' . $ipaddr . '", client="'. getenv("HTTP_USER_AGENT") .'", name="' . $name . '", email="' . $email . '", wantnotifications=' . $wantnotificationsInt . ', uri="' . $uri . '", message="' . $message .
 		'", state=1;';
 
-	$querysuccess = mysql_query($query, $skel["dbLink"]);
+	$querysuccess = mysql_query($query, $skel['dbLink']);
 
 	$result = "";
 	if (false == $querysuccess)
@@ -1016,7 +1022,7 @@ function disableComment($skel, $commentid)
 	$query = "UPDATE smplog_comment " .
 		"SET state=0 WHERE id=" . $commentid . ";";
 
-	$querysuccess = mysql_query($query, $skel["dbLink"]);
+	$querysuccess = mysql_query($query, $skel['dbLink']);
 
 	$result = "";
 	if (false == $querysuccess)
@@ -1036,7 +1042,7 @@ function enableComment($skel, $commentid)
 	$query = "UPDATE smplog_comment " .
 		"SET state=1 WHERE id=" . $commentid . ";";
 
-	$querysuccess = mysql_query($query, $skel["dbLink"]);
+	$querysuccess = mysql_query($query, $skel['dbLink']);
 
 	$result = "";
 	if (false == $querysuccess)
@@ -1055,7 +1061,7 @@ function disableCommentsForPost($skel, $rantid)
 	$query = "UPDATE smplog_rant " .
 		"SET commentsenabled=0 WHERE messageid=" . $rantid . ";";
 
-	$querysuccess = mysql_query($query, $skel["dbLink"]);
+	$querysuccess = mysql_query($query, $skel['dbLink']);
 
 	$result = '';
 	if (false == $querysuccess)
@@ -1075,7 +1081,7 @@ function enableCommentsForPost($skel, $rantid)
 	$query = "UPDATE smplog_rant " .
 		"SET commentsenabled=1 WHERE messageid=" . $rantid . ";";
 
-	$querysuccess = mysql_query($query, $skel["dbLink"]);
+	$querysuccess = mysql_query($query, $skel['dbLink']);
 
 	$result = '';
 	if (false == $querysuccess)
@@ -1099,7 +1105,7 @@ function getWantNotification($skel, $rantId)
 	/* Select all comments belonging to smplog_rant $rantId and sort them with the latest on top^W bottom */
 	$query = 'SELECT DISTINCT email FROM smplog_comment WHERE smplog_comment.rantid = ' . $rantId . ' AND smplog_comment.wantnotifications=1 AND smplog_comment.state=1;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)

@@ -2,8 +2,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = "2006-04-29";
-$page_version = "0.4.02";
+$lastmodified = "2006-04-30";
+$page_version = "0.4.03";
 $dateofcreation = "2003-12-22";
 
 $section_name = "root";
@@ -377,7 +377,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addmark\">Add blogmark</a></li>\n";
 	//$page_body .= "\t<li><a href=\"root.php?action=editmark\">Edit blogmark...</a></li>\n";
-	$page_body .= "\t<li><a href=\"root.php?action=markstorant\">Blogmarks to rant</a></li>\n";
+	$page_body .= "\t<li><a href=\"root.php?action=markstorant\">Blogmarks of last 7 days to rant</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "<h2>Logs</h2>\n";
 	$page_body .= "<ul>\n";

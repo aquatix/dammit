@@ -1,7 +1,7 @@
 <?php
 /*
  * Toolkit module - methods
- * Version: 0.4.01 2006-0429
+ * Version: 0.4.02 2006-04-30
  */
 
 /*
@@ -23,7 +23,7 @@ function getNormalDate($datetime)
 	$date = explode("-", $dateAndTime[0]);	//split up the date in year, month and day
 	//	return date("D Y-m-d", mktime(0,0,0,$date[1],$date[2],$date[0]));	//"Mon 2003-12-22"
 	//return date("l, d F, Y", mktime(0,0,0,$date[1],$date[2],$date[0]));	//"Monday, 22 December, 2003"
-	return date("l d F, Y", mktime(0,0,0,$date[1],$date[2],$date[0]));	//"Monday, 22 December, 2003"
+	return date("l d F Y", mktime(0,0,0,$date[1],$date[2],$date[0]));	//"Monday, 22 December, 2003"
 	//$date = getDate( $datetime );//$dateAndTime[0]
 
 }
