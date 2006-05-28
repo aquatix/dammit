@@ -6,7 +6,7 @@
 
 /*** Site settings ***/
 $skel['testing'] = false;
-//$skel['testing'] = true;
+$skel['testing'] = true;
 
 $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
@@ -154,6 +154,10 @@ $skel['mailNotificationSubject'] = '[dammIT] New comment posted';
 
 /*** Stylesheet filename ***/
 $skel['cssTheme'] = 'blue';
+
+
+/* Automated tasks, like the posting of the blogmarks of this week, are restricted to IP: */
+$skel['restricttoip'] = '127.0.0.1';
 
 
 /*

@@ -2,8 +2,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = "2006-04-28";
-$page_version = "0.4.01";
+$lastmodified = "2006-04-29";
+$page_version = "0.4.02";
 $dateofcreation = "2003-12-22";
 
 $section_name = "root";
@@ -15,6 +15,20 @@ addToLog( $skel, $section_name, $page_name, $page_version );
 
 $page_body = "";
 $page_name = "root";
+
+if ('weeklymarks' == getRequestParam('action', '') && getenv('REMOTE_ADDR') == $skel['restricttoip'])
+{
+	$result = marksToRant($skel);
+	if ('' == $result)
+	{
+		updateWebmarksFeed($skel, getMarks($skel, 0, $skel["nrOfItemsInFeed"]));
+		echo 'Rant with blogmarks of this week added';
+	} else
+	{
+		echo 'Rant with blogmarks of this week NOT added: ' . $result;
+	}
+	exit;
+}
 
 /* Find out which page to show */
 if ((isLoggedIn() == false) && (isset($_POST['user']) && $_POST['user'] != '') && (isset($_POST['pass']) && $_POST['pass'] != ''))
@@ -175,6 +189,17 @@ if (isset($_GET['action']) && isLoggedIn())
 		} else
 		{
 			$page_body .= "<h1>Error!</h1>\n<p>Not a valid blogmark submitted :)</p>\n<br /><br /><br /><br />\n";
+		}
+	} else if ($action == "markstorant")
+	{
+		$result = marksToRant($skel);
+		if ('' == $result)
+		{
+			updateWebmarksFeed($skel, getMarks($skel, 0, $skel["nrOfItemsInFeed"]));
+			$page_body .= "<h1>root / rant with blogmarks of this week added</h1>\n<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
+		} else
+		{
+			$page_body .= '<h1>root / rant with blogmarks of this week NOT added</h1>\n<p>' . $result . "</p><p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
 		}
 	} else if ($action == "disablecomment")
 	{
@@ -352,6 +377,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addmark\">Add blogmark</a></li>\n";
 	//$page_body .= "\t<li><a href=\"root.php?action=editmark\">Edit blogmark...</a></li>\n";
+	$page_body .= "\t<li><a href=\"root.php?action=markstorant\">Blogmarks to rant</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "<h2>Logs</h2>\n";
 	$page_body .= "<ul>\n";

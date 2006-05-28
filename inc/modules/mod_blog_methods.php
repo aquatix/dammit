@@ -407,9 +407,11 @@ function newRant($skel)
 function addRant( $skel, $title, $location, $rant )
 {
 	// Stripslashes
+	/*
 	if (get_magic_quotes_gpc()) {
 		$value = stripslashes($value);
 	}
+	*/
 	$title = escapeValue($title);
 	$location = escapeValue($location);
 	$rant = escapeValue($rant);
@@ -645,27 +647,60 @@ function getMarksByMonth( $skel, $year, $month )
 		'WHERE YEAR(smplog_blogmark.date)=' . $year . ' AND MONTH(smplog_blogmark.date)=' . $month . ' ' .
 		'ORDER BY Date DESC;';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
 		{
 			$row = mysql_fetch_row($result);
 
-			$marks[$i]["id"] = $row[0];
-			$marks[$i]["date"] = $row[1];
-			$marks[$i]["user"] = $row[2];
-			$marks[$i]["ip"] = $row[3];
-			$marks[$i]["title"] = $row[4];
-			$marks[$i]["uri"] = $row[5];
-			$marks[$i]["location"] = $row[6];
-			$marks[$i]["message"] = $row[7];
-			$marks[$i]["modified"] = $row[8];
-			$marks[$i]["modifiedDate"] = $row[9];
+			$marks[$i]['id'] = $row[0];
+			$marks[$i]['date'] = $row[1];
+			$marks[$i]['user'] = $row[2];
+			$marks[$i]['ip'] = $row[3];
+			$marks[$i]['title'] = $row[4];
+			$marks[$i]['uri'] = $row[5];
+			$marks[$i]['location'] = $row[6];
+			$marks[$i]['message'] = $row[7];
+			$marks[$i]['modified'] = $row[8];
+			$marks[$i]['modifiedDate'] = $row[9];
 		}
 	}
 	return $marks;
 }
+
+
+function getMarksByDateRange( $skel, $begin, $end )
+{
+	/* Generate list with smplog_blogmarks, newest first, starting with $first' item in DB, with a max of $number items */
+	$marks = array();
+
+	$query = 'SELECT id, date, user, ip, title, uri, location, message, modified, modifieddate FROM smplog_blogmark ' .
+		'WHERE smplog_blogmark.date>="' . $begin . '" AND smplog_blogmark.date<="' . $end . '" ' .
+		'ORDER BY Date DESC;';
+
+	$result = mysql_query( $query, $skel['dbLink'] );
+	if ( mysql_num_rows( $result ) > 0 )
+	{
+		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
+		{
+			$row = mysql_fetch_row($result);
+
+			$marks[$i]['id'] = $row[0];
+			$marks[$i]['date'] = $row[1];
+			$marks[$i]['user'] = $row[2];
+			$marks[$i]['ip'] = $row[3];
+			$marks[$i]['title'] = $row[4];
+			$marks[$i]['uri'] = $row[5];
+			$marks[$i]['location'] = $row[6];
+			$marks[$i]['message'] = $row[7];
+			$marks[$i]['modified'] = $row[8];
+			$marks[$i]['modifiedDate'] = $row[9];
+		}
+	}
+	return $marks;
+}
+
 
 /*
  * Returns smplog_blogmark $id
@@ -678,32 +713,26 @@ function getMarkByID( $skel, $id )
 	//$query = 'SELECT MessageId, Date, User, Ip, Title, Message, Modified, ModifiedDate, Location, smplog_blogmark FROM smplog_rant WHERE MessageId = ' . $id . ';';
 	$query = 'SELECT id, date, user, ip, title, uri, location, message, modified, modifieddate FROM smplog_blogmark WHERE id=' . $id . ';';
 
-	$result = mysql_query( $query, $skel["dbLink"] );
+	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
 		{
 			$row = mysql_fetch_row($result);
 
-			$marks[$i]["id"] = $row[0];
-			$marks[$i]["date"] = $row[1];
-			$marks[$i]["user"] = $row[2];
-			$marks[$i]["ip"] = $row[3];
-			$marks[$i]["title"] = $row[4];
-			$marks[$i]["uri"] = $row[5];
-			$marks[$i]["location"] = $row[6];
-			$marks[$i]["message"] = $row[7];
-			$marks[$i]["modified"] = $row[8];
-			$marks[$i]["modifiedDate"] = $row[9];
+			$marks[$i]['id'] = $row[0];
+			$marks[$i]['date'] = $row[1];
+			$marks[$i]['user'] = $row[2];
+			$marks[$i]['ip'] = $row[3];
+			$marks[$i]['title'] = $row[4];
+			$marks[$i]['uri'] = $row[5];
+			$marks[$i]['location'] = $row[6];
+			$marks[$i]['message'] = $row[7];
+			$marks[$i]['modified'] = $row[8];
+			$marks[$i]['modifiedDate'] = $row[9];
 		}
 	}
 	return $marks;
-}
-
-
-function getNrOfMarksPerMonth( $skel, $year )
-{
-	//
 }
 
 
@@ -717,8 +746,8 @@ function addMark( $skel, $title, $uri, $location, $description )
 	$location = escapeValue($location);
 	$description = escapeValue($description);
 
-	$ipaddr = getenv("REMOTE_ADDR");
-	$time = date("Y-m-d G:i:s", time());
+	$ipaddr = getenv('REMOTE_ADDR');
+	$time = date('Y-m-d G:i:s', time());
 
 	/* Whatever... */
 	$user_id = $_SESSION['userid'];
@@ -746,14 +775,6 @@ function editMark( $skel, $title, $location, $rant, $rantid )
 	/* Whatever... */
 	$user_id = $_SESSION['userid'];
 
-	/*
-	   $currentTime = now();
-
-	   $query = 'UPDATE smplog_rant ' .
-	   'SET Date="' . $time . '", User="' . $user_id . '", Ip="' . $ipaddr . '", Title="'. $title .'", Location="' . $location . '", Message="' . $rant .
-	   '", Modified=0, ModifiedDate="' . $currentTime . '" ' .
-	   'WHERE MessageId=' . $rantid . ';';
-	 */
 	$query = 'UPDATE smplog_rant ' .
 		'SET date="' . $time . '", user="' . $user_id . '", ip="' . $ipaddr . '", title="'. $title .'", location="' . $location . '", message="' . $rant .
 		'", modified=0, modifieddate=NOW() ' .
@@ -782,20 +803,35 @@ function getNrOfMarks($skel)
 }
 
 
-/*
- * Returns a list with short information of all smplog_blogmarks. Used for editing
- */
-function marklist()
-{
-
-
-}
-
 
 function markUri($mark)
 {
 	return "blogmarks.php?year=" . getYear($mark["date"]) . "&amp;month=" . getMonth($mark["date"]) . "#uri" . $mark["id"];
 }
+
+
+function marksToRant($skel)
+{
+	$begin = date('Y-m-d G:i:s', time() - (7 * 3600 * 24));
+	$end = date('Y-m-d G:i:s', time());
+
+	$title = 'Blogmarks for ' . getNormalDate($end);
+	$location = 'Server';
+
+
+	$marks = getMarksByDateRange( $skel, $begin, $end );
+	if (0 == count($marks))
+	{
+		return 'No new blogmarks this week';
+	}
+	$rant = '<p>The blogmarks of this week:</p>';
+	$rant .= buildInPostMarks($marks);
+
+	addRant( $skel, $title, $location, $rant );
+	return '';
+}
+
+
 
 
 /*

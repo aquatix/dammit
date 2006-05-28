@@ -7,6 +7,11 @@
 /* Load the settings for this web log */
 include 'inc/inc_config.php';
 
+if (!isset($skel['restricttoip']))
+{
+	$skel['restricttoip'] = '';
+}
+
 if (true == $skel['testing'])
 {
 	//error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );

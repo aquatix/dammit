@@ -194,6 +194,36 @@ function buildMarks( $marks )
 	return $marksHTML;
 }
 
+function buildInPostMarks( $marks )
+{
+	$marksHTML = '';
+
+	for ($i = 0; $i < count($marks); $i++)
+	{
+		/* Title */
+		$marksHTML .= "<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
+		/* Rant itself */
+		$marksHTML = $marksHTML . $marks[$i]['message'] . "\n";
+		/* Info about the rant entry */
+		$marksHTML = $marksHTML . "<div class=\"inpostinfo\">[ ";
+		if ($marks[$i]['modified'] > 0)
+		{
+			/* Modified at least once */
+			if ($marks[$i]['modified'] == 1)
+			{
+				$marksHTML = $marksHTML . 'Modified 1 time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
+			} else
+			{
+				$marksHTML = $marksHTML . 'Modified ' . $marks[$i]['modified'] . ' times, last time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
+			}
+			$marksHTML = $marksHTML . " | ";
+		}
+		$marksHTML = $marksHTML . "<a href=\"blogmarks.php?markid=" . $marks[$i]["id"] . "\">blogmark</a> | ";
+		$marksHTML = $marksHTML . $marks[$i]['location'] . " | ";
+		$marksHTML = $marksHTML . "Posted " . getTime($marks[$i]['date']) . " on " . getNormalDate($marks[$i]['date']) . " ]</div>\n\n";
+	}
+	return $marksHTML;
+}
 
 function buildCondensedMarks( $marks )
 {

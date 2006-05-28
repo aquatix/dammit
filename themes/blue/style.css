@@ -581,6 +581,13 @@ blockquote
 		border: 0;
 	}
 
+.inpostinfo
+{
+	font-size: 75%;
+/*	text-align: right;*/
+	margin-bottom: 1em;
+}
+
 .mininav
 {
 	font-size: 75%;
