@@ -1,0 +1,13 @@
+	#RewriteRule /projects/blog/([0-9]+) /projects/blog/index.php?rantid=$1
+	#UserDir /home/*/www
+	RewriteEngine On
+	#RewriteBase /projects/blog
+	#RewriteRule /([0-9]+) /index.php?rantid=$1
+	#RewriteRule ^archive/([0-9]+) index.php?rantid=$1
+	RewriteRule ^archive/([0-9]+) index.php?rantid=$1
+	#RewriteRule ^archive/(.*)/$ index.php?rantid=$1
+	RewriteRule page/([A-z]+) index.php?page=$1
+	#RewriteRule /~mbscholt/page/([A-z]+) index.php?page=$1
+
+	RewriteCond %{SERVER_PORT} ^80$
+	RewriteRule ^/~mbscholt/root\.php$ https://%{SERVER_NAME}/~mbscholt/root.php [R,L]
