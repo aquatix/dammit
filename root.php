@@ -47,9 +47,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	if ($action == "addrant")
 	{
 		/* Page for adding a new rant :) */
-		$rant = newRant();
-		/* Set default location */
-		$rant["location"] = "Home";
+		$rant = newRant($skel);
 		$page_body .= "<h1>root / add rant</h1>\n";
 		$page_body .= $root_nav;
 		$page_body .= "<form action=\"root.php?action=addingrant\" method=\"post\">\n";
@@ -150,7 +148,9 @@ if (isset($_GET['action']) && isLoggedIn())
 		$page_body .= "<h1>root / add blogmark</h1>\n";
 		$page_body .= $root_nav;
 		$page_body .= "<form action=\"root.php?action=addingmark\" method=\"post\">\n";
-		$page_body .= "<h2>Location</h2><p><input type=\"text\" name=\"location\" value=\"Home\" size=\"30\" maxlength=\"50\" /></p>\n";
+		$ip = getenv('REMOTE_ADDR');
+		$location = getLocation($skel, $ip);
+		$page_body .= "<h2>Location</h2><p><input type=\"text\" name=\"location\" value=\"" . $location . "\" size=\"30\" maxlength=\"50\" /></p>\n";
 		$page_body .= "<h2>Title</h2><p><input type=\"text\" name=\"title\" size=\"40\" maxlength=\"250\"/></p>\n";
 		$page_body .= "<h2>URL</h2><p><input type=\"text\" name=\"url\" size=\"40\" maxlength=\"250\"/></p>\n";
 		$page_body .= "<h2>Description</h2><p><textarea name=\"description\" rows=\"30\" cols=\"80\"></textarea></p>\n";

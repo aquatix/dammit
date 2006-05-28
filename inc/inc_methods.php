@@ -21,4 +21,27 @@ function getRSSDateTime($datetime)
 	return $dateAndTime[0] . "T" . $dateAndTime[1] . "+01:00";
 }
 
+function getLocation($skel, $ip)
+{
+	$parts = explode('.', $ip);
+	$keys = array_keys($skel['locations']);
+	for ($i = 0; $i < count($keys); $i++)
+	{
+		$locparts = explode('.', $keys[$i]);
+		$match = matchValues($locparts[0], $parts[0]) &&
+			matchValues($locparts[1], $parts[1]) && 
+			matchValues($locparts[2], $parts[2]) && 
+			matchValues($locparts[3], $parts[3]);
+		if ($match)
+		{
+			return($skel['locations'][$keys[$i]]);
+		}
+	}
+}
+
+function matchValues($val1, $val2)
+{
+	return ('*' == $val1 || '*' == $val2 || $val1 == $val2);
+}
+
 ?>

@@ -382,19 +382,20 @@ function getRantYears( $skel )
 /*
  * Creates an empty smplog_rant object
  */
-function newRant()
+function newRant($skel)
 {
 	//$rant = new array();
-	$rant["messageID"] = "-1";
-	$rant["date"] = "";
-	$rant["user"] = "";
-	$rant["ip"] = "";
-	$rant["title"] = "";
-	$rant["message"] = "";
-	$rant["modified"] = "";
-	$rant["modifiedDate"] = "";
-	$rant["location"] = "";
-	$rant["smplog_blogmark"] = "";
+	$rant['messageID'] = '-1';
+	$rant['date'] = '';
+	$rant['user'] = '';
+	$rant['ip'] = '';
+	$rant['title'] = '';
+	$rant['message'] = '';
+	$rant['modified'] = '';
+	$rant['modifiedDate'] = '';
+	//$rant['location'] = '';
+	$ip = getenv('REMOTE_ADDR');
+	$rant['location'] = getLocation($skel, $ip);
 
 	return $rant;
 }
