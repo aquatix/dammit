@@ -42,10 +42,10 @@
 			'AND Referer!="";';
 		*/
 
-		$query = 'SELECT Referer, COUNT(*) FROM Log ' .
-			'WHERE Section="' . $section_name . '" AND Page="' . $page_name . '" ' .
-			'AND Referer NOT LIKE "' . $webloghref . '%.php" ' .
-			'AND Referer!="" GROUP BY Referer;';
+		$query = 'SELECT referer, COUNT(*) FROM smplog_log ' .
+			'WHERE section="' . $section_name . '" AND page="' . $page_name . '" ' .
+			'AND referer NOT LIKE "' . $webloghref . '%.php" ' .
+			'AND referer!="" GROUP BY referer;';
 
 		$result = mysql_query($query, $skel["dbLink"]);
 		$referers = array();
@@ -58,7 +58,7 @@
 
 				//$referers[$section_name][$page_name][$i] = $row[0];
 				//$referers[$section_name][$page_name][$i]["number"] = $row[1];
-				$referers[$i]["url"] = $row[0];
+				$referers[$i]["uri"] = $row[0];
 				$referers[$i]["count"] = $row[1];
 			}
 		}
