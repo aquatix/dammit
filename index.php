@@ -208,10 +208,10 @@ if ( $subpage == "plan" )
 		{
 			if ($commentsenabled)
 			{
-				$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&rantid=" . $rantid . "\">Disable comments for this posting</a></p>\n";
+				$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&amp;rantid=" . $rantid . "\">Disable comments for this posting</a></p>\n";
 			} else
 			{
-				$page_body .= "<p><a href=\"root.php?action=enablecommentsforpost&rantid=" . $rantid . "\">[Re]enable comments for this posting</a></p>\n";
+				$page_body .= "<p><a href=\"root.php?action=enablecommentsforpost&amp;rantid=" . $rantid . "\">[Re]enable comments for this posting</a></p>\n";
 			}
 			$page_body .= "<h1>Referers</h1>\n";
 			$referers = getReferers( $skel, $section_name, $page_log );
