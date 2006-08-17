@@ -132,6 +132,7 @@ $skel['nav_sections'] = array(
 $skel['locations'] = array(
 		'192.168.*.*' => 'Home',
 		'217.19.24.209' => 'Work',
+		'212.123.197.34' => 'Work',
 		'130.37.*.*' => 'Vrije Universiteit',
 		'84.80.247.120' => 'Mother-in-law\'s place'
 		);

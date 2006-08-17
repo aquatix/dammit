@@ -1,25 +1,44 @@
 <?php
-$lastmodified = "2006-05-02";
-$page_version = "0.4.02";
-$dateofcreation = "2003-12-21";
+/*
+ * file: index.php
+ *
+ * Copyright 2003-2006 mbscholt at aquariusoft.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ */
 
-$page_name = "home";
-$page_log = "home";
-$section_name = "home";
-$subpage = "";
-$rantid = -1;
+$lastmodified = '2006-05-28';
+$page_version = '0.4.03';
+$dateofcreation = '2003-12-21';
 
-include "inc/inc_init.php";
+$page_name = 'home';
+$page_log = 'home';
+$section_name = 'home';
+$subpage = '';
+
+include 'inc/inc_init.php';
 
 if (isset($_GET['page']))
 {
 	$subpage = $_GET['page'];
 	$page_name = $subpage;
-	$page_log = $page_name . "." . $subpage;
+	$page_log = $page_name . '.' . $subpage;
 }
-if ( isset($_GET["rantid"]) && myIsInt($_GET["rantid"]) )
+$rantid = getRequestParam('rantid', -1);
+if (-1 < $rantid)
 {
-	$rantid = $_GET["rantid"];
 	$page_log = "posting." . $rantid;
 }
 
@@ -88,8 +107,6 @@ if ( $subpage == "plan" )
 			$comment_error_comment = "<p class=\"error\">Please enter some content in your comment</p>\n";
 			$comment_error = true;
 		}
-		/*$comment_url = $_POST["url"];
-		  $comment_rantid = $_POST["rantid"];*/
 		$comment_url = getRequestParam("url", null);
 		$comment_rantid = getRequestParam("rantid", null);
 
@@ -100,7 +117,6 @@ if ( $subpage == "plan" )
 			$result = addComment($skel, $_GET["rantid"], $comment_name, $comment_email, $wantnotifications, $comment_url, $comment_comment);
 			if ($result > -1)
 			{
-				//generateBlogWithCommentsFeed(getRants($skel, 0, $skel["nrOfRantsPerPage"]), $skel);
 				updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfRantsPerPage"]));
 				$page_body .= "<h1>Comment added!</h1>\n";
 				$page_body .= "<p>Thank you for showing interest in my little rantbox :) <a href=\"index.php?rantid=" . $_POST["rantid"] . "&amp;view\">Go back to the posting</a></p>\n";

@@ -1,7 +1,24 @@
 <?php
 /*
- * Blog module - methods
- * Version: 0.4.02 2006-04-30
+ * file: mod_blog_methods.php
+ *       Blog module - methods
+ *       v0.4.03 2006-05-28
+ *
+ * Copyright 2003-2006 mbscholt at aquariusoft.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
 
@@ -107,7 +124,7 @@ function areCommentsEnabled($skel, $rantid)
 
 
 /*
- * Fetches smplog_rants from DB, sorted on date/time, newest first. Starting from number $first to $first+$number
+ * Fetches smplog_rants from DB, sorted on date/time, newest first. Starting from number $first, with a max of $number items
  * $rants:
  * messageID
  * date
@@ -122,7 +139,6 @@ function areCommentsEnabled($skel, $rantid)
  */
 function getRants( $skel, $offset, $number )
 {
-	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
 
 	$query = 'SELECT messageid, date, user, ip, title, message, modified, modifieddate, location, commentsenabled FROM smplog_rant ORDER BY date DESC LIMIT ' . $offset . ', ' . $number . ';';
@@ -262,11 +278,7 @@ function getRantsInfo( $skel, $id )
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
 
-	//$query = 'SELECT MessageId, Date, User, Ip, Title, Modified, ModifiedDate, Location, smplog_blogmark FROM smplog_rant ORDER BY Date DESC WHERE Date > "' . $date_from . '" AND Date < "' . $date_to . '";';
 	$query = 'SELECT messageid, date, title, modified, modifieddate, location FROM smplog_rant WHERE messageid = ' . $id . ';';
-	//$query = 'SELECT MessageId, Date, User, Ip, Title, Modified, ModifiedDate, Location, smplog_blogmark FROM smplog_rant WHERE LEFT(Date, 4) = "' . "2004" . '" ORDER BY Date DESC;';
-
-	//	echo $query;
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
@@ -292,15 +304,10 @@ function getRantsInfo( $skel, $id )
  */
 function getRantsFromYear( $skel, $year )
 {
-	//return getRantsInfo( $skel, (($year - 1) . "-12-31"), (($year + 1) . "-01-01") );
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
 
-	//$query = 'SELECT MessageId, Date, User, Ip, Title, Modified, ModifiedDate, Location, smplog_blogmark FROM smplog_rant ORDER BY Date DESC WHERE Date > "' . $date_from . '" AND Date < "' . $date_to . '";';
 	$query = 'SELECT messageid, date, user, ip, title, modified, modifieddate, location FROM smplog_rant WHERE YEAR(date) = "' . $year . '" ORDER BY date DESC;';
-	//$query = 'SELECT MessageId, Date, User, Ip, Title, Modified, ModifiedDate, Location, smplog_blogmark FROM smplog_rant WHERE LEFT(Date, 4) = "' . "2004" . '" ORDER BY Date DESC;';
-
-	//echo $query;
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
@@ -393,7 +400,6 @@ function newRant($skel)
 	$rant['message'] = '';
 	$rant['modified'] = '';
 	$rant['modifiedDate'] = '';
-	//$rant['location'] = '';
 	$ip = getenv('REMOTE_ADDR');
 	$rant['location'] = getLocation($skel, $ip);
 
@@ -406,12 +412,6 @@ function newRant($skel)
  */
 function addRant( $skel, $title, $location, $rant )
 {
-	// Stripslashes
-	/*
-	if (get_magic_quotes_gpc()) {
-		$value = stripslashes($value);
-	}
-	*/
 	$title = escapeValue($title);
 	$location = escapeValue($location);
 	$rant = escapeValue($rant);

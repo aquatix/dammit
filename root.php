@@ -1,9 +1,29 @@
 <?php
+/*
+ * file: rrot.php
+ *
+ * Copyright 2003-2006 mbscholt at aquariusoft.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ */
+
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = "2006-04-30";
-$page_version = "0.4.03";
+$lastmodified = "2006-05-28";
+$page_version = "0.4.04";
 $dateofcreation = "2003-12-22";
 
 $section_name = "root";
@@ -11,6 +31,7 @@ $page_name = "home";
 
 include "inc/inc_init.php";
 
+/* Record a hit on this page to the log */
 addToLog( $skel, $section_name, $page_name, $page_version );
 
 $page_body = "";
@@ -74,9 +95,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		{
 			addRant($skel, getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null));
 			/* Update RSS feed[s] */
-			//generateBlogFeed(getRants($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 			updateWeblogFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
-			//generateBlogWithCommentsFeed(getRants($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
 			$page_body .= "<h1>root / rant added!</h1>\n";
 			$page_body .= $root_nav;
@@ -89,8 +108,6 @@ if (isset($_GET['action']) && isLoggedIn())
 		}
 	} else if ($action == "editrant")
 	{
-		/* Edit an existing rant */
-		//$page_body .= rantList();
 		/* Look up the posting */
 		$rantId = -1;
 		if (myIsInt($_GET["rantid"]))
@@ -111,9 +128,7 @@ if (isset($_GET['action']) && isLoggedIn())
 					//checkRant($skel, $rant);
 					/* Update the rant */
 					$result = editRant( $skel,  getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null), getRequestParam("id", -1) );
-					//generateBlogFeed(getRants($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 					updateWeblogFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
-					//generateBlogWithCommentsFeed(getRants($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
 					$showform = false;
 					$page_body .= "<h1>root / rant edited</h1>\n";
@@ -181,7 +196,6 @@ if (isset($_GET['action']) && isLoggedIn())
 		{
 			addMark($skel, $_POST['title'], $_POST['url'], $_POST['location'], $_POST['description']);
 			/* Update RSS feed[s] */
-			//generateBlogmarkFeed(getMarks($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 			updateWebmarksFeed($skel, getMarks($skel, 0, $skel["nrOfItemsInFeed"]));
 			$page_body .= "<h1>root / blogmark added!</h1>\n";
 			$page_body .= $root_nav;
@@ -221,7 +235,6 @@ if (isset($_GET['action']) && isLoggedIn())
 					$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 				} else
 				{
-					//generateBlogWithCommentsFeed(getRants($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
 					$page_body .= "<h1>root / remove [disable] comment</h1>\n";
 					$page_body .= $root_nav;
@@ -255,7 +268,6 @@ if (isset($_GET['action']) && isLoggedIn())
 					$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 				} else
 				{
-					//generateBlogWithCommentsFeed(getRants($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
 					$page_body .= "<h1>root / recover [enable] comment</h1>\n";
 					$page_body .= $root_nav;
@@ -271,8 +283,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		}
 	} else if ( $action == "disablecommentsforpost" )
 	{
-	$rantid = getRequestParam("rantid", -1);
-		//if (isset($_GET["rantid"]) && myIsInt($_GET["rantid"]))
+		$rantid = getRequestParam("rantid", -1);
 		if ($rantid > 0)
 		{
 			$result = disableCommentsForPost($skel, $rantid);
@@ -296,8 +307,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		}
 	} else if ( $action == "enablecommentsforpost" )
 	{
-	$rantid = getRequestParam("rantid", -1);
-		//if (isset($_GET["rantid"]) && myIsInt($_GET["rantid"]))
+		$rantid = getRequestParam("rantid", -1);
 		if ($rantid > 0)
 		{
 			$result = enableCommentsForPost($skel, $rantid);
@@ -324,11 +334,8 @@ if (isset($_GET['action']) && isLoggedIn())
 		/* Generate blog.rss [and blog.atom ?] */
 		$page_body .= "<h1>root / generating RSS feed[s]</h1>\n";
 		$page_body .= $root_nav;
-		//generateBlogFeed(getRants($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 		updateWeblogFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
-		//generateBlogWithCommentsFeed(getRants($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 		updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
-		//generateBlogmarkFeed(getMarks($skel, 0, $skel["nrOfItemsInFeed"]), $skel);
 		updateWebmarksFeed($skel, getMarks($skel, 0, $skel["nrOfItemsInFeed"]));
 		$page_body .= "<p>Feeds refreshed.</p>\n<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 	} else if ( $action == "viewlog" )
@@ -367,11 +374,9 @@ if (isset($_GET['action']) && isLoggedIn())
 {
 	$page_body .= "<h1>Got root!</h1>\n";
 	$page_body .= $root_nav;
-	//$page_body .= "<p>Login successfull. Choose a Thing To Do&trade;</p>\n";
 	$page_body .= "<h2>Rants</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addrant\">Add rant</a></li>\n";
-	//$page_body .= "\t<li><a href=\"root.php?action=editrant\">Edit rant...</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "<h2>Blogmarks</h2>\n";
 	$page_body .= "<ul>\n";
@@ -391,7 +396,6 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "\t<li><a href=\"http://www.technorati.com/developers/ping.html?name=dammIT&amp;url=http%3A%2F%2Faquariusoft.org%2F%7Embscholt%2F\">Ping Technorati that site has been updated</a></li>\n";
 	$page_body .= "\t<li><a href=\"https://aquariusoft.org/~mbscholt/root.php\">If you are using unencrypted http, please go to the secured https site</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=logout\">Log out</a></li>\n";
-	//$page_body .= "\t<li><a href=\"root.php?action=add\">Add rant</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "<br />\n";
 
