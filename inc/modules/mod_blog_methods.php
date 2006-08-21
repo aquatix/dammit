@@ -2,7 +2,7 @@
 /*
  * file: mod_blog_methods.php
  *       Blog module - methods
- *       v0.4.03 2006-05-28
+ *       v0.4.04 2006-08-21
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -21,6 +21,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
+/* The various properties of a typical rant, set here as "constant" */
+$skel['rantproperties'] = 'messageid, date, user, ip, title, message, initiated, published, ispublic, modified, modifieddate, location, commentsenabled';
 
 /*
  * Tries to log in the user/pass combo
@@ -96,7 +98,7 @@ function getNrOfComments( $skel, $rantId )
  */
 function isRantMine( $skel, $rantId )
 {
-	$query = "SELECT user FROM smplog_rant WHERE smplog_rant.messageid=" . $rantId . ";";
+	$query = 'SELECT user FROM smplog_rant WHERE smplog_rant.messageid=' . $rantId . ';';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
@@ -112,7 +114,7 @@ function isRantMine( $skel, $rantId )
  */
 function areCommentsEnabled($skel, $rantid)
 {
-	$query = "SELECT commentsenabled FROM smplog_rant WHERE smplog_rant.messageid=" . $rantid . ";";
+	$query = 'SELECT commentsenabled FROM smplog_rant WHERE smplog_rant.messageid=' . $rantid . ';';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
@@ -120,6 +122,45 @@ function areCommentsEnabled($skel, $rantid)
 		$row = mysql_fetch_row($result);
 		return $row[0] == '1';
 	}
+}
+
+
+/*
+ * Converts the MySQL resultset of a query for multiple rants into the rant array we can work with
+ */
+function resultsetToRants($skel, $result, $getNrOfComments = true)
+{
+	$rants = array();
+
+	if ( mysql_num_rows( $result ) > 0 )
+	{
+		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
+		{
+			$row = mysql_fetch_row($result);
+
+			$rants[$i]['messageID'] = $row[0];
+			$rants[$i]['date'] = $row[1];
+			$rants[$i]['user'] = $row[2];
+			$rants[$i]['ip'] = $row[3];
+			$rants[$i]['title'] = $row[4];
+			$rants[$i]['message'] = $row[5];
+			$rants[$i]['initiated'] = $row[6];
+			$rants[$i]['published'] = $row[7];
+			$rants[$i]['ispublic'] = $row[8];
+			$rants[$i]['modified'] = $row[9];
+			$rants[$i]['modifiedDate'] = $row[10];
+			$rants[$i]['location'] = $row[11];
+			$rants[$i]['commentsenabled'] = $row[12];
+			if (true === $getNrOfComments)
+			{
+				$rants[$i]['nrOfComments'] = getNrOfComments( $skel, $rants[$i]['messageID'] );
+			} else
+			{
+				$rants[$i]['nrOfComments'] = -1;
+			}
+		}
+	}
+	return $rants;
 }
 
 
@@ -139,31 +180,10 @@ function areCommentsEnabled($skel, $rantid)
  */
 function getRants( $skel, $offset, $number )
 {
-	$rants = array();
-
-	$query = 'SELECT messageid, date, user, ip, title, message, modified, modifieddate, location, commentsenabled FROM smplog_rant ORDER BY date DESC LIMIT ' . $offset . ', ' . $number . ';';
+	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant ORDER BY date DESC LIMIT ' . $offset . ', ' . $number . ';';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
-	if ( mysql_num_rows( $result ) > 0 )
-	{
-		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
-		{
-			$row = mysql_fetch_row($result);
-
-			$rants[$i]["messageID"] = $row[0];
-			$rants[$i]["date"] = $row[1];
-			$rants[$i]["user"] = $row[2];
-			$rants[$i]["ip"] = $row[3];
-			$rants[$i]["title"] = $row[4];
-			$rants[$i]["message"] = $row[5];
-			$rants[$i]["modified"] = $row[6];
-			$rants[$i]["modifiedDate"] = $row[7];
-			$rants[$i]["location"] = $row[8];
-			$rants[$i]["commentsenabled"] = $row[9];
-			$rants[$i]["nrOfComments"] = getNrOfComments( $skel, $rants[$i]["messageID"] );
-		}
-	}
-	return $rants;
+	return resultsetToRants($skel, $result);
 }
 
 
@@ -175,29 +195,10 @@ function getRantByID( $skel, $id )
 {
 	$rants = array();
 
-	$query = 'SELECT messageid, date, user, ip, title, message, modified, modifieddate, location, commentsenabled FROM smplog_rant WHERE messageid = ' . $id . ';';
+	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE messageid = ' . $id . ';';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
-	if ( mysql_num_rows( $result ) > 0 )
-	{
-		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
-		{
-			$row = mysql_fetch_row($result);
-
-			$rants[$i]["messageID"] = $row[0];
-			$rants[$i]["date"] = $row[1];
-			$rants[$i]["user"] = $row[2];
-			$rants[$i]["ip"] = $row[3];
-			$rants[$i]["title"] = $row[4];
-			$rants[$i]["message"] = $row[5];
-			$rants[$i]["modified"] = $row[6];
-			$rants[$i]["modifiedDate"] = $row[7];
-			$rants[$i]["location"] = $row[8];
-			$rants[$i]["commentsenabled"] = $row[9];
-			$rants[$i]["nrOfComments"] = getNrOfComments( $skel, $rants[$i]["messageID"] );
-		}
-	}
-	return $rants;
+	return resultsetToRants($skel, $result);
 }
 
 
@@ -215,9 +216,9 @@ function getNextPrevRant($skel, $rantDate)
 	{
 		$row = mysql_fetch_row($result);
 
-		$rants["next"]["messageID"] = $row[0];
-		$rants["next"]["date"] = $row[1];
-		$rants["next"]["title"] = $row[2];
+		$rants['next']['messageID'] = $row[0];
+		$rants['next']['date'] = $row[1];
+		$rants['next']['title'] = $row[2];
 	}
 
 	$query = 'SELECT messageid, date, title FROM smplog_rant WHERE date < "' . $rantDate . '" ORDER BY date DESC LIMIT 1;';
@@ -227,9 +228,9 @@ function getNextPrevRant($skel, $rantDate)
 	{
 		$row = mysql_fetch_row($result);
 
-		$rants["prev"]["messageID"] = $row[0];
-		$rants["prev"]["date"] = $row[1];
-		$rants["prev"]["title"] = $row[2];
+		$rants['prev']['messageID'] = $row[0];
+		$rants['prev']['date'] = $row[1];
+		$rants['prev']['title'] = $row[2];
 	}
 	return $rants;
 }
@@ -243,29 +244,10 @@ function findRants( $skel, $searchkey )
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
 
-	$query = 'SELECT messageid, date, user, ip, title, message, modified, modifieddate, location, commentsenabled FROM smplog_rant WHERE message LIKE "%' . $searchkey . '%" OR title LIKE "%' . $searchkey . '%" ORDER BY date DESC;';
+	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE message LIKE "%' . $searchkey . '%" OR title LIKE "%' . $searchkey . '%" ORDER BY date DESC;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
-	if ( mysql_num_rows( $result ) > 0 )
-	{
-		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
-		{
-			$row = mysql_fetch_row($result);
-
-			$rants[$i]["messageID"] = $row[0];
-			$rants[$i]["date"] = $row[1];
-			$rants[$i]["user"] = $row[2];
-			$rants[$i]["ip"] = $row[3];
-			$rants[$i]["title"] = $row[4];
-			$rants[$i]["message"] = $row[5];
-			$rants[$i]["modified"] = $row[6];
-			$rants[$i]["modifiedDate"] = $row[7];
-			$rants[$i]["location"] = $row[8];
-			$rants[$i]["commentsenabled"] = $row[9];
-			$rants[$i]["nrOfComments"] = getNrOfComments( $skel, $rants[$i]["messageID"] );
-		}
-	}
-	return $rants;
+	return resultsetToRants($skel, $result);
 }
 
 
@@ -287,12 +269,12 @@ function getRantsInfo( $skel, $id )
 		{
 			$row = mysql_fetch_row($result);
 
-			$rants[$i]["messageID"] = $row[0];
-			$rants[$i]["date"] = $row[1];
-			$rants[$i]["title"] = $row[2];
-			$rants[$i]["modified"] = $row[3];
-			$rants[$i]["modifiedDate"] = $row[4];
-			$rants[$i]["location"] = $row[5];
+			$rants[$i]['messageID'] = $row[0];
+			$rants[$i]['date'] = $row[1];
+			$rants[$i]['title'] = $row[2];
+			$rants[$i]['modified'] = $row[3];
+			$rants[$i]['modifiedDate'] = $row[4];
+			$rants[$i]['location'] = $row[5];
 		}
 	}
 	return $rants;
@@ -306,7 +288,7 @@ function getRantsFromYear( $skel, $year )
 {
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
-
+//                        'messageid, date, user, ip, title, message, initiated, published, ispublic, modified, modifieddate, location, commentsenabled';
 	$query = 'SELECT messageid, date, user, ip, title, modified, modifieddate, location FROM smplog_rant WHERE YEAR(date) = "' . $year . '" ORDER BY date DESC;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
@@ -316,19 +298,20 @@ function getRantsFromYear( $skel, $year )
 		{
 			$row = mysql_fetch_row($result);
 
-			$rants[$i]["messageID"] = $row[0];
-			$rants[$i]["date"] = $row[1];
-			$rants[$i]["user"] = $row[2];
-			$rants[$i]["ip"] = $row[3];
-			$rants[$i]["title"] = $row[4];
-			$rants[$i]["message"] = "";
-			$rants[$i]["modified"] = $row[5];
-			$rants[$i]["modifiedDate"] = $row[6];
-			$rants[$i]["location"] = $row[7];
-			$rants[$i]["nrOfComments"] = -1;
+			$rants[$i]['messageID'] = $row[0];
+			$rants[$i]['date'] = $row[1];
+			$rants[$i]['user'] = $row[2];
+			$rants[$i]['ip'] = $row[3];
+			$rants[$i]['title'] = $row[4];
+			$rants[$i]['message'] = '';
+			$rants[$i]['modified'] = $row[5];
+			$rants[$i]['modifiedDate'] = $row[6];
+			$rants[$i]['location'] = $row[7];
+			$rants[$i]['nrOfComments'] = -1;
 		}
 	}
 	return $rants;
+	//return resultsetToRants($skel, $result, false);
 }
 
 
@@ -348,12 +331,12 @@ function getRantlist( $skel )
 		{
 			$row = mysql_fetch_row($result);
 
-			$rants[$i]["messageID"] = $row[0];
-			$rants[$i]["date"] = $row[1];
-			$rants[$i]["user"] = $row[2];
-			$rants[$i]["title"] = $row[3];
-			$rants[$i]["modified"] = $row[4];
-			$rants[$i]["modifiedDate"] = $row[5];
+			$rants[$i]['messageID'] = $row[0];
+			$rants[$i]['date'] = $row[1];
+			$rants[$i]['user'] = $row[2];
+			$rants[$i]['title'] = $row[3];
+			$rants[$i]['modified'] = $row[4];
+			$rants[$i]['modifiedDate'] = $row[5];
 		}
 	}
 	return $rants;
@@ -398,6 +381,9 @@ function newRant($skel)
 	$rant['ip'] = '';
 	$rant['title'] = '';
 	$rant['message'] = '';
+	$rant['initiated'] = date('Y-m-d G:i:s', time());
+	$rant['published'] = '';
+	$rant['ispublic'] = '0';
 	$rant['modified'] = '';
 	$rant['modifiedDate'] = '';
 	$ip = getenv('REMOTE_ADDR');
@@ -416,8 +402,8 @@ function addRant( $skel, $title, $location, $rant )
 	$location = escapeValue($location);
 	$rant = escapeValue($rant);
 
-	$ipaddr = getenv("REMOTE_ADDR");
-	$time = date("Y-m-d G:i:s", time());
+	$ipaddr = getenv('REMOTE_ADDR');
+	$time = date('Y-m-d G:i:s', time());
 
 	/* Whatever... */
 	if (isset($_SESSION) && isset($_SESSION['userid']))
@@ -460,8 +446,8 @@ function editRant( $skel, $title, $location, $rant, $rantid )
 	$location = escapeValue($location);
 	$rant = escapeValue($rant);
 
-	$ipaddr = getenv("REMOTE_ADDR");
-	$time = date("Y-m-d G:i:s", time());
+	$ipaddr = getenv('REMOTE_ADDR');
+	$time = date('Y-m-d G:i:s', time());
 
 	/* Whatever... */
 	$user_id = $_SESSION['userid'];
@@ -504,16 +490,16 @@ function getMarks( $skel, $offset, $number )
 		{
 			$row = mysql_fetch_row($result);
 
-			$marks[$i]["id"] = $row[0];
-			$marks[$i]["date"] = $row[1];
-			$marks[$i]["user"] = $row[2];
-			$marks[$i]["ip"] = $row[3];
-			$marks[$i]["title"] = $row[4];
-			$marks[$i]["uri"] = $row[5];
-			$marks[$i]["location"] = $row[6];
-			$marks[$i]["message"] = $row[7];
-			$marks[$i]["modified"] = $row[8];
-			$marks[$i]["modifiedDate"] = $row[9];
+			$marks[$i]['id'] = $row[0];
+			$marks[$i]['date'] = $row[1];
+			$marks[$i]['user'] = $row[2];
+			$marks[$i]['ip'] = $row[3];
+			$marks[$i]['title'] = $row[4];
+			$marks[$i]['uri'] = $row[5];
+			$marks[$i]['location'] = $row[6];
+			$marks[$i]['message'] = $row[7];
+			$marks[$i]['modified'] = $row[8];
+			$marks[$i]['modifiedDate'] = $row[9];
 		}
 	}
 	return $marks;
@@ -536,16 +522,16 @@ function findMarks( $skel, $searchkey )
 		{
 			$row = mysql_fetch_row($result);
 
-			$marks[$i]["id"] = $row[0];
-			$marks[$i]["date"] = $row[1];
-			$marks[$i]["user"] = $row[2];
-			$marks[$i]["ip"] = $row[3];
-			$marks[$i]["title"] = $row[4];
-			$marks[$i]["uri"] = $row[5];
-			$marks[$i]["location"] = $row[6];
-			$marks[$i]["message"] = $row[7];
-			$marks[$i]["modified"] = $row[8];
-			$marks[$i]["modifiedDate"] = $row[9];
+			$marks[$i]['id'] = $row[0];
+			$marks[$i]['date'] = $row[1];
+			$marks[$i]['user'] = $row[2];
+			$marks[$i]['ip'] = $row[3];
+			$marks[$i]['title'] = $row[4];
+			$marks[$i]['uri'] = $row[5];
+			$marks[$i]['location'] = $row[6];
+			$marks[$i]['message'] = $row[7];
+			$marks[$i]['modified'] = $row[8];
+			$marks[$i]['modifiedDate'] = $row[9];
 		}
 	}
 	return $marks;
@@ -573,8 +559,8 @@ function getMarksPerMonth( $skel, $year )
 		{
 			$row = mysql_fetch_row($result);
 
-			$results[$i]["month"] = $row[0];
-			$results[$i]["nrofpostings"] = $row[1];
+			$results[$i]['month'] = $row[0];
+			$results[$i]['nrofpostings'] = $row[1];
 		}
 	}
 	return $results;
@@ -600,8 +586,8 @@ function getMarksPerYear( $skel )
 		{
 			$row = mysql_fetch_row($result);
 
-			$results[$i]["year"] = $row[0];
-			$results[$i]["nrofpostings"] = $row[1];
+			$results[$i]['year'] = $row[0];
+			$results[$i]['nrofpostings'] = $row[1];
 		}
 	}
 	return $results;
@@ -886,17 +872,17 @@ function getAllComments( $skel, $rantId, $wantallcomments )
 		{
 			$row = mysql_fetch_row($result);
 
-			$comments[$i]["id"] = $row[0];
-			$comments[$i]["rantId"] = $row[1];
-			$comments[$i]["date"] = $row[2];
-			$comments[$i]["ip"] = $row[3];
-			$comments[$i]["client"] = $row[4];
-			$comments[$i]["name"] = $row[5];
-			$comments[$i]["email"] = $row[6];
-			$comments[$i]["wantnotifications"] = $row[7];
-			$comments[$i]["uri"] = $row[8];
-			$comments[$i]["message"] = $row[9];
-			$comments[$i]["state"] = $row[10];
+			$comments[$i]['id'] = $row[0];
+			$comments[$i]['rantId'] = $row[1];
+			$comments[$i]['date'] = $row[2];
+			$comments[$i]['ip'] = $row[3];
+			$comments[$i]['client'] = $row[4];
+			$comments[$i]['name'] = $row[5];
+			$comments[$i]['email'] = $row[6];
+			$comments[$i]['wantnotifications'] = $row[7];
+			$comments[$i]['uri'] = $row[8];
+			$comments[$i]['message'] = $row[9];
+			$comments[$i]['state'] = $row[10];
 		}
 	}
 	return $comments;
@@ -979,13 +965,13 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 		$email = "no e-mail address provided";
 	}
 	// Mail configuration
-	//$body = "\nA smplog_comment has been added by " . $name . " [" . $email . "].\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\n" . $skel["baseHref"] . "index.php?rantid=" . $rantId . "&action=remove\n\n";
-	//$body = "\nA smplog_comment has been added by " . $name . " [" . $email . "].\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\n\n";
-	$body = "\nA comment has been added by " . $name . " [" . $email . "].\nTime of comment: " . $time . "\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $rantsInfo[0]["title"] . " [date: " . $rantsInfo[0]["date"] . "]\nhttp://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\n\n";
+	//$body = "\nA smplog_comment has been added by " . $name . " [' . $email . '].\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $skel['baseHref'] . "index.php?rantid=" . $rantId . "\n" . $skel['baseHref'] . "index.php?rantid=" . $rantId . "&action=remove\n\n";
+	//$body = "\nA smplog_comment has been added by " . $name . " [' . $email . '].\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $skel['baseHref'] . "index.php?rantid=" . $rantId . "\n\n";
+	$body = "\nA comment has been added by " . $name . " [" . $email . "].\nTime of comment: " . $time . "\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $rantsInfo[0]['title'] . " [date: " . $rantsInfo[0]['date'] . "]\nhttp://" . $skel['servername'] . $skel['baseHref'] . "index.php?rantid=" . $rantId . "\n\n";
 	$body .= "== comment ======\n" . $unescapedMessage . "\n";
 
-	//$emailresult = sendEmail($skel, $skel["mailFrom"], $skel["mailFromName"], $skel["mailTo"], $skel["mailSubject"] . " about \"" . $rantsInfo[0]["title"] . "\" [date: " . $rantsInfo[0]["date"] . "]", $body);
-	$emailresult = sendEmail($skel, $skel["mailFrom"], $skel["mailFromName"], $skel["mailTo"], $skel["mailSubject"] . " about \"" . $rantsInfo[0]["title"] . "\"", $body);
+	//$emailresult = sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $skel['mailTo'], $skel['mailSubject'] . " about \"" . $rantsInfo[0]['title'] . "\" [date: " . $rantsInfo[0]['date'] . ']", $body);
+	$emailresult = sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $skel['mailTo'], $skel['mailSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
 
 	if (false == $emailresult)
 	{
@@ -993,7 +979,7 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 	}
 
 	/* Now send everybody that reacted on the post and wanted a notification an e-mail */
-	$body = "\nA comment has been added by " . $name . " to posting\n" . $rantsInfo[0]["title"] . " [posted " . $rantsInfo[0]["date"] . "]\nhttp://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rantId . "\nTime of comment: " . $time . "\n\n== comment ======\n" . $unescapedMessage . "\n\n== End of comment ======\nIf you receive this message and don't know why you're getting it, please check the uri provided, http://" . $skel["servername"] . $skel["baseHref"] . " or e-mail to " . $skel["mainEmail"];
+	$body = "\nA comment has been added by " . $name . " to posting\n" . $rantsInfo[0]['title'] . " [posted " . $rantsInfo[0]['date'] . "]\nhttp://" . $skel['servername'] . $skel['baseHref'] . "index.php?rantid=" . $rantId . "\nTime of comment: " . $time . "\n\n== comment ======\n" . $unescapedMessage . "\n\n== End of comment ======\nIf you receive this message and don't know why you're getting it, please check the uri provided, http://" . $skel['servername'] . $skel['baseHref'] . " or e-mail to " . $skel['mainEmail'];
 
 	/* Get all e-mail addresses that had the checkbox checked */
 
@@ -1003,8 +989,8 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 		/* Don't send e-mail to the person commenting now, and not to an empty address */
 		if ($email != $wantnotificationList[$i] && "" != $email)
 		{
-			//sendEmail($skel, $skel["mailFrom"], $skel["mailFromName"], $wantnotificationList[$i], $skel["mailNotificationSubject"] . " about \"" . $rantsInfo[0]["title"] . "\" [posted " . $rantsInfo[0]["date"] . "]", $body);
-			sendEmail($skel, $skel["mailFrom"], $skel["mailFromName"], $wantnotificationList[$i], $skel["mailNotificationSubject"] . " about \"" . $rantsInfo[0]["title"] . "\"", $body);
+			//sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $wantnotificationList[$i], $skel['mailNotificationSubject'] . " about \"" . $rantsInfo[0]['title'] . "\" [posted " . $rantsInfo[0]['date'] . ']", $body);
+			sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $wantnotificationList[$i], $skel['mailNotificationSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
 		}
 	}
 

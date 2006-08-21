@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2006-05-28';
-$page_version = '0.4.03';
+$lastmodified = '2006-08-21';
+$page_version = '0.4.04';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
@@ -44,12 +44,12 @@ if (-1 < $rantid)
 
 addToLog( $skel, $section_name, $page_log, $page_version );
 
-$page_body = "";
+$page_body = '';
 
 /* Page-switcher */
 if ( $subpage == "plan" )
 {
-	$lines = file($skel[".plan"]);
+	$lines = file($skel['.plan']);
 	for ($i = 0; $i < count($lines); $i++)
 	{
 		$page_body .= $lines[$i];
@@ -57,7 +57,7 @@ if ( $subpage == "plan" )
 
 } else if ( $subpage == "about" )
 {
-	$lines = file($skel["about"]);
+	$lines = file($skel['about']);
 	for ($i = 0; $i < count($lines); $i++)
 	{
 		$page_body .= $lines[$i];
@@ -68,41 +68,41 @@ if ( $subpage == "plan" )
 	$commentsenabled = areCommentsEnabled($skel, $rantid);
 	$commenting = false;
 	$submitting = false;
-	$comment_preview = "";
+	$comment_preview = '';
 	$comment_error = false;
-	$comment_name = "";
-	$comment_error_name = "";
-	$comment_email = "";
-	$comment_error_email = "";
+	$comment_name = '';
+	$comment_error_name = '';
+	$comment_email = '';
+	$comment_error_email = '';
 	$comment_notify = true;
 	$comment_notify_text = " checked ";
-	$comment_comment = "";
-	$comment_error_comment = "";
+	$comment_comment = '';
+	$comment_error_comment = '';
 	$comment_url = "http://";
 
-	if ( $commentsenabled && isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["url"])  && isset($_POST["comment"]) && isset($_POST["submitbtn"]) )
+	if ( $commentsenabled && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['url'])  && isset($_POST['comment']) && isset($_POST['submitbtn']) )
 	{
 		$commenting = true;
 
 		/* Get comment content and validate */
 		$comment_name = getRequestParam("name", null);
-		if ($comment_name == "")
+		if ($comment_name == '')
 		{
 			$comment_error_name = "<p class=\"error\">Please fill in a name</p>\n";
 			$comment_error = true;
 		}
 		$comment_email = getRequestParam("email", null);
-		$comment_notify = isset($_POST["wantnotifications"]);
+		$comment_notify = isset($_POST['wantnotifications']);
 		if ($comment_notify == false)
 		{
-			$comment_notify_text = "";
-		} else if ($comment_notify == true && $comment_email == "")
+			$comment_notify_text = '';
+		} else if ($comment_notify == true && $comment_email == '')
 		{
 			$comment_error_email = "<p class=\"error\">Provide an e-mail address if you want to be notified</p>\n";
 			$comment_error = true;
 		}
 		$comment_comment = getRequestParam("comment", null);
-		if ($comment_comment == "")
+		if ($comment_comment == '')
 		{
 			$comment_error_comment = "<p class=\"error\">Please enter some content in your comment</p>\n";
 			$comment_error = true;
@@ -110,30 +110,30 @@ if ( $subpage == "plan" )
 		$comment_url = getRequestParam("url", null);
 		$comment_rantid = getRequestParam("rantid", null);
 
-		if ($_POST["submitbtn"] == "Save" && $comment_error == false)
+		if ($_POST['submitbtn'] == "Save" && $comment_error == false)
 		{
 			$submitting = true;
-			$wantnotifications = isset($_POST["wantnotifications"]);
-			$result = addComment($skel, $_GET["rantid"], $comment_name, $comment_email, $wantnotifications, $comment_url, $comment_comment);
+			$wantnotifications = isset($_POST['wantnotifications']);
+			$result = addComment($skel, $_GET['rantid'], $comment_name, $comment_email, $wantnotifications, $comment_url, $comment_comment);
 			if ($result > -1)
 			{
-				updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfRantsPerPage"]));
+				updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfRantsPerPage']));
 				$page_body .= "<h1>Comment added!</h1>\n";
-				$page_body .= "<p>Thank you for showing interest in my little rantbox :) <a href=\"index.php?rantid=" . $_POST["rantid"] . "&amp;view\">Go back to the posting</a></p>\n";
+				$page_body .= "<p>Thank you for showing interest in my little rantbox :) <a href=\"index.php?rantid=" . $_POST['rantid'] . "&amp;view\">Go back to the posting</a></p>\n";
 			} else
 			{
 				$page_body .= "<h1>Error</h1>\n";
 				$page_body .= "<p>Something went wrong while saving comment. Please try again.</p>\n";
 			}
-		} else if ($_POST["submitbtn"] == "Preview" || $comment_error )
+		} else if ($_POST['submitbtn'] == "Preview" || $comment_error )
 		{
-			$url = "";
-			if ($comment_url == "" || $comment_url == "http://")
+			$url = '';
+			if ($comment_url == '' || $comment_url == "http://")
 			{
 				$url = $comment_name;
 			} else
 			{
-				$url = "<a href=\"" . $comment_url . "\">" . $comment_name . "</a>";
+				$url = '<a href="' . $comment_url . '">' . $comment_name . '</a>';
 			}
 
 			$comment_preview .= "<h1>Comment preview</h1><div id=\"commentpreview\"><div class=\"comment\">\n<div class=\"comment_info\"><span class=\"comment_datestamp\">Posted at yyyy-mm-dd hh:mm:ss</span>&nbsp;<span class=\"comment_name\">by " . $url . "</span></div>\n";
@@ -147,21 +147,21 @@ if ( $subpage == "plan" )
 	if ($submitting == false)
 	{
 		$rant = getRantById($skel, $rantid);
-		$page_body .= "<h1>" . $skel["sitename"] . " home</h1>\n";
-		$prevNext = getNextPrevRant($skel, $rant[0]["date"]);
+		$page_body .= "<h1>" . $skel['sitename'] . " home</h1>\n";
+		$prevNext = getNextPrevRant($skel, $rant[0]['date']);
 
-		$prev = "";
-		if (isset($prevNext["prev"]["title"]) && "" != $prevNext["prev"]["title"])
+		$prev = '';
+		if (isset($prevNext['prev']['title']) && '' != $prevNext['prev']['title'])
 		{
-			$prev = "<a href=\"index.php?rantid=" . $prevNext["prev"]["messageID"] . "\">&laquo;&nbsp;" . $prevNext["prev"]["title"] . "</a>";
+			$prev = "<a href=\"index.php?rantid=" . $prevNext['prev']['messageID'] . "\">&laquo;&nbsp;" . $prevNext['prev']['title'] . "</a>";
 		} else
 		{
 			$prev = "<a href=\"index.php\">Home</a>";
 		}
-		$next = "";
-		if (isset($prevNext["next"]["title"]) && "" != $prevNext["next"]["title"])
+		$next = '';
+		if (isset($prevNext['next']['title']) && '' != $prevNext['next']['title'])
 		{
-			$next = "<a href=\"index.php?rantid=" . $prevNext["next"]["messageID"] . "\">" . $prevNext["next"]["title"] . "&nbsp;&raquo;</a>";
+			$next = "<a href=\"index.php?rantid=" . $prevNext['next']['messageID'] . "\">" . $prevNext['next']['title'] . "&nbsp;&raquo;</a>";
 		} else
 		{
 			$next = "<a href=\"index.php\">Home</a>";
@@ -223,9 +223,9 @@ if ( $subpage == "plan" )
 } else if ( $subpage == "archive" )
 {
 	$year = date("Y"); /* Default to current year */
-	if (isset($_GET["year"]) && myIsInt($_GET["year"]))
+	if (isset($_GET['year']) && myIsInt($_GET['year']))
 	{
-		$year = $_GET["year"];
+		$year = $_GET['year'];
 	}
 	$page_body .= "<h1>Archive</h1>\n";
 	$page_body .= "<h2>Archive of " . $year . "</h2>\n";
@@ -247,7 +247,7 @@ if ( $subpage == "plan" )
 	$page_body .= "<h1>Browse rants</h1>";
 	$offset = 0;
 	$nrBack = 0;
-	$nrForward = $skel["nrOfRantsPerPage"];
+	$nrForward = $skel['nrOfRantsPerPage'];
 	$nrOfRants = getNrOfRants($skel);
 
 	$browse_nav = "<div class=\"mininav\">[ <span class=\"heading\">browse rants</span> | ";
@@ -260,15 +260,15 @@ if ( $subpage == "plan" )
 			/* Set $offset to last rant [aka first rant chronologically] */
 			$offset = $nrOfRants;
 		}
-		$nrBack = $offset - $skel["nrOfRantsPerPage"];
-		$nrForward = $offset + $skel["nrOfRantsPerPage"];
+		$nrBack = $offset - $skel['nrOfRantsPerPage'];
+		$nrForward = $offset + $skel['nrOfRantsPerPage'];
 		if ($nrBack < 0)
 		{
 			$nrBack = 0;
 		}
 	} else
 	{
-		$nrForward = $skel["nrOfRantsPerPage"];
+		$nrForward = $skel['nrOfRantsPerPage'];
 	}
 	if ( $nrForward > $nrOfRants )
 	{
@@ -290,26 +290,26 @@ if ( $subpage == "plan" )
 		$browse_nav = $browse_nav . "Next page | Last page";
 	} else
 	{
-		$browse_nav = $browse_nav . "<a href=\"index.php?page=browse&amp;offset=" . $nrForward . "\">Next page</a> | <a href=\"index.php?page=browse&amp;offset=" . ((intval($nrOfRants / $skel["nrOfRantsPerPage"]) * $skel["nrOfRantsPerPage"])) . "\">Last page</a>";
+		$browse_nav = $browse_nav . "<a href=\"index.php?page=browse&amp;offset=" . $nrForward . "\">Next page</a> | <a href=\"index.php?page=browse&amp;offset=" . ((intval($nrOfRants / $skel['nrOfRantsPerPage']) * $skel['nrOfRantsPerPage'])) . "\">Last page</a>";
 	}
 	$browse_nav = $browse_nav . " ]</div>\n";
 
 	/* Show the nav */
 	$page_body .= $browse_nav;
 	/* Show the rants */
-	$page_body .= buildRants(getRants($skel, $offset, $skel["nrOfRantsPerPage"]));
+	$page_body .= buildRants(getRants($skel, $offset, $skel['nrOfRantsPerPage']));
 	/* Show the nav again */
 	$page_body .= $browse_nav;
 } else
 {
 	/*** Show the homepage ***/
-	$page_body .= "<h1>" . $skel["sitename"] . " home</h1>\n";
+	$page_body .= "<h1>" . $skel['sitename'] . " home</h1>\n";
 
-	$page_body .= buildRants(getRants($skel, 0, $skel["nrOfRantsPerPage"]));
-	$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel["nrOfRantsPerPage"] . "\">Old rants</a> ]</p>\n";
+	$page_body .= buildRants(getRants($skel, 0, $skel['nrOfRantsPerPage']));
+	$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel['nrOfRantsPerPage'] . "\">Old rants</a> ]</p>\n";
 
 } /* End of page-switcher */
 
 /* Now build the page */
-include "inc/inc_pagetemplate.php";
+include 'inc/inc_pagetemplate.php';
 ?>

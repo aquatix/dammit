@@ -22,27 +22,27 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = "2006-05-28";
-$page_version = "0.4.04";
-$dateofcreation = "2003-12-22";
+$lastmodified = '2006-08-21';
+$page_version = '0.4.05';
+$dateofcreation = '2003-12-22';
 
-$section_name = "root";
-$page_name = "home";
+$section_name = 'root';
+$page_name = 'home';
 
-include "inc/inc_init.php";
+include 'inc/inc_init.php';
 
 /* Record a hit on this page to the log */
 addToLog( $skel, $section_name, $page_name, $page_version );
 
-$page_body = "";
-$page_name = "root";
+$page_body = '';
+$page_name = 'root';
 
 if ('weeklymarks' == getRequestParam('action', '') && getenv('REMOTE_ADDR') == $skel['restricttoip'])
 {
 	$result = marksToRant($skel);
 	if ('' == $result)
 	{
-		updateWebmarksFeed($skel, getMarks($skel, 0, $skel["nrOfItemsInFeed"]));
+		updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 		echo 'Rant with blogmarks of this week added';
 	} else
 	{
@@ -62,7 +62,7 @@ if ((isLoggedIn() == false) && (isset($_POST['user']) && $_POST['user'] != '') &
 	{
 		/* Login successfull! */
 		/* Start new session */
-		session_name($skel["session_name"]);
+		session_name($skel['session_name']);
 		session_start();
 
 		$_SESSION['username'] = $user;
@@ -95,8 +95,8 @@ if (isset($_GET['action']) && isLoggedIn())
 		{
 			addRant($skel, getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null));
 			/* Update RSS feed[s] */
-			updateWeblogFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
-			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
+			updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 			$page_body .= "<h1>root / rant added!</h1>\n";
 			$page_body .= $root_nav;
 			$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
@@ -110,7 +110,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	{
 		/* Look up the posting */
 		$rantId = -1;
-		if (myIsInt($_GET["rantid"]))
+		if (myIsInt($_GET['rantid']))
 		{
 			$rantId = getRequestParam("rantid", -1);
 		}
@@ -122,14 +122,14 @@ if (isset($_GET['action']) && isLoggedIn())
 			if (isset($_POST['submitting']) && $_POST['submitting'] == "true")
 			{
 				/* User submitted edited rant, check it now */
-				if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']) && isset($_POST["id"]))
+				if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']) && isset($_POST['id']))
 				{
 					/* check the values, if not right, show the form again */
 					//checkRant($skel, $rant);
 					/* Update the rant */
 					$result = editRant( $skel,  getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null), getRequestParam("id", -1) );
-					updateWeblogFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
-					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
+					updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 					$showform = false;
 					$page_body .= "<h1>root / rant edited</h1>\n";
 					$page_body .= $root_nav;
@@ -149,18 +149,18 @@ if (isset($_GET['action']) && isLoggedIn())
 				$postings = getRantById($skel, $rantId);
 				/* Now get the actual posting. We should only have one returned, so just take the first */
 				$posting = $postings[0];
-				if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']) && isset($_POST["id"]))
+				if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']) && isset($_POST['id']))
 				{
-					$posting["title"] = $_POST['title'];
-					$posting["location"] = $_POST['location'];
-					$posting["message"] = $_POST['rant'];
+					$posting['title'] = $_POST['title'];
+					$posting['location'] = $_POST['location'];
+					$posting['message'] = $_POST['rant'];
 				} else
 				{
-					$posting["message"] .= "\n\n<div class=\"edit\">edited at " . date("Y-m-d H:i") . "</div>\n";
+					$posting['message'] .= "\n\n<div class=\"edit\">edited at " . date("Y-m-d H:i") . "</div>\n";
 				}
 				$page_body .= "<h1>root / edit rant</h1>\n";
 				$page_body .= $root_nav;
-				$page_body .= "<form action=\"root.php?action=editrant&amp;rantid=" . $posting["messageID"] . "\" method=\"post\">\n";
+				$page_body .= "<form action=\"root.php?action=editrant&amp;rantid=" . $posting['messageID'] . "\" method=\"post\">\n";
 				$page_body .= buildEditRant($posting);
 				$page_body .= "<input type=\"hidden\" name=\"submitting\" value=\"true\" />\n";
 				$page_body .= "</form>\n";
@@ -196,7 +196,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		{
 			addMark($skel, $_POST['title'], $_POST['url'], $_POST['location'], $_POST['description']);
 			/* Update RSS feed[s] */
-			updateWebmarksFeed($skel, getMarks($skel, 0, $skel["nrOfItemsInFeed"]));
+			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 			$page_body .= "<h1>root / blogmark added!</h1>\n";
 			$page_body .= $root_nav;
 			$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
@@ -209,7 +209,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		$result = marksToRant($skel);
 		if ('' == $result)
 		{
-			updateWebmarksFeed($skel, getMarks($skel, 0, $skel["nrOfItemsInFeed"]));
+			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 			$page_body .= "<h1>root / rant with blogmarks of this week added</h1>\n<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
 		} else
 		{
@@ -217,9 +217,9 @@ if (isset($_GET['action']) && isLoggedIn())
 		}
 	} else if ($action == "disablecomment")
 	{
-		if (isset($_GET["commentid"]) && myIsInt($_GET["commentid"]))
+		if (isset($_GET['commentid']) && myIsInt($_GET['commentid']))
 		{
-			$commentid = $_GET["commentid"];
+			$commentid = $_GET['commentid'];
 			if (false == $commentid)
 			{
 				$page_body .= "<h1>root / error!</h1>\n";
@@ -235,7 +235,7 @@ if (isset($_GET['action']) && isLoggedIn())
 					$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 				} else
 				{
-					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
+					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 					$page_body .= "<h1>root / remove [disable] comment</h1>\n";
 					$page_body .= $root_nav;
 					$page_body .= "<p>Comment #" . $commentid . " removed and comment feed updated</p>\n";
@@ -250,9 +250,9 @@ if (isset($_GET['action']) && isLoggedIn())
 		}
 	} else if ($action == "enablecomment")
 	{
-		if (isset($_GET["commentid"]) && myIsInt($_GET["commentid"]))
+		if (isset($_GET['commentid']) && myIsInt($_GET['commentid']))
 		{
-			$commentid = $_GET["commentid"];
+			$commentid = $_GET['commentid'];
 			if (false == $commentid)
 			{
 				$page_body .= "<h1>root / error!</h1>\n";
@@ -268,7 +268,7 @@ if (isset($_GET['action']) && isLoggedIn())
 					$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 				} else
 				{
-					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
+					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 					$page_body .= "<h1>root / recover [enable] comment</h1>\n";
 					$page_body .= $root_nav;
 					$page_body .= "<p>Comment #" . $commentid . " recovered and comment feed updated</p>\n";
@@ -334,9 +334,9 @@ if (isset($_GET['action']) && isLoggedIn())
 		/* Generate blog.rss [and blog.atom ?] */
 		$page_body .= "<h1>root / generating RSS feed[s]</h1>\n";
 		$page_body .= $root_nav;
-		updateWeblogFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
-		updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel["nrOfItemsInFeed"]));
-		updateWebmarksFeed($skel, getMarks($skel, 0, $skel["nrOfItemsInFeed"]));
+		updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+		updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+		updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 		$page_body .= "<p>Feeds refreshed.</p>\n<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 	} else if ( $action == "viewlog" )
 	{
@@ -414,5 +414,5 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<br />\n";
 }
 
-include "inc/inc_pagetemplate.php";
+include 'inc/inc_pagetemplate.php';
 ?>

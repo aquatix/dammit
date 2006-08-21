@@ -1,12 +1,28 @@
 <?php
 /*
- * Blog module - HTML methods
- * Version: 0.4.03 2006-04-30
+ * file: mod_blog_html.php
+ *       Blog module - HTML methods
+ *       v0.4.04 2006-08-21
+ *
+ * Copyright 2003-2006 mbscholt at aquariusoft.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
 
 /***    Rants   ***/
-
 
 /*
  * Build rantlist from $rants
@@ -131,11 +147,22 @@ function buildRantlist($rants, $enableyear)
  */
 function buildEditRant($rant)
 {
-	$html  = "<h2>Location</h2><p><input type=\"text\" name=\"location\" value=\"" . $rant['location'] . "\" size=\"30\" maxlength=\"50\"/></p>\n";
+	$html  = "<h2>Rant info</h2>\n";
+	
+	if ('1' == $rant['ispublic'])
+	{
+		$ispublic = 'already published at ' . $rant['published'];
+	} else
+	{
+		$ispublic = 'not yet published';
+	}
+	$html .= "<p>Initiated at " . $rant['initiated'] . ", " . $ispublic . "</p>\n";
+	$html .= "<h2>Location</h2><p><input type=\"text\" name=\"location\" value=\"" . $rant['location'] . "\" size=\"30\" maxlength=\"50\"/></p>\n";
 	$html .= "<h2>Title</h2><p><input type=\"text\" name=\"title\" size=\"30\" maxlength=\"250\" value=\"" . $rant['title'] . "\"/></p>\n";
 	$html .= "<h2>Rant</h2><p><textarea name=\"rant\" rows=\"30\" cols=\"80\">" . htmlentities($rant['message']) . "</textarea></p>\n";
 	$html .= "<input type=\"hidden\" name=\"id\" value=\"" . $rant['messageID'] . "\"/>\n";
 	$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
+	//$html .= "<p><input name=\"savebtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";
 
 	return $html;
 }
