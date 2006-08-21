@@ -1,6 +1,6 @@
 <?php
 /*
- * file: rrot.php
+ * file: root.php
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -381,8 +381,6 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<h2>Blogmarks</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addmark\">Add blogmark</a></li>\n";
-	//$page_body .= "\t<li><a href=\"root.php?action=editmark\">Edit blogmark...</a></li>\n";
-	$page_body .= "\t<li><a href=\"root.php?action=markstorant\">Blogmarks of last 7 days to rant</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "<h2>Logs</h2>\n";
 	$page_body .= "<ul>\n";
@@ -393,6 +391,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<h2>General</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=generatefeeds\">Generate RSS feed[s]</a></li>\n";
+	$page_body .= "\t<li><a href=\"root.php?action=markstorant\">Wrap up the blogmarks of the last 7 days to a new rant</a></li>\n";
 	$page_body .= "\t<li><a href=\"http://www.technorati.com/developers/ping.html?name=dammIT&amp;url=http%3A%2F%2Faquariusoft.org%2F%7Embscholt%2F\">Ping Technorati that site has been updated</a></li>\n";
 	$page_body .= "\t<li><a href=\"https://aquariusoft.org/~mbscholt/root.php\">If you are using unencrypted http, please go to the secured https site</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=logout\">Log out</a></li>\n";

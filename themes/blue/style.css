@@ -14,6 +14,8 @@ body
 
         background: #99CCFF;
 	background: #a7c8e4;
+	background: #a7c8e4 url("images/background_repeating_03.png");
+	background: #a7c8e4 url("images/lines_repeating.png");
         color: #222;
         font-family: Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
         font-size: 80%;
@@ -193,7 +195,7 @@ p
 	padding: 2px 4px 2px 4px;
 }
 
-li
+ul li
 {
 	list-style-type: square;
 }

@@ -74,20 +74,21 @@ $skel['about'] = $skel['basePath'] . 'pages/about.html';
 
 /*** Navigation ***/
 $skel['nav_blogs'] = array(
-		/*		'http://alextreme.org/' => 'alextreme',*/
+		//'http://alextreme.org/' => 'alextreme',
 		'http://www.manuzhai.nl/' => 'manuzhai',
-		'http://roos.b-cool.nl/' => 'roosje',
+		//'http://roos.b-cool.nl/' => 'roosje',
+		'http://bloempje.nl/' => 'roosje',
 		'http://www.rousette.org.uk/' => 'but she\'s a girl',
 		'http://diveintomark.org/' => 'dive into mark',
 		'http://www.randsinrepose.com/' => 'rands in repose',
 		'http://www.1976design.com/blog/' => '1976design',
 		'http://www.chipx86.com/blog/' => 'chipx86',
 		'http://www.jaypinkerton.com/blog/' => 'jay pinkerton',
-		'http://kfx.toastmedia.com/' => 'kfx studios',
-		/*		'http://www.mynx.com/' => 'mynxisms',*/
+		//'http://kfx.toastmedia.com/' => 'kfx studios',
+		//'http://www.mynx.com/' => 'mynxisms',
 		'http://chongq.blogspot.com/' => 'chongqing',
-		/*		'http://willy.boerland.com/myblog/index.php' => 'willy dobbe'*/
-		'http://www.anneliesje.thehosting.nl/blog/' => 'annelies',
+		//'http://willy.boerland.com/myblog/index.php' => 'willy dobbe'
+		'http://www.anneliesje.thehosting.nl/' => 'annelies',
 		'http://www.sanderschouten.net/php/weblog.php' => 'schande',
 		'http://mehellll.web-log.nl/' => 'melanie'
 		);
@@ -98,10 +99,10 @@ $skel['nav_morphix'] = array(
 		'http://buranen.info/' => 'burner',
 		'http://g1powermac.rozica.com/' => 'g1powermac',
 		'http://www.kiberpipa.org/~gandalf/blog/' => 'gandalfar',
-		/*'http://blogs.livecd.net/gandalfar/index.php?blog=5' => 'gandalfar [old]',*/
+		//'http://blogs.livecd.net/gandalfar/index.php?blog=5' => 'gandalfar [old]',
 		'http://doid.com/' => 'mediovia',
 		'http://del.icio.us/tag/livecd' => 'mediovia\'s links',
-		/*		'http://galaxycow.com/blogs/vermyndax/' => 'vermyndax'*/
+		//'http://galaxycow.com/blogs/vermyndax/' => 'vermyndax'
 		'http://www.galaxycow.com/blogs/vermyndax' => 'vermyndax'
 		);
 
@@ -134,6 +135,8 @@ $skel['locations'] = array(
 		'217.19.24.209' => 'Work',
 		'212.123.197.34' => 'Work',
 		'130.37.*.*' => 'Vrije Universiteit',
+		'130.37.24.*' => 'Vrije Universiteit - Computer lab',
+		'130.37.26.*' => 'Vrije Universiteit - Laptop over wifi',
 		'84.80.247.120' => 'Mother-in-law\'s place'
 		);
 
