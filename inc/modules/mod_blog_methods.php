@@ -180,7 +180,7 @@ function resultsetToRants($skel, $result, $getNrOfComments = true)
  */
 function getRants( $skel, $offset, $number )
 {
-	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant ORDER BY date DESC LIMIT ' . $offset . ', ' . $number . ';';
+	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE ispublic=1 ORDER BY date DESC LIMIT ' . $offset . ', ' . $number . ';';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	return resultsetToRants($skel, $result);
@@ -209,7 +209,7 @@ function getNextPrevRant($skel, $rantDate)
 {
 	$rants = array();
 
-	$query = 'SELECT messageid, date, title FROM smplog_rant WHERE date > "' . $rantDate . '" ORDER BY date ASC LIMIT 1;';
+	$query = 'SELECT messageid, date, title FROM smplog_rant WHERE ispublic=1 AND date > "' . $rantDate . '" ORDER BY date ASC LIMIT 1;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
@@ -221,7 +221,7 @@ function getNextPrevRant($skel, $rantDate)
 		$rants['next']['title'] = $row[2];
 	}
 
-	$query = 'SELECT messageid, date, title FROM smplog_rant WHERE date < "' . $rantDate . '" ORDER BY date DESC LIMIT 1;';
+	$query = 'SELECT messageid, date, title FROM smplog_rant WHERE ispublic=1 AND date < "' . $rantDate . '" ORDER BY date DESC LIMIT 1;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
@@ -244,7 +244,7 @@ function findRants( $skel, $searchkey )
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
 
-	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE message LIKE "%' . $searchkey . '%" OR title LIKE "%' . $searchkey . '%" ORDER BY date DESC;';
+	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE ispublic=1 AND message LIKE "%' . $searchkey . '%" OR title LIKE "%' . $searchkey . '%" ORDER BY date DESC;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	return resultsetToRants($skel, $result);
@@ -252,8 +252,7 @@ function findRants( $skel, $searchkey )
 
 
 /*
- * Select all rants from $date_from to $date_to, with $date_xx in the form: yyyy-mm-dd [MySQL date]
- * Don't add the message body.
+ * Get info about rant $id. Used for notification mails
  */
 function getRantsInfo( $skel, $id )
 {
@@ -289,7 +288,7 @@ function getRantsFromYear( $skel, $year )
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
 //                        'messageid, date, user, ip, title, message, initiated, published, ispublic, modified, modifieddate, location, commentsenabled';
-	$query = 'SELECT messageid, date, user, ip, title, modified, modifieddate, location FROM smplog_rant WHERE YEAR(date) = "' . $year . '" ORDER BY date DESC;';
+	$query = 'SELECT messageid, date, user, ip, title, modified, modifieddate, location FROM smplog_rant WHERE ispublic=1 AND YEAR(date) = "' . $year . '" ORDER BY date DESC;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
@@ -312,34 +311,6 @@ function getRantsFromYear( $skel, $year )
 	}
 	return $rants;
 	//return resultsetToRants($skel, $result, false);
-}
-
-
-/*
- * Returns a list with short information of all smplog_rants. Used for editing
- */
-function getRantlist( $skel )
-{
-	$rants = array();
-
-	$query = 'SELECT messageid, date, user, title, modified, modifieddate FROM smplog_rant;';
-
-	$result = mysql_query( $query, $skel['dbLink'] );
-	if ( mysql_num_rows( $result ) > 0 )
-	{
-		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
-		{
-			$row = mysql_fetch_row($result);
-
-			$rants[$i]['messageID'] = $row[0];
-			$rants[$i]['date'] = $row[1];
-			$rants[$i]['user'] = $row[2];
-			$rants[$i]['title'] = $row[3];
-			$rants[$i]['modified'] = $row[4];
-			$rants[$i]['modifiedDate'] = $row[5];
-		}
-	}
-	return $rants;
 }
 
 
@@ -370,11 +341,11 @@ function getRantYears( $skel )
 
 
 /*
- * Creates an empty smplog_rant object
+ * Creates an empty rant object
  */
 function newRant($skel)
 {
-	//$rant = new array();
+	$rant = new array();
 	$rant['messageID'] = '-1';
 	$rant['date'] = '';
 	$rant['user'] = '';
@@ -394,7 +365,7 @@ function newRant($skel)
 
 
 /*
- * Add new smplog_rant to DB
+ * Add new rant to DB
  */
 function addRant( $skel, $title, $location, $rant )
 {
