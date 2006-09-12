@@ -217,6 +217,11 @@ blockquote
 	padding-left: 25px;
 }
 
+.strike
+{
+	text-decoration: line-through;
+}
+
 
 /*** Various blocks ***/
 #logo

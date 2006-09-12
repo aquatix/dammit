@@ -76,15 +76,23 @@ function buildRants( $rants )
 			{
 				$rantsHTML .= 'Modified ' . $rants[$i]['modified'] . ' times, last time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
 			}
-			$rantsHTML .= " | ";
+			$rantsHTML .= ' | ';
 		}
 		
-		$commentText = "comments";
-		if ($rants[$i]["nrOfComments"] == 1)
+		$commentText = 'comments';
+		if ($rants[$i]['nrOfComments'] == 1)
 		{
-			$commentText = "comment";
+			$commentText = 'comment';
 		}
-		$rantsHTML .= "<a href=\"index.php?rantid=" . $rants[$i]['messageID'] . "\">" . $rants[$i]["nrOfComments"] . " " . $commentText . "&nbsp;&raquo;</a>";
+		if (0 == $rants[$i]['commentsenabled'])
+		{
+			$rantsHTML .= '<span class="strike" title="Commenting has been disabled for this post">';
+		}
+		$rantsHTML .= '<a href="index.php?rantid=' . $rants[$i]['messageID'] . '">' . $rants[$i]['nrOfComments'] . ' ' . $commentText . '&nbsp;&raquo;</a>';
+		if (0 == $rants[$i]['commentsenabled'])
+		{
+			$rantsHTML .= '</span>';
+		}
 		
 		$rantsHTML .= "</div>\n";
 		$rantsHTML .= "</div>\n\n";
