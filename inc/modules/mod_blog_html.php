@@ -2,7 +2,7 @@
 /*
  * file: mod_blog_html.php
  *       Blog module - HTML methods
- *       v0.4.04 2006-08-21
+ *       v0.4.06 2006-09-12
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -168,6 +168,7 @@ function buildEditRant($rant)
 	$html .= "<h2>Location</h2><p><input type=\"text\" name=\"location\" value=\"" . $rant['location'] . "\" size=\"30\" maxlength=\"50\"/></p>\n";
 	$html .= "<h2>Title</h2><p><input type=\"text\" name=\"title\" size=\"30\" maxlength=\"250\" value=\"" . $rant['title'] . "\"/></p>\n";
 	$html .= "<h2>Rant</h2><p><textarea name=\"rant\" rows=\"30\" cols=\"80\">" . htmlentities($rant['message']) . "</textarea></p>\n";
+	$html .= "<p><select name=\"contenttype\">\n\t<option value=\"rawhtml\">Raw HTML</option>\n\t<option value=\"markdown\">Markdown markup</option>\n\t<option value=\"plaintext\">Plain text</option>\n</select>\n";
 	$html .= "<input type=\"hidden\" name=\"id\" value=\"" . $rant['messageID'] . "\"/>\n";
 	$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
 	//$html .= "<p><input name=\"savebtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";
@@ -375,11 +376,11 @@ function generateFeed($skel, $filename, $feedtitle, $body)
 {
 	$feed  = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
 	$feed .= "<rss version=\"2.0\"\n";
-	$feed .= "\txmlns:dc=\"http://puri.org/dc/elements/1.1/\"\n";
-	$feed .= "\txmlns:sy=\"http://puri.org/rss/1.0/modules/syndication/\"\n";
+	$feed .= "\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n";
+	$feed .= "\txmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\"\n";
 	$feed .= "\txmlns:admin=\"http://webns.net/mvcb/\"\n";
 	$feed .= "\txmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
-	$feed .= "\txmlns:content=\"http://puri.org/rss/1.0/modules/content/\">\n";
+	$feed .= "\txmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n";
 
 
 	$feed .= "\t<channel>\n";
@@ -450,6 +451,7 @@ function updateWeblogFeed($skel, $rants)
 		$feed .= "\t\t<item>\n";
 		$feed .= "\t\t\t<title>" . $rants[$i]['title'] . "</title>\n";
 		$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</link>\n";
+		$feed .= "\t\t\t<guid>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</guid>\n";
 		//$feed .= "<description>" . $rants[$i]['message'] . "</description>\n";
 		//$feed .= "<description></description>\n";
 		$feed .= "\t\t\t<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>]]></content:encoded>\n";
