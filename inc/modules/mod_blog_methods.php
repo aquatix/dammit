@@ -345,7 +345,7 @@ function getRantYears( $skel )
  */
 function newRant($skel)
 {
-	$rant = new array();
+	//$rant = new array();
 	$rant['messageID'] = '-1';
 	$rant['date'] = '';
 	$rant['user'] = '';

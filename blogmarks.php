@@ -1,28 +1,28 @@
 <?php
-	$lastmodified = "2005-09-16";
-	$page_version = "0.3.09";
-	$dateofcreation = "2003-12-21";
+	$lastmodified = '2006-10-15';
+	$page_version = '0.5.01';
+	$dateofcreation = '2003-12-21';
 	
-	$section_name = "blogmarks";
-	$page_name = "home";
-	$subpage = "";
+	$section_name = 'blogmarks';
+	$page_name = 'home';
+	$subpage = '';
 
 	include "inc/inc_init.php";
 
 	if (isset($_GET['page']))
 	{
 		$subpage = $_GET['page'];
-		$page_name = $page_name . "." . $subpage;
+		$page_name = $page_name . '.' . $subpage;
 	}
 
 	addToLog( $skel, $section_name, $page_name, $page_version );
 
-	$page_body = "";
+	$page_body = '';
 
-	$page_name = "blogmarks";
+	$page_name = 'blogmarks';
 
-	$year = date("Y");	/* Default to current year */
-	$month = date("m");	/* Default to current month */
+	$year = date('Y');	/* Default to current year */
+	$month = date('m');	/* Default to current month */
 
 	$months = array();
 
@@ -52,10 +52,11 @@
 	}
 
 	/*** Show the blogmark overview ***/
-	$page_body .= "<h1>Blogmarks</h1>\n<h2>Interesting stuff I came across</h2>\n<p>This section contains my blogmarks: links to interesting sites I stumbled apon, or pictures I liked.</p>\n";
+	//$page_body .= "<h1>Blogmarks</h1>\n<h2>Interesting stuff I came across</h2>\n<p>This section contains my blogmarks: links to interesting sites I stumbled apon, or pictures I liked.</p>\n";
+	$page_body .= "<h1>Blogmarks</h1>\n";
 	$offset = 0;
 	$nrBack = 0;
-	$nrForward = $skel["nrOfMarksPerPage"];
+	$nrForward = $skel['nrOfMarksPerPage'];
 	$nrOfMarks = getNrOfMarks($skel);
 
 	$browse_nav = "<div class=\"mininav\">[ <span class=\"heading\">" . $year . "</span>";

@@ -2,7 +2,7 @@
 /*
  * file: mod_blog_html.php
  *       Blog module - HTML methods
- *       v0.4.06 2006-09-12
+ *       v0.5.01 2006-10-14
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -102,13 +102,7 @@ function buildRants( $rants )
 
 
 /*
- * Builds a list with short information of all rants. Used for editing
- * $rants[$i]['messageID'] = $row[0];
- * $rants[$i]['date'] = $row[1];
- * $rants[$i]["user"] = $row[2];
- * $rants[$i]['title'] = $row[3];
- * $rants[$i]['modified'] = $row[4];
- * $rants[$i]['modifiedDate'] = $row[5];
+ * Builds a list with short information of all rants. Used for archive and search
  */
 function buildRantlist($rants, $enableyear)
 {
