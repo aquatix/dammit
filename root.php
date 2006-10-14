@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2006-08-21';
-$page_version = '0.4.05';
+$lastmodified = '2006-10-01';
+$page_version = '0.4.06';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -42,7 +42,9 @@ if ('weeklymarks' == getRequestParam('action', '') && getenv('REMOTE_ADDR') == $
 	$result = marksToRant($skel);
 	if ('' == $result)
 	{
-		updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
+		//updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
+		updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+		updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 		echo 'Rant with blogmarks of this week added';
 	} else
 	{
