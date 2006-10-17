@@ -58,7 +58,17 @@ function buildRants( $rants )
 		$rantsHTML .= $rants[$i]['location'] . " | ";
 		$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . "</div>\n";
 		/* Rant itself */
-		$rantsHTML .= $rants[$i]['message'] . "\n";
+		if (CONTENT_MARKDOWN == $rants[$i]['contenttype'])
+		{
+			$rantsHTML .= Markdown($rants[$i]['message']) . "\n";
+		}
+		else if (CONTENT_PLAINTEXT == $rants[$i]['contenttype'])
+		{
+			$rantsHTML .= plaintext2HTML($rants[$i]['message']) . "\n";
+		} else
+		{
+			$rantsHTML .= $rants[$i]['message'] . "\n";
+		}
 
 		$rantsHTML .= "<div class=\"related\">";
 		if (true == isLoggedIn())
@@ -162,7 +172,20 @@ function buildEditRant($rant)
 	$html .= "<h2>Location</h2><p><input type=\"text\" name=\"location\" value=\"" . $rant['location'] . "\" size=\"30\" maxlength=\"50\"/></p>\n";
 	$html .= "<h2>Title</h2><p><input type=\"text\" name=\"title\" size=\"30\" maxlength=\"250\" value=\"" . $rant['title'] . "\"/></p>\n";
 	$html .= "<h2>Rant</h2><p><textarea name=\"rant\" rows=\"30\" cols=\"80\">" . htmlentities($rant['message']) . "</textarea></p>\n";
-	$html .= "<p><select name=\"contenttype\">\n\t<option value=\"rawhtml\">Raw HTML</option>\n\t<option value=\"markdown\">Markdown markup</option>\n\t<option value=\"plaintext\">Plain text</option>\n</select>\n";
+	$rawhtml = '';
+	$markdown = '';
+	$plaintext = '';
+	if (CONTENT_RAWHTML == $rant['contenttype'])
+	{
+		$rawhtml = ' selected';
+	} else if (CONTENT_MARKDOWN == $rant['contenttype'])
+	{
+		$markdown = ' selected';
+	} else
+	{
+		$plaintext = ' selected';
+	}
+	$html .= "<p><select name=\"contenttype\">\n\t<option value=\"" . CONTENT_RAWHTML . "\"" . $rawhtml . ">Raw HTML</option>\n\t<option value=\"" . CONTENT_MARKDOWN . "\"" . $markdown . ">Markdown markup</option>\n\t<option value=\"" . CONTENT_PLAINTEXT . "\"" . $plaintext . ">Plain text</option>\n</select>\n";
 	$html .= "<input type=\"hidden\" name=\"id\" value=\"" . $rant['messageID'] . "\"/>\n";
 	$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
 	//$html .= "<p><input name=\"savebtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";

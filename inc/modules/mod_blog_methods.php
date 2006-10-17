@@ -2,7 +2,7 @@
 /*
  * file: mod_blog_methods.php
  *       Blog module - methods
- *       v0.4.04 2006-08-21
+ *       v0.5.01 2006-10-17
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -21,8 +21,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
+define('CONTENT_RAWHTML', 0);
+define('CONTENT_PLAINTEXT', 1);
+define('CONTENT_MARKDOWN', 2);
+
 /* The various properties of a typical rant, set here as "constant" */
-$skel['rantproperties'] = 'messageid, date, user, ip, title, message, initiated, published, ispublic, modified, modifieddate, location, commentsenabled';
+$skel['rantproperties'] = 'messageid, date, user, ip, title, message, contenttype, initiated, published, ispublic, modified, modifieddate, location, commentsenabled';
 
 /*
  * Tries to log in the user/pass combo
@@ -144,13 +148,14 @@ function resultsetToRants($skel, $result, $getNrOfComments = true)
 			$rants[$i]['ip'] = $row[3];
 			$rants[$i]['title'] = $row[4];
 			$rants[$i]['message'] = $row[5];
-			$rants[$i]['initiated'] = $row[6];
-			$rants[$i]['published'] = $row[7];
-			$rants[$i]['ispublic'] = $row[8];
-			$rants[$i]['modified'] = $row[9];
-			$rants[$i]['modifiedDate'] = $row[10];
-			$rants[$i]['location'] = $row[11];
-			$rants[$i]['commentsenabled'] = $row[12];
+			$rants[$i]['contenttype'] = $row[6];
+			$rants[$i]['initiated'] = $row[7];
+			$rants[$i]['published'] = $row[8];
+			$rants[$i]['ispublic'] = $row[9];
+			$rants[$i]['modified'] = $row[10];
+			$rants[$i]['modifiedDate'] = $row[11];
+			$rants[$i]['location'] = $row[12];
+			$rants[$i]['commentsenabled'] = $row[13];
 			if (true === $getNrOfComments)
 			{
 				$rants[$i]['nrOfComments'] = getNrOfComments( $skel, $rants[$i]['messageID'] );
@@ -352,6 +357,7 @@ function newRant($skel)
 	$rant['ip'] = '';
 	$rant['title'] = '';
 	$rant['message'] = '';
+	$rant['contenttype'] = CONTENT_RAWHTML;
 	$rant['initiated'] = date('Y-m-d G:i:s', time());
 	$rant['published'] = '';
 	$rant['ispublic'] = '0';
@@ -367,7 +373,7 @@ function newRant($skel)
 /*
  * Add new rant to DB
  */
-function addRant( $skel, $title, $location, $rant )
+function addRant( $skel, $title, $location, $rant, $contenttype )
 {
 	$title = escapeValue($title);
 	$location = escapeValue($location);
@@ -387,7 +393,8 @@ function addRant( $skel, $title, $location, $rant )
 
 	$query = 'INSERT INTO smplog_rant ' .
 		'SET date="' . $time . '", user="' . $user_id . '", ip="' . $ipaddr . '", title="'. $title .'", location="' . $location . '", message="' . $rant .
-		'", modified=0, modifieddate="0000-00-00 00:00:00";';
+		'", contenttype=' . $contenttype . '' .
+		', modified=0, modifieddate="0000-00-00 00:00:00";';
 
 	$result = mysql_query($query, $skel['dbLink']);
 }

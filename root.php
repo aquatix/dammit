@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2006-10-01';
-$page_version = '0.4.06';
+$lastmodified = '2006-10-17';
+$page_version = '0.5.01';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -95,7 +95,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		/* Trying to add rant to DB */
 		if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']))
 		{
-			addRant($skel, getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null));
+			addRant($skel, getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null), getRequestParam('contenttype', 0));
 			/* Update RSS feed[s] */
 			updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));

@@ -1,7 +1,7 @@
 <?php
 /*
  * Toolkit module - HTML methods
- * Version: 0.3.01 2005-01-11
+ * Version: 0.5.01 2006-1017
  */
 
 /*
@@ -61,5 +61,8 @@ function generateTable($widths, $headers, $values)
 	return $theTable;
 }
 
-
+function plaintext2HTML($source)
+{
+	return str_replace("\n", "<br />\n", $source);
+}
 ?>

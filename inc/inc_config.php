@@ -51,7 +51,8 @@ if ((date('m') == 6 && date('d') > 20) || (date('m') < 10))
 /* If autumn */
 if ((date('m') == 9 && date('d') > 20) || (date('m') <= 12))
 {
-	$skel['logo'] = 'images/dammit_autumn_path.png';
+	//$skel['logo'] = 'images/dammit_autumn_path.png';
+	$skel['logo'] = 'images/dammit_autumn.png';
 }
 
 /* If winter */
