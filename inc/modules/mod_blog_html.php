@@ -2,7 +2,7 @@
 /*
  * file: mod_blog_html.php
  *       Blog module - HTML methods
- *       v0.5.01 2006-10-14
+ *       v0.5.03 2006-10-18
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -114,7 +114,7 @@ function buildRants( $rants )
 /*
  * Builds a list with short information of all rants. Used for archive and search
  */
-function buildRantlist($rants, $enableyear)
+function buildRantlist_old($rants, $enableyear)
 {
 	$html = '';
 	$previousDate = '0000-00-00 00:00:00';
@@ -152,6 +152,48 @@ function buildRantlist($rants, $enableyear)
 	}
 	return $html;
 }
+function buildRantlist($rants, $enableyear)
+{
+	$html = '';
+	$previousDate = '0000-00-00 00:00:00';
+	$previousMonth = '00';
+
+	for ($i = 0; $i < count($rants); $i++)
+	{
+		$thisDate = getDay($rants[$i]['date']);
+		$thisMonth = getMonth($rants[$i]['date']);
+		if ($thisMonth != $previousMonth)
+		{
+			if ($enableyear)
+			{
+				$html .= '<h2>' . getYear($rants[$i]['date']) . " &gt; " . getMonthName($thisMonth) . "</h2>\n";
+			} else
+			{
+				if ('00' != $previousMonth)
+				{
+					$html .= "</ul>\n";
+				}
+				$html .= '<h2><a href="index.php?month=' . getYear($rants[$i]['date']) . $thisMonth . '">' . getMonthName($thisMonth) . "</a></h2>\n";
+				$html .= "<ul class=\"archive\">\n";
+			}
+			$previousMonth = $thisMonth;
+		}
+		if ($thisDate != $previousDate)
+		{
+			$html .= '<li><span class="date">' . $thisDate . ' : </span>';
+			$previousDate = $thisDate;
+		} else
+		{
+			$html .= '<li><span class="date">&nbsp;</span>';
+		}
+		/* Title */
+		$html .= "<a href=\"index.php?rantid=" . $rants[$i]['messageID'] . "\">" . $rants[$i]['title'] . "</a>";
+
+		$html .= "</li>\n";
+	}
+	$html .= "</ul>\n";
+	return $html;
+}
 
 
 /*
@@ -186,9 +228,17 @@ function buildEditRant($rant)
 		$plaintext = ' selected';
 	}
 	$html .= "<p><select name=\"contenttype\">\n\t<option value=\"" . CONTENT_RAWHTML . "\"" . $rawhtml . ">Raw HTML</option>\n\t<option value=\"" . CONTENT_MARKDOWN . "\"" . $markdown . ">Markdown markup</option>\n\t<option value=\"" . CONTENT_PLAINTEXT . "\"" . $plaintext . ">Plain text</option>\n</select>\n";
+	if (ISPUBLIC_NO == $rant['ispublic'])
+	{
+		$html .= "<p><select name=\"ispublic\">\n\t<option value=\"" . ISPUBLIC_NO . "\" selected />Rant is hidden for the public</option>\n\t<option value=\"" . ISPUBLIC_YES . "\"/>Rant is public</option>\n</select></p>\n";
+	} else
+	{
+		$html .= "<p><select name=\"ispublic\">\n\t<option value=\"" . ISPUBLIC_NO . "\" />Rant is hidden for the public</option>\n\t<option value=\"" . ISPUBLIC_YES . "\" selected />Rant is public</option>\n</select></p>\n";
+	}
 	$html .= "<input type=\"hidden\" name=\"id\" value=\"" . $rant['messageID'] . "\"/>\n";
-	$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
-	//$html .= "<p><input name=\"savebtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";
+	$html .= "<input type=\"hidden\" name=\"initiated\" value=\"" . $rant['initiated'] . "\"/>\n";
+	//$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
+	$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";
 
 	return $html;
 }

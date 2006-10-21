@@ -24,6 +24,8 @@
 define('CONTENT_RAWHTML', 0);
 define('CONTENT_PLAINTEXT', 1);
 define('CONTENT_MARKDOWN', 2);
+define('ISPUBLIC_YES', 1);
+define('ISPUBLIC_NO', 0);
 
 /* The various properties of a typical rant, set here as "constant" */
 $skel['rantproperties'] = 'messageid, date, user, ip, title, message, contenttype, initiated, published, ispublic, modified, modifieddate, location, commentsenabled';
@@ -373,7 +375,8 @@ function newRant($skel)
 /*
  * Add new rant to DB
  */
-function addRant( $skel, $title, $location, $rant, $contenttype )
+//function addRant( $skel, $title, $location, $rant, $contenttype )
+function addRant( $skel, $rant )
 {
 	$title = escapeValue($title);
 	$location = escapeValue($location);

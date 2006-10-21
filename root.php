@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2006-10-17';
-$page_version = '0.5.01';
+$lastmodified = '2006-10-18';
+$page_version = '0.5.02';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -95,7 +95,14 @@ if (isset($_GET['action']) && isLoggedIn())
 		/* Trying to add rant to DB */
 		if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']))
 		{
-			addRant($skel, getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null), getRequestParam('contenttype', 0));
+			$rant = newRant($skel);
+			$rant['title'] = getRequestParam('title', null);
+			$rant['location'] = getRequestParam('location', null);
+			$rant['message'] = getRequestParam('rant', null);
+			$rant['contenttype'] = getRequestParam('contenttype', 0);
+
+			addRant($skel, $rant);
+
 			/* Update RSS feed[s] */
 			updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
@@ -129,7 +136,7 @@ if (isset($_GET['action']) && isLoggedIn())
 					/* check the values, if not right, show the form again */
 					//checkRant($skel, $rant);
 					/* Update the rant */
-					$result = editRant( $skel,  getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null), getRequestParam("id", -1) );
+					$result = editRant( $skel,  getRequestParam('title', null), getRequestParam('location', null), getRequestParam('rant', null), getRequestParam('id', -1) );
 					updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 					$showform = false;

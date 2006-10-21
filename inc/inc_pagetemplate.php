@@ -1,7 +1,7 @@
 <?php
 /*
  * File containing the page template of the dammIT blog
- * Version: 0.5.01 2006-10-14
+ * Version: 0.5.02 2006-10-21
  */
 
 /*
@@ -36,7 +36,8 @@ $page_title = $page_name;
 //$page .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">\n";
 //$page .= "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">\n";
 
-$page  = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+/*$page  = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";*/
+$page  = "<?xml version=\"1.0\"?>\n";
 $page .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n";
 //$page .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
 $page .= "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n";
@@ -95,7 +96,7 @@ $page .= "\t\t<li><a href=\"index.php\" accesskey=\"h\" title=\"Home\">home</a><
 $page .= "\t\t<li><a href=\"index.php?page=archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
 $page .= "\t\t<li><a href=\"index.php?page=browse\" accesskey=\"b\" title=\"Browse this web log with " . $skel["nrOfRantsPerPage"] . " posts per page\">browse rants</a></li>\n";
 $page .= "\t\t<li><a href=\"blogmarks.php\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
-$page .= "\t\t<li><a href=\"index.php?page=plan\" accesskey=\"p\">.plan</a></li>\n";
+//$page .= "\t\t<li><a href=\"index.php?page=plan\" accesskey=\"p\">.plan</a></li>\n";
 $page .= "\t\t<li><a href=\"index.php?page=about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
 $page .= "\t</ul>\n";
 
