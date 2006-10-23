@@ -2,7 +2,7 @@
 /*
  * file: mod_blog_methods.php
  *       Blog module - methods
- *       v0.5.01 2006-10-17
+ *       v0.5.02 2006-10-23
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -166,6 +166,9 @@ function resultsetToRants($skel, $result, $getNrOfComments = true)
 				$rants[$i]['nrOfComments'] = -1;
 			}
 		}
+	} else
+	{
+		$rants = null;
 	}
 	return $rants;
 }

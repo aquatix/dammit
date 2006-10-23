@@ -1,7 +1,7 @@
 <?php
 /*
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * Version: 0.4.05 2006-09-07
+ * Version: 0.5.01 2006-10-23
  */
 
 /*** Site settings ***/
@@ -13,6 +13,10 @@ $skel['authorShortname'] = 'Michiel';
 $skel['sitename'] = 'dammIT';
 $skel['sitedescription'] = 'Michiel\'s weblog // "A country that replaces freedom with security deserves neither" (Thomas Jefferson)';
 $skel['mainEmail'] = 'dammit@aquariusoft.org';
+
+/* Message to be shown on the main page, archive page and individual posting pages */
+//$skel['globalmessage'] = 'The new dammIT!';
+$skel['globalmessage'] = null; /* Use when you don't want such a message */
 
 $skel['nrOfRantsPerPage'] = 10;	//varying between 10 and 15 :)
 $skel['nrOfMarksPerPage'] = 20;

@@ -3,7 +3,7 @@
  * Created by Michiel Scholten
  * mbscholt at aquariusoft dot org
  * 
- * Version 0.5.02 :: 2006-10-21
+ * Version 0.5.03 :: 2006-10-21
  */
 
 /*
@@ -15,13 +15,7 @@ body
 {
 	margin: 5px 10px 5px 10px;
 	padding: 5px 25px 5px 100px;
-/*	padding: 5px 25px 5px 90px;*/
-
-        background: #99CCFF;
-	background: #a7c8e4;
-	background: #a7c8e4 url("images/background_repeating_03.png");
-	background: #a7c8e4 url("images/lines_repeating.png");
-	background: #330099;
+/*	background: #a7c8e4 url("images/background_repeating_03.png");*/
 	background: #15317E;
         color: #222;
         font-family: Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
@@ -43,11 +37,22 @@ h2
 	font-size: 130%;
 	font-weight: bold; 
 	color: #707070;
-	background: transparent;
-	border: 1px solid #95B1FF;
-	border-width: 0 0 1px 0;
+/*	background: transparent;*/
+	background: inherit;
+/*
+	background-color: #95B1FF;
+	background-color: #e4ebff;
+	background-color: #0F2258;
+	color: #FFF;
+*/
+/*	border-bottom: 1px solid #95B1FF;*/
 	padding-bottom: 0;
 }
+
+	h2 a, h3 a
+	{
+		color: #707070;
+	}
 
 h3
 {
@@ -57,24 +62,27 @@ h3
 	background: transparent;
 	color: #707070;
 	border: none;
-	padding: 2px 4px 2px 4px;
+/*	padding: 2px 4px 2px 4px;*/
+/*	margin-left: .3em;
+	margin-left: 1em;*/
+	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 h4
 { 
 	display: inline;
-
+	padding: 0;
+	margin: 0;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold; 
 	color: #aa0000;
+	color: #707070;
 	background: transparent;
-	display: inline;
 }
 
 h5
 { 
-	display: inline;
-
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold; 
 	color: #aa0000;
@@ -84,8 +92,6 @@ h5
 
 h6
 { 
-	display: inline;
-
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold; 
 	color: #aa0000;
@@ -137,6 +143,7 @@ a[href^="http:"]
 a[class^="plain"], a[href^="http://aquariusoft.org/~mbscholt/"], .images a, #license a, #main-content-nav a
 {
 	background: inherit;
+/*	color: inherit;*/
 	padding-right: 0px;
 }
 
@@ -149,7 +156,6 @@ abbr, acronym
 input, textarea, button
 {
 	border:1px solid #95B1FF;
-	background: #CAD8FF;
 	background: #e4ebff;
 	color: #000000;
 }
@@ -167,6 +173,7 @@ textarea
 input:focus, textarea:focus
 {
 	border: 1px solid #15317E;
+	color: inherit;
 	background: #FFFFFF;
 }
 
@@ -181,7 +188,6 @@ pre
 	margin: 5px 0 5px 0;
 	padding: 5px 0 5px 0;
 	overflow: auto;
-	background: #CAD8FF;
 	background: #e4ebff;
 	border-left: 2px solid #15317E;
 	font: 1em "Courier New", monospace;
@@ -190,7 +196,11 @@ pre
 p
 {
 	text-align: justify;
-	padding: 2px 4px 2px 4px;
+/*	padding: 2px 4px 2px 4px;*/
+	padding: 2px 4px 2px 0;
+	padding: .2em .2em 1em 0;
+/*	margin: 0, 0, .5em, 0;*/
+	margin: 0;
 }
 
 ul li
@@ -200,23 +210,19 @@ ul li
 
 blockquote
 {
-	background: #CAD8FF;
 	background: #15317E;
 	background-image: url("images/quote_transparent.png");
 	background-position: top left;
 	background-repeat: no-repeat;
 	color: #FFF;
-	padding-top: 20px;
-	padding-top: 17px;
-	padding-top: 10px;
+	padding-top: 15px;
 	text-align: justify;
-	border-left: 2px solid #15317E;
 	border-left: 6px solid #0F2258;
 	margin-left: 15px;
 	margin-right: 0;
-	padding-left: 5px;
 	padding-left: 25px;
 	padding-right: .5em;
+/*	padding-top: 1.5em;*/
 	padding-bottom: .2em;
 }
 
@@ -229,14 +235,15 @@ blockquote
 	blockquote a:hover
 	{
 		color: #FFF;
+		background-color: inherit;
 		border-bottom: 1px solid #FFF;
 	}
-
+/*
 	blockquote p
 	{
 		padding: 0;
 	}
-
+*/
 .strike
 {
 	text-decoration: line-through;
@@ -249,19 +256,13 @@ blockquote
 	top: 25px;
 	position: absolute;
 	left: 8px;
-	/*
-	width: 176px;
-	height: 71px;
-	*/
 	width: 300px;
 	height: 75px;
 	z-index: 5;
 
-	/*padding: 1px 1px 1px 1px;*/
 	padding: 0;
 	background: transparent;
 	text-align: left;
-/*	border: 1px #000 solid;*/
 }
 
 	#logo a
@@ -279,12 +280,9 @@ blockquote
 	min-height: 100px;
 	float: left;
 
-	background: #4F91C9;
-	background: #95B1FF;
 	background: #0F2258;
 	color: #fff;
 	text-align: left;
-/*	border: 1px #000 solid;*/
 }
 
 	#left-navbar a
@@ -304,11 +302,10 @@ blockquote
 	#left-navbar ul, #main-content-nav ul
 	{
 		margin-top: 0px;
-		padding-top: 0px;
+		padding-top: 4px;
 		padding-left: 8px;
 		margin-left: 8px;
 		margin-bottom: 4px;
-		padding-top: 4px;
 
 	}
 
@@ -322,8 +319,7 @@ blockquote
 	#left-navbar .nav-header
 	{
 		font-weight: bold;
-		border: 1px solid #FFFFFF;
-		border-width: 0px 0px 1px 0px;
+		border-bottom: 1px solid #FFFFFF;
 		padding-bottom: 0px;
 	}
 
@@ -351,10 +347,8 @@ blockquote
 	#main-nav a:hover
 	{
 		color: #000;
-		background-color: #CAD8FF;
 		background-color: #e4ebff;
 		padding: 0px 1px 0px 1px;
-	/*	border: 1px solid #000000;*/
 		border: 1px solid #95B1FF;
 	}
 
@@ -368,8 +362,7 @@ blockquote
 		margin-top: 5px;
 		padding-top: 5px;
 		text-align: center;
-		border: 1px solid #FFFFFF;
-		border-width: 1px 0px 0px 0px;
+		border-top: 1px solid #FFFFFF;
 	}
 
 	.images ul
@@ -389,14 +382,6 @@ blockquote
 	}
 
 
-.nav-section
-{
-	font-weight: bold;
-	border: 1px solid #FFFFFF;
-	border-width: 0px 0px 0px 0px;
-	padding-bottom: 0px;
-}
-
 #license
 {
 	float: right;
@@ -406,29 +391,23 @@ blockquote
 
 #main-content
 {
-	padding: 90px 190px 4px 75px;
 	padding: 90px 240px 4px 75px;
-
-/*	min-height: 120em;*/
 	min-height: 130em;
-
 	background: #FFFFFF;
 	color: inherit;
-/*	border: 1px #000 solid;*/
-
-	line-height: 1.4;
+	line-height: 1.4; /* IE-bug workaround */
 }
 
 	#main-content ul li
 	{
 		list-style-image: url("images/bullet.gif");
-		/*list-style-image: url(images/bullet.png);*/
 	}
 
-	#main-content .archive ul li
+	#main-content ul.archive li
 	{
 		list-style-type: none;
 		list-style-image: none;
+		margin-left: -1em;
 	}
 
 	.ie-warning
@@ -444,17 +423,8 @@ blockquote
 	position: absolute;
 	top: 100px;
 	right: 40px;
-	/*width: 150px;*/
 	width: 200px;
-
-/*
-	position: fixed;
-	top: 0;
-	right: -20px;
-	width: 150px;
-*/
-	border: 1px dashed #000;
-	border-width: 0px 0px 0px 1px;
+	border-left: 1px dashed #000;
 	padding: 0.5em;
 }
 
@@ -467,15 +437,13 @@ blockquote
 
 	#main-content-nav .images
 	{
-		border: 1px solid #707070;
-		border-width: 1px 0px 0px 0px;
+		border-top: 1px solid #707070;
 	}
 
 	#main-content-nav .nav-header
 	{
 		font-weight: bold;
-		border: 1px solid #000000;
-		border-width: 0px 0px 1px 0px;
+		border-bottom: 1px solid #000000;
 		padding-bottom: 0px;
 	}
 
@@ -493,7 +461,7 @@ blockquote
 {
 	font-size: 70%;
 }
-
+/*
 #addcomment
 {
 	padding: 10px;
@@ -502,10 +470,11 @@ blockquote
 	border: 1px dotted #4F91C9;
 	font-size: 90%;
 }
-
+*/
 .error
 {
 	color: #DD0000;
+	background-color: inherit;
 }
 
 /* Blocks within content block */
@@ -518,76 +487,44 @@ blockquote
 	background: transparent;
 	color: inherit;
 	padding: 2px 0 0 0;
-	border: 1px solid #4F91C9;
-	border-width: 1px 0px 0px 0px;
+	border-top: 1px solid #95B1FF;
 	text-align: right;
 }
 
 
-.rant, .blogmark
+.grouped
 {
 	margin-left: 1em;
 }
 
-	.rant h3, .blogmark h3
-	{
-		margin-bottom: 0;
-		padding-bottom: 0;
-	}
-
-	.rant .info, .blogmark .info, .rant .related
-	{
-		font-size: 75%;
-		background: transparent;
-		color: inherit;
-	}
-	
-	.rant .info
-	{
-		margin-left: 4px;
-		margin-top: 1em;
-		margin-top: .3em;
-		padding: .2em;
-		background: #e6ebf0;
-		background: #CAD8FF;
-		background: #e4ebff;
-	}
-
-	.rant .related
-	{
-		text-align: right;
-	}
-
-	.blogmark .info
-	{
-		margin: 0;
-		padding: 0;
-		text-align: right;
-	}
+.rant
+{
 /*
-	.blogmark a
-	{
-		text-decoration: none;
-		border-bottom: 1px dotted #333;
-	}
+	-moz-column-width: 25em;
+	-moz-column-gap: 3em;
+*/
+}
 
-	.blogmark h3
-	{
-		margin-bottom: 0;
-		padding-bottom: 0;
-	}
-*/
-	.blogmark p
-	{
-	/*
-		padding-top: 0;
-		padding-left: 15px;
-	*/
-/*
-		padding: 0 0 0 15px;
-		margin: 0;
-*/
-	}
+.info
+{
+	font-size: 75%;
+/*	margin-left: .3em;
+	margin-left: 1em;*/
+	margin-top: 1em;
+	margin-top: .3em;
+	padding: .2em;
+	background: #e6ebf0;
+	background: #CAD8FF;
+	background: #e4ebff;
+}
+
+.related
+{
+	font-size: 75%;
+	background: transparent;
+	color: inherit;
+	text-align: right;
+}
 
 	.blogmark blockquote p
 	{
@@ -622,7 +559,8 @@ blockquote
 	margin-top: 10px;
 }
 
-	.mininav .heading
+/*	.mininav .heading*/
+	.heading
 	{
 		font-weight: bold;
 	}
@@ -632,6 +570,7 @@ blockquote
 	font-size: 75%;
 	background: transparent;
 	color: inherit;
+	padding-bottom: .3em;
 }
 
 	.browsenav .previous
@@ -707,15 +646,25 @@ blockquote
 
 	.comment_info
 	{
-		padding-bottom: 5px;
+/*		padding-bottom: 5px;*/
+		padding: .2em;
 		color: #707070;
 		font-size: 90%;
+/*		background: #e4ebff;*/
 	}
 
 	.comment_nr
 	{
 		color: #707070;
+/*		color: #FFF;
+		background: #15317E;*/
+		width: 3em;
+		width: 25px;
 		font-size: 130%;
+		font-size: 1.5em;
+		font-style: italic;
+/*		border-right: 2px solid #0F2258;
+		margin-right: .5em;*/
 	}
 
 	.comment_nr_disabled
@@ -726,14 +675,19 @@ blockquote
 
 	.comment_datestamp, .comment_name
 	{
+		font-size: 90%;
 	}
 
 	.comment_message
 	{
-		border: 2px solid #4F91C9;
-		border-width: 0px 0px 0px 2px;
+/*		border: 2px solid #4F91C9;*/
+/*		border-left: 2px solid #0F2258;*/
 		margin-left: 15px;
-		padding-left: 5px;
+		margin-left: 2em;
+		margin-left: 28px;
+		padding-top: .5em;
+		padding-bottom: .5em;
+/*		padding-left: .5em;*/
 	}
 
 .note
@@ -746,7 +700,7 @@ blockquote
 	{
 		color: #707070;
 	}
-		
+	
 
 /*** Notes ***/
 /*

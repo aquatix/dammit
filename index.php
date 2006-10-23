@@ -19,35 +19,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2006-08-21';
-$page_version = '0.4.04';
+$lastmodified = '2006-10-23';
+$page_version = '0.5.02';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
 $page_log = 'home';
 $section_name = 'home';
-$subpage = '';
 
 include 'inc/inc_init.php';
 
-if (isset($_GET['page']))
+$subpage = getRequestParam('page', null);
+if (null != $subpage)
 {
-	$subpage = $_GET['page'];
 	$page_name = $subpage;
 	$page_log = $page_name . '.' . $subpage;
 }
 $rantid = getRequestParam('rantid', -1);
 if (-1 < $rantid)
 {
-	$page_log = "posting." . $rantid;
+	$page_log = 'posting.' . $rantid;
 }
+$month = getRequestParam('month', null);
 
 addToLog( $skel, $section_name, $page_log, $page_version );
 
 $page_body = '';
 
 /* Page-switcher */
-if ( $subpage == "plan" )
+if ( $subpage == 'plan' )
 {
 	$lines = file($skel['.plan']);
 	for ($i = 0; $i < count($lines); $i++)
@@ -55,7 +55,7 @@ if ( $subpage == "plan" )
 		$page_body .= $lines[$i];
 	}
 
-} else if ( $subpage == "about" )
+} else if ( $subpage == 'about' )
 {
 	$lines = file($skel['about']);
 	for ($i = 0; $i < count($lines); $i++)
@@ -78,7 +78,7 @@ if ( $subpage == "plan" )
 	$comment_notify_text = " checked ";
 	$comment_comment = '';
 	$comment_error_comment = '';
-	$comment_url = "http://";
+	$comment_url = '';
 
 	if ( $commentsenabled && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['url'])  && isset($_POST['comment']) && isset($_POST['submitbtn']) )
 	{
@@ -147,101 +147,162 @@ if ( $subpage == "plan" )
 	if ($submitting == false)
 	{
 		$rant = getRantById($skel, $rantid);
-		$page_body .= "<h1>" . $skel['sitename'] . " home</h1>\n";
-		$prevNext = getNextPrevRant($skel, $rant[0]['date']);
-
-		$prev = '';
-		if (isset($prevNext['prev']['title']) && '' != $prevNext['prev']['title'])
+		$page_body .= '<h1>' . $skel['sitename'] . " home</h1>\n";
+		if (null != $skel['globalmessage'])
 		{
-			$prev = "<a href=\"index.php?rantid=" . $prevNext['prev']['messageID'] . "\">&laquo;&nbsp;" . $prevNext['prev']['title'] . "</a>";
+			$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
+		}
+		if (null == $rant)
+		{
+			/* Rant was not found */
+			$page_name = 'Rant not found';
+			$page_body .= "<h2>Sorry</h2><p>The requested rant was not found. <a href=\"index.php\">Go to the homepage</a> or start searching in <a href=\"index.php?page=archive\">the archive</a>.</p>\n";
 		} else
 		{
-			$prev = "<a href=\"index.php\">Home</a>";
-		}
-		$next = '';
-		if (isset($prevNext['next']['title']) && '' != $prevNext['next']['title'])
-		{
-			$next = "<a href=\"index.php?rantid=" . $prevNext['next']['messageID'] . "\">" . $prevNext['next']['title'] . "&nbsp;&raquo;</a>";
-		} else
-		{
-			$next = "<a href=\"index.php\">Home</a>";
-		}
+			$page_name = strip_tags($rant[0]['title']);
+			$prevNext = getNextPrevRant($skel, $rant[0]['date']);
 
-		$page_body .= "<div class=\"browsenav\"><span class=\"previous\">" . $prev . "</span><span class=\"next\">&nbsp;" . $next . "</span></div>\n";
-
-		$page_body .= buildRants($rant);
-
-		/* Show all comments */
-		$page_body .= "<h2 id=\"comments\">Comments</h2>\n";
-		$page_body .= buildComments(getComments($skel, $rantid));
-
-		/* Show input fields for additional comments */
-		if ($commentsenabled)
-		{
-			$page_body .= "<div id=\"addcomment\">\n";
-			if ($commenting === true)
+			$prev = '';
+			if (isset($prevNext['prev']['title']) && '' != $prevNext['prev']['title'])
 			{
-				$page_body .= $comment_preview;
-			}
-			$page_body .= "<h1>Add comment</h1>\n";
-			$page_body .= "<p>You need to provide a valid email-address to comment here, but it will not be displayed on this website.</p>\n";
-			$page_body .= "<p>HTML will be escaped, so you won't be able to add links. Post the URL instead. Line breaks will be converted to breaks.</p>\n";
-			// post to current page!
-			$page_body .= "<form action=\"index.php?rantid=" . $rantid . "#addcomment\" method=\"post\">\n";
-			$page_body .= "<h2>Name</h2>" . $comment_error_name . "<p><input type=\"text\" name=\"name\" size=\"30\" maxlength=\"150\" value=\"" . $comment_name . "\"/></p>\n";
-			$page_body .= "<h2>E-mail</h2>" . $comment_error_email . "<p>Your address won't be shown in your comment</p><p><input type=\"text\" name=\"email\" size=\"30\" maxlength=\"150\" value=\"" . $comment_email . "\"/><br/><input type=\"checkbox\" name=\"wantnotifications\"" . $comment_notify_text . "/> Mail me when someone else comments too</p>\n";
-			$page_body .= "<h2>WWW</h2><p>Make empty if you don't want to provide a url.</p><p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\"/></p>\n";
-			$page_body .= "<h2>Comment</h2><p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
-			$page_body .= "<p><input name=\"submitbtn\" value=\"Preview\" type=\"submit\"/>\n";
-			if ($commenting === true)
-			{
-				$page_body .= "<input name=\"submitbtn\" value=\"Save\" type=\"submit\"/>\n";
-			}
-			$page_body .= "<input name=\"rantid\" value=\"" . $rantid . "\" type=\"hidden\"/></p>\n";
-			$page_body .= "</form>\n";
-			$page_body .= "</div>\n";
-		} else
-		{
-			$page_body .= "<p><em>Comments for this posting are closed</em></p>\n";
-		}
-		if (isLoggedIn())
-		{
-			if ($commentsenabled)
-			{
-				$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&amp;rantid=" . $rantid . "\">Disable comments for this posting</a></p>\n";
+				$prev = "<a href=\"index.php?rantid=" . $prevNext['prev']['messageID'] . "\">&laquo;&nbsp;" . $prevNext['prev']['title'] . "</a>";
 			} else
 			{
-				$page_body .= "<p><a href=\"root.php?action=enablecommentsforpost&amp;rantid=" . $rantid . "\">[Re]enable comments for this posting</a></p>\n";
+				$prev = "<a href=\"index.php\">Home</a>";
 			}
-			$page_body .= "<h1>Referers</h1>\n";
-			$referers = getReferers( $skel, $section_name, $page_log );
-			$page_body .= buildReferers( $skel, $referers );
+			$next = '';
+			if (isset($prevNext['next']['title']) && '' != $prevNext['next']['title'])
+			{
+				$next = "<a href=\"index.php?rantid=" . $prevNext['next']['messageID'] . "\">" . $prevNext['next']['title'] . "&nbsp;&raquo;</a>";
+			} else
+			{
+				$next = "<a href=\"index.php\">Home</a>";
+			}
+
+			$page_body .= "<div class=\"browsenav\"><span class=\"previous\">" . $prev . "</span><span class=\"next\">&nbsp;" . $next . "</span></div>\n";
+
+			$page_body .= buildRants($rant);
+
+			/* Show all comments */
+			$page_body .= "<h2 id=\"comments\">Comments</h2>\n";
+			$page_body .= buildComments(getComments($skel, $rantid));
+
+			/* Show input fields for additional comments */
+			if ($commentsenabled)
+			{
+				$page_body .= "<div id=\"addcomment\">\n";
+				if ($commenting === true)
+				{
+					$page_body .= $comment_preview;
+				}
+				$page_body .= "<h2>Add comment</h2>\n";
+				$page_body .= "<div class=\"grouped\">\n";
+				$page_body .= "<p>You need to provide a valid e-mail address to comment here, but it will not be displayed on this website. ";
+				$page_body .= "HTML will be escaped, so you won't be able to add links. Post the URL instead. Line breaks will be converted to breaks.</p>\n";
+				// post to current page!
+/*
+				$page_body .= "<form action=\"index.php?rantid=" . $rantid . "#addcomment\" method=\"post\">\n";
+				$page_body .= "<h2>Name</h2>" . $comment_error_name . "<p><input type=\"text\" name=\"name\" size=\"30\" maxlength=\"150\" value=\"" . $comment_name . "\"/></p>\n";
+				$page_body .= "<h2>E-mail</h2>" . $comment_error_email . "<p>Your address won't be shown in your comment</p><p><input type=\"text\" name=\"email\" size=\"30\" maxlength=\"150\" value=\"" . $comment_email . "\"/><br/><input type=\"checkbox\" name=\"wantnotifications\"" . $comment_notify_text . "/> Mail me when someone else comments too</p>\n";
+				$page_body .= "<h2>WWW</h2><p>Make empty if you don't want to provide a url.</p><p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\"/></p>\n";
+				$page_body .= "<h2>Comment</h2><p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
+				$page_body .= "<p><input name=\"submitbtn\" value=\"Preview\" type=\"submit\"/>\n";
+				if ($commenting === true)
+				{
+					$page_body .= "<input name=\"submitbtn\" value=\"Save\" type=\"submit\"/>\n";
+				}
+				$page_body .= "<input name=\"rantid\" value=\"" . $rantid . "\" type=\"hidden\"/></p>\n";
+				$page_body .= "</form>\n";
+				$page_body .= "</div>\n";
+*/
+				$page_body .= "<form action=\"index.php?rantid=" . $rantid . "#addcomment\" method=\"post\">\n";
+				$page_body .= $comment_error_name . "<p><input type=\"text\" name=\"name\" size=\"30\" maxlength=\"150\" value=\"" . $comment_name . "\"/> <span class=\"heading\">Name</span></p>\n";
+				$page_body .= $comment_error_email . "<p><input type=\"text\" name=\"email\" size=\"30\" maxlength=\"150\" value=\"" . $comment_email . "\"/> <span class=\"heading\">E-mail address</span><br/><input type=\"checkbox\" name=\"wantnotifications\"" . $comment_notify_text . "/> Mail me when someone else comments too<br />\nYour address <em>won't</em> be shown in your comment</p>\n";
+				$page_body .= "<p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\"/> <span class=\"heading\">WWW</span><br />\nLeave empty if you don't want to provide a url</p>\n";
+				//$page_body .= "<h2>Comment</h2><p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
+				$page_body .= "<p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
+				$page_body .= "<p><input name=\"submitbtn\" value=\"Preview\" type=\"submit\"/>\n";
+				if ($commenting === true)
+				{
+					$page_body .= "<input name=\"submitbtn\" value=\"Save\" type=\"submit\"/>\n";
+				}
+				$page_body .= "<input name=\"rantid\" value=\"" . $rantid . "\" type=\"hidden\"/></p>\n";
+				$page_body .= "</form>\n";
+				$page_body .= "</div>\n";
+				$page_body .= "</div>\n";
+			} else
+			{
+				$page_body .= "<p><em>Comments for this posting are closed</em></p>\n";
+			}
+			if (isLoggedIn())
+			{
+				if ($commentsenabled)
+				{
+					$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&amp;rantid=" . $rantid . "\">Disable comments for this posting</a></p>\n";
+				} else
+				{
+					$page_body .= "<p><a href=\"root.php?action=enablecommentsforpost&amp;rantid=" . $rantid . "\">[Re]enable comments for this posting</a></p>\n";
+				}
+				$page_body .= "<h1>Referers</h1>\n";
+				$referers = getReferers( $skel, $section_name, $page_log );
+				$page_body .= buildReferers( $skel, $referers );
+			}
 		}
-
 	}
 
-} else if ( $subpage == "archive" )
+} else if ( $subpage == 'archive' )
 {
-	$year = date("Y"); /* Default to current year */
-	if (isset($_GET['year']) && myIsInt($_GET['year']))
+	$year = getRequestParam('year', date('Y')); /* Default to current year */
+	$page_name = 'archive - ' . $year;
+	$page_body .= '<h1>Archive - ' . $year . "</h1>\n";
+	if (null != $skel['globalmessage'])
 	{
-		$year = $_GET['year'];
+		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 	}
-	$page_body .= "<h1>Archive</h1>\n";
-	$page_body .= "<h2>Archive of " . $year . "</h2>\n";
-	$page_body .= "<p>All rants of the year " . $year . ", sorted on date [newest on top], grouped by month.</p>\n";
+	//$page_body .= '<h2>Archive of ' . $year . "</h2>\n";
+	//$page_body .= "<p>All rants of the year " . $year . ", sorted on date [newest on top], grouped by month.</p>\n";
 	$yearsnav = "<div class=\"mininav\">[ <span class=\"heading\">year</span> ";
 	/* Get all years this blog is running */
 	$years = getRantYears($skel);
 	for ($i = 0; $i < count($years); $i++)
 	{
-		$yearsnav .= " | <a href=\"index.php?page=archive&amp;year=" . $years[$i] . "\">" . $years[$i] . "</a>";
+		if ($years[$i] == $year)
+		{
+			$yearsnav .= ' | <span class="heading"><a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</span></a>';
+		} else
+		{
+			$yearsnav .= ' | <a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a>';
+		}
 	}
 	$yearsnav .= " ]</div>\n";
 	$page_body .= $yearsnav;
-	$page_body .= buildRantlist(getRantsFromYear($skel, $year), false);
+	if (!in_array($year, $years))
+	{
+		$page_body .= '<h2>Sorry</h2><p>No rants found for this year.</p>';
+	} else
+	{
+		$page_body .= buildRantlist(getRantsFromYear($skel, $year), false);
+	}
 	$page_body .= $yearsnav;
-} else if ( $subpage == "browse" )
+} else if ( null != $month )
+{
+	$page_body .= "<h1>Browse by month</h1>\n";
+	if (null != $skel['globalmessage'])
+	{
+		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
+	}
+
+	$month = intval($month);
+	if (6 != strlen($month))
+	{
+		/* Not a valid month, as those are of the form yyyymm */
+		$page_body .= "<p>Not a valid month chosen, <a href=\"index.php?page=archive\">see archive for all entries</a>.</p>\n";
+	} else
+	{
+		//
+		$page_body .= '<p>Coming soon!</p>';
+	}
+} else if ( $subpage == 'browse' )
 {
 	/*** Show the archive page ***/
 	$page_body .= "<h1>Browse rants</h1>";
@@ -304,9 +365,14 @@ if ( $subpage == "plan" )
 {
 	/*** Show the homepage ***/
 	$page_body .= "<h1>" . $skel['sitename'] . " home</h1>\n";
+	if (null != $skel['globalmessage'])
+	{
+		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
+	}
 
 	$page_body .= buildRants(getRants($skel, 0, $skel['nrOfRantsPerPage']));
-	$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel['nrOfRantsPerPage'] . "\">Old rants</a> ]</p>\n";
+	//$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel['nrOfRantsPerPage'] . "\">Old rants</a> ]</p>\n";
+	$page_body .= "<p>[ <a href=\"index.php?page=archive\">Old rants</a> ]</p>\n";
 
 } /* End of page-switcher */
 
