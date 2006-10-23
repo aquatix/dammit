@@ -74,7 +74,7 @@ $browse_nav .= " ]</div>\n";
 /* Show the nav */
 $page_body .= $browse_nav;
 /* Show the blogmarks */
-$page_body .= buildCondensedMarks(getMarksByMonth($skel, $year, $month));
+$page_body .= buildMarks(getMarksByMonth($skel, $year, $month));
 
 $page_body .= "<h2>Blogmarks by month</h2>\n";
 $page_body .= "<h3>" . $year . "</h3>\n";

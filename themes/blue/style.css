@@ -3,7 +3,7 @@
  * Created by Michiel Scholten
  * mbscholt at aquariusoft dot org
  * 
- * Version 0.5.03 :: 2006-10-21
+ * Version 0.5.05 :: 2006-10-23
  */
 
 /*
@@ -37,15 +37,7 @@ h2
 	font-size: 130%;
 	font-weight: bold; 
 	color: #707070;
-/*	background: transparent;*/
 	background: inherit;
-/*
-	background-color: #95B1FF;
-	background-color: #e4ebff;
-	background-color: #0F2258;
-	color: #FFF;
-*/
-/*	border-bottom: 1px solid #95B1FF;*/
 	padding-bottom: 0;
 }
 
@@ -62,9 +54,6 @@ h3
 	background: transparent;
 	color: #707070;
 	border: none;
-/*	padding: 2px 4px 2px 4px;*/
-/*	margin-left: .3em;
-	margin-left: 1em;*/
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
@@ -76,7 +65,6 @@ h4
 	margin: 0;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold; 
-	color: #aa0000;
 	color: #707070;
 	background: transparent;
 }
@@ -196,10 +184,8 @@ pre
 p
 {
 	text-align: justify;
-/*	padding: 2px 4px 2px 4px;*/
 	padding: 2px 4px 2px 0;
 	padding: .2em .2em 1em 0;
-/*	margin: 0, 0, .5em, 0;*/
 	margin: 0;
 }
 
@@ -222,7 +208,6 @@ blockquote
 	margin-right: 0;
 	padding-left: 25px;
 	padding-right: .5em;
-/*	padding-top: 1.5em;*/
 	padding-bottom: .2em;
 }
 
@@ -238,12 +223,7 @@ blockquote
 		background-color: inherit;
 		border-bottom: 1px solid #FFF;
 	}
-/*
-	blockquote p
-	{
-		padding: 0;
-	}
-*/
+
 .strike
 {
 	text-decoration: line-through;
@@ -430,7 +410,6 @@ blockquote
 
 	#main-content-nav ul li
 	{
-		/*font-size: .9em;*/
 		font-size: .85em;
 		list-style-image: url(images/bullet.png);
 	}
@@ -461,16 +440,7 @@ blockquote
 {
 	font-size: 70%;
 }
-/*
-#addcomment
-{
-	padding: 10px;
-	margin-top: 10px;
-	margin-left: 10px;
-	border: 1px dotted #4F91C9;
-	font-size: 90%;
-}
-*/
+
 .error
 {
 	color: #DD0000;
@@ -508,8 +478,6 @@ blockquote
 .info
 {
 	font-size: 75%;
-/*	margin-left: .3em;
-	margin-left: 1em;*/
 	margin-top: 1em;
 	margin-top: .3em;
 	padding: .2em;
@@ -559,11 +527,10 @@ blockquote
 	margin-top: 10px;
 }
 
-/*	.mininav .heading*/
-	.heading
-	{
-		font-weight: bold;
-	}
+.heading
+{
+	font-weight: bold;
+}
 
 .browsenav
 {
@@ -646,25 +613,17 @@ blockquote
 
 	.comment_info
 	{
-/*		padding-bottom: 5px;*/
 		padding: .2em;
 		color: #707070;
 		font-size: 90%;
-/*		background: #e4ebff;*/
 	}
 
 	.comment_nr
 	{
 		color: #707070;
-/*		color: #FFF;
-		background: #15317E;*/
-		width: 3em;
 		width: 25px;
-		font-size: 130%;
 		font-size: 1.5em;
 		font-style: italic;
-/*		border-right: 2px solid #0F2258;
-		margin-right: .5em;*/
 	}
 
 	.comment_nr_disabled
@@ -680,14 +639,9 @@ blockquote
 
 	.comment_message
 	{
-/*		border: 2px solid #4F91C9;*/
-/*		border-left: 2px solid #0F2258;*/
-		margin-left: 15px;
-		margin-left: 2em;
 		margin-left: 28px;
 		padding-top: .5em;
 		padding-bottom: .5em;
-/*		padding-left: .5em;*/
 	}
 
 .note

@@ -20,7 +20,7 @@
  */
 
 $lastmodified = '2006-10-23';
-$page_version = '0.5.02';
+$page_version = '0.5.03';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
@@ -199,22 +199,7 @@ if ( $subpage == 'plan' )
 				$page_body .= "<div class=\"grouped\">\n";
 				$page_body .= "<p>You need to provide a valid e-mail address to comment here, but it will not be displayed on this website. ";
 				$page_body .= "HTML will be escaped, so you won't be able to add links. Post the URL instead. Line breaks will be converted to breaks.</p>\n";
-				// post to current page!
-/*
-				$page_body .= "<form action=\"index.php?rantid=" . $rantid . "#addcomment\" method=\"post\">\n";
-				$page_body .= "<h2>Name</h2>" . $comment_error_name . "<p><input type=\"text\" name=\"name\" size=\"30\" maxlength=\"150\" value=\"" . $comment_name . "\"/></p>\n";
-				$page_body .= "<h2>E-mail</h2>" . $comment_error_email . "<p>Your address won't be shown in your comment</p><p><input type=\"text\" name=\"email\" size=\"30\" maxlength=\"150\" value=\"" . $comment_email . "\"/><br/><input type=\"checkbox\" name=\"wantnotifications\"" . $comment_notify_text . "/> Mail me when someone else comments too</p>\n";
-				$page_body .= "<h2>WWW</h2><p>Make empty if you don't want to provide a url.</p><p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\"/></p>\n";
-				$page_body .= "<h2>Comment</h2><p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
-				$page_body .= "<p><input name=\"submitbtn\" value=\"Preview\" type=\"submit\"/>\n";
-				if ($commenting === true)
-				{
-					$page_body .= "<input name=\"submitbtn\" value=\"Save\" type=\"submit\"/>\n";
-				}
-				$page_body .= "<input name=\"rantid\" value=\"" . $rantid . "\" type=\"hidden\"/></p>\n";
-				$page_body .= "</form>\n";
-				$page_body .= "</div>\n";
-*/
+				/* post to current page */
 				$page_body .= "<form action=\"index.php?rantid=" . $rantid . "#addcomment\" method=\"post\">\n";
 				$page_body .= $comment_error_name . "<p><input type=\"text\" name=\"name\" size=\"30\" maxlength=\"150\" value=\"" . $comment_name . "\"/> <span class=\"heading\">Name</span></p>\n";
 				$page_body .= $comment_error_email . "<p><input type=\"text\" name=\"email\" size=\"30\" maxlength=\"150\" value=\"" . $comment_email . "\"/> <span class=\"heading\">E-mail address</span><br/><input type=\"checkbox\" name=\"wantnotifications\"" . $comment_notify_text . "/> Mail me when someone else comments too<br />\nYour address <em>won't</em> be shown in your comment</p>\n";
@@ -259,8 +244,6 @@ if ( $subpage == 'plan' )
 	{
 		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 	}
-	//$page_body .= '<h2>Archive of ' . $year . "</h2>\n";
-	//$page_body .= "<p>All rants of the year " . $year . ", sorted on date [newest on top], grouped by month.</p>\n";
 	$yearsnav = "<div class=\"mininav\">[ <span class=\"heading\">year</span> ";
 	/* Get all years this blog is running */
 	$years = getRantYears($skel);

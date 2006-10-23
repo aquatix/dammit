@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2006-05-28';
-$page_version = '0.4.02';
+$lastmodified = '2006-10-23';
+$page_version = '0.5.01';
 $dateofcreation = '2005-01-11';
 
 $section_name = 'home';
@@ -41,7 +41,7 @@ if ('' != $searchkey)
 $searched_weblogentries = findRants($skel, $searchkey);
 $searched_webmarks = findMarks($skel, $searchkey);
 
-$page_body .= '<p>Searched on "' . $searchkey . "\"</p>\n";
+$page_body .= '<p>Searched for "' . $searchkey . "\"</p>\n";
 
 $page_body .= "<h2>weblog entries</h2>\n";
 if ($searched_weblogentries != null)
@@ -55,7 +55,7 @@ if ($searched_weblogentries != null)
 $page_body .= "<h2>webmarks</h2>\n";
 if ($searched_webmarks != null)
 {
-	$page_body .= buildCondensedMarks($searched_webmarks);
+	$page_body .= buildMarks($searched_webmarks);
 } else
 {
 	$page_body .= "<p>No matching entries found</p>\n";

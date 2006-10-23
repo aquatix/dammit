@@ -2,7 +2,7 @@
 /*
  * file: mod_blog_html.php
  *       Blog module - HTML methods
- *       v0.5.04 2006-10-23
+ *       v0.5.05 2006-10-23
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -57,7 +57,6 @@ function buildRants( $rants )
 			$previousDate = $thisDate;
 		}
 		/* Title */
-		//$rantsHTML .= "<div class=\"rant\">\n<h3>" . $rants[$i]['title'] . "</h3>\n";
 		$rantsHTML .= '<h3>' . $rants[$i]['title'] . "</h3>\n";
 		/* Info about the rant entry */
 		$rantsHTML .= "<div class=\"info\">";
@@ -123,44 +122,6 @@ function buildRants( $rants )
 /*
  * Builds a list with short information of all rants. Used for archive and search
  */
-function buildRantlist_old($rants, $enableyear)
-{
-	$html = '';
-	$previousDate = '0000-00-00 00:00:00';
-	$previousMonth = "00";
-
-	for ($i = 0; $i < count($rants); $i++)
-	{
-		$thisDate = getDay($rants[$i]['date']);
-		$thisMonth = getMonth($rants[$i]['date']);
-		if ($thisMonth != $previousMonth)
-		{
-			if ($enableyear)
-			{
-				$html .= '<h2>' . getYear($rants[$i]['date']) . " &gt; " . getMonthName($thisMonth) . "</h2>\n";
-			} else
-			{
-				$html .= '<h2>' . getMonthName($thisMonth) . "</h2>\n";
-			}
-			$previousMonth = $thisMonth;
-		}
-		if ($thisDate != $previousDate)
-		{
-			$html .= "<div class=\"rantitem\">";
-			$html .= "<div class=\"date\">" . $thisDate . "</div>";
-			$previousDate = $thisDate;
-		} else
-		{
-			$html .= "<div class=\"rantitemsamedate\">";
-			$html .= "<div class=\"date\">&nbsp;</div>";
-		}
-		/* Title */
-		$html .= "<a href=\"index.php?rantid=" . $rants[$i]['messageID'] . "\">" . $rants[$i]['title'] . "</a>";
-
-		$html .= "</div>\n";
-	}
-	return $html;
-}
 function buildRantlist($rants, $enableyear)
 {
 	$html = '';
@@ -173,18 +134,18 @@ function buildRantlist($rants, $enableyear)
 		$thisMonth = getMonth($rants[$i]['date']);
 		if ($thisMonth != $previousMonth)
 		{
+			if ('00' != $previousMonth)
+			{
+				$html .= "</ul>\n";
+			}
 			if ($enableyear)
 			{
 				$html .= '<h2>' . getYear($rants[$i]['date']) . " &gt; " . getMonthName($thisMonth) . "</h2>\n";
 			} else
 			{
-				if ('00' != $previousMonth)
-				{
-					$html .= "</ul>\n";
-				}
 				$html .= '<h2><a href="index.php?month=' . getYear($rants[$i]['date']) . $thisMonth . '">' . getMonthName($thisMonth) . "</a></h2>\n";
-				$html .= "<ul class=\"archive\">\n";
 			}
+			$html .= "<ul class=\"archive\">\n";
 			$previousMonth = $thisMonth;
 		}
 		if ($thisDate != $previousDate)
@@ -277,16 +238,11 @@ function buildMarks( $marks )
 
 	for ($i = 0; $i < count($marks); $i++)
 	{
-		$thisDate = getNormalDate($marks[$i]['date']);
-		if ($thisDate != $previousDate)
-		{
-			$marksHTML .= '<h2>' . $thisDate . "</h2>\n";
-			$previousDate = $thisDate;
-		}
+		$marksHTML .= "<div id=\"uri" . $marks[$i]['id'] . "\">\n";
 		/* Title */
-		$marksHTML .= "<div class=\"blogmark\">\n<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
+		$marksHTML .= "<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
 		/* Info about the blogmark */
-		$marksHTML .= "<div class=\"info\">[ ";
+		$marksHTML .= '<div class="info">';
 		if ($marks[$i]['modified'] > 0)
 		{
 			/* Modified at least once */
@@ -299,11 +255,12 @@ function buildMarks( $marks )
 			}
 			$marksHTML .= " | ";
 		}
-		$marksHTML .= "<a href=\"blogmarks.php?markid=" . $marks[$i]["id"] . "\">blogmark</a> | ";
-		$marksHTML .= $marks[$i]['location'] . " | ";
-		$marksHTML .= "Posted " . getTime($marks[$i]['date']) . " ]</div>\n</div>\n\n";
-		/* Mark itself */
+		$marksHTML .= $marks[$i]['location'];
+		$marksHTML .= " | <a href=\"" . markUri($marks[$i]) . "\">" . getMonthDate($marks[$i]['date']) . ", " . getTime($marks[$i]['date']) . "</a>";
+		$marksHTML .= "</div>\n";
+		/* Comment on the blogmark */
 		$marksHTML .= $marks[$i]['message'] . "\n";
+		$marksHTML .= "</div>\n\n";
 	}
 	return $marksHTML;
 }
@@ -322,44 +279,6 @@ function buildInPostMarks( $marks )
 	return $marksHTML;
 }
 
-function buildCondensedMarks( $marks )
-{
-	$marksHTML = '';
-	$previousDate = '0000-00-00 00:00:00';
-
-	for ($i = 0; $i < count($marks); $i++)
-	{
-		//$marksHTML .= "<div id=\"uri" . $marks[$i]['id'] . "\"><div class=\"blogmark\">\n";
-		$marksHTML .= "<div id=\"uri" . $marks[$i]['id'] . "\">\n";
-		/* Title */
-		$marksHTML .= "<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
-		/* Info about the blogmark */
-		//$marksHTML .= "<div class=\"info\">[ ";
-		$marksHTML .= '<div class="info">';
-		if ($marks[$i]['modified'] > 0)
-		{
-			/* Modified at least once */
-			if ($marks[$i]['modified'] == 1)
-			{
-				$marksHTML .= 'Modified 1 time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
-			} else
-			{
-				$marksHTML .= 'Modified ' . $marks[$i]['modified'] . ' times, last time at ' . getLongDate($marks[$i]['modifiedDate']) . " " . getTime($marks[$i]['modifiedDate']);
-			}
-			$marksHTML .= " | ";
-		}
-		$marksHTML .= $marks[$i]['location'];
-		$marksHTML .= " | <a href=\"" . markUri($marks[$i]) . "\">" . getMonthDate($marks[$i]['date']) . ", " . getTime($marks[$i]['date']) . "</a>";
-		//$marksHTML .= " ]</div>\n";
-		$marksHTML .= "</div>\n";
-		/* Comment on the blogmark */
-		$marksHTML .= $marks[$i]['message'] . "\n";
-		//$marksHTML .= "</div></div>\n\n";
-		$marksHTML .= "</div>\n\n";
-	}
-	return $marksHTML;
-}
-
 
 /*
  * Build a simple list of webmarks [used for listing NN marks in the navigation]
@@ -371,13 +290,11 @@ function buildSimpleMarks( $marks )
 
 	for ($i = 0; $i < count($marks); $i++)
 	{
-		//$marksHTML .= "\t\t\t<li><a href=\"" . markuri($marks[$i]) . "\">" . $marks[$i]['title'] . "</a></li>\n";
 		$marksHTML .= "\t\t\t<li><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a> <span class=\"note\">[<a href=\"" . markUri($marks[$i]) . "\">more</a>]</span></li>\n";
 	}
 	$marksHTML .= "\t\t</ul>\n";
 	return $marksHTML;
 }
-
 
 
 /*
@@ -406,7 +323,6 @@ function buildComments( $comments )
 		{
 			$uri = "<a href=\"" . $comments[$i]['uri'] . "\">" . $comments[$i]["name"] . "</a>";
 		}
-		//$commentsHTML .= "<div id=\"comment" . $comments[$i]["id"] . "\"><div class=\"comment\">\n<div class=\"comment_info\">";
 		$commentsHTML .= "<div id=\"comment" . $comments[$i]["id"] . "\">\n<div>\n";
 		if ($comments[$i]["state"] == 0)
 		{
@@ -415,7 +331,6 @@ function buildComments( $comments )
 		{
 			$commentsHTML .= '<span class="comment_nr">';
 		}
-		//$commentsHTML .= ($i + 1) . '.&nbsp;</span><span class="comment_info">Posted at ' . $comments[$i]['date'] . '&nbsp;by ' . $uri;
 		$commentsHTML .= ($i + 1) . '.&nbsp;</span><span class="comment_info">Posted at ' . $comments[$i]['date'] . '&nbsp;by ' . $uri;
 		$commentsHTML .= ' [ <a href="?rantid=' . $comments[$i]['rantId'] . '#comment' . $comments[$i]['id'] . '">Permalink</a> ';
 
