@@ -208,7 +208,7 @@ blockquote
 	margin-right: 0;
 	padding-left: 25px;
 	padding-right: .5em;
-	padding-bottom: .2em;
+/*	padding-bottom: .2em;*/
 }
 
 	blockquote a
@@ -450,7 +450,6 @@ blockquote
 /* Blocks within content block */
 #last-modified
 {
-	position: relative;
 	margin-top: 10px;
 
 	font-size: 75%;
@@ -478,11 +477,8 @@ blockquote
 .info
 {
 	font-size: 75%;
-	margin-top: 1em;
 	margin-top: .3em;
 	padding: .2em;
-	background: #e6ebf0;
-	background: #CAD8FF;
 	background: #e4ebff;
 }
 
@@ -493,16 +489,16 @@ blockquote
 	color: inherit;
 	text-align: right;
 }
-
+/*
 	.blogmark blockquote p
 	{
 		padding-left: 0;
 	}
-
-	.blogmark .edit
-	{
-		margin-left: 15px;
-	}
+*/
+.blogmark .edit
+{
+	margin-left: 15px;
+}
 
 
 /* Date field in archive listing */
@@ -520,11 +516,10 @@ blockquote
 	background: transparent;
 	color: inherit;
 	padding: 2px 0px 2px 0px;
-	border: 1px dotted #4F91C9;
-	border-width: 1px 0px 1px 0px;
-	position: relative;
+	border-top: 1px dotted #4F91C9;
+	border-bottom: 1px dotted #4F91C9;
 	text-align: left;
-	margin-top: 10px;
+	margin-top: 1em;
 }
 
 .heading
