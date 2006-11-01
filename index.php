@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2006-10-23';
-$page_version = '0.5.03';
+$lastmodified = '2006-10-25';
+$page_version = '0.5.04';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
@@ -269,21 +269,25 @@ if ( $subpage == 'plan' )
 	$page_body .= $yearsnav;
 } else if ( null != $month )
 {
-	$page_body .= "<h1>Browse by month</h1>\n";
-	if (null != $skel['globalmessage'])
-	{
-		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
-	}
-
 	$month = intval($month);
 	if (6 != strlen($month))
 	{
 		/* Not a valid month, as those are of the form yyyymm */
-		$page_body .= "<p>Not a valid month chosen, <a href=\"index.php?page=archive\">see archive for all entries</a>.</p>\n";
+		$page_body .= "<h1>Browse by month</h1>\n";
+		$page_body .= "<p>Not a valid month chosen, <a href=\"index.php?page=archive\">see the archive for all entries</a>.</p>\n";
 	} else
 	{
-		//
-		$page_body .= '<p>Coming soon!</p>';
+		$year = substr($month, 0, 4);
+		$month = substr($month, 4, 2);
+
+		$page_name = getMonthName($month) . ' ' . $year;
+		$page_body .= '<h1>' . getMonthName($month) . ' ' . $year . "</h1>\n";
+		if (null != $skel['globalmessage'])
+		{
+			$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
+		}
+
+		$page_body .= buildRants(getRantsForMonth($skel, $year, $month));
 	}
 } else if ( $subpage == 'browse' )
 {

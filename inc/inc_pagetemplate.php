@@ -1,7 +1,7 @@
 <?php
 /*
  * File containing the page template of the dammIT blog
- * Version: 0.5.02 2006-10-21
+ * Version: 0.5.03 2006-10-25
  */
 
 /*
@@ -94,7 +94,7 @@ $page .= "\t<div class=\"nav-header\">dammIT</div>\n";
 $page .= "\t<ul id=\"main-nav\">\n";
 $page .= "\t\t<li><a href=\"index.php\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
 $page .= "\t\t<li><a href=\"index.php?page=archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
-$page .= "\t\t<li><a href=\"index.php?page=browse\" accesskey=\"b\" title=\"Browse this web log with " . $skel["nrOfRantsPerPage"] . " posts per page\">browse rants</a></li>\n";
+//$page .= "\t\t<li><a href=\"index.php?page=browse\" accesskey=\"b\" title=\"Browse this web log with " . $skel["nrOfRantsPerPage"] . " posts per page\">browse rants</a></li>\n";
 $page .= "\t\t<li><a href=\"blogmarks.php\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
 //$page .= "\t\t<li><a href=\"index.php?page=plan\" accesskey=\"p\">.plan</a></li>\n";
 $page .= "\t\t<li><a href=\"index.php?page=about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
@@ -152,11 +152,20 @@ $page .= "\t\t<form action=\"search.php\" method=\"post\"><div><input type=\"tex
 $page .= "\t\t<div class=\"nav-header\">distracted by</div>\n";
 $page .= buildSimpleMarks(getMarks($skel, 0, $skel["nrOfMarksInNav"]));
 
+/*
+$page .= '<script type="text/javascript" src="http://www.google.com/reader/ui/publisher.js"></script>
+<script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/00682473562631681597/state/com.google/broadcast?n=5&callback=GRC_p(%7Bc%3A\'blue\'%2Ct%3A\'Michiel%5C047s%20shared%20items\'%2Cs%3A\'false\'%7D)%3Bnew%20GRC"></script>';
+*/
+//$page .= '<script type="text/javascript" src="http://www.google.com/reader/ui/publisher.js"></script>
+//<script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/00682473562631681597/state/com.google/broadcast?n=10&amp;callback=GRC_p(%7Bc%3A\'blue\'%2Ct%3A\'Michiel%5C047s%20shared%20items\'%2Cs%3A\'false\'%7D)%3Bnew%20GRC"></script>';
+$page .= '<script type="text/javascript" src="http://www.google.com/reader/ui/publisher.js"></script>
+<script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/00682473562631681597/state/com.google/broadcast?n=10&callback=GRC_p(%7Bc%3A\'-\'%2Ct%3A\'Michiel%5C047s%20shared%20items\'%2Cs%3A\'false\'%7D)%3Bnew%20GRC"></script>';
+
 /* Generate links-menu */
-foreach ( array_keys($skel["nav_sections"]) as $navsection_name )
+foreach ( array_keys($skel['nav_sections']) as $navsection_name )
 {
 	//
-	$page .= "\t\t<div class=\"nav-header\">" . $skel["nav_sections"][$navsection_name] . "</div>\n";
+	$page .= "\t\t<div class=\"nav-header\">" . $skel['nav_sections'][$navsection_name] . "</div>\n";
 	$page .= "\t\t<ul>\n";
 	foreach ( array_keys($skel[$navsection_name]) as $navitem_name )
 	{

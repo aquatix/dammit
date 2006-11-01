@@ -419,11 +419,25 @@ blockquote
 		border-top: 1px solid #707070;
 	}
 
-	#main-content-nav .nav-header
+	#main-content-nav .nav-header,
+	#readerpublishermodule0 h3
 	{
+		margin-top: 0;
+		color: #000;
 		font-weight: bold;
 		border-bottom: 1px solid #000000;
 		padding-bottom: 0px;
+	}
+
+	#readerpublishermodule0 h3
+	{
+		font-size: 1em;
+	}
+
+	#readerpublishermodule0 .f
+	{
+		font-size: .8em;
+		text-align: right;
 	}
 
 

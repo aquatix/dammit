@@ -2,7 +2,7 @@
 /*
  * file: mod_blog_methods.php
  *       Blog module - methods
- *       v0.5.02 2006-10-23
+ *       v0.5.03 2006-10-25
  *
  * Copyright 2003-2006 mbscholt at aquariusoft.org
  *
@@ -196,6 +196,14 @@ function getRants( $skel, $offset, $number )
 	return resultsetToRants($skel, $result);
 }
 
+function getRantsForMonth( $skel, $year, $month )
+{
+	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE ispublic=1 AND YEAR(date)="' . $year . '" AND MONTH(date)="' . $month . '" ORDER BY date DESC';
+
+	$result = mysql_query( $query, $skel['dbLink'] );
+	return resultsetToRants($skel, $result);
+}
+
 
 /*
  * Returns smplog_rant $id
@@ -293,7 +301,7 @@ function getRantsInfo( $skel, $id )
 /*
  * Return smplog_rants info from all smplog_rants from $year
  */
-function getRantsFromYear( $skel, $year )
+function getRantsFromYear( $skel, $year)
 {
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();

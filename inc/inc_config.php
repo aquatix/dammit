@@ -78,6 +78,11 @@ $skel['.plan'] = $skel['basePath'] . 'pages/plan.html';
 $skel['about'] = $skel['basePath'] . 'pages/about.html';
 
 /*** Navigation ***/
+/*
+$skel['nav_shared'] = array(
+		'http://www.google.com/reader/shared/00682473562631681597' => 'from my google reader'
+		);
+*/
 $skel['nav_blogs'] = array(
 		//'http://alextreme.org/' => 'alextreme',
 		'http://www.manuzhai.nl/' => 'manuzhai',
@@ -128,6 +133,7 @@ $skel['nav_webdev'] = array(
 
 /* All sections to iterate over */
 $skel['nav_sections'] = array(
+/*		'nav_shared' => 'shared',*/
 		'nav_blogs' => 'more weblogs',
 		'nav_morphix' => 'morphix',
 		'nav_collectiveblogs' => 'collective',
