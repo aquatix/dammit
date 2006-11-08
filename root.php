@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2006-10-18';
-$page_version = '0.5.02';
+$lastmodified = '2006-11-01';
+$page_version = '0.5.03';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -81,7 +81,7 @@ $root_nav = "<div class=\"mininav\">[ <span class=\"heading\">root</span> | <a h
 if (isset($_GET['action']) && isLoggedIn())
 {
 	$action = getRequestParam('action', null);
-	if ($action == "addrant")
+	if ('addrant' == $action)
 	{
 		/* Page for adding a new rant :) */
 		$rant = newRant($skel);
@@ -90,7 +90,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		$page_body .= "<form action=\"root.php?action=addingrant\" method=\"post\">\n";
 		$page_body .= buildEditRant($rant);
 		$page_body .= "</form>\n";
-	} else if ($action == "addingrant")
+	} else if ('addingrant' == $action || 'savingrant' == $action)
 	{
 		/* Trying to add rant to DB */
 		if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']))
@@ -182,6 +182,8 @@ if (isset($_GET['action']) && isLoggedIn())
 		}
 	} else if ($action == "addmark")
 	{
+		$mark_title = getRequestParam('title', '');
+		$mark_uri = getRequestParam('uri', '');
 		/* Page for adding a new blogmark :) */
 		$page_body .= "<h1>root / add blogmark</h1>\n";
 		$page_body .= $root_nav;
@@ -189,8 +191,8 @@ if (isset($_GET['action']) && isLoggedIn())
 		$ip = getenv('REMOTE_ADDR');
 		$location = getLocation($skel, $ip);
 		$page_body .= "<h2>Location</h2><p><input type=\"text\" name=\"location\" value=\"" . $location . "\" size=\"30\" maxlength=\"50\" /></p>\n";
-		$page_body .= "<h2>Title</h2><p><input type=\"text\" name=\"title\" size=\"40\" maxlength=\"250\"/></p>\n";
-		$page_body .= "<h2>URL</h2><p><input type=\"text\" name=\"url\" size=\"40\" maxlength=\"250\"/></p>\n";
+		$page_body .= '<h2>Title</h2><p><input type="text" name="title" value="' . $mark_title . "\" size=\"40\" maxlength=\"250\"/></p>\n";
+		$page_body .= '<h2>URI</h2><p><input type="text" name="uri" value="' . $mark_uri . "\" size=\"40\" maxlength=\"250\"/></p>\n";
 		$page_body .= "<h2>Description</h2><p><textarea name=\"description\" rows=\"30\" cols=\"80\"></textarea></p>\n";
 		$page_body .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
 		$page_body .= "</form>\n";
@@ -201,9 +203,10 @@ if (isset($_GET['action']) && isLoggedIn())
 	} else if ($action == "addingmark")
 	{
 		/* Trying to add blogmark to DB */
-		if (isset($_POST['title']) && isset($_POST['url']) && isset($_POST['location']) && isset($_POST['description']))
+		if (isset($_POST['title']) && isset($_POST['uri']) && isset($_POST['location']) && isset($_POST['description']))
 		{
-			addMark($skel, $_POST['title'], $_POST['url'], $_POST['location'], $_POST['description']);
+			//addMark($skel, $_POST['title'], $_POST['uri'], $_POST['location'], $_POST['description']);
+			addMark($skel, getRequestParam('title', null), getRequestParam('uri', null), getRequestParam('location', null), getRequestParam('description', null));
 			/* Update RSS feed[s] */
 			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 			$page_body .= "<h1>root / blogmark added!</h1>\n";
@@ -414,9 +417,11 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<p><a href=\"https://aquariusoft.org/~mbscholt/root.php\">If you are using unencrypted http, please go to the secured https site</a></p>\n";
 	$page_body .= "<div id=\"loginform\">\n";
 	$page_body .= "<form action=\"root.php\" method=\"post\">\n";
-	$page_body .= "User<br/><input type=\"text\" name=\"user\" size=\"16\" maxlength=\"16\" /><br/>\n";
-	$page_body .= "Pass<br/><input type=\"password\" name=\"pass\" size=\"16\" maxlength=\"16\" /><br/>\n";
-	$page_body .= "<br/>\n";
+	//$page_body .= "User<br/><input type=\"text\" name=\"user\" size=\"16\" maxlength=\"16\" /><br/>\n";
+	//$page_body .= "Pass<br/><input type=\"password\" name=\"pass\" size=\"16\" maxlength=\"16\" /><br/>\n";
+	//$page_body .= "<br/>\n";
+	$page_body .= "<p><input type=\"text\" name=\"user\" size=\"16\" maxlength=\"16\" />&nbsp;<span class=\"heading\">User</span></p>\n";
+	$page_body .= "<p><input type=\"password\" name=\"pass\" size=\"16\" maxlength=\"16\" />&nbsp;<span class=\"heading\">Pass</span><p>\n";
 	$page_body .= "<input name=\"loginbtn\" value=\"Login\" type=\"submit\" />\n";
 	$page_body .= "</form>\n";
 	$page_body .= "</div>\n";

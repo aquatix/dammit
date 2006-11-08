@@ -205,7 +205,8 @@ if ( $subpage == 'plan' )
 				$page_body .= $comment_error_email . "<p><input type=\"text\" name=\"email\" size=\"30\" maxlength=\"150\" value=\"" . $comment_email . "\"/> <span class=\"heading\">E-mail address</span><br/><input type=\"checkbox\" name=\"wantnotifications\"" . $comment_notify_text . "/> Mail me when someone else comments too<br />\nYour address <em>won't</em> be shown in your comment</p>\n";
 				$page_body .= "<p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\"/> <span class=\"heading\">WWW</span><br />\nLeave empty if you don't want to provide a url</p>\n";
 				//$page_body .= "<h2>Comment</h2><p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
-				$page_body .= "<p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
+				$page_body .= $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
+				$page_body .= '<p>Be sure to <em>save your comment</em> after you\'ve previewed it!</p>';
 				$page_body .= "<p><input name=\"submitbtn\" value=\"Preview\" type=\"submit\"/>\n";
 				if ($commenting === true)
 				{
