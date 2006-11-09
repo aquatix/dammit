@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2006-11-01';
-$page_version = '0.5.03';
+$lastmodified = '2006-11-08';
+$page_version = '0.5.04';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -85,8 +85,8 @@ if (isset($_GET['action']) && isLoggedIn())
 	{
 		/* Page for adding a new rant :) */
 		$rant = newRant($skel);
-		$page_body .= "<h1>root / add rant</h1>\n";
 		$page_body .= $root_nav;
+		$page_body .= "<h1>root / add rant</h1>\n";
 		$page_body .= "<form action=\"root.php?action=addingrant\" method=\"post\">\n";
 		$page_body .= buildEditRant($rant);
 		$page_body .= "</form>\n";
@@ -106,16 +106,16 @@ if (isset($_GET['action']) && isLoggedIn())
 			/* Update RSS feed[s] */
 			updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
-			$page_body .= "<h1>root / rant added!</h1>\n";
 			$page_body .= $root_nav;
+			$page_body .= "<h1>root / rant added!</h1>\n";
 			$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 		} else
 		{
-			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= $root_nav;
+			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= "<p>Not a valid rant submitted :)</p>\n<br /><br /><br /><br />\n";
 		}
-	} else if ($action == "editrant")
+	} else if ('editrant' == $action)
 	{
 		/* Look up the posting */
 		$rantId = -1;
@@ -140,14 +140,14 @@ if (isset($_GET['action']) && isLoggedIn())
 					updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 					$showform = false;
-					$page_body .= "<h1>root / rant edited</h1>\n";
 					$page_body .= $root_nav;
+					$page_body .= "<h1>root / rant edited</h1>\n";
 					$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
 					//check $result
 				} else
 				{
-					$page_body .= "<h1>root / error!</h1>\n";
 					$page_body .= $root_nav;
+					$page_body .= "<h1>root / error!</h1>\n";
 					$page_body .= "<p>Something went wrong while updating the posting</p>\n";
 					$showform = false;
 				}
@@ -167,8 +167,8 @@ if (isset($_GET['action']) && isLoggedIn())
 				{
 					$posting['message'] .= "\n\n<div class=\"edit\">edited at " . date("Y-m-d H:i") . "</div>\n";
 				}
-				$page_body .= "<h1>root / edit rant</h1>\n";
 				$page_body .= $root_nav;
+				$page_body .= "<h1>root / edit rant</h1>\n";
 				$page_body .= "<form action=\"root.php?action=editrant&amp;rantid=" . $posting['messageID'] . "\" method=\"post\">\n";
 				$page_body .= buildEditRant($posting);
 				$page_body .= "<input type=\"hidden\" name=\"submitting\" value=\"true\" />\n";
@@ -176,17 +176,17 @@ if (isset($_GET['action']) && isLoggedIn())
 			}
 		} else
 		{
-			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= $root_nav;
+			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= "<p>Posting does not belong to you, so you can't edit it</p>\n";
 		}
-	} else if ($action == "addmark")
+	} else if ('addmark' == $action)
 	{
 		$mark_title = getRequestParam('title', '');
 		$mark_uri = getRequestParam('uri', '');
 		/* Page for adding a new blogmark :) */
-		$page_body .= "<h1>root / add blogmark</h1>\n";
 		$page_body .= $root_nav;
+		$page_body .= "<h1>root / add blogmark</h1>\n";
 		$page_body .= "<form action=\"root.php?action=addingmark\" method=\"post\">\n";
 		$ip = getenv('REMOTE_ADDR');
 		$location = getLocation($skel, $ip);
@@ -209,8 +209,8 @@ if (isset($_GET['action']) && isLoggedIn())
 			addMark($skel, getRequestParam('title', null), getRequestParam('uri', null), getRequestParam('location', null), getRequestParam('description', null));
 			/* Update RSS feed[s] */
 			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
-			$page_body .= "<h1>root / blogmark added!</h1>\n";
 			$page_body .= $root_nav;
+			$page_body .= "<h1>root / blogmark added!</h1>\n";
 			$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 		} else
 		{
@@ -234,30 +234,30 @@ if (isset($_GET['action']) && isLoggedIn())
 			$commentid = $_GET['commentid'];
 			if (false == $commentid)
 			{
-				$page_body .= "<h1>root / error!</h1>\n";
 				$page_body .= $root_nav;
+				$page_body .= "<h1>root / error!</h1>\n";
 				$page_body .= "<p>Not a valid comment selected</p>\n";
 			} else
 			{
 				$result = disableComment($skel, $commentid);
 				if ($result != "")
 				{
-					$page_body .= "<h1>root / error!</h1>\n";
 					$page_body .= $root_nav;
+					$page_body .= "<h1>root / error!</h1>\n";
 					$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 				} else
 				{
 					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
-					$page_body .= "<h1>root / remove [disable] comment</h1>\n";
 					$page_body .= $root_nav;
+					$page_body .= "<h1>root / remove [disable] comment</h1>\n";
 					$page_body .= "<p>Comment #" . $commentid . " removed and comment feed updated</p>\n";
 					$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 				}
 			}
 		} else
 		{
-			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= $root_nav;
+			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= "<p>Not a valid comment selected</p>\n";
 		}
 	} else if ($action == "enablecomment")
@@ -267,30 +267,30 @@ if (isset($_GET['action']) && isLoggedIn())
 			$commentid = $_GET['commentid'];
 			if (false == $commentid)
 			{
-				$page_body .= "<h1>root / error!</h1>\n";
 				$page_body .= $root_nav;
+				$page_body .= "<h1>root / error!</h1>\n";
 				$page_body .= "<p>Not a valid comment selected</p>\n";
 			} else
 			{
 				$result = enableComment($skel, $commentid);
 				if ($result != "")
 				{
-					$page_body .= "<h1>root / error!</h1>\n";
 					$page_body .= $root_nav;
+					$page_body .= "<h1>root / error!</h1>\n";
 					$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 				} else
 				{
 					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
-					$page_body .= "<h1>root / recover [enable] comment</h1>\n";
 					$page_body .= $root_nav;
+					$page_body .= "<h1>root / recover [enable] comment</h1>\n";
 					$page_body .= "<p>Comment #" . $commentid . " recovered and comment feed updated</p>\n";
 					$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 				}
 			}
 		} else
 		{
-			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= $root_nav;
+			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= "<p>Not a valid comment selected</p>\n";
 		}
 	} else if ( $action == "disablecommentsforpost" )
@@ -301,20 +301,20 @@ if (isset($_GET['action']) && isLoggedIn())
 			$result = disableCommentsForPost($skel, $rantid);
 			if ($result != "")
 			{
-				$page_body .= "<h1>root / error!</h1>\n";
 				$page_body .= $root_nav;
+				$page_body .= "<h1>root / error!</h1>\n";
 				$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 			} else
 			{
-				$page_body .= "<h1>root / disable comments for posting</h1>\n";
 				$page_body .= $root_nav;
+				$page_body .= "<h1>root / disable comments for posting</h1>\n";
 				$page_body .= "<p>Disabled commenting for posting #" . $rantid . "</p>\n";
 				$page_body .= "<p><a href=\"index.php?rantid=" . $rantid . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 			}
 		} else
 		{
-			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= $root_nav;
+			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= "<p>Not a valid posting selected</p>\n";
 		}
 	} else if ( $action == "enablecommentsforpost" )
@@ -325,46 +325,46 @@ if (isset($_GET['action']) && isLoggedIn())
 			$result = enableCommentsForPost($skel, $rantid);
 			if ($result != "")
 			{
-				$page_body .= "<h1>root / error!</h1>\n";
 				$page_body .= $root_nav;
+				$page_body .= "<h1>root / error!</h1>\n";
 				$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 			} else
 			{
-				$page_body .= "<h1>root / [re]enable comments for posting</h1>\n";
 				$page_body .= $root_nav;
+				$page_body .= "<h1>root / [re]enable comments for posting</h1>\n";
 				$page_body .= "<p>Enabled commenting for posting #" . $rantid . "</p>\n";
 				$page_body .= "<p><a href=\"index.php?rantid=" . $rantid . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 			}
 		} else
 		{
-			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= $root_nav;
+			$page_body .= "<h1>root / error!</h1>\n";
 			$page_body .= "<p>Not a valid posting selected</p>\n";
 		}
 	} else if ( $action == "generatefeeds" )
 	{
 		/* Generate blog.rss [and blog.atom ?] */
-		$page_body .= "<h1>root / generating RSS feed[s]</h1>\n";
 		$page_body .= $root_nav;
+		$page_body .= "<h1>root / generating RSS feed[s]</h1>\n";
 		updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 		updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 		updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 		$page_body .= "<p>Feeds refreshed.</p>\n<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 	} else if ( $action == "viewlog" )
 	{
-		$page_body .= "<h1>root / view log</h1>\n";
 		$page_body .= $root_nav;
+		$page_body .= "<h1>root / view log</h1>\n";
 		$page_body .= "<p>Not implemented yet!</p><p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
 	} else if ( $action == "viewreferers" )
 	{
-		$page_body .= "<h1>root / view referers</h1>\n";
 		$page_body .= $root_nav;
+		$page_body .= "<h1>root / view referers</h1>\n";
 		$referers = getAllReferers( $skel );
 		$page_body .= buildAllReferers( $skel, $referers );
 	} else if ( $action == "viewcommentlog" )
 	{
-		$page_body .= "<h1>root / view comments log</h1>\n";
 		$page_body .= $root_nav;
+		$page_body .= "<h1>root / view comments log</h1>\n";
 		$page_body .= "<p>Not implemented yet!</p><p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
 	} else if ( $action == "logout" )
 	{
@@ -378,14 +378,14 @@ if (isset($_GET['action']) && isLoggedIn())
 		$page_body .= "<h1>Logged out!</h1>\n<p><a href=\"index.php\">Go back to rantbox</a></p>\n<br/><br/><br/><br/>";
 	} else
 	{
-		$page_body .= "<h1>root / error!</h1>\n";
 		$page_body .= $root_nav;
+		$page_body .= "<h1>root / error!</h1>\n";
 		$page_body .= "<p>Not a valid action!</p>\n<br /><br /><br /><br />\n";
 	}
 } else if (isLoggedIn())
 {
-	$page_body .= "<h1>Got root!</h1>\n";
 	$page_body .= $root_nav;
+	$page_body .= "<h1>Got root!</h1>\n";
 	$page_body .= "<h2>Rants</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addrant\">Add rant</a></li>\n";

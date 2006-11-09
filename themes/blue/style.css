@@ -370,6 +370,7 @@ blockquote
 	float: right;
 	right: 45px;
 	top: 40px;
+	margin-bottom: .5em;
 }
 
 #main-content
@@ -530,6 +531,9 @@ blockquote
 
 .mininav
 {
+	/* Get the Creative Commons logo out of our way */
+	clear: both;
+
 	font-size: 75%;
 	background: transparent;
 	color: inherit;

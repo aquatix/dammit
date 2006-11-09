@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2006-10-25';
-$page_version = '0.5.04';
+$lastmodified = '2006-11-08';
+$page_version = '0.5.05';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
@@ -184,8 +184,13 @@ if ( $subpage == 'plan' )
 			$page_body .= buildRants($rant);
 
 			/* Show all comments */
-			$page_body .= "<h2 id=\"comments\">Comments</h2>\n";
-			$page_body .= buildComments(getComments($skel, $rantid));
+			$allComments = getComments($skel, $rantid);
+			if (0 < count($allComments))
+			{
+				$page_body .= "<h2 id=\"comments\">Comments</h2>\n";
+				//$page_body .= buildComments(getComments($skel, $rantid));
+				$page_body .= buildComments($allComments);
+			}
 
 			/* Show input fields for additional comments */
 			if ($commentsenabled)
