@@ -38,7 +38,7 @@
  * location
  * nrOfComments
  */
-function buildRants( $rants )
+function buildRants( $skel, $rants )
 {
 	$rantsHTML = '';
 	$previousDate = '0000-00-00 00:00:00';
@@ -61,7 +61,9 @@ function buildRants( $rants )
 		/* Info about the rant entry */
 		$rantsHTML .= "<div class=\"info\">";
 		$rantsHTML .= $rants[$i]['location'] . " | ";
-		$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . "</div>\n";
+		//$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . "</div>\n";
+		$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . getNumberOfViews( $skel, 'home', 'posting.' . $rants[$i]['messageID']) . " times</div>\n";
+		//$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . $rants[$i]['nrviews'] . " times</div>\n";
 		/* Rant itself */
 		$rantsHTML .= "<div class=\"rant\">\n";
 		if (CONTENT_MARKDOWN == $rants[$i]['contenttype'])

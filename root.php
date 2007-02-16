@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2006-11-08';
-$page_version = '0.5.04';
+$lastmodified = '2006-11-17';
+$page_version = '0.5.06';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -90,19 +90,31 @@ if (isset($_GET['action']) && isLoggedIn())
 		$page_body .= "<form action=\"root.php?action=addingrant\" method=\"post\">\n";
 		$page_body .= buildEditRant($rant);
 		$page_body .= "</form>\n";
-	} else if ('addingrant' == $action || 'savingrant' == $action)
+	} else if ('saverant' == $action)
 	{
-		/* Trying to add rant to DB */
-		if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']))
+
+		$saveKind = getRequestParam('savekind', null);
+		$rant = newRant($skel);
+		$rant['title'] = getRequestParam('title', null);
+		$rant['location'] = getRequestParam('location', null);
+		$rant['message'] = getRequestParam('rant', null);
+		$rant['contenttype'] = getRequestParam('contenttype', 0);
+		$rant['rantid'] = getRequestParam('rantid', -1);
+		if (null != $rant['title'] && null != $rant['location'] && null != $rant['message'] && null != $rant['contenttype'])
 		{
-			$rant = newRant($skel);
-			$rant['title'] = getRequestParam('title', null);
-			$rant['location'] = getRequestParam('location', null);
-			$rant['message'] = getRequestParam('rant', null);
-			$rant['contenttype'] = getRequestParam('contenttype', 0);
+			if ('add' == $saveKind)
+			{
+				/* Trying to add rant to DB */
 
-			addRant($skel, $rant);
+				addRant($skel, $rant);
 
+			} else if ('edit' == $saveKind)
+			{
+				/* Trying to add rant to DB */
+			} else if ('save' == $saveKind)
+			{
+				/* Only save, don't publish yet */
+			}
 			/* Update RSS feed[s] */
 			updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
@@ -118,11 +130,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	} else if ('editrant' == $action)
 	{
 		/* Look up the posting */
-		$rantId = -1;
-		if (myIsInt($_GET['rantid']))
-		{
-			$rantId = getRequestParam("rantid", -1);
-		}
+		$rantId = getRequestParam('rantid', -1);
 
 		$isRantMine = isRantMine( $skel, $rantId );
 		if ($isRantMine)
@@ -251,7 +259,7 @@ if (isset($_GET['action']) && isLoggedIn())
 					$page_body .= $root_nav;
 					$page_body .= "<h1>root / remove [disable] comment</h1>\n";
 					$page_body .= "<p>Comment #" . $commentid . " removed and comment feed updated</p>\n";
-					$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+					$page_body .= '<p><a href="index.php?rantid=' . $commentid . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 				}
 			}
 		} else

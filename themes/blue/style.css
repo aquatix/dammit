@@ -200,13 +200,17 @@ ul li
 blockquote
 {
 	background: #15317E;
+	background: transparent;
 	background-image: url("images/quote_transparent.png");
 	background-position: top left;
 	background-repeat: no-repeat;
 	color: #FFF;
+	color: inherit;
 	padding-top: 15px;
 	text-align: justify;
 	border-left: 6px solid #0F2258;
+	border-left: 6px solid #e4ebff;
+	border-left: 4px solid #15317E;
 	margin-left: 15px;
 	margin-right: 0;
 	padding-left: 25px;

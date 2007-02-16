@@ -1,7 +1,7 @@
 <?php
 /*
  * File containing the page template of the dammIT blog
- * Version: 0.5.03 2006-10-25
+ * Version: 0.5.04 2006-12-10
  */
 
 /*
@@ -65,7 +65,8 @@ $page .= "<link rel=\"up\" href=\"/~mbscholt/\" title=\"Home page\" />\n";
 $page .= "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS\" href=\"http://aquariusoft.org/~mbscholt/blog.rdf\" />\n";
 
 //$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/layout.css\"/>\n";
-$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css\"/>\n";
+//$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css\"/>\n";
+$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css?20061203\"/>\n";
 $page .= "<!--[if gte ie 5.5000]><link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/ie.css\" /><![endif]-->\n";
 
 

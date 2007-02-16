@@ -181,7 +181,7 @@ if ( $subpage == 'plan' )
 
 			$page_body .= "<div class=\"browsenav\"><span class=\"previous\">" . $prev . "</span><span class=\"next\">&nbsp;" . $next . "</span></div>\n";
 
-			$page_body .= buildRants($rant);
+			$page_body .= buildRants($skel, $rant);
 
 			/* Show all comments */
 			$allComments = getComments($skel, $rantid);
@@ -223,7 +223,7 @@ if ( $subpage == 'plan' )
 				$page_body .= "</div>\n";
 			} else
 			{
-				$page_body .= "<p><em>Comments for this posting are closed</em></p>\n";
+				$page_body .= "<p><em>Sorry, comments for this posting are closed; likely because of spam</em></p>\n";
 			}
 			if (isLoggedIn())
 			{
@@ -234,9 +234,15 @@ if ( $subpage == 'plan' )
 				{
 					$page_body .= "<p><a href=\"root.php?action=enablecommentsforpost&amp;rantid=" . $rantid . "\">[Re]enable comments for this posting</a></p>\n";
 				}
-				$page_body .= "<h1>Referers</h1>\n";
 				$referers = getReferers( $skel, $section_name, $page_log );
-				$page_body .= buildReferers( $skel, $referers );
+				$page_body .= "<h1>Referers</h1>\n";
+				if (0 < count($referers))
+				{
+					$page_body .= buildReferers( $skel, $referers );
+				} else
+				{
+					$page_body .= "<p>No referers known</p>\n";
+				}
 			}
 		}
 	}
@@ -363,7 +369,7 @@ if ( $subpage == 'plan' )
 		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 	}
 
-	$page_body .= buildRants(getRants($skel, 0, $skel['nrOfRantsPerPage']));
+	$page_body .= buildRants($skel, getRants($skel, 0, $skel['nrOfRantsPerPage']));
 	//$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel['nrOfRantsPerPage'] . "\">Old rants</a> ]</p>\n";
 	$page_body .= "<p>[ <a href=\"index.php?page=archive\">Old rants</a> ]</p>\n";
 
