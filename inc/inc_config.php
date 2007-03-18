@@ -1,7 +1,7 @@
 <?php
 /*
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * Version: 0.5.01 2006-10-23
+ * Version: 0.5.02 2006-12-30
  */
 
 /*** Site settings ***/
@@ -100,7 +100,8 @@ $skel['nav_blogs'] = array(
 		//'http://willy.boerland.com/myblog/index.php' => 'willy dobbe'
 		'http://www.anneliesje.thehosting.nl/' => 'annelies',
 		'http://tisseenschande.nl/php/weblog.php' => 'schande',
-		'http://mehellll.web-log.nl/' => 'melanie'
+		'http://mehellll.web-log.nl/' => 'melanie',
+		'http://moniquearntz.web-log.nl/' => 'monique'
 		);
 
 $skel['nav_morphix'] = array(

@@ -2,7 +2,7 @@
 /*
  * file: index.php
  *
- * Copyright 2003-2006 mbscholt at aquariusoft.org
+ * Copyright 2003-2007 mbscholt at aquariusoft.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2006-11-08';
-$page_version = '0.5.05';
+$lastmodified = '2007-02-16';
+$page_version = '0.5.06';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
@@ -152,9 +152,9 @@ if ( $subpage == 'plan' )
 		{
 			$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 		}
-		if (null == $rant)
+		if ((null == $rant) || (0 === $rant[0]['published']))
 		{
-			/* Rant was not found */
+			/* Rant was not found; in the second case, it wasn't published yet, so doesn't exist yet for the public */
 			$page_name = 'Rant not found';
 			$page_body .= "<h2>Sorry</h2><p>The requested rant was not found. <a href=\"index.php\">Go to the homepage</a> or start searching in <a href=\"index.php?page=archive\">the archive</a>.</p>\n";
 		} else

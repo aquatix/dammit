@@ -2,7 +2,7 @@
 /*
  * file: root.php
  *
- * Copyright 2003-2006 mbscholt at aquariusoft.org
+ * Copyright 2003-2007 mbscholt at aquariusoft.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2006-11-17';
-$page_version = '0.5.06';
+$lastmodified = '2007-02-16';
+$page_version = '0.5.07';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -293,6 +293,7 @@ if (isset($_GET['action']) && isLoggedIn())
 					$page_body .= "<h1>root / recover [enable] comment</h1>\n";
 					$page_body .= "<p>Comment #" . $commentid . " recovered and comment feed updated</p>\n";
 					$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+					//$page_body .= "<p><a href=\"index.php?rantid=" . $rantid . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 				}
 			}
 		} else

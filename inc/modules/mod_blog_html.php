@@ -2,9 +2,9 @@
 /*
  * file: mod_blog_html.php
  *       Blog module - HTML methods
- *       v0.5.05 2006-10-23
+ *       v0.5.06 2007-02-16
  *
- * Copyright 2003-2006 mbscholt at aquariusoft.org
+ * Copyright 2003-2007 mbscholt at aquariusoft.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,8 +61,13 @@ function buildRants( $skel, $rants )
 		/* Info about the rant entry */
 		$rantsHTML .= "<div class=\"info\">";
 		$rantsHTML .= $rants[$i]['location'] . " | ";
-		//$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . "</div>\n";
-		$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . getNumberOfViews( $skel, 'home', 'posting.' . $rants[$i]['messageID']) . " times</div>\n";
+		if (isLoggedIn())
+		{
+			$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . getNumberOfViews( $skel, 'home', 'posting.' . $rants[$i]['messageID']) . " times</div>\n";
+		} else
+		{
+			$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . "</div>\n";
+		}
 		//$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . $rants[$i]['nrviews'] . " times</div>\n";
 		/* Rant itself */
 		$rantsHTML .= "<div class=\"rant\">\n";
@@ -200,13 +205,16 @@ function buildEditRant($rant)
 		$plaintext = ' selected';
 	}
 	$html .= "<p><select name=\"contenttype\">\n\t<option value=\"" . CONTENT_RAWHTML . "\"" . $rawhtml . ">Raw HTML</option>\n\t<option value=\"" . CONTENT_MARKDOWN . "\"" . $markdown . ">Markdown markup</option>\n\t<option value=\"" . CONTENT_PLAINTEXT . "\"" . $plaintext . ">Plain text</option>\n</select>\n";
+	$public_selected = '';
+	$hidden_selected = '';
 	if (ISPUBLIC_NO == $rant['ispublic'])
 	{
-		$html .= "<p><select name=\"ispublic\">\n\t<option value=\"" . ISPUBLIC_NO . "\" selected />Rant is hidden for the public</option>\n\t<option value=\"" . ISPUBLIC_YES . "\"/>Rant is public</option>\n</select></p>\n";
-	} else
+		$hidden_selected = ' selected';
+	} else if (ISPUBLIC_YES == $rant['ispublic'])
 	{
-		$html .= "<p><select name=\"ispublic\">\n\t<option value=\"" . ISPUBLIC_NO . "\" />Rant is hidden for the public</option>\n\t<option value=\"" . ISPUBLIC_YES . "\" selected />Rant is public</option>\n</select></p>\n";
+		$public_selected = ' selected';
 	}
+	$html .= "<select name=\"ispublic\">\n\t<option value=\"" . ISPUBLIC_NO . "\"" . $hidden_selected . ">Rant is hidden for the public</option>\n\t<option value=\"" . ISPUBLIC_YES . "\"" . $public_selected . ">Rant is public</option>\n</select></p>\n";
 	$html .= "<input type=\"hidden\" name=\"id\" value=\"" . $rant['messageID'] . "\"/>\n";
 	$html .= "<input type=\"hidden\" name=\"initiated\" value=\"" . $rant['initiated'] . "\"/>\n";
 	//$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
