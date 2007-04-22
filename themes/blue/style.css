@@ -219,7 +219,7 @@ blockquote
 	padding-right: .5em;
 /*	padding-bottom: .2em;*/
 }
-
+/*
 	blockquote a
 	{
 		color: #FFF;
@@ -232,7 +232,7 @@ blockquote
 		background-color: inherit;
 		border-bottom: 1px solid #FFF;
 	}
-
+*/
 .strike
 {
 	text-decoration: line-through;
