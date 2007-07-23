@@ -218,7 +218,8 @@ function buildEditRant($rant)
 	$html .= "<input type=\"hidden\" name=\"id\" value=\"" . $rant['messageID'] . "\"/>\n";
 	$html .= "<input type=\"hidden\" name=\"initiated\" value=\"" . $rant['initiated'] . "\"/>\n";
 	//$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
-	$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";
+	//$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";
+	$html .= "<p><input name=\"savekind\" value=\"Save\" type=\"submit\"/><input name=\"savekind\" value=\"Publish\" type=\"submit\"/></p>\n";
 
 	return $html;
 }

@@ -87,13 +87,15 @@ if (isset($_GET['action']) && isLoggedIn())
 		$rant = newRant($skel);
 		$page_body .= $root_nav;
 		$page_body .= "<h1>root / add rant</h1>\n";
-		$page_body .= "<form action=\"root.php?action=addingrant\" method=\"post\">\n";
+		//$page_body .= "<form action=\"root.php?action=addingrant\" method=\"post\">\n";
+		$page_body .= "<form action=\"root.php?action=saverant\" method=\"post\">\n";
 		$page_body .= buildEditRant($rant);
 		$page_body .= "</form>\n";
 	} else if ('saverant' == $action)
 	{
 
 		$saveKind = getRequestParam('savekind', null);
+		echo "saveKind = " . $saveKind . "\n";
 		$rant = newRant($skel);
 		$rant['title'] = getRequestParam('title', null);
 		$rant['location'] = getRequestParam('location', null);
