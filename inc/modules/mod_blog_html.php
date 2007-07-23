@@ -88,7 +88,9 @@ function buildRants( $skel, $rants )
 		{
 			$rantsHTML .= "<a href=\"root.php?action=editrant&amp;rantid=" . $rants[$i]['messageID'] . "\">Edit</a> | ";
 		}
-		
+
+		$rantsHTML .= '<div><a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_link.gif" alt="Search for related articles" title="Search for related articles" /></a></div>';
+
 		if ($rants[$i]['modified'] > 0)
 		{
 			/* Modified at least once */
