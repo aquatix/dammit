@@ -1,7 +1,7 @@
 <?php
 /*
  * File containing the page template of the dammIT blog
- * Version: 0.5.04 2006-12-10
+ * Version: 0.5.05 2007-12-13
  */
 
 /*
@@ -159,9 +159,9 @@ $page .= '<script type="text/javascript" src="http://www.google.com/reader/ui/pu
 */
 //$page .= '<script type="text/javascript" src="http://www.google.com/reader/ui/publisher.js"></script>
 //<script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/00682473562631681597/state/com.google/broadcast?n=10&amp;callback=GRC_p(%7Bc%3A\'blue\'%2Ct%3A\'Michiel%5C047s%20shared%20items\'%2Cs%3A\'false\'%7D)%3Bnew%20GRC"></script>';
-$page .= '<script type="text/javascript" src="http://www.google.com/reader/ui/publisher.js"></script>
-<script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/00682473562631681597/state/com.google/broadcast?n=10&amp;callback=GRC_p(%7Bc%3A\'-\'%2Ct%3A\'Michiel%5C047s%20shared%20items\'%2Cs%3A\'false\'%7D)%3Bnew%20GRC"></script>';
-$page .= "<p><a href=\"http://www.google.com/reader/public/atom/user/00682473562631681597/state/com.google/broadcast\">Feed</a></p>\n";
+// disabled at 20071213 $page .= '<script type="text/javascript" src="http://www.google.com/reader/ui/publisher.js"></script>
+// disabled at 20071213 <script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/00682473562631681597/state/com.google/broadcast?n=10&amp;callback=GRC_p(%7Bc%3A\'-\'%2Ct%3A\'Michiel%5C047s%20shared%20items\'%2Cs%3A\'false\'%7D)%3Bnew%20GRC"></script>';
+// disabled at 20071213 $page .= "<p><a href=\"http://www.google.com/reader/public/atom/user/00682473562631681597/state/com.google/broadcast\">Feed</a></p>\n";
 
 /* Generate links-menu */
 foreach ( array_keys($skel['nav_sections']) as $navsection_name )

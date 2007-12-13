@@ -1,7 +1,7 @@
 <?php
 /*
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * Version: 0.5.02 2006-12-30
+ * Version: 0.5.03 2007-12-13
  */
 
 /*** Site settings ***/
@@ -132,10 +132,17 @@ $skel['nav_webdev'] = array(
 		'http://annevankesteren.nl/' => 'van kesteren'
 		);
 
+$skel['nav_photo'] = array(
+		'http://aquariusoft.org/photolog/' => 'my photolog',
+		'http://basvandijk.eu/blog/' => 'bas\' photolog'
+		);
+
+
 /* All sections to iterate over */
 $skel['nav_sections'] = array(
 /*		'nav_shared' => 'shared',*/
 		'nav_blogs' => 'more weblogs',
+		'nav_photo' => 'photography',
 		'nav_morphix' => 'morphix',
 		'nav_collectiveblogs' => 'collective',
 		'nav_webdev' => 'webdev'
