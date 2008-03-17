@@ -1,10 +1,10 @@
 <?php
 /*
- * file: mod_blog_methods.php
- *       Blog module - methods
- *       v0.5.03 2006-10-25
+ * $Id$
+ * Blog module - methods
+ * v0.5.04 2008-03-17
  *
- * Copyright 2003-2006 mbscholt at aquariusoft.org
+ * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

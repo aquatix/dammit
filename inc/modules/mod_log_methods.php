@@ -1,7 +1,8 @@
 <?php
 /*
+ * $Id$
  * Log module - methods
- * Version: 0.5.01 2006-11-17
+ * Version: 0.5.02 2008-03-17
  */
 
 function getLog($db_link, $filter_on, $offset, $nrofitems)

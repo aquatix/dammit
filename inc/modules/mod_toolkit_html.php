@@ -1,7 +1,8 @@
 <?php
 /*
+ * $Id$
  * Toolkit module - HTML methods
- * Version: 0.5.01 2006-1017
+ * Version: 0.5.02 2008-03-17
  */
 
 /*

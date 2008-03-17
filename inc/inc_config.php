@@ -1,7 +1,9 @@
 <?php
 /*
+ * $Id$
+ *
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * Version: 0.5.03 2007-12-13
+ * Version: 0.5.04 2008-03-17
  */
 
 /*** Site settings ***/
@@ -151,8 +153,9 @@ $skel['nav_sections'] = array(
 /*** Educated guess for location when adding new rant or blogmark ***/
 $skel['locations'] = array(
 		'192.168.*.*' => 'Home',
-		'217.19.24.209' => 'Work',
-		'212.123.197.34' => 'Work',
+		//'217.19.24.209' => 'Work',
+		//'212.123.197.34' => 'Work',
+		'213.84.100.*' => 'Work',
 		'130.37.*.*' => 'Vrije Universiteit',
 		'130.37.24.*' => 'Vrije Universiteit - Computer lab',
 		'130.37.26.*' => 'Vrije Universiteit - Laptop over wifi',
