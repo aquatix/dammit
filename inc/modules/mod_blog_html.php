@@ -61,13 +61,13 @@ function buildRants( $skel, $rants )
 		/* Info about the rant entry */
 		$rantsHTML .= "<div class=\"info\">";
 		$rantsHTML .= $rants[$i]['location'] . " | ";
-		if (isLoggedIn())
-		{
-			$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . getNumberOfViews( $skel, 'home', 'posting.' . $rants[$i]['messageID']) . " times</div>\n";
-		} else
-		{
+		//if (isLoggedIn())
+		//{
+		//	$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . getNumberOfViews( $skel, 'home', 'posting.' . $rants[$i]['messageID']) . " times</div>\n";
+		//} else
+		//{
 			$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . "</div>\n";
-		}
+		//}
 		//$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . $rants[$i]['nrviews'] . " times</div>\n";
 		/* Rant itself */
 		$rantsHTML .= "<div class=\"rant\">\n";
