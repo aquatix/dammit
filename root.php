@@ -1,6 +1,7 @@
 <?php
 /*
  * file: root.php
+ * $Id$
  *
  * Copyright 2003-2007 mbscholt at aquariusoft.org
  *
@@ -22,8 +23,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2007-02-16';
-$page_version = '0.5.07';
+$lastmodified = '2008-03-17';
+$page_version = '0.5.08';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';

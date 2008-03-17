@@ -1,8 +1,9 @@
 <?php
 /*
  * file: search.php
+ * $Id$
  *
- * Copyright 2003-2006 mbscholt at aquariusoft.org
+ * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2006-10-23';
-$page_version = '0.5.01';
+$lastmodified = '2008-03-17';
+$page_version = '0.5.02';
 $dateofcreation = '2005-01-11';
 
 $section_name = 'home';
@@ -52,7 +53,7 @@ if ($searched_weblogentries != null)
 	$page_body .= "<p>No matching posts found</p>\n";
 }
 
-$page_body .= "<h2>webmarks</h2>\n";
+$page_body .= "<h2>blogmarks</h2>\n";
 if ($searched_webmarks != null)
 {
 	$page_body .= buildMarks($searched_webmarks);

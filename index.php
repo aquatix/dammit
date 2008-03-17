@@ -1,8 +1,9 @@
 <?php
 /*
  * file: index.php
+ * $Id$
  *
- * Copyright 2003-2007 mbscholt at aquariusoft.org
+ * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2007-02-16';
-$page_version = '0.5.06';
+$lastmodified = '2008-03-17';
+$page_version = '0.5.07';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
