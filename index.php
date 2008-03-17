@@ -1,6 +1,5 @@
 <?php
 /*
- * file: index.php
  * $Id$
  *
  * Copyright 2003-2008 mbscholt at aquariusoft.org
