@@ -1,7 +1,8 @@
 <?php
 /*
+ * $Id$
  * File containing the page template of the dammIT blog
- * Version: 0.5.05 2007-12-13
+ * Version: 0.5.06 2008-03-17
  */
 
 /*

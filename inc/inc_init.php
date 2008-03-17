@@ -1,7 +1,8 @@
 <?php
 /*
- * Initialization
- * Version: 0.4.02 2006-04-29
+ * $Id$
+ * Initialization module
+ * Version: 0.5.01 2008-03-17
  */
 
 /* Load the settings for this web log */

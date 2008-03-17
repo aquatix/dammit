@@ -36,29 +36,33 @@ $searchkey = getRequestParam('searchkey', '');;
 if ('' != $searchkey)
 {
 	$searchkey = mysql_real_escape_string($searchkey);
-}
 
-$searched_weblogentries = findRants($skel, $searchkey);
-$searched_webmarks = findMarks($skel, $searchkey);
+	$searched_weblogentries = findRants($skel, $searchkey);
+	$searched_webmarks = findMarks($skel, $searchkey);
 
-$page_body .= '<p>Searched for "' . $searchkey . "\"</p>\n";
+	$page_body .= '<p>Searched for "' . $searchkey . "\"</p>\n";
 
-$page_body .= "<h2>weblog entries</h2>\n";
-if ($searched_weblogentries != null)
-{
-	$page_body .= buildRantlist($searched_weblogentries, true);
+	$page_body .= "<h2>weblog entries</h2>\n";
+	if ($searched_weblogentries != null)
+	{
+		$page_body .= buildRantlist($searched_weblogentries, true);
+	} else
+	{
+		$page_body .= "<p>No matching posts found</p>\n";
+	}
+
+	$page_body .= "<h2>blogmarks</h2>\n";
+	if ($searched_webmarks != null)
+	{
+		$page_body .= buildMarks($searched_webmarks);
+	} else
+	{
+		$page_body .= "<p>No matching entries found</p>\n";
+	}
 } else
 {
-	$page_body .= "<p>No matching posts found</p>\n";
-}
-
-$page_body .= "<h2>blogmarks</h2>\n";
-if ($searched_webmarks != null)
-{
-	$page_body .= buildMarks($searched_webmarks);
-} else
-{
-	$page_body .= "<p>No matching entries found</p>\n";
+	$page_body .= "<h2>sorry</h2>\n";
+	$page_body .= "<p>You will have to enter a text to search on</p>\n";
 }
 
 include 'inc/inc_pagetemplate.php';
