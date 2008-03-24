@@ -420,7 +420,7 @@ function addRant( $skel, $rant )
 		', modified=0, modifieddate="0000-00-00 00:00:00";';
 
 	$result = mysql_query($query, $skel['dbLink']);
-	addLogAction($skel, 'addRant', mysql_insert_id($skel['dbLink']);
+	addLogAction($skel, 'addRant', mysql_insert_id($skel['dbLink']));
 }
 
 
