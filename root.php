@@ -106,17 +106,15 @@ if (isset($_GET['action']) && isLoggedIn())
 		$rant['initiated'] = getRequestParam('initiated', null);
 		if (null != $rant['title'] && null != $rant['location'] && null != $rant['message'] && -1 < $rant['contenttype'])
 		{
-			if ('add' == $saveKind)
+			if (-1 == $rant['rantid'])
 			{
 				/* Trying to add rant to DB */
 				addRant($skel, $rant);
 
-			} else if ('edit' == $saveKind)
+			} else
 			{
-				/* Trying to add rant to DB */
-			} else if ('save' == $saveKind)
-			{
-				/* Only save, don't publish yet */
+				/* Only save, it was already added */
+				editRant($skel, $rant);
 			}
 			/* Update RSS feed[s] */
 			updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
