@@ -367,7 +367,7 @@ function newRant($skel)
 	$rant['messageID'] = '-1';
 	$rant['date'] = '';
 	$rant['user'] = '';
-	$rant['ip'] = '';
+	$rant['ip'] = getenv('REMOTE_ADDR');
 	$rant['title'] = '';
 	$rant['message'] = '';
 	$rant['contenttype'] = CONTENT_RAWHTML;
@@ -426,29 +426,37 @@ function addRant( $skel, $rant )
 /*
  * Updates smplog_rant with id $rantid with new data
  */
-function editRant( $skel, $title, $location, $rant, $rantid )
+//function editRant( $skel, $title, $location, $rant, $rantid )
+function editRant( $skel, $rant )
 {
 
 	/* Get the number of times this smplog_rant's already modified */
 	$timesModified = 0;
-	$query = 'SELECT modified '.
+	$query = 'SELECT modified, ispublic '.
 		'FROM smplog_rant ' .
-		'WHERE messageid = ' . $rantid . ';';
+		'WHERE messageid = ' . $rant['id'] . ';';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
 		$row = mysql_fetch_row($result);
 		$timesModified = $row[0];
+		$waspublished = $row[1];
 	}
 
 	/* Try to secure the input */
-	$title = escapeValue($title);
-	$location = escapeValue($location);
-	$rant = escapeValue($rant);
+	$title = escapeValue($rant['title']);
+	$location = escapeValue($rant['location']);
+	$message = escapeValue($rant['message']);
 
 	$ipaddr = getenv('REMOTE_ADDR');
 	$time = date('Y-m-d G:i:s', time());
+
+	/* If we are adding a new rant, and it's public, it has just been published */
+	if (1 == $rant['ispublic'] && 0 == $waspublished)
+	{
+		$rant['published'] = $time;
+	}
 
 	/* Whatever... */
 	$user_id = $_SESSION['userid'];
@@ -457,7 +465,9 @@ function editRant( $skel, $title, $location, $rant, $rantid )
 	$query = 'UPDATE smplog_rant ' .
 		'SET title="'. $title .'", location="' . $location . '", message="' . $rant .
 		'", modified=' . ($timesModified + 1) . ', modifieddate=NOW() ' .
-		'WHERE messageid=' . $rantid . ';';
+		', published="' . $rant['published'] . '"' .
+		', ispublic=' . $rant['ispublic'] .
+		'WHERE messageid=' . $rant['id'] . ';';
 
 	$result = mysql_query($query, $skel['dbLink']);
 }
