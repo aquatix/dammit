@@ -103,12 +103,12 @@ if (isset($_GET['action']) && isLoggedIn())
 		$rant['contenttype'] = getRequestParam('contenttype', CONTENT_RAWHTML);
 		$rant['rantid'] = getRequestParam('rantid', -1);
 		$rant['ispublic'] = getRequestParam('ispublic', ISPUBLIC_NO);
-		if (null != $rant['title'] && null != $rant['location'] && null != $rant['message'] && null != $rant['contenttype'])
+		$rant['initiated'] = getRequestParam('initiated', null);
+		if (null != $rant['title'] && null != $rant['location'] && null != $rant['message'] && -1 < $rant['contenttype'])
 		{
 			if ('add' == $saveKind)
 			{
 				/* Trying to add rant to DB */
-
 				addRant($skel, $rant);
 
 			} else if ('edit' == $saveKind)

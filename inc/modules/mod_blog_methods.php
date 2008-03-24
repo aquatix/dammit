@@ -373,7 +373,7 @@ function newRant($skel)
 	$rant['contenttype'] = CONTENT_RAWHTML;
 	$rant['initiated'] = date('Y-m-d G:i:s', time());
 	$rant['published'] = '';
-	$rant['ispublic'] = '0';
+	$rant['ispublic'] = ISPUBLIC_NO;
 	$rant['modified'] = '';
 	$rant['modifiedDate'] = '';
 	$ip = getenv('REMOTE_ADDR');
@@ -396,6 +396,12 @@ function addRant( $skel, $rant )
 	$ipaddr = getenv('REMOTE_ADDR');
 	$time = date('Y-m-d G:i:s', time());
 
+	/* If we are adding a new rant, and it's public, it has just been published */
+	if (1 == $rant['ispublic'])
+	{
+		$rant['published'] = $time;
+	}
+
 	/* Whatever... */
 	if (isset($_SESSION) && isset($_SESSION['userid']))
 	{
@@ -407,8 +413,10 @@ function addRant( $skel, $rant )
 
 	$query = 'INSERT INTO smplog_rant ' .
 		'SET date="' . $time . '", user="' . $user_id . '", ip="' . $rant['ip'] . '", title="'. $title .'", location="' . $location . '", message="' . $message .
-		'", contenttype=' . $rant['contenttype'] . '' .
-		', published=1' .
+		'", contenttype=' . $rant['contenttype'] .
+		', initiated="' . $rant['initiated'] . '"' .
+		', published="' . $rant['published'] . '"' .
+		', ispublic=' . $rant['ispublic'] .
 		', modified=0, modifieddate="0000-00-00 00:00:00";';
 
 	$result = mysql_query($query, $skel['dbLink']);
@@ -817,7 +825,9 @@ function marksToRant($skel)
 	$rant['location'] = $location;
 	$rant['message'] = $message;
 	$rant['contenttype'] = CONTENT_RAWHTML;
+	$rant['ispublic'] = ISPUBLIC_YES;
 	$rant['ip'] = '127.0.0.1';
+	$rant['initiated'] = $end;
 	//$rant['rantid'] = getRequestParam('rantid', -1);
 	addRant( $skel, $rant );
 	return '';

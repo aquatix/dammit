@@ -219,9 +219,9 @@ function buildEditRant($rant)
 	$html .= "<select name=\"ispublic\">\n\t<option value=\"" . ISPUBLIC_NO . "\"" . $hidden_selected . ">Rant is hidden for the public</option>\n\t<option value=\"" . ISPUBLIC_YES . "\"" . $public_selected . ">Rant is public</option>\n</select></p>\n";
 	$html .= "<input type=\"hidden\" name=\"id\" value=\"" . $rant['messageID'] . "\"/>\n";
 	$html .= "<input type=\"hidden\" name=\"initiated\" value=\"" . $rant['initiated'] . "\"/>\n";
-	//$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
+	$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
 	//$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";
-	$html .= "<p><input name=\"savekind\" value=\"Save\" type=\"submit\"/><input name=\"savekind\" value=\"Publish\" type=\"submit\"/></p>\n";
+	//$html .= "<p><input name=\"savekind\" value=\"Save\" type=\"submit\"/><input name=\"savekind\" value=\"Publish\" type=\"submit\"/></p>\n";
 
 	return $html;
 }
