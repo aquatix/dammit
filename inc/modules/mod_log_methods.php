@@ -125,6 +125,8 @@ function getAllReferers( $skel )
  *  - editRant
  *  - addMark
  *  - editMark
+ *  - login
+ *  - logout
  * 
  * $id: ID of the rant or blogmark
  */
@@ -135,7 +137,11 @@ function addLogAction($skel, $kind, $id)
 	{
 		$userId = $_SESSION['userid'];
 	}
-	//
+
+	$ipaddr = getenv('REMOTE_ADDR');
+	$time = date('Y-m-d G:i:s', time());
+
+	//@TODO: create smplog_log_admin table and code to it all this info to it
 }
 
 ?>
