@@ -116,4 +116,26 @@ function getAllReferers( $skel )
 	}
 	return $referers;
 }
+
+/* Admin log */
+
+/*
+ * $kind:
+ *  - addRant
+ *  - editRant
+ *  - addMark
+ *  - editMark
+ * 
+ * $id: ID of the rant or blogmark
+ */
+function addLogAction($skel, $kind, $id)
+{
+	$userId = -1;
+	if (isset($_SESSION) && isset($_SESSION['userid']))
+	{
+		$userId = $_SESSION['userid'];
+	}
+	//
+}
+
 ?>
