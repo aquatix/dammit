@@ -1,8 +1,9 @@
 <?php
 /*
  * $Id$
+ *
  * Blog module - HTML methods
- * v0.5.07 2008-03-17
+ * v0.5.08 2008-03-24
  *
  * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
@@ -17,8 +18,7 @@
  * GNU Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 

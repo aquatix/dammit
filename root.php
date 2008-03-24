@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2008-03-18';
-$page_version = '0.5.09';
+$lastmodified = '2008-03-24';
+$page_version = '0.5.10';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -100,8 +100,9 @@ if (isset($_GET['action']) && isLoggedIn())
 		$rant['title'] = getRequestParam('title', null);
 		$rant['location'] = getRequestParam('location', null);
 		$rant['message'] = getRequestParam('rant', null);
-		$rant['contenttype'] = getRequestParam('contenttype', 0);
+		$rant['contenttype'] = getRequestParam('contenttype', CONTENT_RAWHTML);
 		$rant['rantid'] = getRequestParam('rantid', -1);
+		$rant['ispublic'] = getRequestParam('ispublic', ISPUBLIC_NO);
 		if (null != $rant['title'] && null != $rant['location'] && null != $rant['message'] && null != $rant['contenttype'])
 		{
 			if ('add' == $saveKind)
