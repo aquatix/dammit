@@ -1,8 +1,9 @@
 <?php
 /*
  * $Id$
- * Blog module - methods
- * v0.5.04 2008-03-17
+ *
+ * Weblog module - methods
+ * v0.5.05 2008-03-24
  *
  * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
@@ -17,8 +18,7 @@
  * GNU Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 define('CONTENT_RAWHTML', 0);
@@ -389,9 +389,9 @@ function newRant($skel)
 //function addRant( $skel, $title, $location, $rant, $contenttype )
 function addRant( $skel, $rant )
 {
-	$title = escapeValue($title);
-	$location = escapeValue($location);
-	$rant = escapeValue($rant);
+	$title = escapeValue($rant['title']);
+	$location = escapeValue($rant['location']);
+	$message = escapeValue($rant['message']);
 
 	$ipaddr = getenv('REMOTE_ADDR');
 	$time = date('Y-m-d G:i:s', time());
@@ -406,8 +406,9 @@ function addRant( $skel, $rant )
 	}
 
 	$query = 'INSERT INTO smplog_rant ' .
-		'SET date="' . $time . '", user="' . $user_id . '", ip="' . $ipaddr . '", title="'. $title .'", location="' . $location . '", message="' . $rant .
-		'", contenttype=' . $contenttype . '' .
+		'SET date="' . $time . '", user="' . $user_id . '", ip="' . $rant['ip'] . '", title="'. $title .'", location="' . $location . '", message="' . $message .
+		'", contenttype=' . $rant['contenttype'] . '' .
+		', published=1' .
 		', modified=0, modifieddate="0000-00-00 00:00:00";';
 
 	$result = mysql_query($query, $skel['dbLink']);
@@ -808,10 +809,17 @@ function marksToRant($skel)
 	{
 		return 'No new blogmarks this week';
 	}
-	$rant = "<p>Interesting links of this week:</p>\n";
-	$rant .= buildInPostMarks($marks);
+	$message = "<p>Interesting links of this week:</p>\n";
+	$message .= buildInPostMarks($marks);
 
-	addRant( $skel, $title, $location, $rant );
+	$rant = newRant($skel);
+	$rant['title'] = $title;
+	$rant['location'] = $location;
+	$rant['message'] = $message;
+	$rant['contenttype'] = CONTENT_RAWHTML;
+	$rant['ip'] = '127.0.0.1';
+	//$rant['rantid'] = getRequestParam('rantid', -1);
+	addRant( $skel, $rant );
 	return '';
 }
 
