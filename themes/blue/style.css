@@ -3,7 +3,7 @@
  * Created by Michiel Scholten
  * mbscholt at aquariusoft dot org
  * 
- * Version 0.5.07 :: 2007-02-16
+ * Version 0.5.08 :: 2008-03-26
  */
 
 /*
@@ -177,12 +177,14 @@ em
 pre
 {
 	margin: 5px 0 5px 0;
-/*	padding: 5px 0 5px 0;*/
 	padding: .3em 0 .3em 1em;
 	overflow: auto;
-/*	background: #e4ebff;*/
 	background: transparent;
-/*	border-left: 2px solid #15317E;*/
+	font: 1em "Courier New", monospace;
+}
+
+code
+{
 	font: 1em "Courier New", monospace;
 }
 
