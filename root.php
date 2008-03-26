@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2008-03-24';
-$page_version = '0.5.10';
+$lastmodified = '2008-03-26';
+$page_version = '0.5.11';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -95,7 +95,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	{
 
 		$saveKind = getRequestParam('savekind', null);
-		echo "saveKind = " . $saveKind . "\n";
+		//echo "saveKind = " . $saveKind . "\n";
 		$rant = newRant($skel);
 		$rant['title'] = getRequestParam('title', null);
 		$rant['location'] = getRequestParam('location', null);
@@ -187,7 +187,20 @@ if (isset($_GET['action']) && isLoggedIn())
 		{
 			$page_body .= $root_nav;
 			$page_body .= "<h1>root / error!</h1>\n";
-			$page_body .= "<p>Posting does not belong to you, so you can't edit it</p>\n";
+			$page_body .= "<p>Posting does not belong to you, so you can't edit it. <a href=\"root.php\">Go back to root</a></p>\n";
+		}
+	} else if ('listunpublished' == $action)
+	{
+		$offset = 0;
+		$number = 100;
+		$unpublished_rants = getUnpublishedRants( $skel, $offset, $number );
+		$page_body .= $root_nav;
+		if (null == $unpublished_rants)
+		{
+			$page_body .= "<h1>root / sorry</h1>\n<p>No unpublished rants where found. <a href=\"root.php\">Go back to root</a></p>\n";
+		} else
+		{
+			$page_body .= buildRants($skel, $unpublished_rants);
 		}
 	} else if ('addmark' == $action)
 	{
@@ -399,6 +412,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<h2>Rants</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addrant\">Add rant</a></li>\n";
+	$page_body .= "\t<li><a href=\"root.php?action=listunpublished\">Unpublished rants</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "<h2>Blogmarks</h2>\n";
 	$page_body .= "<ul>\n";

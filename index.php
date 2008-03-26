@@ -152,7 +152,7 @@ if ( $subpage == 'plan' )
 		{
 			$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 		}
-		if ((null == $rant) || (0 === $rant[0]['published']))
+		if ((null == $rant) || (0 == $rant[0]['ispublic']))
 		{
 			/* Rant was not found; in the second case, it wasn't published yet, so doesn't exist yet for the public */
 			$page_name = 'Rant not found';

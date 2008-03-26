@@ -204,6 +204,14 @@ function getRantsForMonth( $skel, $year, $month )
 	return resultsetToRants($skel, $result);
 }
 
+/* All unpublished rants */
+function getUnpublishedRants( $skel, $offset, $number )
+{
+	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE ispublic=0 ORDER BY date DESC LIMIT ' . $offset . ', ' . $number . ';';
+
+	$result = mysql_query( $query, $skel['dbLink'] );
+	return resultsetToRants($skel, $result);
+}
 
 /*
  * Returns smplog_rant $id
