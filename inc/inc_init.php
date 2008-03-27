@@ -2,8 +2,10 @@
 /*
  * $Id$
  * Initialization module
- * Version: 0.5.01 2008-03-17
+ * Version: 0.5.02 2008-03-27
  */
+
+$starttime = microtime();
 
 /* Load the settings for this web log */
 include 'inc/inc_config.php';

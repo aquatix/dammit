@@ -216,6 +216,8 @@ $page .= "\t\t</div>\n";
 $page .= "\t</div>\n";
 $page .= "</div>\n";
 
+$page .= "<!-- rendered in " . (microtime() - $starttime) . "sec -->\n";
+
 /*
  * Creative Commons license
  * Note: if you license it under something else as by-nc-sa, see http://creativecommons.org/technology/licenseoutput for the right
