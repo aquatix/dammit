@@ -62,6 +62,37 @@ function isLoggedIn()
 
 
 /*
+ * Get user details for userid $id
+ */
+function getUser($skel, $id)
+{
+	$query = 'SELECT id, username, pass, surname, name, ip, restricttoip, stylesheetid, registerdate ' .
+		'FROM smplog_user ' .
+		'WHERE smplog_user.id=' . $id . ';';
+
+	$result = mysql_query( $query, $skel['dbLink'] );
+	if ( mysql_num_rows( $result ) > 0 )
+	{
+		$row = mysql_fetch_row($result);
+		$user = array();
+		$user['id'] = $row[0];
+		$user['username'] = $row[1];
+		$user['pass'] = $row[2];
+		$user['surname'] = $row[3];
+		$user['name'] = $row[4];
+		$user['ip'] = $row[5];
+		$user['restricttoip'] = $row[6];
+		$user['stylesheetid'] = $row[7];
+		$user['registerdate'] = $row[8];
+		return $user;
+	} else
+	{
+		return null;
+	}
+}
+
+
+/*
  * Get the total number of smplog_rants in DB
  */
 function getNrOfRants($skel)
@@ -147,6 +178,7 @@ function resultsetToRants($skel, $result, $getNrOfComments = true)
 			$rants[$i]['messageID'] = $row[0];
 			$rants[$i]['date'] = $row[1];
 			$rants[$i]['user'] = $row[2];
+			$rants[$i]['username'] = null;
 			$rants[$i]['ip'] = $row[3];
 			$rants[$i]['title'] = $row[4];
 			$rants[$i]['message'] = $row[5];
@@ -164,6 +196,12 @@ function resultsetToRants($skel, $result, $getNrOfComments = true)
 			} else
 			{
 				$rants[$i]['nrOfComments'] = -1;
+			}
+			if (-1 < $rants[$i]['user'])
+			{
+				// get user name
+				$user = getUser($skel, $rants[$i]['user']);
+				$rants[$i]['username'] = $user['name'] . ' ' . $user['surname'];
 			}
 		}
 	} else
