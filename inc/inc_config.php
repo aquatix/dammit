@@ -3,7 +3,7 @@
  * $Id$
  *
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * Version: 0.5.04 2008-03-17
+ * Version: 0.5.05 2008-06-11
  */
 
 /*** Site settings ***/
@@ -131,7 +131,8 @@ $skel['nav_collectiveblogs'] = array(
 
 $skel['nav_webdev'] = array(
 		'http://alistapart.com/' => 'a list apart',
-		'http://annevankesteren.nl/' => 'van kesteren'
+		'http://annevankesteren.nl/' => 'van kesteren',
+		'http://web404.blogspot.com/' => 'web404 tips'
 		);
 
 $skel['nav_photo'] = array(
