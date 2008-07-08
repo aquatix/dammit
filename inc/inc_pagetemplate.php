@@ -2,7 +2,7 @@
 /*
  * $Id$
  * File containing the page template of the dammIT blog
- * Version: 0.5.06 2008-03-17
+ * Version: 0.5.07 2008-07-08
  */
 
 /*
@@ -124,7 +124,7 @@ $page .= "\t<div id=\"license\"><a href=\"" . $skel["license_uri"] . "\"><img sr
 
 if ($iebrowser === true)
 {
-	$page .= "\t<div class=\"ie-warning\">You're using <acronym title=\"Internet Explorer\">IE</acronym>. Please use a browser that _has_ a valid notion of <acronym title=\"Cascading Style Sheets\">CSS</acronym> for viewing the modern web, it'll make your general web browsing experience a lot better. Take a look at <a href=\"http://www.mozilla.org/products/firefox/\">Mozilla Firefox</a> [Free], or <a href=\"http://www.opera.com/\">Opera</a> [non-Free] for some modern webbrowsers.</div>";
+	$page .= "\t<div class=\"ie-warning\">You are using <acronym title=\"Internet Explorer\">IE</acronym>. Please use a browser that <em>has</em> a valid notion of <acronym title=\"Cascading Style Sheets\">CSS</acronym> for viewing the modern web, it'll make your general web browsing experience a lot better. Take a look at <a href=\"http://www.mozilla.org/products/firefox/\">Mozilla Firefox</a> [Free], or <a href=\"http://www.opera.com/\">Opera</a> [non-Free] for some modern webbrowsers.</div>";
 }
 
 //$page .= "<br style=\"clear: both;\" />\n";
@@ -181,7 +181,7 @@ $page .= "\t\t<div class=\"images\">\n";
 $page .= "\t\t\t<ul>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.debian.org/\" title=\"Debian GNU/Linux\"><img src=\"images/logos/debian.png\" alt=\"Debian GNU/Linux\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.fark.com/\" title=\"Fark.com\"><img src=\"images/logos/fark.png\" alt=\"Fark.com\"/></a></li>\n";
-$page .= "\t\t\t\t<li><a href=\"http://dwlt.net/tapestry/\" title=\"Tapestry comics\"><img src=\"images/logos/gotcomics.png\" alt=\"Got comics\"/></a></li>\n";
+$page .= "\t\t\t\t<li><a href=\"http://www.tapestrycomics.com/\" title=\"Tapestry comics\"><img src=\"images/logos/gotcomics.png\" alt=\"Got comics\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.deviantart.com/\" title=\"deviantART\"><img src=\"images/logos/deviantart_logo.gif\" alt=\"deviantART logo\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.scripting.com/\"><img src=\"images/logos/thanksdave.jpg\" title=\"My thanks to Dave Winer for his visionary role in the development of weblogs, RSS, podcasting, SOAP, XML-RPC, OPML, and outliners.\" alt=\"Thanks Dave\" /></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.technorati.com/profile/aquatix/3133231/41b298b8585eafc9e8c55a0b30c90f65\" title=\"My Technorati profile\"><img src=\"images/logos/technorati.gif\" alt=\"Technorati profile\"/></a></li>\n";

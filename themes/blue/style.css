@@ -117,7 +117,7 @@ img
 	border: 0;
 }
 
-a img
+a img, .images a
 {
 	border: none;
 }
@@ -254,6 +254,7 @@ blockquote
 	padding: 0;
 	background: transparent;
 	text-align: left;
+	border: 2px solid #FFF;
 }
 
 	#logo a
@@ -274,6 +275,7 @@ blockquote
 	background: #0F2258;
 	color: #fff;
 	text-align: left;
+	border: 1px solid #FFF;
 }
 
 	#left-navbar a
@@ -383,7 +385,7 @@ blockquote
 
 #main-content
 {
-	padding: 90px 240px 4px 75px;
+	padding: 100px 240px 4px 75px;
 /*	min-height: 130em;*/
 	min-height: 140em;
 	background: #FFFFFF;
@@ -417,7 +419,8 @@ blockquote
 	top: 100px;
 	right: 40px;
 	width: 200px;
-	border-left: 1px dashed #000;
+	/*border-left: 1px dashed #000;*/
+	/*border-left: 1px solid #E4EBFF;*/
 	padding: 0.5em;
 }
 
@@ -429,7 +432,8 @@ blockquote
 
 	#main-content-nav .images
 	{
-		border-top: 1px solid #707070;
+		/*border-top: 1px solid #707070;*/
+		border: none;
 	}
 
 	#main-content-nav .nav-header,
