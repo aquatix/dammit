@@ -2,60 +2,36 @@
 /*
  * $Id$
  * File containing the page template of the dammIT blog
- * Version: 0.5.07 2008-07-08
+ * Version: 0.5.08 2008-07-08
  */
-
-/*
-   <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-   <html>
-
-   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-   <title>Michiel Scholten's rantbox [ <?echo $page_title;?> ]</title>
-
-
-   2004-02-25
-   <link rel="stylesheet" type="text/css" href="/~mbscholt/main.css"/>
-   <link rel="stylesheet" type="text/css" href="main.css"/>
- */
-
 
 /* Check for IE with it's stupid width bugs */
 $useragent = getenv("HTTP_USER_AGENT");
 $iebrowser = (eregi("msie", $useragent) && !(eregi("opera", $useragent) || eregi("gecko", $useragent)));
 
-
 $page_title = $page_name;
-/*
-   if ($page_name != "home")
-   {
-   $page_title = $page_title . " | " . $page_name;
-   }
- */
 /*	$page  = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";*/
 //$page .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">\n";
 //$page .= "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">\n";
 
-/*$page  = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";*/
 $page  = "<?xml version=\"1.0\"?>\n";
 $page .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n";
 //$page .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
 $page .= "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n";
 
 $page .= "<head>\n";
-$page .= "<title>" . $page_title . " | dammIT</title>\n";
+$page .= "<title>" . $page_title . ' | ' . $skel['siteName'] . "</title>\n";
 //$page .= "<base href=\"http://" . $skel["servername"] . $skel["baseHref"] . "\"/>\n";
 $page .= "<meta name=\"robots\" content=\"index, follow\"/>\n";
 $page .= "<meta name=\"generator\" content=\"Err... Myself :) Read: vim\"/>\n";
 //$page .= "<meta name=\"author\" content=\"Michiel Scholten\"/>\n";
 //$page .= "<meta name=\"author\" link=\"" . $skel["baseHref"] . "about.php\" title=\"Michiel Scholten\"/>\n";
 //$page .= "<meta name=\"author\" link=\"about.php\" title=\"Michiel Scholten\"/>\n";
-$page .= "<meta name=\"keywords\" content=\"Michiel Scholten,michiel,scholten,web,log,weblog,blog,rantbox,rant,rants,frustrations,personal,homepage,netherlands,nederland,nederlands,the netherlands,website,cool,dammit,damn,it,damnit,blah,linux,unix,script,scripts,shell,bash,web\"/>\n";
-$page .= "<meta name=\"description\" content=\"This is the rantbox of Michiel Scholten, Netherlands. It's my blog, so you can read about my frustrations and surf the links I share with the rest of the world :)\"/>\n";
+$page .= "<meta name=\"keywords\" content=\"" . $skel['siteKeywords'] . "\"/>\n";
+$page .= "<meta name=\"description\" content=\"" . $skel['siteDescription'] . "\"/>\n";
 
 //$page .= "<meta name=\"author\" href=\"/~mbscholt/about.php\" title=\"Contact the author\"/>\n";
-$page .= "<meta name=\"author\" content=\"" . $skel["author"] . "\"/>\n";
+$page .= "<meta name=\"author\" content=\"" . $skel['author'] . "\"/>\n";
 /*
    <link rel="copyright" href="/blog/copyright/" title="Copyright details" />
    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -65,10 +41,8 @@ $page .= "<link rel=\"up\" href=\"/~mbscholt/\" title=\"Home page\" />\n";
 
 $page .= "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS\" href=\"http://aquariusoft.org/~mbscholt/blog.rdf\" />\n";
 
-//$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/layout.css\"/>\n";
-//$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css\"/>\n";
-$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css?20061203\"/>\n";
-$page .= "<!--[if gte ie 5.5000]><link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/ie.css\" /><![endif]-->\n";
+$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css?20080708\"/>\n";
+$page .= "<!--[if gte ie 5.5000]><link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel['cssTheme'] . "/ie.css\" /><![endif]-->\n";
 
 
 /* IE7 hack */
@@ -130,8 +104,7 @@ if ($iebrowser === true)
 //$page .= "<br style=\"clear: both;\" />\n";
 
 $page .= $page_body;
-//$page .= "\t<div id=\"last-modified\">[ Valid <a href=\"http://validator.w3.org/check/referer\">XHTML 1.1</a> | &copy; " . $skel["startyear"] . "-" . date("Y") . " <a href=\"index.php?page=about\">" . $skel["author"] . "</a> under a <a href=\"" . $skel["license_uri"] . "\"><acronym title=\"Creative Commons\">CC</acronym> License</a> ]</div>\n";
-$page .= "\t<div id=\"last-modified\">[ Valid <a href=\"http://validator.w3.org/check/referer\">XHTML 1.0</a> | &copy; " . $skel["startyear"] . "-" . date("Y") . " <a href=\"index.php?page=about\">" . $skel["author"] . "</a> under a <a href=\"" . $skel["license_uri"] . "\"><acronym title=\"Creative Commons\">CC</acronym> License</a> ]</div>\n";
+$page .= "\t<div id=\"last-modified\">[ Valid <a href=\"http://validator.w3.org/check/referer\">XHTML 1.0</a> | &copy; " . $skel['startyear'] . "-" . date('Y') . " <a href=\"index.php?page=about\">" . $skel['author'] . "</a> under a <a href=\"" . $skel['license_uri'] . "\"><acronym title=\"Creative Commons\">CC</acronym> License</a> ]</div>\n";
 
 $page .= "\t<div id=\"main-content-nav\">\n";
 //	}
@@ -139,11 +112,6 @@ $page .= "\t<div id=\"main-content-nav\">\n";
 
 /*** Links-menu ***/
 /* Search field */
-/*
-   $page .= "\t<div>\n";
-   $page .= "\t\t<form action=\"search.php\" method=\"post\"><input type=\"text\" name=\"searchkey\" size=\"12\" maxlength=\"250\"/><input name=\"searchbtn\" value=\"Find\" type=\"submit\"/></form>\n";
-   $page .= "\t</div>\n";
- */
 if (!isset($searchkey))
 {
 	$searchkey = '';
@@ -211,8 +179,6 @@ $page .= "\t\t\t\t<li><a href=\"http://www.mozilla.com/thunderbird/\" title=\"Ge
 $page .= "\t\t\t</ul>\n";
 $page .= "\t\t</div>\n";
 
-//	$page .= "\t</div>\n\t<div style=\"clear:both;\">&nbsp;</div>\n";
-
 $page .= "\t</div>\n";
 $page .= "</div>\n";
 
@@ -229,7 +195,7 @@ $page .= "
 \txmlns:dc=\"http://purl.org/dc/elements/1.1/\"
 \txmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">
 \t<Work rdf:about=\"http://" . $skel["servername"] . $skel["baseHref"] . "\">
-\t<dc:title>" . $skel["sitename"] . ", weblog of " . $skel["author"] . "</dc:title>
+\t<dc:title>" . $skel['siteName'] . ", weblog of " . $skel["author"] . "</dc:title>
 \t<dc:date>2003-12-24</dc:date>
 \t<dc:description>A weblog maintained by " . $skel["author"] . "</dc:description>
 \t<dc:creator><Agent>
@@ -259,4 +225,3 @@ $page .= "</body></html>\n";
 /****** Now finally print the contents of the page to the browser ******/
 echo $page;
 ?>
-

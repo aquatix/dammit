@@ -3,7 +3,7 @@
  * $Id$
  *
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * Version: 0.5.05 2008-06-11
+ * Version: 0.5.06 2008-07-08
  */
 
 /*** Site settings ***/
@@ -12,12 +12,14 @@ $skel['testing'] = true;
 
 $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
-$skel['sitename'] = 'dammIT';
-$skel['sitedescription'] = 'Michiel\'s weblog // "A country that replaces freedom with security deserves neither" (Thomas Jefferson)';
+$skel['siteName'] = 'dammIT';
 $skel['mainEmail'] = 'dammit@aquariusoft.org';
+$skel['siteKeywords'] = 'Michiel Scholten,michiel,scholten,web,log,weblog,blog,rantbox,rant,rants,frustrations,personal,homepage,netherlands,nederland,nederlands,the netherlands,website,cool,dammit,damn,it,damnit,blah,linux,unix,script,scripts,shell,bash,web';
+$skel['siteDescription'] = 'This is the rantbox of Michiel Scholten, Netherlands. It\'s my blog, so you can read about my frustrations and surf the links I share with the rest of the world :)';
+$skel['feedDescription'] = 'Michiel\'s weblog // "A country that replaces freedom with security deserves neither" (Thomas Jefferson)';
 
 /* Message to be shown on the main page, archive page and individual posting pages */
-//$skel['globalmessage'] = 'The new dammIT!';
+//$skel['globalmessage'] = 'dammIT is getting tweaked';
 $skel['globalmessage'] = null; /* Use when you don't want such a message */
 
 $skel['nrOfRantsPerPage'] = 10;	//varying between 10 and 15 :)
@@ -112,10 +114,8 @@ $skel['nav_morphix'] = array(
 		'http://buranen.info/' => 'burner',
 		'http://g1powermac.rozica.com/' => 'g1powermac',
 		'http://www.kiberpipa.org/~gandalf/blog/' => 'gandalfar',
-		//'http://blogs.livecd.net/gandalfar/index.php?blog=5' => 'gandalfar [old]',
 		'http://doid.com/' => 'mediovia',
 		'http://del.icio.us/tag/livecd' => 'mediovia\'s links',
-		//'http://galaxycow.com/blogs/vermyndax/' => 'vermyndax'
 		'http://www.galaxycow.com/blogs/vermyndax' => 'vermyndax'
 		);
 
@@ -123,8 +123,7 @@ $skel['nav_collectiveblogs'] = array(
 		'http://planet.debian.net/' => 'planet debian',
 		'http://planet.livecd.net/' => 'planet livecd',
 		'http://www.boingboing.net/' => 'boingboing',
-		/*		'http://www.kuro5hin.org/' => 'kuro5hin.org',*/
-		'http://live.linuxchix.org/' => 'linuxchix',
+		'http://www.linuxchix.org/live/' => 'linuxchix',
 		'http://www.mobilewhack.com/' => 'mobilewhack',
 		'http://www.engadget.com/' => 'engadget'
 		);

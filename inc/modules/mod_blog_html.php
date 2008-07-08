@@ -38,7 +38,7 @@
  * location
  * nrOfComments
  */
-function buildRants( $skel, $rants )
+function buildRants( $rants )
 {
 	$rantsHTML = '';
 	$previousDate = '0000-00-00 00:00:00';
@@ -399,15 +399,15 @@ function generateFeed($skel, $filename, $feedtitle, $body)
 	$feed .= "\t<channel>\n";
 	$feed .= "\t\t<title>" . $feedtitle . "</title>\n";
 	$feed .= "\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
-	$feed .= "\t\t<description>" . $skel["sitedescription"] . "</description>\n";
+	$feed .= "\t\t<description>" . $skel["feedDescription"] . "</description>\n";
 
 	$feed .= "\t\t<image>\n";
-	$feed .= "\t\t\t<title>" . $skel["sitename"] . "</title>\n";
+	$feed .= "\t\t\t<title>" . $skel["siteName"] . "</title>\n";
 	$feed .= "\t\t\t<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
 	$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	$feed .= "\t\t\t<width>" . $skel["logoWidth"] . "</width>\n";
 	$feed .= "\t\t\t<height>" . $skel["logoHeight"] . "</height>\n";
-	$feed .= "\t\t\t<description>" . $skel["sitename"] . "</description>\n";
+	$feed .= "\t\t\t<description>" . $skel["siteName"] . "</description>\n";
 	$feed .= "\t\t</image>\n";
 
 	$feed .= "\t\t<dc:language>en-us</dc:language>\n";
@@ -478,7 +478,7 @@ function updateWeblogFeed($skel, $rants)
 		$feed .= "\t\t</item>\n";
 	}
 	/* now generate the file */
-	generateFeed($skel, $skel["rssFilename"], $skel["sitename"], $feed);
+	generateFeed($skel, $skel["rssFilename"], $skel["siteName"], $feed);
 }
 
 
@@ -534,7 +534,7 @@ function updateWeblogCommentsFeed($skel, $rants)
 		$feed .= "\t\t</item>\n";
 	}
 	/* now generate the file */
-	generateFeed($skel, $skel["rssWithCommentsFilename"], $skel["sitename"] . " [with comments]", $feed);
+	generateFeed($skel, $skel["rssWithCommentsFilename"], $skel["siteName"] . " [with comments]", $feed);
 }
 
 
@@ -579,7 +579,7 @@ function updateWebmarksFeed($skel, $marks)
 		$feed .= "\t\t</item>\n";
 	}
 	/* now generate the file */
-	generateFeed($skel, $skel["rssMarksFilename"], $skel["sitename"] . " blogmarks", $feed);
+	generateFeed($skel, $skel["rssMarksFilename"], $skel["siteName"] . " blogmarks", $feed);
 }
 
 
@@ -613,18 +613,18 @@ function generateBlogFeed($rants, $skel)
 
 	$feed .= "<channel>\n";
 	//$feed .= "<title>dammIT</title>\n";
-	$feed .= "<title>" . $skel["sitename"] . "</title>\n";
+	$feed .= "<title>" . $skel["siteName"] . "</title>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	//$feed .= "<description>dammIT - rantbox of Michiel Scholten</description>\n";
-	$feed .= "<description>" . $skel["sitedescription"] . "</description>\n";
+	$feed .= "<description>" . $skel["feedDescription"] . "</description>\n";
 
 	$feed .= "<image>\n";
-	$feed .= "<title>" . $skel["sitename"] . "</title>\n";
+	$feed .= "<title>" . $skel["siteName"] . "</title>\n";
 	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	$feed .= "<width>176</width>\n";
 	$feed .= "<height>71</height>\n";
-	$feed .= "<description>" . $skel["sitename"] . "</description>\n";
+	$feed .= "<description>" . $skel["siteName"] . "</description>\n";
 	$feed .= "</image>\n";
 
 	$feed .= "<dc:language>en-us</dc:language>\n";
@@ -690,18 +690,18 @@ function generateBlogWithCommentsFeed($rants, $skel)
 
 	$feed .= "<channel>\n";
 	//$feed .= "<title>dammIT [with comments]</title>\n";
-	$feed .= "<title>" . $skel["sitename"] . " [with comments]</title>\n";
+	$feed .= "<title>" . $skel["siteName"] . " [with comments]</title>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	//$feed .= "<description>dammIT - rantbox of Michiel Scholten</description>\n";
-	$feed .= "<description>" . $skel["sitedescription"] . "</description>\n";
+	$feed .= "<description>" . $skel["feedDescription"] . "</description>\n";
 
 	$feed .= "<image>\n";
-	$feed .= "<title>" . $skel["sitename"] . "</title>\n";
+	$feed .= "<title>" . $skel["siteName"] . "</title>\n";
 	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	$feed .= "<width>176</width>\n";
 	$feed .= "<height>71</height>\n";
-	$feed .= "<description>" . $skel["sitename"] . "</description>\n";
+	$feed .= "<description>" . $skel["siteName"] . "</description>\n";
 	$feed .= "</image>\n";
 
 	$feed .= "<dc:language>en-us</dc:language>\n";
@@ -798,20 +798,20 @@ function generateBlogmarkFeed($marks, $skel)
 
 	$feed .= "<channel>\n";
 	//$feed .= "<title>dammIT blogmarks</title>\n";
-	$feed .= "<title>" . $skel["sitename"] . " blogmarks</title>\n";
+	$feed .= "<title>" . $skel["siteName"] . " blogmarks</title>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	//$feed .= "<description>dammIT - rantbox of Michiel Scholten</description>\n";
-	$feed .= "<description>" . $skel["sitedescription"] . "</description>\n";
+	$feed .= "<description>" . $skel["feedDescription"] . "</description>\n";
 
 	$feed .= "<image>\n";
 	//$feed .= "<title>dammIT</title>\n";
-	$feed .= "<title>" . $skel["sitename"] . "</title>\n";
+	$feed .= "<title>" . $skel["siteName"] . "</title>\n";
 	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
 	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
 	$feed .= "<width>176</width>\n";
 	$feed .= "<height>71</height>\n";
 	//$feed .= "<description>Rantbox of Michiel Scholten</description>\n";
-	$feed .= "<description>" . $skel["sitename"] . "</description>\n";
+	$feed .= "<description>" . $skel["siteName"] . "</description>\n";
 	$feed .= "</image>\n";
 
 	$feed .= "<dc:language>en-us</dc:language>\n";

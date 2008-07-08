@@ -273,7 +273,7 @@ if (isset($_GET['action']) && isLoggedIn())
 					$page_body .= $root_nav;
 					$page_body .= "<h1>root / remove [disable] comment</h1>\n";
 					$page_body .= "<p>Comment #" . $commentid . " removed and comment feed updated</p>\n";
-					$page_body .= '<p><a href="index.php?rantid=' . $commentid . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+					//$page_body .= '<p><a href="index.php?rantid=' . getRantForComment($skel, $commentid) . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 				}
 			}
 		} else

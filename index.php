@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
-$lastmodified = '2008-03-17';
-$page_version = '0.5.07';
+$lastmodified = '2008-07-08';
+$page_version = '0.5.08';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
@@ -147,7 +147,7 @@ if ( $subpage == 'plan' )
 	if ($submitting == false)
 	{
 		$rant = getRantById($skel, $rantid);
-		$page_body .= '<h1>' . $skel['sitename'] . " home</h1>\n";
+		$page_body .= '<h1>' . $skel['siteName'] . " home</h1>\n";
 		if (null != $skel['globalmessage'])
 		{
 			$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
@@ -181,7 +181,7 @@ if ( $subpage == 'plan' )
 
 			$page_body .= "<div class=\"browsenav\"><span class=\"previous\">" . $prev . "</span><span class=\"next\">&nbsp;" . $next . "</span></div>\n";
 
-			$page_body .= buildRants($skel, $rant);
+			$page_body .= buildRants($rant);
 
 			/* Show all comments */
 			$allComments = getComments($skel, $rantid);
@@ -363,13 +363,13 @@ if ( $subpage == 'plan' )
 } else
 {
 	/*** Show the homepage ***/
-	$page_body .= "<h1>" . $skel['sitename'] . " home</h1>\n";
+	$page_body .= "<h1>" . $skel['siteName'] . " home</h1>\n";
 	if (null != $skel['globalmessage'])
 	{
 		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 	}
 
-	$page_body .= buildRants($skel, getRants($skel, 0, $skel['nrOfRantsPerPage']));
+	$page_body .= buildRants(getRants($skel, 0, $skel['nrOfRantsPerPage']));
 	//$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel['nrOfRantsPerPage'] . "\">Old rants</a> ]</p>\n";
 	$page_body .= "<p>[ <a href=\"index.php?page=archive\">Old rants</a> ]</p>\n";
 

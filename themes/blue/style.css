@@ -254,7 +254,7 @@ blockquote
 	padding: 0;
 	background: transparent;
 	text-align: left;
-	border: 2px solid #FFF;
+	border: 1px solid #FFF;
 }
 
 	#logo a
@@ -478,6 +478,14 @@ blockquote
 	background-color: inherit;
 }
 
+p.globalmessage
+{
+	background-color: #FAF4C8;
+	border: 1px solid #E3DE9F;
+	padding: .3em;
+	/*color: #A19D68;*/
+}
+
 /* Blocks within content block */
 #last-modified
 {
@@ -550,8 +558,8 @@ blockquote
 	background: transparent;
 	color: inherit;
 	padding: 2px 0px 2px 0px;
-	border-top: 1px dotted #4F91C9;
-	border-bottom: 1px dotted #4F91C9;
+	/*border-top: 1px dotted #4F91C9;
+	border-bottom: 1px dotted #4F91C9;*/
 	text-align: left;
 	margin-top: 1em;
 }
