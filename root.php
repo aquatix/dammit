@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2008-03-26';
-$page_version = '0.5.11';
+$lastmodified = '2008-07-08';
+$page_version = '0.5.12';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -65,7 +65,10 @@ if ((isLoggedIn() == false) && (isset($_POST['user']) && $_POST['user'] != '') &
 		/* Login successfull! */
 		/* Start new session */
 		session_name($skel['session_name']);
-		session_start();
+		if (!isset($_SESSION))
+		{
+			session_start();
+		}
 
 		$_SESSION['username'] = $user;
 		$_SESSION['userid'] = $userid;
