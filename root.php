@@ -200,7 +200,7 @@ if (isset($_GET['action']) && isLoggedIn())
 			$page_body .= "<h1>root / sorry</h1>\n<p>No unpublished rants where found. <a href=\"root.php\">Go back to root</a></p>\n";
 		} else
 		{
-			$page_body .= buildRants($skel, $unpublished_rants);
+			$page_body .= buildRants($unpublished_rants);
 		}
 	} else if ('addmark' == $action)
 	{
