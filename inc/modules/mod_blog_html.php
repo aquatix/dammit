@@ -92,7 +92,7 @@ function buildRants( $rants )
 		$rantsHTML .= 'Posted by ' . $rants[$i]['username'] . ' | ';
 
 		//$rantsHTML .= '<div><a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_link.gif" alt="Search for related articles" title="Search for related articles" /></a></div>';
-		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_link.gif" alt="Search for related articles" title="Search for related articles" /></a> | ';
+		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_related.gif" alt="Search for related articles" title="Search for related articles" /></a> | ';
 
 		if ($rants[$i]['modified'] > 0)
 		{
