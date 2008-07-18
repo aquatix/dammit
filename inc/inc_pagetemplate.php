@@ -41,7 +41,7 @@ $page .= "<link rel=\"up\" href=\"/~mbscholt/\" title=\"Home page\" />\n";
 
 $page .= "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS\" href=\"http://aquariusoft.org/~mbscholt/blog.rdf\" />\n";
 
-$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css?20080708\"/>\n";
+$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css?20080709\"/>\n";
 $page .= "<!--[if gte ie 5.5000]><link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel['cssTheme'] . "/ie.css\" /><![endif]-->\n";
 
 
@@ -68,7 +68,7 @@ $page .= "<div id=\"logo\" title=\"Rantbox of a natural geek\"><a href=\"" . $sk
 $page .= "<div id=\"left-navbar\">\n";
 $page .= "\t<div class=\"nav-header\">dammIT</div>\n";
 $page .= "\t<ul id=\"main-nav\">\n";
-$page .= "\t\t<li><a href=\"index.php\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
+$page .= "\t\t<li><a href=\"./\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
 $page .= "\t\t<li><a href=\"index.php?page=archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
 //$page .= "\t\t<li><a href=\"index.php?page=browse\" accesskey=\"b\" title=\"Browse this web log with " . $skel["nrOfRantsPerPage"] . " posts per page\">browse rants</a></li>\n";
 $page .= "\t\t<li><a href=\"blogmarks.php\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
@@ -158,12 +158,6 @@ $page .= "\t\t</div>\n";
 
 $page .= "\t\t<div class=\"images\">\n";
 $page .= "\t\t\t<ul>\n";
-$page .= "\t\t\t\t<li><a href=\"http://eldred.cc/\"><img src=\"images/logos/create_like_its_1790.gif\" title=\"Save Orphan Works\" alt=\"create like it's 1790\" width=\"88\" height=\"31\" /></a></li>\n";
-$page .= "\t\t\t</ul>\n";
-$page .= "\t\t</div>\n";
-
-$page .= "\t\t<div class=\"images\">\n";
-$page .= "\t\t\t<ul>\n";
 $page .= "\t\t\t\t<li><a href=\"index.php?page=about#browser\" title=\"Readable with Any Browser(tm)\"><img src=\"images/logos/browser_all.png\" alt=\"Optimized for all browsers\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://validator.w3.org/check/referer\" title=\"Using valid xhtml1.1\"><img src=\"images/logos/valid_xhtml11.gif\" alt=\"Valid xhtml1.1\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://jigsaw.w3.org/css-validator/check/referer\" title=\"Using valid CSS\"><img src=\"images/logos/valid_css.gif\" alt=\"Valid CSS\"/></a></li>\n";
@@ -176,6 +170,12 @@ $page .= "\t\t\t\t<li><a href=\"http://www.catb.org/hacker-emblem/\" title=\"Sol
 //$page .= "\t\t\t\t<li><a href=\"callto:aquatix\" title=\"Skype me! [aquatix]\"><img src=\"images/logos/skypeme.gif\" alt=\"Skype me! [aquatix]\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.mozilla.com/firefox/\" title=\"Get Firefox - Web Browsing Redefined [and take back the web]\"><img src=\"images/logos/firefox_pixel.png\" alt=\"Get Firefox\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.mozilla.com/thunderbird/\" title=\"Get Thunderbird and reclaim your inbox!\"><img src=\"images/logos/thunderbird_pixel.png\" alt=\"Get Thunderbird\"/></a></li>\n";
+$page .= "\t\t\t</ul>\n";
+$page .= "\t\t</div>\n";
+
+$page .= "\t\t<div class=\"images\">\n";
+$page .= "\t\t\t<ul>\n";
+$page .= "\t\t\t\t<li><a href=\"http://eldred.cc/\"><img src=\"images/logos/create_like_its_1790.gif\" title=\"Save Orphan Works\" alt=\"create like it's 1790\" width=\"88\" height=\"31\" /></a></li>\n";
 $page .= "\t\t\t</ul>\n";
 $page .= "\t\t</div>\n";
 
