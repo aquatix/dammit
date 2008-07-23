@@ -56,8 +56,13 @@ function buildRants( $rants )
 			$rantsHTML .= "<div class=\"grouped\">\n";
 			$previousDate = $thisDate;
 		}
+		$foldContent = false;
 		/* Title */
 		$rantsHTML .= '<h3>' . $rants[$i]['title'] . "</h3>\n";
+		if (count($rants) > 1 && substr($rants[$i]['title'], 0, 13) == 'Blogmarks for')
+		{
+		//	$foldContent = true;
+		}
 		/* Info about the rant entry */
 		$rantsHTML .= "<div class=\"info\">";
 		$rantsHTML .= $rants[$i]['location'] . " | ";
@@ -71,6 +76,7 @@ function buildRants( $rants )
 		//$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . $rants[$i]['nrviews'] . " times</div>\n";
 		/* Rant itself */
 		$rantsHTML .= "<div class=\"rant\">\n";
+		if ($foldContent) { $rantsHTML .= '<p><a href="">Show all blogmarks</a></p><div id="posting' . $rants[$i]['messageID'] . '" style="display:none;">'; }
 		if (CONTENT_MARKDOWN == $rants[$i]['contenttype'])
 		{
 			$rantsHTML .= Markdown($rants[$i]['message']) . "\n";
@@ -82,6 +88,7 @@ function buildRants( $rants )
 		{
 			$rantsHTML .= $rants[$i]['message'] . "\n";
 		}
+		if ($foldContent) { $rantsHTML .= '</div>'; }
 
 		$rantsHTML .= "<div class=\"related\">";
 		if (true == isLoggedIn())
