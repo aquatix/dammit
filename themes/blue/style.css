@@ -3,6 +3,7 @@
  * Created by Michiel Scholten
  * mbscholt at aquariusoft dot org
  * 
+ * $Id: $
  * Version 0.5.08 :: 2008-03-26
  */
 
@@ -537,6 +538,12 @@ p.globalmessage
 .blogmark .edit
 {
 	margin-left: 15px;
+}
+
+.weeklyblogmarks
+{
+	font-size: 75%;
+/*	padding-left: 1em;*/
 }
 
 
