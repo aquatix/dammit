@@ -1039,7 +1039,7 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 	$body .= "== comment ======\n" . $unescapedMessage . "\n";
 
 	//$emailresult = sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $skel['mailTo'], $skel['mailSubject'] . " about \"" . $rantsInfo[0]['title'] . "\" [date: " . $rantsInfo[0]['date'] . ']", $body);
-	$emailresult = sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $skel['mailTo'], $skel['mailSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
+	$emailresult = sendEmail($skel['mailFrom'], $skel['mailFromName'], $skel['mailTo'], $skel['mailSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
 
 	if (false == $emailresult)
 	{
@@ -1058,7 +1058,7 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 		if ($email != $wantnotificationList[$i] && "" != $email)
 		{
 			//sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $wantnotificationList[$i], $skel['mailNotificationSubject'] . " about \"" . $rantsInfo[0]['title'] . "\" [posted " . $rantsInfo[0]['date'] . ']", $body);
-			sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $wantnotificationList[$i], $skel['mailNotificationSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
+			sendEmail($skel['mailFrom'], $skel['mailFromName'], $wantnotificationList[$i], $skel['mailNotificationSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
 		}
 	}
 

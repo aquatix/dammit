@@ -1,9 +1,26 @@
 <?php
 /*
  * $Id$
+ *
  * Toolkit module - methods
- * Version: 0.5.01 2008-03-17
+ * Version: 0.5.02 2008-08-19
+ *
+ * Copyright 2003-2008 mbscholt at aquariusoft.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 
 /*
  * Better integer-checker
@@ -141,26 +158,10 @@ function getMonthName($month)
 }
 
 
-function sendEmail($site, $from, $from_name, $to, $subject, $body)
+function sendEmail($from, $from_name, $to, $subject, $body)
 {
-	$MP = $site["mailPath"];
-	$spec_envelope = 1;
-	// Access Sendmail
-	// Conditionally match envelope address
-	if($spec_envelope)
-	{
-		$MP .= " -f " . $from;
-	}               
-	$fd = popen($MP,"w");
-	//fputs($fd, "To: " . $announce_to_email . "\n");
-	fputs($fd, "To: " . $to . "\n");
-	fputs($fd, "From: " . $from_name . " <" . $from . ">\n");
-	fputs($fd, "Subject: " . $subject . "\n");
-	fputs($fd, "X-Mailer: PHP4\n");
-	fputs($fd, $body); 
-	pclose($fd); 
-	// Done with email
-
+	$header = 'From: "' . $from_name . '" <' . $from . ">\r\n";
+	mail($to, $subject, $body, $header);
 	return 1;
 }
 
