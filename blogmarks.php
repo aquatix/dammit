@@ -116,5 +116,5 @@ for ($i = 0; $i < count($nrOfMarksByYear); $i++)
 }
 $page_body .= "</ul>\n";
 
-include "inc/inc_pagetemplate.php";
+include 'modules/pagetemplate.php';
 ?>

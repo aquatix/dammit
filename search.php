@@ -64,5 +64,5 @@ if ('' != $searchkey)
 	$page_body .= "<p>You will have to enter a text to search on</p>\n";
 }
 
-include 'inc/inc_pagetemplate.php';
+include 'modules/pagetemplate.php';
 ?>

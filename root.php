@@ -448,5 +448,5 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<br />\n";
 }
 
-include 'inc/inc_pagetemplate.php';
+include 'modules/pagetemplate.php';
 ?>

@@ -3,7 +3,7 @@
  * $Id$
  * 
  * Initialization module
- * Version: 0.5.03 2008-08-19
+ * Version: 0.5.04 2008-08-19
  * 
  * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
@@ -95,10 +95,10 @@ $result = mysql_query($query, $skel['dbLink']);
  */
 
 /****** Include the underlying methods ******/
-include 'modules/mod_toolkit_html.php';
-include 'modules/mod_toolkit_methods.php';
-include 'modules/mod_blog_html.php';
-include 'modules/mod_blog_methods.php';
-include 'modules/mod_log_html.php';
-include 'modules/mod_log_methods.php';
+include 'modules/toolkit_html.php';
+include 'modules/toolkit_methods.php';
+include 'modules/blog_html.php';
+include 'modules/blog_methods.php';
+include 'modules/log_html.php';
+include 'modules/log_methods.php';
 ?>

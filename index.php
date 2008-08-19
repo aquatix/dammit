@@ -375,5 +375,5 @@ if ( $subpage == 'plan' )
 } /* End of page-switcher */
 
 /* Now build the page */
-include 'inc/inc_pagetemplate.php';
+include 'modules/pagetemplate.php';
 ?>
