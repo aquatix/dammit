@@ -29,7 +29,7 @@ $dateofcreation = '2003-12-22';
 $section_name = 'root';
 $page_name = 'home';
 
-include 'inc/inc_init.php';
+include 'modules/init.php';
 
 /* Record a hit on this page to the log */
 addToLog( $skel, $section_name, $page_name, $page_version );

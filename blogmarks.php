@@ -26,7 +26,7 @@ $section_name = 'blogmarks';
 $page_name = 'home';
 $subpage = '';
 
-include "inc/inc_init.php";
+include 'modules/init.php';
 
 if (isset($_GET['page']))
 {

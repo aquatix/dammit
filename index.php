@@ -26,7 +26,7 @@ $page_name = 'home';
 $page_log = 'home';
 $section_name = 'home';
 
-include 'inc/inc_init.php';
+include 'modules/init.php';
 
 $subpage = getRequestParam('page', null);
 if (null != $subpage)

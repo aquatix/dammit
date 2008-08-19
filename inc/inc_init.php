@@ -24,7 +24,7 @@
 $starttime = microtime();
 
 /* Load the settings for this web log */
-include 'inc/inc_config.php';
+include 'config.php';
 
 if (!isset($skel['restricttoip']))
 {
@@ -95,6 +95,10 @@ $result = mysql_query($query, $skel['dbLink']);
  */
 
 /****** Include the underlying methods ******/
-include 'inc/inc_methods.php';
-include 'inc/inc_html.php';
+include 'modules/mod_toolkit_html.php';
+include 'modules/mod_toolkit_methods.php';
+include 'modules/mod_blog_html.php';
+include 'modules/mod_blog_methods.php';
+include 'modules/mod_log_html.php';
+include 'modules/mod_log_methods.php';
 ?>

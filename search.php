@@ -25,7 +25,7 @@ $dateofcreation = '2005-01-11';
 $section_name = 'home';
 $page_name = 'search';
 
-include 'inc/inc_init.php';
+include 'modules/init.php';
 
 addToLog( $skel, $section_name, $page_name, $page_version );
 
