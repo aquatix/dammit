@@ -26,6 +26,10 @@
 $skel['testing'] = false;
 $skel['testing'] = true;
 
+/* Global comments enabled yes/no toggle */
+//$skel['commentsenabled'] = true;
+$skel['commentsenabled'] = false;
+
 $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
 $skel['siteName'] = 'dammIT';

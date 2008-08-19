@@ -64,7 +64,7 @@ if ( $subpage == 'plan' )
 
 } else if ( $rantid > 0 )
 {
-	$commentsenabled = areCommentsEnabled($skel, $rantid);
+	$commentsenabled = $skel['commentsenabled'] && areCommentsEnabled($skel, $rantid);
 	$commenting = false;
 	$submitting = false;
 	$comment_preview = '';
