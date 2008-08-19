@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2008-07-08';
-$page_version = '0.5.12';
+$lastmodified = '2008-08-19';
+$page_version = '0.5.13';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -254,30 +254,28 @@ if (isset($_GET['action']) && isLoggedIn())
 		}
 	} else if ($action == "disablecomment")
 	{
-		if (isset($_GET['commentid']) && myIsInt($_GET['commentid']))
+		$commentid = getRequestParam('commentid', -1);
+		if ($commentid > 1)
 		{
-			$commentid = $_GET['commentid'];
-			if (false == $commentid)
+			$result = disableComment($skel, $commentid);
+			if ($result != "")
 			{
 				$page_body .= $root_nav;
 				$page_body .= "<h1>root / error!</h1>\n";
-				$page_body .= "<p>Not a valid comment selected</p>\n";
+				$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 			} else
 			{
-				$result = disableComment($skel, $commentid);
-				if ($result != "")
+				updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+				$commentRantID = getRequestParam('rantid', -1);
+				$page_body .= $root_nav;
+				$page_body .= "<h1>root / remove [disable] comment</h1>\n";
+				$page_body .= "<p>Comment #" . $commentid . " removed and comment feed updated</p>\n";
+				if ($commentRantID > 0)
 				{
-					$page_body .= $root_nav;
-					$page_body .= "<h1>root / error!</h1>\n";
-					$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
-				} else
-				{
-					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
-					$page_body .= $root_nav;
-					$page_body .= "<h1>root / remove [disable] comment</h1>\n";
-					$page_body .= "<p>Comment #" . $commentid . " removed and comment feed updated</p>\n";
-					//$page_body .= '<p><a href="index.php?rantid=' . getRantForComment($skel, $commentid) . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+					$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&rantid=" . $commentRantID . "\">Disable comments for the parent posting</a></p>\n";
+					$page_body .= "<p><a href=\"index.php?rantid=" . $commentRantID . "\">Go back to post</a></p>\n";
 				}
+				//$page_body .= '<p><a href="index.php?rantid=' . getRantForComment($skel, $commentid) . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 			}
 		} else
 		{

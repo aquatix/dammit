@@ -371,10 +371,10 @@ function buildComments( $comments )
 
 			if ($comments[$i]["state"] == 0)
 			{
-				$commentsHTML .= "| <a href=\"root.php?action=enablecomment&amp;commentid=" . $comments[$i]["id"] . "\">Show comment in list</a> ";
+				$commentsHTML .= "| <a href=\"root.php?action=enablecomment&amp;commentid=" . $comments[$i]['id'] . "&amp;rantid=" . $comments[$i]['rantId'] . "\">Show comment in list</a> ";
 			} else
 			{
-				$commentsHTML .= "| <a href=\"root.php?action=disablecomment&amp;commentid=" . $comments[$i]["id"] . "\">Hide comment from list</a> ";
+				$commentsHTML .= "| <a href=\"root.php?action=disablecomment&amp;commentid=" . $comments[$i]['id'] . "&amp;rantid=" . $comments[$i]['rantId'] . "\">Hide comment from list</a> ";
 			}
 		}
 		$commentsHTML .= "]</span></div>\n";
