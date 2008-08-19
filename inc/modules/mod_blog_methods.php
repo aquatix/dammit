@@ -3,7 +3,7 @@
  * $Id$
  *
  * Weblog module - methods
- * v0.5.05 2008-03-24
+ * Version: 0.5.06 2008-08-19
  *
  * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
@@ -29,6 +29,7 @@ define('ISPUBLIC_NO', 0);
 
 /* The various properties of a typical rant, set here as "constant" */
 $skel['rantproperties'] = 'messageid, date, user, ip, title, message, contenttype, initiated, published, ispublic, modified, modifieddate, location, commentsenabled';
+
 
 /*
  * Tries to log in the user/pass combo
@@ -234,6 +235,7 @@ function getRants( $skel, $offset, $number )
 	return resultsetToRants($skel, $result);
 }
 
+
 function getRantsForMonth( $skel, $year, $month )
 {
 	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE ispublic=1 AND YEAR(date)="' . $year . '" AND MONTH(date)="' . $month . '" ORDER BY date DESC';
@@ -241,6 +243,7 @@ function getRantsForMonth( $skel, $year, $month )
 	$result = mysql_query( $query, $skel['dbLink'] );
 	return resultsetToRants($skel, $result);
 }
+
 
 /* All unpublished rants */
 function getUnpublishedRants( $skel, $offset, $number )
@@ -250,6 +253,7 @@ function getUnpublishedRants( $skel, $offset, $number )
 	$result = mysql_query( $query, $skel['dbLink'] );
 	return resultsetToRants($skel, $result);
 }
+
 
 /*
  * Returns smplog_rant $id
@@ -351,7 +355,6 @@ function getRantsFromYear( $skel, $year)
 {
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
-//                        'messageid, date, user, ip, title, message, initiated, published, ispublic, modified, modifieddate, location, commentsenabled';
 	$query = 'SELECT messageid, date, user, ip, title, modified, modifieddate, location FROM smplog_rant WHERE ispublic=1 AND YEAR(date) = "' . $year . '" ORDER BY date DESC;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
@@ -374,7 +377,6 @@ function getRantsFromYear( $skel, $year)
 		}
 	}
 	return $rants;
-	//return resultsetToRants($skel, $result, false);
 }
 
 
@@ -432,7 +434,6 @@ function newRant($skel)
 /*
  * Add new rant to DB
  */
-//function addRant( $skel, $title, $location, $rant, $contenttype )
 function addRant( $skel, $rant )
 {
 	$title = escapeValue($rant['title']);
@@ -473,10 +474,8 @@ function addRant( $skel, $rant )
 /*
  * Updates smplog_rant with id $rantid with new data
  */
-//function editRant( $skel, $title, $location, $rant, $rantid )
 function editRant( $skel, $rant )
 {
-
 	/* Get the number of times this smplog_rant's already modified */
 	$timesModified = 0;
 	$query = 'SELECT modified, ispublic '.
@@ -608,9 +607,6 @@ function getMarksPerMonth( $skel, $year )
 
 	$query = "SELECT MONTH(smplog_blogmark.date), COUNT(*) FROM smplog_blogmark WHERE YEAR(smplog_blogmark.date) = " . $year . " GROUP BY MONTH(smplog_blogmark.date) DESC;";
 
-	// SELECT COUNT(Id) From smplog_blogmark WHERE MONTH(smplog_blogmark.date)=11 AND YEAR(smplog_blogmark.date) = 2004;
-	// SELECT DISTINCT MONTH(smplog_blogmark.date) AS M FROM smplog_blogmark WHERE YEAR(smplog_blogmark.date) = 2004 ORDER BY MONTH(smplog_blogmark.date) ASC;
-
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
@@ -635,9 +631,6 @@ function getMarksPerYear( $skel )
 
 	$query = "SELECT YEAR(smplog_blogmark.date), COUNT(*) FROM smplog_blogmark GROUP BY YEAR(smplog_blogmark.date) DESC;";
 
-	// SELECT COUNT(Id) From smplog_blogmark WHERE MONTH(smplog_blogmark.date)=11 AND YEAR(smplog_blogmark.date) = 2004;
-	// SELECT DISTINCT MONTH(smplog_blogmark.date) AS M FROM smplog_blogmark WHERE YEAR(smplog_blogmark.date) = 2004 ORDER BY MONTH(smplog_blogmark.date) ASC;
-
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
 	{
@@ -659,9 +652,6 @@ function getMarkMonths( $skel, $year )
 	$results = array();
 
 	$query = "SELECT DISTINCT MONTH(smplog_blogmark.date) FROM smplog_blogmark WHERE YEAR(smplog_blogmark.date) = " . $year . " ORDER BY smplog_blogmark.date ASC;";
-
-	// SELECT COUNT(Id) From smplog_blogmark WHERE MONTH(smplog_blogmark.date)=11 AND YEAR(smplog_blogmark.date) = 2004;
-	// SELECT DISTINCT MONTH(smplog_blogmark.date) AS M FROM smplog_blogmark WHERE YEAR(smplog_blogmark.date) = 2004 ORDER BY MONTH(smplog_blogmark.date) ASC;
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
@@ -760,8 +750,6 @@ function getMarkByID( $skel, $id )
 {
 	$marks = array();
 
-	//$query = 'SELECT MessageId, Date, User, Ip, Title, Message, Modified, ModifiedDate, Location, smplog_blogmark FROM smplog_rant ORDER BY Date DESC LIMIT ' . $number . ';';
-	//$query = 'SELECT MessageId, Date, User, Ip, Title, Message, Modified, ModifiedDate, Location, smplog_blogmark FROM smplog_rant WHERE MessageId = ' . $id . ';';
 	$query = 'SELECT id, date, user, ip, title, uri, location, message, modified, modifieddate FROM smplog_blogmark WHERE id=' . $id . ';';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
@@ -886,33 +874,9 @@ function marksToRant($skel)
 	$rant['ispublic'] = ISPUBLIC_YES;
 	$rant['ip'] = '127.0.0.1';
 	$rant['initiated'] = $end;
-	//$rant['rantid'] = getRequestParam('rantid', -1);
 	addRant( $skel, $rant );
 	return '';
 }
-
-
-
-
-/*
- * Fetches smplog_blogmarks from DB, sorted on date/time, newest first. Starting from number $first to $first+$number
- * $rants:
- * id
- * date
- * user
- * ip
-
-
-/*
- * Looks up mark $markId in DB
- */
-/*
-   function getMark( $dblink, $markId )
-   {
-// look it up in db
-return buildMark( $markInfo );
-}
- */
 
 
 /*
@@ -1022,10 +986,8 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 		$result .= "Error while executing query\n";
 	}
 
-
 	// Get information about the current weblog entry
 	$rantsInfo = getRantsInfo($skel, $rantId);
-
 
 	// Now send an announcement email
 	if ("" == $email)
@@ -1033,12 +995,9 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 		$email = "no e-mail address provided";
 	}
 	// Mail configuration
-	//$body = "\nA smplog_comment has been added by " . $name . " [' . $email . '].\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $skel['baseHref'] . "index.php?rantid=" . $rantId . "\n" . $skel['baseHref'] . "index.php?rantid=" . $rantId . "&action=remove\n\n";
-	//$body = "\nA smplog_comment has been added by " . $name . " [' . $email . '].\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $skel['baseHref'] . "index.php?rantid=" . $rantId . "\n\n";
 	$body = "\nA comment has been added by " . $name . " [" . $email . "].\nTime of comment: " . $time . "\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $rantsInfo[0]['title'] . " [date: " . $rantsInfo[0]['date'] . "]\nhttp://" . $skel['servername'] . $skel['baseHref'] . "index.php?rantid=" . $rantId . "\n\n";
 	$body .= "== comment ======\n" . $unescapedMessage . "\n";
 
-	//$emailresult = sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $skel['mailTo'], $skel['mailSubject'] . " about \"" . $rantsInfo[0]['title'] . "\" [date: " . $rantsInfo[0]['date'] . ']", $body);
 	$emailresult = sendEmail($skel['mailFrom'], $skel['mailFromName'], $skel['mailTo'], $skel['mailSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
 
 	if (false == $emailresult)
@@ -1057,7 +1016,6 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 		/* Don't send e-mail to the person commenting now, and not to an empty address */
 		if ($email != $wantnotificationList[$i] && "" != $email)
 		{
-			//sendEmail($skel, $skel['mailFrom'], $skel['mailFromName'], $wantnotificationList[$i], $skel['mailNotificationSubject'] . " about \"" . $rantsInfo[0]['title'] . "\" [posted " . $rantsInfo[0]['date'] . ']", $body);
 			sendEmail($skel['mailFrom'], $skel['mailFromName'], $wantnotificationList[$i], $skel['mailNotificationSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
 		}
 	}
@@ -1065,7 +1023,6 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 	return $result;
 	//if nonexisting rant -> return -1 as error
 }
-
 
 
 /*
@@ -1081,7 +1038,6 @@ function disableComment($skel, $commentid)
 	$result = "";
 	if (false == $querysuccess)
 	{
-		//something went wrong with the query
 		$result .= "Error while executing query\n";
 	}
 	return $result;
@@ -1145,8 +1101,6 @@ function enableCommentsForPost($skel, $rantid)
 	}
 	return $result;
 }
-
-
 
 
 /*

@@ -1,10 +1,27 @@
 <?php
 /*
- * Log module - HTML methods
  * $Id$
- * Version: 0.5.01 2008-03-17
- * 2005-02-13
+ * 
+ * Log module - HTML methods
+ * Version: 0.5.02 2008-08-19
+ * Created: 2005-02-13
+ * 
+ * Copyright 2003-2008 mbscholt at aquariusoft.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 
 /*
  * Build table from log info. Uses mod_toolkit for table
@@ -14,22 +31,21 @@ function buildLogtable($logitems)
 	//
 }
 
+
 function buildReferers( $skel, $referers )
 {
-	//$referers[$section_name][$page_name][$i]["number"]
 	$result = "<ul>\n";
 	foreach ($referers as $referer)
 	{
 		$result .= "\t<li><a href=\"" . $referer['uri'] . "\">" . $referer['uri'] . "</a> (" . $referer['count'] . ")</li>\n";
-		//result .= "<li>" . $referer . "</li>\n";
 	}
 	$result .= "</ul>\n";
 	return $result;
 }
 
+
 function buildAllReferers( $skel, $referers )
 {
-	//$referers[$section_name][$page_name][$i]["number"]
 	$result = "<ul>\n";
 	$prev_section_page = "";
 	foreach ($referers as $referer)
@@ -39,9 +55,7 @@ function buildAllReferers( $skel, $referers )
 			$prev_section_page = $referer['section'] . '|' . $referer['page'];
 			$result .= "</ul>\n<h2>" . $referer['section'] . ' / ' . $referer['page'] . "</h2>\n<ul>\n";
 		}
-		//$result .= "\t<li><a href=\"" . $referer['uri'] . "\">[" . $referer['section'] . "][" . $referer['page'] . "] " . shortLine($referer['uri'], 50) . "</a> (" . $referer['count'] . ")</li>\n";
 		$result .= "\t<li><a href=\"" . $referer['uri'] . "\">" . shortLine($referer['uri'], 70) . "</a> (" . $referer['count'] . ")</li>\n";
-		//result .= "<li>" . $referer . "</li>\n";
 	}
 	$result .= "</ul>\n";
 	return $result;

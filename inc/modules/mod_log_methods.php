@@ -1,14 +1,32 @@
 <?php
 /*
  * $Id$
+ * 
  * Log module - methods
- * Version: 0.5.02 2008-03-17
+ * Version: 0.5.03 2008-09-19
+ * 
+ * Copyright 2003-2008 mbscholt at aquariusoft.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 
 function getLog($db_link, $filter_on, $offset, $nrofitems)
 {
 	//
 }
+
 
 function addToLog( $skel, $section_name, $page_name, $page_version )
 {
@@ -32,6 +50,7 @@ function addToLog( $skel, $section_name, $page_name, $page_version )
 	return 1;
 }
 
+
 function getNumberOfViews( $skel, $section_name, $page_name )
 {
 	$query = 'SELECT COUNT(*) FROM smplog_log ' .
@@ -47,16 +66,10 @@ function getNumberOfViews( $skel, $section_name, $page_name )
 	}
 }
 
+
 function getReferers( $skel, $section_name, $page_name )
 {
 	$webloghref = "http://" . $skel["servername"] . $skel["baseHref"];
-	//$query = 'SELECT Referer FROM Log WHERE Section="' . $section_name . '" AND Page="' . $page_name . '";';
-	/*
-	   $query = 'SELECT DISTINCT Referer FROM Log ' .
-	   'WHERE Section="' . $section_name . '" AND Page="' . $page_name . '" ' .
-	   'AND Referer NOT LIKE "' . $webloghref . '%.php" ' .
-	   'AND Referer!="";';
-	 */
 
 	$query = 'SELECT referer, COUNT(*) FROM smplog_log ' .
 		'WHERE section="' . $section_name . '" AND page="' . $page_name . '" ' .
@@ -71,9 +84,6 @@ function getReferers( $skel, $section_name, $page_name )
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
 		{
 			$row = mysql_fetch_row($result);
-
-			//$referers[$section_name][$page_name][$i] = $row[0];
-			//$referers[$section_name][$page_name][$i]["number"] = $row[1];
 			$referers[$i]['uri'] = $row[0];
 			$referers[$i]['count'] = $row[1];
 		}
@@ -81,16 +91,10 @@ function getReferers( $skel, $section_name, $page_name )
 	return $referers;
 }
 
+
 function getAllReferers( $skel )
 {
-	//SELECT  Page, Referer, count(*) FROM Log WHERE Section="home" AND Page LIKE "posting.%" AND Referer!="" GROUP BY Referer;
 	$webloghref = "http://" . $skel["servername"] . $skel["baseHref"];
-	/*
-	   $query = 'SELECT Section, Page, Referer, COUNT(*) FROM Log ' .
-	   'WHERE Referer NOT LIKE "' . $webloghref . '%" ' .
-	   'AND Referer!="" ' .
-	   'GROUP BY Referer ORDER BY Section, Page ASC;';
-	 */
 	$query = 'SELECT Section, Page, Referer, COUNT(*) FROM Log ' .
 		'WHERE Referer NOT LIKE "' . $webloghref . '%" ' .
 		'AND Referer NOT LIKE "http://192.168.0.150/~mbscholt/%" AND Referer NOT LIKE "http://www.aquariusoft.org/~mbscholt/%" AND Referer NOT LIKE "http://aquariusoft.org/\%7E%" AND Referer NOT LIKE "http://xcalibur.aquariusoft.org/~mbscholt/%" ' .
@@ -105,9 +109,6 @@ function getAllReferers( $skel )
 		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
 		{
 			$row = mysql_fetch_row($result);
-
-			//$referers[$section_name][$page_name][$i] = $row[0];
-			//$referers[$section_name][$page_name][$i]["number"] = $row[1];
 			$referers[$i]["section"] = $row[0];
 			$referers[$i]["page"] = $row[1];
 			$referers[$i]["url"] = $row[2];
@@ -116,6 +117,7 @@ function getAllReferers( $skel )
 	}
 	return $referers;
 }
+
 
 /* Admin log */
 

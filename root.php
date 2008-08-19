@@ -230,7 +230,6 @@ if (isset($_GET['action']) && isLoggedIn())
 		/* Trying to add blogmark to DB */
 		if (isset($_POST['title']) && isset($_POST['uri']) && isset($_POST['location']) && isset($_POST['description']))
 		{
-			//addMark($skel, $_POST['title'], $_POST['uri'], $_POST['location'], $_POST['description']);
 			addMark($skel, getRequestParam('title', null), getRequestParam('uri', null), getRequestParam('location', null), getRequestParam('description', null));
 			/* Update RSS feed[s] */
 			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
@@ -273,7 +272,7 @@ if (isset($_GET['action']) && isLoggedIn())
 				if ($commentRantID > 0)
 				{
 					$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&rantid=" . $commentRantID . "\">Disable comments for the parent posting</a></p>\n";
-					$page_body .= "<p><a href=\"index.php?rantid=" . $commentRantID . "\">Go back to post</a></p>\n";
+					$page_body .= "<p><a href=\"index.php?rantid=" . $commentRantID . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 				}
 				//$page_body .= '<p><a href="index.php?rantid=' . getRantForComment($skel, $commentid) . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 			}
@@ -285,30 +284,26 @@ if (isset($_GET['action']) && isLoggedIn())
 		}
 	} else if ($action == "enablecomment")
 	{
-		if (isset($_GET['commentid']) && myIsInt($_GET['commentid']))
+		$commentid = getRequestParam('commentid', -1);
+		if ($commentid > 1)
 		{
-			$commentid = $_GET['commentid'];
-			if (false == $commentid)
+			$result = enableComment($skel, $commentid);
+			if ($result != "")
 			{
 				$page_body .= $root_nav;
 				$page_body .= "<h1>root / error!</h1>\n";
-				$page_body .= "<p>Not a valid comment selected</p>\n";
+				$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
 			} else
 			{
-				$result = enableComment($skel, $commentid);
-				if ($result != "")
+				updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+				$commentRantID = getRequestParam('rantid', -1);
+				$page_body .= $root_nav;
+				$page_body .= "<h1>root / recover [enable] comment</h1>\n";
+				$page_body .= "<p>Comment #" . $commentid . " recovered and comment feed updated</p>\n";
+				$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+				if ($commentRantID > 0)
 				{
-					$page_body .= $root_nav;
-					$page_body .= "<h1>root / error!</h1>\n";
-					$page_body .= "<p>" . $result . "</p><p>Please contact the webmaster</p>\n";
-				} else
-				{
-					updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
-					$page_body .= $root_nav;
-					$page_body .= "<h1>root / recover [enable] comment</h1>\n";
-					$page_body .= "<p>Comment #" . $commentid . " recovered and comment feed updated</p>\n";
-					$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
-					//$page_body .= "<p><a href=\"index.php?rantid=" . $rantid . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+					$page_body .= "<p><a href=\"index.php?rantid=" . $commentRantID . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 				}
 			}
 		} else

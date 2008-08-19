@@ -3,7 +3,7 @@
  * $Id$
  *
  * Blog module - HTML methods
- * v0.5.08 2008-03-24
+ * Version: 0.5.09 2008-08-19
  *
  * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
@@ -230,15 +230,12 @@ function buildEditRant($rant)
 	$html .= "<input type=\"hidden\" name=\"id\" value=\"" . $rant['messageID'] . "\"/>\n";
 	$html .= "<input type=\"hidden\" name=\"initiated\" value=\"" . $rant['initiated'] . "\"/>\n";
 	$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
-	//$html .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/><input name=\"submitbtn\" value=\"Publish\" type=\"submit\"/></p>\n";
-	//$html .= "<p><input name=\"savekind\" value=\"Save\" type=\"submit\"/><input name=\"savekind\" value=\"Publish\" type=\"submit\"/></p>\n";
 
 	return $html;
 }
 
 
 /***    Blogmarks   ***/
-
 
 /*
  * Build list of blogmarks from $marks
@@ -430,7 +427,6 @@ function generateFeed($skel, $filename, $feedtitle, $body)
 
 	$feed .= "\t</channel>\n";
 	$feed .= "</rss>\n";
-	//$file = fopen($skel["rssFilename"], "w");
 	$file = fopen($filename, "w");
 	fputs($file, $feed);
 	fclose($file);
@@ -467,20 +463,14 @@ function updateWeblogFeed($skel, $rants)
 	/* count($rants) should be $nrOfRantsPerPage */
 	for ($i = 0; $i < count($rants); $i++)
 	{
-		//$feed .= "<item rdf:about=\"" . $skel_base_href . "index.php?rantid=" . $rants[$i]['messageID'] . "\">\n";
 		$feed .= "\t\t<item>\n";
 		$feed .= "\t\t\t<title>" . $rants[$i]['title'] . "</title>\n";
 		$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</link>\n";
 		$feed .= "\t\t\t<guid>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</guid>\n";
-		//$feed .= "<description>" . $rants[$i]['message'] . "</description>\n";
-		//$feed .= "<description></description>\n";
 		$feed .= "\t\t\t<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>]]></content:encoded>\n";
-		//$feed .= "<description>" . strip_tags($rants[$i]['message']) . "</description>\n";
-		//$feed .= "<description>blah</description>\n";
 		$feed .= "\t\t\t<dc:subject></dc:subject>\n";
 		$feed .= "\t\t\t<dc:creator>" . $skel["authorShortname"] . "</dc:creator>\n";
 		$feed .= "\t\t\t<comments>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "#comments</comments>\n";
-		//<dc:date>2004-02-26T01:17:33+01:00</dc:date>
 		$feed .= "\t\t\t<dc:date>" . getRSSDateTime($rants[$i]['date']) . "</dc:date>\n";
 		$feed .= "\t\t</item>\n";
 	}
@@ -526,17 +516,13 @@ function updateWeblogCommentsFeed($skel, $rants)
 				$rantcomments .= " @ " . $comments[$j]['date'] . ":<p>" . $message . "</p></div>\n";
 			}
 		}
-		//$feed .= "<item rdf:about=\"" . $skel_base_href . "index.php?rantid=" . $rants[$i]['messageID'] . "\">\n";
 		$feed .= "\t\t<item>\n";
 		$feed .= "\t\t\t<title>" . $rants[$i]['title'] . "</title>\n";
 		$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</link>\n";
-		//$feed .= "<description>" . $rants[$i]['message'] . "</description>\n";
-		//$feed .= "<description></description>\n";
 		$feed .= "\t\t\t<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>" . $rantcomments . "]]></content:encoded>\n";
 		$feed .= "\t\t\t<dc:subject></dc:subject>\n";
 		$feed .= "\t\t\t<dc:creator>" . $skel["authorShortname"] . "</dc:creator>\n";
 		$feed .= "\t\t\t<comments>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "#comments</comments>\n";
-		//<dc:date>2004-02-26T01:17:33+01:00</dc:date>
 		$feed .= "\t\t\t<dc:date>" . getRSSDateTime($rants[$i]['date']) . "</dc:date>\n";
 		$feed .= "\t\t</item>\n";
 	}
@@ -587,282 +573,6 @@ function updateWebmarksFeed($skel, $marks)
 	}
 	/* now generate the file */
 	generateFeed($skel, $skel["rssMarksFilename"], $skel["siteName"] . " blogmarks", $feed);
-}
-
-
-
-
-/*
- * Writes a feed with the latest $nrOfRantsPerPage postings to a hardcoded blog.rss file
- *
- * $rants:
- * id
- * date
- * user
- * ip
- * title
- * uri
- * location
- * message
- * modified
- * modifiedDate
- */
-function generateBlogFeed($rants, $skel)
-{
-	$feed  = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
-	$feed .= "<rss version=\"2.0\"\n";
-	$feed .= "xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n";
-	$feed .= "xmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\"\n";
-	$feed .= "xmlns:admin=\"http://webns.net/mvcb/\"\n";
-	$feed .= "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
-	$feed .= "xmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n";
-
-
-	$feed .= "<channel>\n";
-	//$feed .= "<title>dammIT</title>\n";
-	$feed .= "<title>" . $skel["siteName"] . "</title>\n";
-	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
-	//$feed .= "<description>dammIT - rantbox of Michiel Scholten</description>\n";
-	$feed .= "<description>" . $skel["feedDescription"] . "</description>\n";
-
-	$feed .= "<image>\n";
-	$feed .= "<title>" . $skel["siteName"] . "</title>\n";
-	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
-	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
-	$feed .= "<width>176</width>\n";
-	$feed .= "<height>71</height>\n";
-	$feed .= "<description>" . $skel["siteName"] . "</description>\n";
-	$feed .= "</image>\n";
-
-	$feed .= "<dc:language>en-us</dc:language>\n";
-	//$feed .= "<dc:rights>Copyright 2003-2004 Michiel Scholten</dc:rights>\n";
-	$feed .= "<dc:rights>Copyright " . $skel["startyear"] . "-" . date("Y") . " " .$skel["author"] . "</dc:rights>\n";
-	$feed .= "<dc:creator>" . $skel["rssEmail"] . "</dc:creator>\n";
-	$feed .= "<dc:date>" . date('Y-m-d\TH:i:s+01:00') . "</dc:date>\n";
-	$feed .= "<admin:generatorAgent rdf:resource=\"" . $skel["servername"] . $skel["baseHref"] . "\" />\n";
-	$feed .= "<sy:updatePeriod>hourly</sy:updatePeriod>\n";
-	$feed .= "<sy:updateFrequency>1</sy:updateFrequency>\n";
-	$feed .= "<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>\n";
-
-
-	$feed .= "<items>\n\t<rdf:Seq>\n";
-	/* count($rants) should be $nrOfRantsPerPage */
-	for ($i = 0; $i < count($rants); $i++)
-	{
-		$feed .= "\t<rdf:li rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "\" />\n";
-	}
-	$feed .= "\t</rdf:Seq>\n</items>\n";
-
-	/* count($rants) should be $nrOfRantsPerPage */
-	for ($i = 0; $i < count($rants); $i++)
-	{
-		//$feed .= "<item rdf:about=\"" . $skel_base_href . "index.php?rantid=" . $rants[$i]['messageID'] . "\">\n";
-		$feed .= "<item>\n";
-		$feed .= "<title>" . $rants[$i]['title'] . "</title>\n";
-		$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</link>\n";
-		//$feed .= "<description>" . $rants[$i]['message'] . "</description>\n";
-		//$feed .= "<description></description>\n";
-		$feed .= "<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>]]></content:encoded>\n";
-		$feed .= "<dc:subject></dc:subject>\n";
-		$feed .= "<dc:creator>Michiel</dc:creator>\n";
-		$feed .= "<description>" . striptags($rants[$i]['message']) . "</description>\n";
-		$feed .= "<comments>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "#comments</comments>\n";
-		//<dc:date>2004-02-26T01:17:33+01:00</dc:date>
-		$feed .= "<dc:date>" . getRSSDateTime($rants[$i]['date']) . "</dc:date>\n";
-		$feed .= "</item>\n";
-	}
-
-	$feed .= "\t\n</channel>\n";
-
-	$feed .= "</rss>\n";
-	$file = fopen($skel["rssFilename"], "w");
-	fputs($file, $feed);
-	fclose($file);
-}
-
-
-/*
- * Same as generateBlogFeed, but now with comments too
- */
-function generateBlogWithCommentsFeed($rants, $skel)
-{
-	$feed  = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
-	$feed .= "<rss version=\"2.0\"\n";
-	$feed .= "xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n";
-	$feed .= "xmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\"\n";
-	$feed .= "xmlns:admin=\"http://webns.net/mvcb/\"\n";
-	$feed .= "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
-	$feed .= "xmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n";
-
-
-	$feed .= "<channel>\n";
-	//$feed .= "<title>dammIT [with comments]</title>\n";
-	$feed .= "<title>" . $skel["siteName"] . " [with comments]</title>\n";
-	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
-	//$feed .= "<description>dammIT - rantbox of Michiel Scholten</description>\n";
-	$feed .= "<description>" . $skel["feedDescription"] . "</description>\n";
-
-	$feed .= "<image>\n";
-	$feed .= "<title>" . $skel["siteName"] . "</title>\n";
-	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
-	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
-	$feed .= "<width>176</width>\n";
-	$feed .= "<height>71</height>\n";
-	$feed .= "<description>" . $skel["siteName"] . "</description>\n";
-	$feed .= "</image>\n";
-
-	$feed .= "<dc:language>en-us</dc:language>\n";
-	$feed .= "<dc:rights>Copyright " . $skel["startyear"] . "-" . date("Y") . " " .$skel["author"] . "</dc:rights>\n";
-	//$feed .= "<dc:creator>mbscholt@aquariusoft.notforspambastards.org</dc:creator>\n";
-	$feed .= "<dc:creator>" . $skel["rssEmail"] . "</dc:creator>\n";
-	$feed .= "<dc:date>" . date('Y-m-d\TH:i:s+01:00') . "</dc:date>\n";
-	$feed .= "<admin:generatorAgent rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "\" />\n";
-	$feed .= "<sy:updatePeriod>hourly</sy:updatePeriod>\n";
-	$feed .= "<sy:updateFrequency>1</sy:updateFrequency>\n";
-	$feed .= "<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>\n";
-
-
-	$feed .= "<items>\n\t<rdf:Seq>\n";
-	/* count($rants) should be $nrOfRantsPerPage */
-	for ($i = 0; $i < count($rants); $i++)
-	{
-		$feed .= "\t<rdf:li rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "\" />\n";
-	}
-	$feed .= "\t</rdf:Seq>\n</items>\n";
-
-	/* count($rants) should be $nrOfRantsPerPage */
-	for ($i = 0; $i < count($rants); $i++)
-	{
-		$rantcomments = '';
-		$comments = getAllComments($skel, $rants[$i]['messageID'], false);
-		if (count($comments) > 0)
-		{
-			$rantcomments .= "<div>";
-			$rantcomments = "<br /><hr /><p><b>Comments:</b></p>\n";
-			for ($j = 0; $j < count($comments); $j++)
-			{
-				if ($comments[$j]['url'] != '')
-				{
-					$rantcomments .= "<a href=\"" . $comments[$j]['url'] . "\">" . $comments[$j]["name"] . "</a>";
-				} else
-				{
-					$rantcomments .= $comments[$j]["name"];
-				}
-				$message  = str_replace("\n", "<br />\n", $comments[$j]['message']);
-				$message .= "<br />";
-				//$rantcomments .= " @ " . $comments[$j]['date'] . ":<font size=-1><p>" . $message . "</p></font>";
-				$rantcomments .= " @ " . $comments[$j]['date'] . ":<p>" . $message . "</p></div>\n";
-			}
-		}
-		//$feed .= "<item rdf:about=\"" . $skel_base_href . "index.php?rantid=" . $rants[$i]['messageID'] . "\">\n";
-		$feed .= "<item>\n";
-		$feed .= "<title>" . $rants[$i]['title'] . "</title>\n";
-		$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</link>\n";
-		//$feed .= "<description>" . $rants[$i]['message'] . "</description>\n";
-		//$feed .= "<description></description>\n";
-		$feed .= "<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>" . $rantcomments . "]]></content:encoded>\n";
-		$feed .= "<dc:subject></dc:subject>\n";
-		$feed .= "<dc:creator>Michiel</dc:creator>\n";
-		$feed .= "<comments>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "#comments</comments>\n";
-		//<dc:date>2004-02-26T01:17:33+01:00</dc:date>
-		$feed .= "<dc:date>" . getRSSDateTime($rants[$i]['date']) . "</dc:date>\n";
-		$feed .= "</item>\n";
-	}
-
-	$feed .= "\t\n</channel>\n";
-	$feed .= "</rss>\n";
-
-	$file = fopen($skel["rssWithCommentsFilename"], "w");
-	fputs($file, $feed);
-	fclose($file);
-}
-
-
-/*
- * Writes a feed with the latest $nrOfMarksPerPage postings to a hardcoded blogmarks.rss file
- *
- * $marks:
- * id
- * date
- * user
- * ip
- * title
- * url
- * location
- * message
- * modified
- * modifiedDate
- */
-function generateBlogmarkFeed($marks, $skel)
-{
-	$feed  = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
-	$feed .= "<rss version=\"2.0\"\n";
-	$feed .= "xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n";
-	$feed .= "xmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\"\n";
-	$feed .= "xmlns:admin=\"http://webns.net/mvcb/\"\n";
-	$feed .= "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
-	$feed .= "xmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n";
-
-	$feed .= "<channel>\n";
-	//$feed .= "<title>dammIT blogmarks</title>\n";
-	$feed .= "<title>" . $skel["siteName"] . " blogmarks</title>\n";
-	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
-	//$feed .= "<description>dammIT - rantbox of Michiel Scholten</description>\n";
-	$feed .= "<description>" . $skel["feedDescription"] . "</description>\n";
-
-	$feed .= "<image>\n";
-	//$feed .= "<title>dammIT</title>\n";
-	$feed .= "<title>" . $skel["siteName"] . "</title>\n";
-	$feed .= "<url>http://" . $skel["servername"] . $skel["baseHref"] . $skel["logo"] . "</url>\n";
-	$feed .= "<link>http://" . $skel["servername"] . $skel["baseHref"] . "</link>\n";
-	$feed .= "<width>176</width>\n";
-	$feed .= "<height>71</height>\n";
-	//$feed .= "<description>Rantbox of Michiel Scholten</description>\n";
-	$feed .= "<description>" . $skel["siteName"] . "</description>\n";
-	$feed .= "</image>\n";
-
-	$feed .= "<dc:language>en-us</dc:language>\n";
-	//$feed .= "<dc:rights>Copyright 2003-2004 Michiel Scholten</dc:rights>\n";
-	$feed .= "<dc:rights>Copyright " . $skel["startyear"] . "-" . date("Y") . " " .$skel["author"] . "</dc:rights>\n";
-	//$feed .= "<dc:creator>mbscholt@aquariusoft.notforspambastards.org</dc:creator>\n";
-	$feed .= "<dc:creator>" . $skel["rssEmail"] . "</dc:creator>\n";
-	$feed .= "<dc:date>" . date('Y-m-d\TH:i:s+01:00') . "</dc:date>\n";
-	$feed .= "<admin:generatorAgent rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "\" />\n";
-	$feed .= "<sy:updatePeriod>hourly</sy:updatePeriod>\n";
-	$feed .= "<sy:updateFrequency>1</sy:updateFrequency>\n";
-	$feed .= "<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>\n";
-
-	$feed .= "<items>\n\t<rdf:Seq>\n";
-	for ($i = 0; $i < count($marks); $i++)
-	{
-		$feed .= "\t<rdf:li rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "blogmarks.php?markid=" . $marks[$i]["id"] . "\" />\n";
-	}
-	$feed .= "\t</rdf:Seq>\n</items>\n";
-
-	/* count($rants) should be $nrOfRantsPerPage */
-	for ($i = 0; $i < count($marks); $i++)
-	{
-		$feed .= "<item>\n";
-		$feed .= "<title>" . $marks[$i]['title'] . "</title>\n";
-		/* Atom links, usable in the future when I come around to implement an Atom feed
-		$feed .= "<link rel=\"alternate\" type=\"application/xhtml+xml\" href=\"" . $skel["baseHref"] . markurl($marks[$i]) . "\" />\n";
-		$feed .= "<link rel=\"related\" type=\"text/html\" href=\"" . $marks[$i]['url'] . "\" />\n";
-		*/
-		$feed .= "<link>" . $marks[$i]['url'] . "</link>\n";
-		$feed .= "<content:encoded><![CDATA[" . $marks[$i]['message'] . "<p>Location: " . $marks[$i]['location'] . "</p>]]></content:encoded>\n";
-		$feed .= "<dc:subject></dc:subject>\n";
-		$feed .= "<dc:creator>Michiel</dc:creator>\n";
-		$feed .= "<dc:date>" . getRSSDateTime($marks[$i]['date']) . "</dc:date>\n";
-		$feed .= "</item>\n";
-	}
-
-	$feed .= "\t\n</channel>\n";
-
-	$feed .= "</rss>\n";
-
-	$file = fopen($skel["rssMarksFilename"], "w");
-	fputs($file, $feed);
-	fclose($file);
 }
 
 ?>

@@ -3,8 +3,24 @@
  * $Id$
  *
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * Version: 0.5.06 2008-07-08
+ * Version: 0.5.07 2008-08-19
+ * 
+ * Copyright 2003-2008 mbscholt at aquariusoft.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 
 /*** Site settings ***/
 $skel['testing'] = false;
@@ -25,13 +41,11 @@ $skel['globalmessage'] = null; /* Use when you don't want such a message */
 $skel['nrOfRantsPerPage'] = 10;	//varying between 10 and 15 :)
 $skel['nrOfMarksPerPage'] = 20;
 $skel['nrOfMarksInNav'] = 15;
-//$skel['baseHref'] = 'http://aquariusoft.org/~mbscholt/';
 $skel['servername'] = 'aquariusoft.org';
 $skel['baseHref'] = '/~mbscholt/';
 $skel['basePath'] = '/home/mbscholt/www/';
 if (true == $skel['testing'])
 {
-	//$skel['baseHref'] = 'http://aquariusoft.org/projects/blog/';
 	/*
 	$skel['baseHref'] = '/projects/blog/';
 	$skel['basePath'] = '/var/www/projects/blog/';
@@ -88,9 +102,7 @@ $skel['nav_shared'] = array(
 		);
 */
 $skel['nav_blogs'] = array(
-		//'http://alextreme.org/' => 'alextreme',
 		'http://www.manuzhai.nl/' => 'manuzhai',
-		//'http://roos.b-cool.nl/' => 'roosje',
 		'http://bloempje.nl/' => 'roosje',
 		'http://www.rousette.org.uk/' => 'but she\'s a girl',
 		'http://diveintomark.org/' => 'dive into mark',
@@ -98,10 +110,7 @@ $skel['nav_blogs'] = array(
 		'http://www.1976design.com/blog/' => '1976design',
 		'http://www.chipx86.com/blog/' => 'chipx86',
 		'http://www.jaypinkerton.com/blog/' => 'jay pinkerton',
-		//'http://kfx.toastmedia.com/' => 'kfx studios',
-		//'http://www.mynx.com/' => 'mynxisms',
 		'http://chongq.blogspot.com/' => 'chongqing',
-		//'http://willy.boerland.com/myblog/index.php' => 'willy dobbe'
 		'http://anneliesje.nl/' => 'annelies',
 		'http://tisseenschande.nl/' => 'schande',
 		'http://mehellll.web-log.nl/' => 'melanie',
@@ -142,7 +151,6 @@ $skel['nav_photo'] = array(
 
 /* All sections to iterate over */
 $skel['nav_sections'] = array(
-/*		'nav_shared' => 'shared',*/
 		'nav_blogs' => 'more weblogs',
 		'nav_photo' => 'photography',
 		'nav_morphix' => 'morphix',
@@ -154,8 +162,6 @@ $skel['nav_sections'] = array(
 $skel['locations'] = array(
 		'192.168.*.*' => 'Home',
 		'195.240.156.249' => 'Home',
-		//'217.19.24.209' => 'Work',
-		//'212.123.197.34' => 'Work',
 		'213.84.100.*' => 'Work',
 		'130.37.*.*' => 'Vrije Universiteit',
 		'130.37.24.*' => 'Vrije Universiteit - Computer lab',
