@@ -165,7 +165,7 @@ $skel['nav_sections'] = array(
 /*** Educated guess for location when adding new rant or blogmark ***/
 $skel['locations'] = array(
 		'192.168.*.*' => 'Home',
-		'195.240.156.249' => 'Home',
+		'82.169.46.26' => 'Home',
 		'213.84.100.*' => 'Work',
 		'130.37.*.*' => 'Vrije Universiteit',
 		'130.37.24.*' => 'Vrije Universiteit - Computer lab',
