@@ -155,6 +155,7 @@ $page .= "\t\t</div>\n";
 
 $page .= "\t\t<div class=\"images\">\n";
 $page .= "\t\t\t<ul>\n";
+$page .= "\t\t\t\t<li><a href=\"http://no-www.org/\" title=\"www. is deprecated\"><img src=\"images/logos/no-www.gif\" alt=\"www. is deprecated\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"index.php?page=about#browser\" title=\"Readable with Any Browser(tm)\"><img src=\"images/logos/browser_all.png\" alt=\"Optimized for all browsers\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://validator.w3.org/check/referer\" title=\"Using valid xhtml1.1\"><img src=\"images/logos/valid_xhtml11.gif\" alt=\"Valid xhtml1.1\"/></a></li>\n";
 $page .= "\t\t\t\t<li><a href=\"http://jigsaw.w3.org/css-validator/check/referer\" title=\"Using valid CSS\"><img src=\"images/logos/valid_css.gif\" alt=\"Valid CSS\"/></a></li>\n";
