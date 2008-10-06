@@ -27,8 +27,8 @@ $skel['testing'] = false;
 $skel['testing'] = true;
 
 /* Global comments enabled yes/no toggle */
-//$skel['commentsenabled'] = true;
-$skel['commentsenabled'] = false;
+$skel['commentsenabled'] = true;
+//$skel['commentsenabled'] = false;
 
 $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
@@ -125,7 +125,7 @@ $skel['nav_morphix'] = array(
 		'http://alextreme.org/' => 'alextreme',
 		'http://barwap.com/blog/' => 'bmsleight',
 		'http://buranen.info/' => 'burner',
-		'http://g1powermac.rozica.com/' => 'g1powermac',
+		'http://g1powermac.com/' => 'g1powermac',
 		'http://www.kiberpipa.org/~gandalf/blog/' => 'gandalfar',
 		'http://doid.com/' => 'mediovia',
 		'http://del.icio.us/tag/livecd' => 'mediovia\'s links',
