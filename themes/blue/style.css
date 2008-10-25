@@ -107,6 +107,11 @@ a:hover
 	border-bottom: 1px solid #15317E;
 }
 
+	.ranttitle a, .ranttitle a:hover
+	{
+		border: 0;
+	}
+
 img
 {
 	border: 0px;

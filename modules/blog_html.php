@@ -58,7 +58,8 @@ function buildRants( $rants )
 		}
 		$blogmarksContent = false;
 		/* Title */
-		$rantsHTML .= '<h3>' . $rants[$i]['title'] . "</h3>\n";
+		//$rantsHTML .= '<h3>' . $rants[$i]['title'] . "</h3>\n";
+		$rantsHTML .= '<h3 class="ranttitle"><a href="index.php?rantid=' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h3>\n";
 		if (count($rants) > 1 && substr($rants[$i]['title'], 0, 13) == 'Blogmarks for')
 		{
 			$blogmarksContent = true;
