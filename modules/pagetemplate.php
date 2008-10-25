@@ -98,7 +98,7 @@ $page .= "\t<div id=\"license\"><a href=\"" . $skel["license_uri"] . "\"><img sr
 
 if ($iebrowser === true)
 {
-	$page .= "\t<div class=\"ie-warning\">You are using <acronym title=\"Internet Explorer\">IE</acronym>. Please use a browser that <em>has</em> a valid notion of <acronym title=\"Cascading Style Sheets\">CSS</acronym> for viewing the modern web, it'll make your general web browsing experience a lot better. Take a look at <a href=\"http://www.mozilla.org/products/firefox/\">Mozilla Firefox</a> [Free], or <a href=\"http://www.opera.com/\">Opera</a> [non-Free] for some modern webbrowsers.</div>";
+	$page .= "\t<div class=\"ie-warning\">You are using <acronym title=\"Internet Explorer\">IE</acronym>. Please use a browser that <em>has</em> a valid notion of <acronym title=\"Cascading Style Sheets\">CSS</acronym> for viewing the modern web, it'll make your general web browsing experience a lot better. Take a look at <a href=\"http://www.mozilla.org/products/firefox/\">Mozilla Firefox</a> [Free], or <a href=\"http://www.opera.com/\">Opera</a> [non-Free], or <a href=\"http://www.google.com/chrome\">Google Chrome</a> [non-Free] for some modern webbrowsers.</div>";
 }
 
 $page .= $page_body;
