@@ -423,6 +423,16 @@ blockquote
 	/*border-left: 1px dashed #000;*/
 	/*border-left: 1px solid #E4EBFF;*/
 	padding: 0.5em;
+
+	/* Make it glassed, so if the window is made too narrow, the bar has a translucent background */
+	background-image: url('images/alpha.png');
+/*
+	background-color: #fff;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+*/
 }
 
 	#main-content-nav ul li
