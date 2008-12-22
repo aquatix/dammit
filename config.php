@@ -24,11 +24,11 @@
 
 /*** Site settings ***/
 $skel['testing'] = false;
-$skel['testing'] = true;
+//$skel['testing'] = true;
 
 /* Global comments enabled yes/no toggle */
-$skel['commentsenabled'] = true;
-//$skel['commentsenabled'] = false;
+//$skel['commentsenabled'] = true;
+$skel['commentsenabled'] = false;
 
 $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
@@ -167,6 +167,7 @@ $skel['locations'] = array(
 		'192.168.*.*' => 'Home',
 		'82.169.46.26' => 'Home',
 		'213.84.100.*' => 'Work',
+		'62.41.246.173' => 'Work',
 		'130.37.*.*' => 'Vrije Universiteit',
 		'130.37.24.*' => 'Vrije Universiteit - Computer lab',
 		'130.37.26.*' => 'Vrije Universiteit - Laptop over wifi',
