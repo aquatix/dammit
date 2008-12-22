@@ -79,7 +79,7 @@ if ( $subpage == 'plan' )
 	$comment_error_comment = '';
 	$comment_url = '';
 
-	if ( $commentsenabled && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['url'])  && isset($_POST['comment']) && isset($_POST['submitbtn']) )
+	if ( $commentsenabled && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['url'])  && isset($_POST['comment']) && isset($_POST['spammer']) && isset($_POST['submitbtn']) )
 	{
 		$commenting = true;
 
@@ -104,6 +104,12 @@ if ( $subpage == 'plan' )
 		if ($comment_comment == '')
 		{
 			$comment_error_comment = "<p class=\"error\">Please enter some content in your comment</p>\n";
+			$comment_error = true;
+		}
+		$comment_spammer = getRequestParam("spammer", null);
+		if (strtolower($comment_spammer) != 'no')
+		{
+			$comment_error_spammerchallenge = 'Get lost, spammer';
 			$comment_error = true;
 		}
 		$comment_url = getRequestParam("url", null);
@@ -210,6 +216,7 @@ if ( $subpage == 'plan' )
 				$page_body .= "<p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\"/> <span class=\"heading\">WWW</span><br />\nLeave empty if you don't want to provide a url</p>\n";
 				//$page_body .= "<h2>Comment</h2><p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
 				$page_body .= $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
+				$page_body .= $comment_error_spammerchallenge . "<p><input type=\"text\" name=\"spammer\" size=\"30\" maxlength=\"150\" value=\"" . $comment_spammer . "\"/> <span class=\"heading\">Are you a spammer (yes/no)?</span></p>\n";
 				$page_body .= '<p>Be sure to <em>save your comment</em> after you\'ve previewed it!</p>';
 				$page_body .= "<p><input name=\"submitbtn\" value=\"Preview\" type=\"submit\"/>\n";
 				if ($commenting === true)
