@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$lastmodified = '2008-07-08';
-$page_version = '0.5.08';
+$lastmodified = '2008-12-22';
+$page_version = '0.5.09';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';

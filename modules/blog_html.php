@@ -3,8 +3,6 @@
  * $Id$
  *
  * Blog module - HTML methods
- * Version: 0.5.09 2008-08-19
- *
  * Copyright 2003-2008 mbscholt at aquariusoft.org
  *
  * This program is free software; you can redistribute it and/or modify
@@ -38,7 +36,7 @@
  * location
  * nrOfComments
  */
-function buildRants( $rants )
+function buildRants( $rants, $groupedOnDate = false )
 {
 	$rantsHTML = '';
 	$previousDate = '0000-00-00 00:00:00';
@@ -46,7 +44,7 @@ function buildRants( $rants )
 	for ($i = 0; $i < count($rants); $i++)
 	{
 		$thisDate = getNormalDate($rants[$i]['date']);
-		if ($thisDate != $previousDate)
+		if ($groupedOnDate && $thisDate != $previousDate)
 		{
 			if ('0000-00-00 00:00:00' != $previousDate)
 			{
@@ -72,7 +70,12 @@ function buildRants( $rants )
 		//	$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . getNumberOfViews( $skel, 'home', 'posting.' . $rants[$i]['messageID']) . " times</div>\n";
 		//} else
 		//{
-			$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . "</div>\n";
+			$postedDate = '';
+			if (!$groupedOnDate)
+			{
+				$postedDate = $thisDate . ' at ';
+			}
+			$rantsHTML .= "Posted " . $postedDate . getTime($rants[$i]['date']) . "</div>\n";
 		//}
 		//$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . $rants[$i]['nrviews'] . " times</div>\n";
 		/* Rant itself */
