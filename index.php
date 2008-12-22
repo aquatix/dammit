@@ -74,7 +74,7 @@ if ( $subpage == 'plan' )
 	$comment_email = '';
 	$comment_error_email = '';
 	$comment_notify = true;
-	$comment_notify_text = " checked ";
+	$comment_notify_text = " checked=\"checked\" ";
 	$comment_comment = '';
 	$comment_error_comment = '';
 	$comment_url = '';

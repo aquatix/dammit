@@ -57,7 +57,13 @@ function buildRants( $rants, $groupedOnDate = false )
 		$blogmarksContent = false;
 		/* Title */
 		//$rantsHTML .= '<h3>' . $rants[$i]['title'] . "</h3>\n";
-		$rantsHTML .= '<h3 class="ranttitle"><a href="index.php?rantid=' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h3>\n";
+		if ($groupedOnDate)
+		{
+			$rantsHTML .= '<h3 class="ranttitle"><a href="index.php?rantid=' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h3>\n";
+		} else
+		{
+			$rantsHTML .= '<h2 class="ranttitle"><a href="index.php?rantid=' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h2>\n";
+		}
 		if (count($rants) > 1 && substr($rants[$i]['title'], 0, 13) == 'Blogmarks for')
 		{
 			$blogmarksContent = true;
@@ -73,7 +79,7 @@ function buildRants( $rants, $groupedOnDate = false )
 			$postedDate = '';
 			if (!$groupedOnDate)
 			{
-				$postedDate = $thisDate . ' at ';
+				$postedDate = 'on ' . $thisDate . ' at ';
 			}
 			$rantsHTML .= "Posted " . $postedDate . getTime($rants[$i]['date']) . "</div>\n";
 		//}
@@ -133,7 +139,10 @@ function buildRants( $rants, $groupedOnDate = false )
 			$rantsHTML .= '</span>';
 		}
 		
-		$rantsHTML .= "</div>\n";
+		if ($groupedOnDate)
+		{
+			$rantsHTML .= "</div>\n";
+		}
 		$rantsHTML .= "</div>\n\n";
 	}
 	/* Close the grouped div */
