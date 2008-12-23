@@ -255,6 +255,23 @@ function getUnpublishedRants( $skel, $offset, $number )
 }
 
 
+/* Count the amount of rants that aren't yet published */
+function getNrUnpublishedRants( $skel )
+{
+	$query = 'SELECT count(*) FROM smplog_rant WHERE ispublic=0;';
+
+	$result = mysql_query( $query, $skel['dbLink'] );
+	if ( mysql_num_rows( $result ) > 0 )
+	{
+		$row = mysql_fetch_row($result);
+		return $row[0];
+	} else
+	{
+		return -1;
+	}
+}
+
+
 /*
  * Returns smplog_rant $id
  * Maybe: Returns array of $number smplog_rants, starting with smplog_rant $id
@@ -927,6 +944,45 @@ function getAllComments( $skel, $rantId, $wantallcomments )
 function getComments( $skel, $rantId )
 {
 	return getAllComments( $skel, $rantId, true );
+}
+
+
+function getLatestComments( $skel, $limit = 3, $wantallcomments )
+{
+	$comments = array();
+
+	/* Select all comments belonging to smplog_rant $rantId and sort them with the latest on top^W bottom */
+	if (true == isLoggedIn() && $wantallcomments == true)
+	{
+		/* Get all comments */
+		$query = 'SELECT id, rantid, date, ip, client, name, email, wantnotifications, uri, message, state FROM smplog_comment ORDER BY Date DESC LIMIT ' . $limit . ';';
+	} else
+	{
+		/* Only get enabled comments */
+		$query = 'SELECT id, rantid, date, ip, client, name, email, wantnotifications, uri, message, state FROM smplog_comment WHERE smplog_comment.state=1 ORDER BY Date DESC LIMIT ' . $limit . ';';
+	}
+
+	$result = mysql_query( $query, $skel['dbLink'] );
+	if ( mysql_num_rows( $result ) > 0 )
+	{
+		for ($i = 0; $i < mysql_num_rows( $result ); $i++)
+		{
+			$row = mysql_fetch_row($result);
+
+			$comments[$i]['id'] = $row[0];
+			$comments[$i]['rantId'] = $row[1];
+			$comments[$i]['date'] = $row[2];
+			$comments[$i]['ip'] = $row[3];
+			$comments[$i]['client'] = $row[4];
+			$comments[$i]['name'] = $row[5];
+			$comments[$i]['email'] = $row[6];
+			$comments[$i]['wantnotifications'] = $row[7];
+			$comments[$i]['uri'] = $row[8];
+			$comments[$i]['message'] = $row[9];
+			$comments[$i]['state'] = $row[10];
+		}
+	}
+	return $comments;
 }
 
 

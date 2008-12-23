@@ -397,6 +397,56 @@ function buildComments( $comments )
 }
 
 
+function buildCommentsList( $comments )
+{
+	$commentsHTML = '';
+
+	for ($i = 0; $i < count($comments); $i++)
+	{
+		$uri = $comments[$i]['name'];
+		$message = str_replace("\n", "<br/>\n", $comments[$i]['message']);
+		if ($comments[$i]['uri'] != '')
+		{
+			$uri = "<a href=\"" . $comments[$i]['uri'] . "\">" . $comments[$i]["name"] . "</a>";
+		}
+		$commentsHTML .= "<li>\n";
+		if ($comments[$i]["state"] == 0)
+		{
+			$commentsHTML .= '<span class="comment_listitem_disabled">';
+		} else
+		{
+			$commentsHTML .= '<span class="comment_listitem">';
+		}
+		$commentsHTML .= $comments[$i]['date'] . '&nbsp;by ' . $uri;
+		$commentsHTML .= ' | <a href="index.php?rantid=' . $comments[$i]['rantId'] . '#comment' . $comments[$i]['id'] . '">link</a> ';
+
+			$commentsHTML .= "| Notify ";
+			if ($comments[$i]["wantnotifications"] == 0)
+			{
+				$commentsHTML .= "off ";
+			} else
+			{
+				$commentsHTML .= "on ";
+			}
+
+			if ($comments[$i]["state"] == 0)
+			{
+				$commentsHTML .= "| <a href=\"root.php?action=enablecomment&amp;commentid=" . $comments[$i]['id'] . "&amp;rantid=" . $comments[$i]['rantId'] . "\">Show</a> ";
+			} else
+			{
+				$commentsHTML .= "| <a href=\"root.php?action=disablecomment&amp;commentid=" . $comments[$i]['id'] . "&amp;rantid=" . $comments[$i]['rantId'] . "\">Hide</a> ";
+			}
+		//$commentsHTML .= "</span></div>\n";
+		$commentsHTML .= "</span>\n";
+
+		$commentsHTML .= '<br />' . textSnippet($message, 120) . "</li>\n";
+	
+	}
+
+	return $commentsHTML;
+}
+
+
 /***   Feeds   ***/
 
 /*

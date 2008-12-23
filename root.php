@@ -205,6 +205,15 @@ if (isset($_GET['action']) && isLoggedIn())
 		{
 			$page_body .= buildRants($unpublished_rants);
 		}
+	} else if ('listcomments' == $action)
+	{
+		$page_body .= $root_nav;
+		$page_body .= "<h1>root / comments</h1>\n";
+		$latestComments = getLatestComments($skel, 50, true);
+		//$page_body .= "<h3>Latest</h3>\n";
+		$page_body .= "<ul>\n";
+		$page_body .= buildCommentsList($latestComments);
+		$page_body .= "</ul>\n";
 	} else if ('addmark' == $action)
 	{
 		$mark_title = getRequestParam('title', '');
@@ -409,10 +418,28 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addrant\">Add rant</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=listunpublished\">Unpublished rants</a></li>\n";
+	$offset = 0;
+	$number = 3;
+	$unpublished_rants = getUnpublishedRants( $skel, $offset, $number );
+	$page_body .= "\t\t<ul>\n";
+	for ($i = 0; $i < count($unpublished_rants); $i++)
+	{
+		$page_body .= "\t\t\t<li><span class=\"note\">" . $unpublished_rants[$i]['initiated'] . " -</span> <a href=\"root.php?action=editrant&amp;rantid=" . $unpublished_rants[$i]['messageID'] . "\">" .  $unpublished_rants[$i]['title'] . "</a></li>\n";
+	}
+	$nrUnpublishedRants = max(getNrUnpublishedRants($skel) - 3, 0);
+	if ($nrUnpublishedRants != 1) { $rantsMultiple = 's'; }
+	$page_body .= "\t\t\t<li>" . $nrUnpublishedRants . " additional unpublished rant" . $rantsMultiple . "</li>\n";
+	$page_body .= "\t\t</ul>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "<h2>Blogmarks</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addmark\">Add blogmark</a></li>\n";
+	$page_body .= "</ul>\n";
+	$latestComments = getLatestComments($skel, 3, true);
+	$page_body .= "<h3>Latest</h3>\n";
+	$page_body .= "<ul>\n";
+	$page_body .= buildCommentsList($latestComments);
+	$page_body .= "\t<li><a href=\"root.php?action=listcomments\">Show 50 latest comments</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "<h2>Logs</h2>\n";
 	$page_body .= "<ul>\n";

@@ -206,7 +206,7 @@ if ( $subpage == 'plan' )
 					$page_body .= $comment_preview;
 				}
 				$page_body .= "<h2>Add comment</h2>\n";
-				$page_body .= "<div class=\"grouped\">\n";
+				//$page_body .= "<div class=\"grouped\">\n";
 				$page_body .= "<p>You need to provide a valid e-mail address to comment here, but it will not be displayed on this website. ";
 				$page_body .= "HTML will be escaped, so you won't be able to add links. Post the URL instead. Line breaks will be converted to breaks.</p>\n";
 				/* post to current page */
@@ -225,7 +225,7 @@ if ( $subpage == 'plan' )
 				}
 				$page_body .= "<input name=\"rantid\" value=\"" . $rantid . "\" type=\"hidden\"/></p>\n";
 				$page_body .= "</form>\n";
-				$page_body .= "</div>\n";
+				//$page_body .= "</div>\n";
 				$page_body .= "</div>\n";
 			} else
 			{

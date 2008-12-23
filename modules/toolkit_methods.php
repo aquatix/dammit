@@ -183,4 +183,13 @@ function shortLine( $line, $maxlength )
 	}
 }
 
+
+function textSnippet( $content, $maxlength )
+{
+	$content = strip_tags($content);
+	$dots = '';
+	if (strlen($content) > $maxlength) { $dots = '...'; }
+	return substr($content, 0, $maxlength) . $dots;
+}
+
 ?>

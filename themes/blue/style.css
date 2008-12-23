@@ -3,8 +3,7 @@
  * Created by Michiel Scholten
  * mbscholt at aquariusoft dot org
  * 
- * $Id: $
- * Version 0.5.08 :: 2008-03-26
+ * $Id$
  */
 
 /*
@@ -710,6 +709,19 @@ p.globalmessage
 		margin-left: 28px;
 		padding-top: .5em;
 		padding-bottom: .5em;
+	}
+
+
+.comment_listitem, .comment_listitem_disabled
+{
+	font-size: .8em;
+	color: #707070;
+}
+
+	.comment_listitem_disabled
+	{
+		text-decoration: italic;
+		color: #D00;
 	}
 
 .note
