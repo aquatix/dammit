@@ -109,7 +109,7 @@ function buildRants( $rants, $groupedOnDate = false )
 		$rantsHTML .= 'Posted by ' . $rants[$i]['username'] . ' | ';
 
 		//$rantsHTML .= '<div><a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_link.gif" alt="Search for related articles" title="Search for related articles" /></a></div>';
-		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_related.gif" alt="Search for related articles" title="Search for related articles" /></a> | ';
+		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="images/technorati_related.gif" alt="Search for related articles" /></a> | ';
 
 		if ($rants[$i]['modified'] > 0)
 		{
@@ -139,14 +139,14 @@ function buildRants( $rants, $groupedOnDate = false )
 			$rantsHTML .= '</span>';
 		}
 		
-		if ($groupedOnDate)
-		{
-			$rantsHTML .= "</div>\n";
-		}
+		$rantsHTML .= "</div>\n";
 		$rantsHTML .= "</div>\n\n";
 	}
 	/* Close the grouped div */
-	$rantsHTML .= "</div>\n";
+	if ($groupedOnDate)
+	{
+		$rantsHTML .= "</div>\n";
+	}
 	return $rantsHTML;
 }
 

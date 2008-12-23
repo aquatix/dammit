@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$lastmodified = '2008-12-22';
-$page_version = '0.5.09';
+$lastmodified = '2008-12-23';
+$page_version = '0.5.10';
 $dateofcreation = '2003-12-21';
 
 $page_name = 'home';
@@ -269,7 +269,7 @@ if ( $subpage == 'plan' )
 	{
 		if ($years[$i] == $year)
 		{
-			$yearsnav .= ' | <span class="heading"><a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</span></a>';
+			$yearsnav .= ' | <span class="heading"><a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a></span>';
 		} else
 		{
 			$yearsnav .= ' | <a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a>';

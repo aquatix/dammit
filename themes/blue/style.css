@@ -353,6 +353,7 @@ blockquote
 		border: 1px solid #95B1FF;
 	}
 
+	/* Not valid css, but at least a nice way of putting the shortcut behind the link text */
 	#main-nav a:hover::after, 
 	#main-nav .main.a:focus::after {
 		content: " [" attr(accesskey) "]";
@@ -396,6 +397,7 @@ blockquote
 	padding: 100px 240px 4px 75px;
 /*	min-height: 130em;*/
 	min-height: 140em;
+/*	max-width: 800px;*/
 	background: #FFFFFF;
 	color: inherit;
 	line-height: 1.4; /* IE-bug workaround */
@@ -720,7 +722,7 @@ p.globalmessage
 
 	.comment_listitem_disabled
 	{
-		text-decoration: italic;
+/*		text-decoration: italic;*/
 		color: #D00;
 	}
 

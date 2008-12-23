@@ -28,7 +28,7 @@ $page_title = $page_name;
 //$page .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">\n";
 //$page .= "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">\n";
 
-$page  = "<?xml version=\"1.0\"?>\n";
+$page  = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
 $page .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n";
 $page .= "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n";
 
@@ -140,6 +140,7 @@ foreach ( array_keys($skel['nav_sections']) as $navsection_name )
 	$page .= "\t\t</ul>\n";
 }
 
+$page .= "\t\t<div class=\"nav-header\">kudos</div>\n";
 $page .= "\t\t<div class=\"images\">\n";
 $page .= "\t\t\t<ul>\n";
 $page .= "\t\t\t\t<li><a href=\"http://www.debian.org/\" title=\"Debian GNU/Linux\"><img src=\"images/logos/debian.png\" alt=\"Debian GNU/Linux\"/></a></li>\n";
