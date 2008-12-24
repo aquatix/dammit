@@ -736,7 +736,48 @@ p.globalmessage
 	{
 		color: #707070;
 	}
-	
+
+.column_left, .column_right
+{
+	float: left;
+/*	width: 47%;
+	padding: .5em;
+	margin-right: .2em;*/
+	width: 49%;
+}
+
+	.column_left
+	{
+		margin-right: 2%;
+	}
+
+	.columnright
+	{
+/*		margin-left: 1%;*/
+	}
+
+.rootblock
+{
+	background:#FFFFFF url(images/stripe.gif) repeat scroll 0 0;
+/*	border-color:#EEEEEE;*/
+	border: 1px solid #EEE;
+	padding: .5em;
+	margin-bottom: 1em;
+}
+
+	.rootblock h2
+	{
+		margin: 0;
+		padding: .5em;
+		background: #FFF;
+		border: 1px solid #EEE;
+	}
+
+	.rootblock h3
+	{
+		margin: 0;
+		padding-left: 1em;
+	}
 
 /*** Notes ***/
 /*

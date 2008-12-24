@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2008-08-19';
-$page_version = '0.5.13';
+$lastmodified = '2008-12-24';
+$page_version = '0.5.15';
 $dateofcreation = '2003-12-22';
 
 $section_name = 'root';
@@ -414,10 +414,16 @@ if (isset($_GET['action']) && isLoggedIn())
 {
 	$page_body .= $root_nav;
 	$page_body .= "<h1>Got root!</h1>\n";
+	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>Rants</h2>\n";
+/*
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addrant\">Add rant</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=listunpublished\">Unpublished rants</a></li>\n";
+*/
+	$page_body .= "\t<p><a href=\"root.php?action=addrant\">Add rant</a>\n";
+	$page_body .= "\t | <a href=\"root.php?action=listunpublished\">Unpublished rants</a></p>\n";
+	$page_body .= "\t<h3>Drafts</h3>\n";
 	$offset = 0;
 	$number = 3;
 	$unpublished_rants = getUnpublishedRants( $skel, $offset, $number );
@@ -430,7 +436,9 @@ if (isset($_GET['action']) && isLoggedIn())
 	if ($nrUnpublishedRants != 1) { $rantsMultiple = 's'; }
 	$page_body .= "\t\t\t<li>" . $nrUnpublishedRants . " additional unpublished rant" . $rantsMultiple . "</li>\n";
 	$page_body .= "\t\t</ul>\n";
-	$page_body .= "</ul>\n";
+	//$page_body .= "</ul>\n";
+	$page_body .= "</div>\n";
+	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>Blogmarks</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=addmark\">Add blogmark</a></li>\n";
@@ -441,12 +449,19 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= buildCommentsList($latestComments);
 	$page_body .= "\t<li><a href=\"root.php?action=listcomments\">Show 50 latest comments</a></li>\n";
 	$page_body .= "</ul>\n";
+	$page_body .= "</div>\n";
+	$page_body .= "<div class=\"column_left\">\n";
+	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>Logs</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=viewlog\">View log</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=viewreferers\">View referers</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=viewcommentlog\">View comments log</a></li>\n";
 	$page_body .= "</ul>\n";
+	$page_body .= "</div>\n";
+	$page_body .= "</div>\n";
+	$page_body .= "<div class=\"column_right\">\n";
+	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>General</h2>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=generatefeeds\">Generate RSS feed[s]</a></li>\n";
@@ -455,6 +470,9 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "\t<li><a href=\"https://aquariusoft.org/~mbscholt/root.php\">If you are using unencrypted http, please go to the secured https site</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=logout\">Log out</a></li>\n";
 	$page_body .= "</ul>\n";
+	$page_body .= "</div>\n";
+	$page_body .= "</div>\n";
+	$page_body .= "<br style=\"clear: both;\" />\n";
 	$page_body .= "<br />\n";
 
 } else
