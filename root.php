@@ -421,8 +421,8 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "\t<li><a href=\"root.php?action=addrant\">Add rant</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=listunpublished\">Unpublished rants</a></li>\n";
 */
-	$page_body .= "\t<p><a href=\"root.php?action=addrant\">Add rant</a>\n";
-	$page_body .= "\t | <a href=\"root.php?action=listunpublished\">Unpublished rants</a></p>\n";
+	$page_body .= "\t<p><a href=\"root.php?action=addrant\" class=\"button\">Add rant</a>\n";
+	$page_body .= "\t  <a href=\"root.php?action=listunpublished\" class=\"button\">Unpublished rants</a></p>\n";
 	$page_body .= "\t<h3>Drafts</h3>\n";
 	$offset = 0;
 	$number = 3;
@@ -440,9 +440,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "</div>\n";
 	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>Blogmarks</h2>\n";
-	$page_body .= "<ul>\n";
-	$page_body .= "\t<li><a href=\"root.php?action=addmark\">Add blogmark</a></li>\n";
-	$page_body .= "</ul>\n";
+	$page_body .= "\t<p><a href=\"root.php?action=addmark\" class=\"button\">Add blogmark</a></p>\n";
 	$latestComments = getLatestComments($skel, 3, true);
 	$page_body .= "<h3>Latest</h3>\n";
 	$page_body .= "<ul>\n";
@@ -463,12 +461,12 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<div class=\"column_right\">\n";
 	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>General</h2>\n";
+	$page_body .= "\t<p><a href=\"root.php?action=logout\" class=\"button\">Log out</a></p>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=generatefeeds\">Generate RSS feed[s]</a></li>\n";
 	$page_body .= "\t<li><a href=\"root.php?action=markstorant\">Wrap up the blogmarks of the last 7 days to a new rant</a></li>\n";
 	$page_body .= "\t<li><a href=\"http://www.technorati.com/developers/ping.html?name=dammIT&amp;url=http%3A%2F%2Faquariusoft.org%2F%7Embscholt%2F\">Ping Technorati that site has been updated</a></li>\n";
 	$page_body .= "\t<li><a href=\"https://aquariusoft.org/~mbscholt/root.php\">If you are using unencrypted http, please go to the secured https site</a></li>\n";
-	$page_body .= "\t<li><a href=\"root.php?action=logout\">Log out</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "</div>\n";
 	$page_body .= "</div>\n";

@@ -768,6 +768,7 @@ p.globalmessage
 	.rootblock h2
 	{
 		margin: 0;
+		margin-bottom: 1em;
 		padding: .5em;
 		background: #FFF;
 		border: 1px solid #EEE;
@@ -778,6 +779,27 @@ p.globalmessage
 		margin: 0;
 		padding-left: 1em;
 	}
+
+.button
+{
+	-moz-border-radius-bottomleft:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-topright:3px;
+	margin: 0;
+	margin-top: 1em;
+	padding: .5em;
+	background: #FFF;
+	border: 1px solid #EEE;
+	font-weight: bold;
+	color: #707070;
+}
+
+a.button:hover
+{
+	color: #15317E;
+	border: 1px solid #15317E;
+}	
 
 /*** Notes ***/
 /*

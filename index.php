@@ -377,7 +377,7 @@ if ( $subpage == 'plan' )
 
 	$page_body .= buildRants(getRants($skel, 0, $skel['nrOfRantsPerPage']));
 	//$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel['nrOfRantsPerPage'] . "\">Old rants</a> ]</p>\n";
-	$page_body .= "<p>[ <a href=\"index.php?page=archive\">Old rants</a> ]</p>\n";
+	$page_body .= "<p><a href=\"index.php?page=archive\" class=\"button\">&laquo; Old rants</a></p>\n";
 
 } /* End of page-switcher */
 
