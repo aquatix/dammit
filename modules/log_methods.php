@@ -67,6 +67,70 @@ function getNumberOfViews( $skel, $section_name, $page_name )
 }
 
 
+/* Return all section/page pairs with total number of views between $start_date and $end_date */
+function getNumberOfViewsOverviewPerPage( $skel, $start_date, $end_date )
+{
+	$results = array();
+	$query = 'SELECT section, page, COUNT(*) FROM smplog_log ' .
+		'WHERE date>"' . $start_date . '" AND date<="' . $end_date . '" GROUP BY page, section;';
+	$result = mysql_query($query, $skel['dbLink']);
+	if ( mysql_num_rows( $result ) > 0 )
+	{
+		 for ($i = 0; $i < mysql_num_rows( $result ); $i++)
+                {    
+                        $row = mysql_fetch_row($result);
+
+                        $results[$i]['section'] = $row[0];
+                        $results[$i]['page'] = $row[1];
+                        $results[$i]['views'] = $row[2];
+		}
+		return $results;
+	} else
+	{
+		return null;
+	}
+}
+
+
+/* Return all section/page pairs with total number of views between $start_date and $end_date */
+function getNumberOfViewsOverviewPerDay( $skel, $start_date, $end_date )
+{
+	$results = array();
+	$query = 'SELECT left(date, 11), COUNT(*) FROM smplog_log ' .
+		'WHERE date>"' . $start_date . '" AND date<="' . $end_date . '" GROUP BY left(date, 11);';
+	$result = mysql_query($query, $skel['dbLink']);
+	if ( mysql_num_rows( $result ) > 0 )
+	{
+		 for ($i = 0; $i < mysql_num_rows( $result ); $i++)
+                {    
+                        $row = mysql_fetch_row($result);
+
+                        $results[$i]['date'] = $row[0];
+                        $results[$i]['views'] = $row[1];
+		}
+		return $results;
+	} else
+	{
+		return null;
+	}
+}
+
+
+function getNumberOfViewsForPage( $skel, $section_name, $page_name )
+{
+	$query = 'SELECT section, page, COUNT(*) FROM smplog_log ' .
+		'WHERE section="' . $section_name . '" AND page="' . $page_name . '";';
+	$result = mysql_query($query, $skel['dbLink']);
+	if ( mysql_num_rows( $result ) > 0 )
+	{
+		$row = mysql_fetch_row($result);
+		return $row[0];
+	} else
+	{
+		return -1;
+	}
+}
+
 function getReferers( $skel, $section_name, $page_name )
 {
 	$webloghref = "http://" . $skel["servername"] . $skel["baseHref"];

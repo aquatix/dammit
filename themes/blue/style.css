@@ -17,6 +17,8 @@ body
 	padding: 5px 25px 5px 100px;
 /*	background: #a7c8e4 url("images/background_repeating_03.png");*/
 	background: #15317E;
+/*	background: #1458B8;
+	background: #014DB8;*/
         color: #222;
         font-family: Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
         font-size: 80%;
@@ -44,6 +46,7 @@ h2
 	margin-bottom: 0;
 	margin-top: .5em;
 	margin-top: 1.5em;
+	margin-top: 2em;
 	padding-top: 0;
 }
 
@@ -119,6 +122,26 @@ img
 	border: 0px;
 }
 
+th
+{
+	font-weight: bold;
+	text-align: left;
+	background: #0F2258;
+	color: #FFF;
+}
+
+th, td
+{
+	padding: .2em;
+	padding-right: 1em;
+}
+
+tr.odd td
+{
+	color: #000;
+	background: #e4ebff;
+}
+
 /* turn off borders so we don't need border=0 on image links */
 :link img, :visited img
 {
@@ -156,6 +179,7 @@ input, textarea, button
 {
 	border:1px solid #95B1FF;
 	background: #e4ebff;
+/*	background: #CAD8FF;*/
 	color: #000000;
 }
 
@@ -397,7 +421,7 @@ blockquote
 	padding: 100px 240px 4px 75px;
 /*	min-height: 130em;*/
 	min-height: 140em;
-/*	max-width: 800px;*/
+	max-width: 750px;
 	background: #FFFFFF;
 	color: inherit;
 	line-height: 1.4; /* IE-bug workaround */
@@ -795,11 +819,12 @@ p.globalmessage
 	color: #707070;
 }
 
-a.button:hover
-{
-	color: #15317E;
-	border: 1px solid #15317E;
-}	
+	a.button:hover
+	{
+		color: #15317E;
+		border: 1px solid #15317E;
+		background: #FFF;
+	}	
 
 /*** Notes ***/
 /*

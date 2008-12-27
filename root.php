@@ -382,7 +382,19 @@ if (isset($_GET['action']) && isLoggedIn())
 	{
 		$page_body .= $root_nav;
 		$page_body .= "<h1>root / view log</h1>\n";
-		$page_body .= "<p>Not implemented yet!</p><p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
+		$page_body .= "<h2>Views per day of last year</h2>\n";
+		$start_date = "2007-12-31";
+		$end_date = "2008-12-31";
+		//print_r(getNumberOfViewsOverviewPerPage( $skel, $start_date, $end_date ));
+		$page_body .= toTable(getNumberOfViewsOverviewPerDay( $skel, $start_date, $end_date ));
+		$page_body .= "<p><a href=\"root.php?action=getlogperday\">Download this overview</a></p>\n";
+		$page_body .= "<p><a href=\"root.php\" class=\"button\">&laquo; Back to Root</a></p>\n<br/><br/><br/><br/>\n";
+	} else if ( $action == 'getlogperday' )
+	{
+		$start_date = "2007-12-31";
+		$end_date = "2008-12-31";
+		echo toPlainTable(getNumberOfViewsOverviewPerDay( $skel, $start_date, $end_date ));
+		exit;
 	} else if ( $action == "viewreferers" )
 	{
 		$page_body .= $root_nav;

@@ -80,6 +80,63 @@ function generateTable($widths, $headers, $values)
 }
 
 
+/* Take array and turn into html table */
+function toTable($data)
+{
+//print_r($data);
+	$keys = $data[0];
+	$keys = array_flip($keys);
+	$result = "<table>\n\t<tr>";
+	foreach($keys as $key)
+	{
+		$result .= '<th>' . $key . '</th>';
+	}
+	$result .= "</tr>\n";
+	$counter = 0;
+	foreach($data as $item)
+	{
+		$counter++;
+		if ($counter % 2 == 1)
+		{
+			$result .= "\t<tr>";
+		} else
+		{
+			$result .= "\t<tr class=\"odd\">";
+		}
+		foreach($item as $value)
+		{
+			$result .= '<td>' . $value . '</td>';
+		}
+		$result .= "</tr>\n";
+	}
+	$result .= "</table>\n";
+	return $result;
+}
+
+
+/* Take array and turn into html table */
+function toPlainTable($data)
+{
+	$keys = $data[0];
+	$keys = array_flip($keys);
+	$result = '';
+	foreach($keys as $key)
+	{
+		$result .= $key . ' ';
+	}
+	$result .= "\n";
+	foreach($data as $item)
+	{
+		foreach($item as $value)
+		{
+			$result .= $value . ' ';
+		}
+		$result .= "\n";
+	}
+	return $result;
+}
+
+
 function plaintext2HTML($source)
 {
 	return str_replace("\n", "<br />\n", $source);
