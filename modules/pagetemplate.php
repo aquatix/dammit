@@ -20,7 +20,6 @@
  */
 
 
-//function buildPage($skel, $section_name, $page_name, $navbar, $subnavbar, $body)
 function buildPage($skel, $section_name, $page_name, $page_body)
 {
 	/* Check for IE with its stupid width bugs */
@@ -90,8 +89,84 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 
 	$page .= "\t<div id=\"main-content-nav\">\n";
 
-	$page .= "\t\t<div class=\"outtake\">\n";
 	$page .= buildNavigation($skel);
+
+	//$page .= "\t</div>\n";
+	$page .= "</div>\n";
+
+	$page .= "\t<div id=\"footer\">[ Valid <a href=\"http://validator.w3.org/check/referer\">XHTML 1.0</a> | &copy; " . $skel['startyear'] . "-" . date('Y') . " <a href=\"index.php?page=about\">" . $skel['author'] . "</a> under a <a href=\"" . $skel['license_uri'] . "\"><acronym title=\"Creative Commons\">CC</acronym> License</a> ]</div>\n";
+
+	/* Close the centering of the page */
+	$page .= "</div></div>\n";
+
+	$page .= "<!-- rendered in " . (microtime() - $skel['starttime']) . "sec -->\n";
+
+	/*
+	 * Creative Commons license
+	 * Note: if you license it under something else as by-nc-sa, see http://creativecommons.org/technology/licenseoutput for the right
+	 * license requires/permits/prohibits lines
+	 */
+	$page .= "
+	<!--
+	\t<rdf:RDF xmlns=\"http://web.resource.org/cc/\"
+	\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"
+	\txmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">
+	\t<Work rdf:about=\"http://" . $skel["servername"] . $skel["baseHref"] . "\">
+	\t<dc:title>" . $skel['siteName'] . ", weblog of " . $skel["author"] . "</dc:title>
+	\t<dc:date>2003-12-24</dc:date>
+	\t<dc:description>A weblog maintained by " . $skel["author"] . "</dc:description>
+	\t<dc:creator><Agent>
+	\t<dc:title>" . $skel["author"] . "</dc:title>
+	\t</Agent></dc:creator>
+	\t<dc:rights><Agent>
+	\t<dc:title>" . $skel["author"] . "</dc:title>
+	\t</Agent></dc:rights>
+	\t<dc:type rdf:resource=\"http://purl.org/dc/dcmitype/Text\" />
+	\t<license rdf:resource=\"" . $skel["license_uri"] . "\" />
+	\t</Work>
+	\t<License rdf:about=\"" . $skel["license_uri"] . "\">
+	\t\t<requires rdf:resource=\"http://web.resource.org/cc/Attribution\" />
+	\t\t<permits rdf:resource=\"http://web.resource.org/cc/DerivativeWorks\" />
+	\t\t<permits rdf:resource=\"http://web.resource.org/cc/Reproduction\" />
+	\t\t<permits rdf:resource=\"http://web.resource.org/cc/Distribution\" />
+	\t\t<prohibits rdf:resource=\"http://web.resource.org/cc/CommercialUse\" />
+	\t\t<requires rdf:resource=\"http://web.resource.org/cc/Notice\" />
+	\t\t<requires rdf:resource=\"http://web.resource.org/cc/ShareAlike\" />
+	\t</License>
+	\t</rdf:RDF>
+	-->
+	";
+	$page .= "</body></html>\n";
+
+
+	/****** Now finally print the contents of the page to the browser ******/
+	return $page;
+}
+
+function buildNavigation($skel)
+{
+	/*** Navigation part ***/
+	$page .= "\t\t<div class=\"outtake\">\n";
+	$page = "<div id=\"main-navbar\">\n";
+	$page .= "\t<div class=\"nav-header\">dammIT</div>\n";
+	$page .= "\t<ul id=\"main-nav\">\n";
+	$page .= "\t\t<li><a href=\"./\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
+	$page .= "\t\t<li><a href=\"index.php?page=archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
+	$page .= "\t\t<li><a href=\"blogmarks.php\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
+	$page .= "\t\t<li><a href=\"index.php?page=about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
+	$page .= "\t</ul>\n";
+
+	/* Images */
+	$page .= "\t<div class=\"images\">\n";
+	$page .= "\t\t<ul>\n";
+	$page .= "\t\t\t<li><a href=\"blog.rdf\" title=\"Get my feed into your reader :)\"><img src=\"images/logos/rss_20.png\" alt=\"RSS feed\"/></a></li>\n";
+	$page .= "\t\t\t<li><a href=\"blog_comments.rdf\" title=\"Get my feed with comments into your reader :)\"><img src=\"images/logos/rsscomments.gif\" alt=\"RSS feed with comments\"/></a></li>\n";
+	$page .= "\t\t\t<li><a href=\"marks.rdf\" title=\"Get my blogmarks into your reader :)\"><img src=\"images/logos/rss_marks.png\" alt=\"RSS feed - blogmarks\"/></a></li>\n";
+	$page .= "\t\t</ul>\n\t</div>\n";
+
+	/* Version information */
+	$page .= "\t<div class=\"pageversion\">v" . $skel['page_version'] . "</div>\n</div>\n";
+
 	$page .= "\t\t</div>\n";
 
 	/*** Links-menu ***/
@@ -168,80 +243,6 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	$page .= "\t\t</div>\n";
 */
 
-	//$page .= "\t</div>\n";
-	$page .= "</div>\n";
-
-	$page .= "\t<div id=\"footer\">[ Valid <a href=\"http://validator.w3.org/check/referer\">XHTML 1.0</a> | &copy; " . $skel['startyear'] . "-" . date('Y') . " <a href=\"index.php?page=about\">" . $skel['author'] . "</a> under a <a href=\"" . $skel['license_uri'] . "\"><acronym title=\"Creative Commons\">CC</acronym> License</a> ]</div>\n";
-
-	/* Close the centering of the page */
-	$page .= "</div></div>\n";
-
-	$page .= "<!-- rendered in " . (microtime() - $skel['starttime']) . "sec -->\n";
-
-	/*
-	 * Creative Commons license
-	 * Note: if you license it under something else as by-nc-sa, see http://creativecommons.org/technology/licenseoutput for the right
-	 * license requires/permits/prohibits lines
-	 */
-	$page .= "
-	<!--
-	\t<rdf:RDF xmlns=\"http://web.resource.org/cc/\"
-	\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"
-	\txmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">
-	\t<Work rdf:about=\"http://" . $skel["servername"] . $skel["baseHref"] . "\">
-	\t<dc:title>" . $skel['siteName'] . ", weblog of " . $skel["author"] . "</dc:title>
-	\t<dc:date>2003-12-24</dc:date>
-	\t<dc:description>A weblog maintained by " . $skel["author"] . "</dc:description>
-	\t<dc:creator><Agent>
-	\t<dc:title>" . $skel["author"] . "</dc:title>
-	\t</Agent></dc:creator>
-	\t<dc:rights><Agent>
-	\t<dc:title>" . $skel["author"] . "</dc:title>
-	\t</Agent></dc:rights>
-	\t<dc:type rdf:resource=\"http://purl.org/dc/dcmitype/Text\" />
-	\t<license rdf:resource=\"" . $skel["license_uri"] . "\" />
-	\t</Work>
-	\t<License rdf:about=\"" . $skel["license_uri"] . "\">
-	\t\t<requires rdf:resource=\"http://web.resource.org/cc/Attribution\" />
-	\t\t<permits rdf:resource=\"http://web.resource.org/cc/DerivativeWorks\" />
-	\t\t<permits rdf:resource=\"http://web.resource.org/cc/Reproduction\" />
-	\t\t<permits rdf:resource=\"http://web.resource.org/cc/Distribution\" />
-	\t\t<prohibits rdf:resource=\"http://web.resource.org/cc/CommercialUse\" />
-	\t\t<requires rdf:resource=\"http://web.resource.org/cc/Notice\" />
-	\t\t<requires rdf:resource=\"http://web.resource.org/cc/ShareAlike\" />
-	\t</License>
-	\t</rdf:RDF>
-	-->
-	";
-	$page .= "</body></html>\n";
-
-
-	/****** Now finally print the contents of the page to the browser ******/
-	return $page;
-}
-
-function buildNavigation($skel)
-{
-	/*** Navigation part ***/
-	$page = "<div id=\"main-navbar\">\n";
-	$page .= "\t<div class=\"nav-header\">dammIT</div>\n";
-	$page .= "\t<ul id=\"main-nav\">\n";
-	$page .= "\t\t<li><a href=\"./\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
-	$page .= "\t\t<li><a href=\"index.php?page=archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
-	$page .= "\t\t<li><a href=\"blogmarks.php\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
-	$page .= "\t\t<li><a href=\"index.php?page=about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
-	$page .= "\t</ul>\n";
-
-	/* Images */
-	$page .= "\t<div class=\"images\">\n";
-	$page .= "\t\t<ul>\n";
-	$page .= "\t\t\t<li><a href=\"blog.rdf\" title=\"Get my feed into your reader :)\"><img src=\"images/logos/rss_20.png\" alt=\"RSS feed\"/></a></li>\n";
-	$page .= "\t\t\t<li><a href=\"blog_comments.rdf\" title=\"Get my feed with comments into your reader :)\"><img src=\"images/logos/rsscomments.gif\" alt=\"RSS feed with comments\"/></a></li>\n";
-	$page .= "\t\t\t<li><a href=\"marks.rdf\" title=\"Get my blogmarks into your reader :)\"><img src=\"images/logos/rss_marks.png\" alt=\"RSS feed - blogmarks\"/></a></li>\n";
-	$page .= "\t\t</ul>\n\t</div>\n";
-
-	/* Version information */
-	$page .= "\t<div class=\"pageversion\">v" . $skel['page_version'] . "</div>\n</div>\n";
 	return $page;
 }
 ?>
