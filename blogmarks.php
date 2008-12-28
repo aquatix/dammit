@@ -34,7 +34,7 @@ if (isset($_GET['page']))
 	$page_name = $page_name . '.' . $subpage;
 }
 
-addToLog( $skel, $section_name, $page_name, $page_version );
+addToLog( $skel, $section_name, $page_name, $skel['page_version'] );
 
 $page_body = '';
 $page_name = 'blogmarks';

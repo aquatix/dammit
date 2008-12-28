@@ -32,7 +32,7 @@ $page_name = 'home';
 include 'modules/init.php';
 
 /* Record a hit on this page to the log */
-addToLog( $skel, $section_name, $page_name, $page_version );
+addToLog( $skel, $section_name, $page_name, $skel['page_version'] );
 
 $page_body = '';
 $page_name = 'root';

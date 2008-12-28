@@ -24,7 +24,7 @@
 
 /*** Site settings ***/
 $skel['testing'] = false;
-//$skel['testing'] = true;
+$skel['testing'] = true;
 
 /* Global comments enabled yes/no toggle */
 $skel['commentsenabled'] = true;

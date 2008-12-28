@@ -21,7 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$starttime = microtime();
+$skel['starttime'] = microtime();
 
 /* Load the settings for this web log */
 include 'config.php';

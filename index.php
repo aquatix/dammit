@@ -41,7 +41,7 @@ if (-1 < $rantid)
 }
 $month = getRequestParam('month', null);
 
-addToLog( $skel, $section_name, $page_log, $page_version );
+addToLog( $skel, $section_name, $page_log, $skel['page_version'] );
 
 $page_body = '';
 

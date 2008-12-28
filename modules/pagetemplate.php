@@ -21,7 +21,7 @@
 
 
 //function buildPage($skel, $section_name, $page_name, $navbar, $subnavbar, $body)
-function buildPage($skel, $section_name, $page_name, $body)
+function buildPage($skel, $section_name, $page_name, $page_body)
 {
 	/* Check for IE with its stupid width bugs */
 	$useragent = getenv("HTTP_USER_AGENT");
@@ -69,8 +69,6 @@ function buildPage($skel, $section_name, $page_name, $body)
 	$page .= "<div id=\"logo\" title=\"Rantbox of a natural geek\"><a href=\"" . $skel["baseHref"] . "\"><img src=\"" . $skel["logo"] . "\" alt=\"logo\"/></a></div>\n";
 
 
-	$page .= buildNavigation($skel);
-
 	/*** Main content block ***/
 
 	$page .= "<div id=\"main-content\">\n";
@@ -86,10 +84,15 @@ function buildPage($skel, $section_name, $page_name, $body)
 	}
 
 	$page .= $page_body;
-	$page .= "\t<div id=\"last-modified\">[ Valid <a href=\"http://validator.w3.org/check/referer\">XHTML 1.0</a> | &copy; " . $skel['startyear'] . "-" . date('Y') . " <a href=\"index.php?page=about\">" . $skel['author'] . "</a> under a <a href=\"" . $skel['license_uri'] . "\"><acronym title=\"Creative Commons\">CC</acronym> License</a> ]</div>\n";
+
+	/* Close main-content */
+	$page .= "</div>\n";
 
 	$page .= "\t<div id=\"main-content-nav\">\n";
 
+	$page .= "\t\t<div class=\"outtake\">\n";
+	$page .= buildNavigation($skel);
+	$page .= "\t\t</div>\n";
 
 	/*** Links-menu ***/
 	/* Search field */
@@ -127,6 +130,7 @@ function buildPage($skel, $section_name, $page_name, $body)
 		$page .= "\t\t</ul>\n";
 	}
 */
+/*
 	$page .= "\t\t<div class=\"nav-header\">kudos</div>\n";
 	$page .= "\t\t<div class=\"images\">\n";
 	$page .= "\t\t\t<ul>\n";
@@ -162,14 +166,17 @@ function buildPage($skel, $section_name, $page_name, $body)
 	$page .= "\t\t\t\t<li><a href=\"http://eldred.cc/\"><img src=\"images/logos/create_like_its_1790.gif\" title=\"Save Orphan Works\" alt=\"create like it's 1790\" width=\"88\" height=\"31\" /></a></li>\n";
 	$page .= "\t\t\t</ul>\n";
 	$page .= "\t\t</div>\n";
+*/
 
-	$page .= "\t</div>\n";
+	//$page .= "\t</div>\n";
 	$page .= "</div>\n";
+
+	$page .= "\t<div id=\"footer\">[ Valid <a href=\"http://validator.w3.org/check/referer\">XHTML 1.0</a> | &copy; " . $skel['startyear'] . "-" . date('Y') . " <a href=\"index.php?page=about\">" . $skel['author'] . "</a> under a <a href=\"" . $skel['license_uri'] . "\"><acronym title=\"Creative Commons\">CC</acronym> License</a> ]</div>\n";
 
 	/* Close the centering of the page */
 	$page .= "</div></div>\n";
 
-	$page .= "<!-- rendered in " . (microtime() - $starttime) . "sec -->\n";
+	$page .= "<!-- rendered in " . (microtime() - $skel['starttime']) . "sec -->\n";
 
 	/*
 	 * Creative Commons license
@@ -216,7 +223,7 @@ function buildPage($skel, $section_name, $page_name, $body)
 function buildNavigation($skel)
 {
 	/*** Navigation part ***/
-	$page .= "<div id=\"left-navbar\">\n";
+	$page = "<div id=\"main-navbar\">\n";
 	$page .= "\t<div class=\"nav-header\">dammIT</div>\n";
 	$page .= "\t<ul id=\"main-nav\">\n";
 	$page .= "\t\t<li><a href=\"./\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
