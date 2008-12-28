@@ -18,9 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$lastmodified = '2008-12-23';
-$page_version = '0.5.10';
-$dateofcreation = '2003-12-21';
+$skel['lastmodified'] = '2008-12-28';
+$skel['page_version'] = '0.6.01';
+$skel['dateofcreation'] = '2003-12-21';
 
 $page_name = 'home';
 $page_log = 'home';
@@ -78,6 +78,8 @@ if ( $subpage == 'plan' )
 	$comment_comment = '';
 	$comment_error_comment = '';
 	$comment_url = '';
+	$comment_error_spammerchallenge = '';
+	$comment_spammer = '';
 
 	if ( $commentsenabled && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['url'])  && isset($_POST['comment']) && isset($_POST['spammer']) && isset($_POST['submitbtn']) )
 	{
@@ -382,5 +384,5 @@ if ( $subpage == 'plan' )
 } /* End of page-switcher */
 
 /* Now build the page */
-include 'modules/pagetemplate.php';
+echo buildPage($skel, $section_name, $page_name, $page_body)
 ?>

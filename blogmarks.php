@@ -18,9 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$lastmodified = '2008-08-19';
-$page_version = '0.5.03';
-$dateofcreation = '2003-12-21';
+$skel['lastmodified'] = '2008-12-28';
+$skel['page_version'] = '0.6.01';
+$skel['dateofcreation'] = '2003-12-21';
 
 $section_name = 'blogmarks';
 $page_name = 'home';
@@ -116,5 +116,5 @@ for ($i = 0; $i < count($nrOfMarksByYear); $i++)
 }
 $page_body .= "</ul>\n";
 
-include 'modules/pagetemplate.php';
+echo buildPage($skel, $section_name, $page_name, $page_body)
 ?>

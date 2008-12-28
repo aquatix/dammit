@@ -13,12 +13,13 @@
 /*** The body tag ***/
 body
 {
-	margin: 5px 10px 5px 10px;
-	padding: 5px 25px 5px 100px;
+/*	margin: 5px 10px 5px 10px;
+	padding: 5px 25px 5px 100px;*/
 /*	background: #a7c8e4 url("images/background_repeating_03.png");*/
 	background: #15317E;
 /*	background: #1458B8;
 	background: #014DB8;*/
+	background: #838F67;
         color: #222;
         font-family: Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
         font-size: 80%;
@@ -177,9 +178,11 @@ abbr, acronym
 
 input, textarea, button
 {
-	border:1px solid #95B1FF;
-	background: #e4ebff;
+/*	border:1px solid #95B1FF;
+	background: #e4ebff;*/
 /*	background: #CAD8FF;*/
+	border:1px solid #000;
+	background: #FFF;
 	color: #000000;
 }
 
@@ -273,11 +276,33 @@ blockquote
 }
 
 
+.wrapperbox
+{
+	text-align: center;
+	padding: 0;
+}
+
+.page
+{
+	width: 780px;
+	/*max-width: 945px;*/
+	margin: 1em auto 1em auto;
+	padding: 0;
+	text-align: left;
+	/*background-color: transparent;
+	background-image: url("images/content_bg.png");
+	background-repeat: repeat-y;*/
+	background: #FFF;
+}
+
+
+
+
 /*** Various blocks ***/
 #logo
 {
 	top: 25px;
-	position: absolute;
+/*	position: absolute;*/
 	left: 8px;
 	width: 300px;
 	height: 75px;
@@ -563,6 +588,7 @@ p.globalmessage
 	margin-top: .3em;
 	padding: .2em;
 	background: #e4ebff;
+	background: #838F67;
 }
 
 .related

@@ -18,9 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$lastmodified = '2008-03-17';
-$page_version = '0.5.02';
-$dateofcreation = '2005-01-11';
+$skel['lastmodified'] = '2008-12-28';
+$skel['page_version'] = '0.6.01';
+$skel['dateofcreation'] = '2005-01-11';
 
 $section_name = 'home';
 $page_name = 'search';
@@ -64,5 +64,5 @@ if ('' != $searchkey)
 	$page_body .= "<p>You will have to enter a text to search on</p>\n";
 }
 
-include 'modules/pagetemplate.php';
+echo buildPage($skel, $section_name, $page_name, $page_body)
 ?>

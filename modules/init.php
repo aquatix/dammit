@@ -101,4 +101,5 @@ include 'modules/blog_html.php';
 include 'modules/blog_methods.php';
 include 'modules/log_html.php';
 include 'modules/log_methods.php';
+include 'modules/pagetemplate.php';
 ?>

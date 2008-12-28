@@ -22,9 +22,9 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$lastmodified = '2008-12-24';
-$page_version = '0.5.15';
-$dateofcreation = '2003-12-22';
+$skel['lastmodified'] = '2008-12-28';
+$skel['page_version'] = '0.6.01';
+$skel['dateofcreation'] = '2003-12-22';
 
 $section_name = 'root';
 $page_name = 'home';
@@ -503,5 +503,5 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<br />\n";
 }
 
-include 'modules/pagetemplate.php';
+echo buildPage($skel, $section_name, $page_name, $page_body)
 ?>
