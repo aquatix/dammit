@@ -191,7 +191,7 @@ $skel['mailNotificationSubject'] = '[dammIT] New comment posted';
 
 
 /*** Stylesheet filename ***/
-$skel['cssTheme'] = 'blue';
+$skel['cssTheme'] = 'dammit';
 
 
 /* Automated tasks, like the posting of the blogmarks of this week, are restricted to IP: */
