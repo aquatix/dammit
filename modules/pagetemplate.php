@@ -175,6 +175,7 @@ function buildNavigation($skel)
 	{
 		$searchkey = '';
 	} 
+	$page .= "\t\t<div class=\"nav-header\">search</div>\n";
 	$page .= "\t\t<form action=\"search.php\" method=\"post\"><div><input type=\"text\" class=\"searchfield\" name=\"searchkey\" size=\"12\" maxlength=\"250\" value=\"" . $searchkey . "\" /><input name=\"searchbtn\" value=\"Find\" type=\"submit\" /></div></form>\n";
 
 

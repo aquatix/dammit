@@ -117,7 +117,7 @@ $skel['nav_blogs'] = array(
 		'http://chongq.blogspot.com/' => 'chongqing',
 		'http://anneliesje.nl/' => 'annelies',
 		'http://tisseenschande.nl/' => 'schande',
-		'http://mehellll.web-log.nl/' => 'melanie',
+		//'http://mehellll.web-log.nl/' => 'melanie',
 		'http://moniquearntz.web-log.nl/' => 'monique'
 		);
 

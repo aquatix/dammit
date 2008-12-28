@@ -397,27 +397,14 @@ blockquote
 		border: none;
 	}
 
-	#main-content-nav .nav-header,
-	#readerpublishermodule0 h3
+	#main-content-nav .nav-header
 	{
-		margin-top: 0;
+		margin-top: 1em;
 		color: #000;
 		font-weight: bold;
 		border-bottom: 1px solid #000000;
 		padding-bottom: 0px;
 	}
-
-	#readerpublishermodule0 h3
-	{
-		font-size: 1em;
-	}
-
-	#readerpublishermodule0 .f
-	{
-		font-size: .8em;
-		text-align: right;
-	}
-
 
 	#main-content-nav .images ul li
 	{
