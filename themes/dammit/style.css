@@ -1,24 +1,14 @@
 /*
- * dammIT stylesheet - blue
+ * dammIT stylesheet
  * Created by Michiel Scholten
  * mbscholt at aquariusoft dot org
  * 
  * $Id$
  */
 
-/*
- * http://wellstyled.com/tools/colorscheme2/index-en.html?triad;50;0;239;0.8333333333333334;0.49411764705882355;0.8333333333333334;0.3458823529411765;0.20833333333333334;1;0.4166666666666667;1;0.8333333333333334;0.49411764705882355;0.8333333333333334;0.3458823529411765;0.20833333333333334;1;0.4166666666666667;1;0.8333333333333334;0.49411764705882355;0.8333333333333334;0.3458823529411765;0.20833333333333334;1;0.4166666666666667;1;0.8333333333333334;0.49411764705882355;0.8333333333333334;0.3458823529411765;0.20833333333333334;1;0.4166666666666667;1;0
- */
-
 /*** The body tag ***/
 body
 {
-/*	margin: 5px 10px 5px 10px;
-	padding: 5px 25px 5px 100px;*/
-/*	background: #a7c8e4 url("images/background_repeating_03.png");*/
-	background: #15317E;
-/*	background: #1458B8;
-	background: #014DB8;*/
 	background: #838F67;
         color: #222;
         font-family: Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
@@ -41,19 +31,13 @@ h2
 { 
 	font-size: 130%;
 	font-weight: bold; 
-	color: #707070;
 	color: #FFF;
-	background: inherit;
-	background: #FFB200;
-	background: #B37D00;
-	background: #B35A00;
 	background: #39414F;
 	padding-bottom: 0;
 	margin-bottom: 0;
 	margin-top: .5em;
 	margin-top: 1.5em;
 	margin-top: 2em;
-	padding-top: 0;
 	padding: .2em;
 }
 
@@ -78,8 +62,6 @@ h3
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
 	font-size: 110%; 
 	font-weight: bold; 
-	background: transparent;
-	background: #B35A00;
 	background: #39414F;
 	color: #707070;
 	color: #FFF;
@@ -135,7 +117,6 @@ h6
 /*** Various html objects ***/
 a
 {
-	color: #5C6448;
 	color: #39414F;
 	background: transparent;
 	text-decoration: none;
@@ -163,7 +144,6 @@ th
 {
 	font-weight: bold;
 	text-align: left;
-	background: #0F2258;
 	background: #39414F;
 	color: #FFF;
 }
@@ -216,9 +196,6 @@ abbr, acronym
 
 input, textarea, button
 {
-/*	border:1px solid #95B1FF;
-	background: #e4ebff;*/
-/*	background: #CAD8FF;*/
 	border:1px solid #5C6448;
 	background: #FAFFED;
 	color: #000000;
@@ -236,8 +213,6 @@ textarea
 
 input:focus, textarea:focus
 {
-	border: 1px solid #15317E;
-	border: 1px solid #000;
 	border: 1px solid #39414F;
 	color: inherit;
 	background: #FFFFFF;
@@ -245,8 +220,6 @@ input:focus, textarea:focus
 
 em
 {
-	color:#4076a3;
-	color:#B35A00;
 	color: #39414F;
 	background: transparent;
 }
@@ -285,7 +258,6 @@ ul li
 
 blockquote
 {
-	background: #15317E;
 	background: transparent;
 	background-image: url("images/quote_transparent.png");
 	background-position: top left;
@@ -294,30 +266,13 @@ blockquote
 	color: inherit;
 	padding-top: 15px;
 	text-align: justify;
-	border-left: 6px solid #0F2258;
-	border-left: 6px solid #e4ebff;
-	border-left: 4px solid #15317E;
 	border-left: 4px solid #5C6448;
 	margin-left: 15px;
 	margin-right: 0;
 	padding-left: 25px;
 	padding-right: .5em;
-/*	padding-bottom: .2em;*/
 }
-/*
-	blockquote a
-	{
-		color: #FFF;
-		border-bottom: 1px dotted #FFF;
-	}
 
-	blockquote a:hover
-	{
-		color: #FFF;
-		background-color: inherit;
-		border-bottom: 1px solid #FFF;
-	}
-*/
 .strike
 {
 	text-decoration: line-through;
@@ -332,15 +287,10 @@ blockquote
 
 .page
 {
-	width: 780px;
 	width: 880px;
-	/*max-width: 945px;*/
 	margin: 1em auto 1em auto;
 	padding: 0;
 	text-align: left;
-	/*background-color: transparent;
-	background-image: url("images/content_bg.png");
-	background-repeat: repeat-y;*/
 	background: #FFF;
 }
 
@@ -350,23 +300,10 @@ blockquote
 /*** Various blocks ***/
 #logo
 {
-/*	top: 25px;*/
-/*	position: absolute;*/
-/*
-	left: 8px;
-	width: 300px;
-	height: 75px;
-	*/
-/*	margin-left: 10px;
-	height: 107px;*/
-	height: 127px;
 	height: 140px;
-/*	z-index: 5;*/
-
 	padding: 0;
 	background: transparent;
 	text-align: left;
-/*	border: 1px solid #FFF;*/
 }
 
 	#logo a
@@ -386,13 +323,8 @@ blockquote
 #main-content
 {
 	float: left;
-/*	padding: 100px 240px 4px 75px;
-	padding: 10px 220px 1em 1em;*/
 	padding: 10px 10px 1em 1em;
-/*	min-height: 130em;*/
 	min-height: 140em;
-/*	max-width: 750px;*/
-	width: 540px;
 	width: 640px;
 	background: #FFFFFF;
 	color: inherit;
@@ -424,7 +356,6 @@ blockquote
 	top: 100px;
 	right: 2px;
 	width: 200px;
-	/*border-left: 1px dotted #838F67;*/
 	padding: 0.5em;
 	padding-top: 0;
 
@@ -494,13 +425,8 @@ blockquote
 
 #main-navbar
 {
-	padding: 15px 10px 7px 10px;
 	padding: 7px 10px 7px 10px;
-/*	top: 120px;
-	left: 25px;*/
 	width: 171px;
-
-	background: #0F2258;
 	background: #5C6448;
 	color: #fff;
 	text-align: left;
@@ -560,10 +486,8 @@ blockquote
 	#main-nav a:hover
 	{
 		color: #000;
-		background-color: #e4ebff;
 		background-color: #838F67;
 		padding: 2px 3px 2px 3px;
-		border: 1px solid #95B1FF;
 		border: 1px solid #FFF;
 	}
 
@@ -635,19 +559,11 @@ p.globalmessage
 .info
 {
 	font-size: 75%;
-	margin-top: .3em;
 	margin-top: 0;
 	margin-bottom: .5em;
 	padding: .2em;
 	padding-top: 0;
-/*
-	background: #e4ebff;
-	background: #838F67;
-	background: #FFB200;
-	color: #FFF;
-*/
 	background: transparent;
-	border-bottom: 1px dotted #838F67;
 	border-bottom: 1px dotted #39414F;
 }
 
@@ -658,12 +574,7 @@ p.globalmessage
 	color: inherit;
 	text-align: right;
 }
-/*
-	.blogmark blockquote p
-	{
-		padding-left: 0;
-	}
-*/
+
 .blogmark .edit
 {
 	margin-left: 15px;
@@ -672,20 +583,11 @@ p.globalmessage
 .weeklyblogmarks
 {
 	font-size: 75%;
-/*	color: #909090;*/
-/*	padding-left: 1em;*/
 }
 
-/*
-	.weeklyblogmarks a
-	{
-		color: #909090;
-	}
-*/
 	.weeklyblogmarks h3, .weeklyblogmarks h3 a, .weeklyblogmarks h3 a:hover
 	{
 		background: transparent;
-		color: #5C6448;
 		color: #39414F;
 		padding: 0;
 	}
@@ -713,8 +615,6 @@ p.globalmessage
 	background: transparent;
 	color: inherit;
 	padding: 2px 0px 2px 0px;
-	/*border-top: 1px dotted #4F91C9;
-	border-bottom: 1px dotted #4F91C9;*/
 	text-align: left;
 	margin-top: 1em;
 }
@@ -877,9 +777,6 @@ p.globalmessage
 .column_left, .column_right
 {
 	float: left;
-/*	width: 47%;
-	padding: .5em;
-	margin-right: .2em;*/
 	width: 49%;
 }
 
@@ -896,7 +793,6 @@ p.globalmessage
 .rootblock
 {
 	background:#FFFFFF url(images/stripe.gif) repeat scroll 0 0;
-/*	border-color:#EEEEEE;*/
 	border: 1px solid #EEE;
 	padding: .5em;
 	margin-bottom: 1em;

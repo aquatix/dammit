@@ -84,18 +84,7 @@ if ((date('m') == 9 && date('d') > 20) || (date('m') <= 12))
 /* If winter */
 if ((date('m') == 12 && date('d') > 10) || (date('m') < 4))
 {
-	$skel['logo'] = 'images/dammit_winter.png';
-	$skel['logo'] = 'images/dammit_rastericed.png';
-	$skel['logoWidth'] = 880;
-	$skel['logoHeight'] = 107;
-	$skel['logo'] = 'images/dammit_new.png';
-	$skel['logoWidth'] = 441;
-	$skel['logoHeight'] = 107;
-	$skel['logo'] = 'images/dammit_freeze.jpg';
-	$skel['logoWidth'] = 880;
-	$skel['logoHeight'] = 127;
 	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
-	$skel['logo'] = 'images/dammit_rietsigaar_kleiner.jpg';
 	$skel['logoWidth'] = 880;
 	$skel['logoHeight'] = 140;
 }
