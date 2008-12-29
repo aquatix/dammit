@@ -108,19 +108,17 @@ $skel['nav_shared'] = array(
 		);
 */
 $skel['nav_blogs'] = array(
-		'http://www.manuzhai.nl/' => 'manuzhai',
-		'http://bloempje.nl/' => 'roosje',
-		'http://www.rousette.org.uk/' => 'but she\'s a girl',
-		'http://diveintomark.org/' => 'dive into mark',
-		'http://www.randsinrepose.com/' => 'rands in repose',
-		'http://www.1976design.com/blog/' => '1976design',
-		'http://www.chipx86.com/blog/' => 'chipx86',
-		'http://www.jaypinkerton.com/blog/' => 'jay pinkerton',
-		'http://chongq.blogspot.com/' => 'chongqing',
+		//'http://www.manuzhai.nl/' => 'manuzhai',
 		'http://anneliesje.nl/' => 'annelies',
+		'http://www.rousette.org.uk/' => 'but she\'s a girl',
+		'http://www.chipx86.com/blog/' => 'chipx86',
+		'http://chongq.blogspot.com/' => 'chongqing',
+		'http://diveintomark.org/' => 'dive into mark',
+		'http://moniquearntz.web-log.nl/' => 'monique',
+		'http://bloempje.nl/' => 'roosje',
+		'http://www.randsinrepose.com/' => 'rands in repose',
 		'http://tisseenschande.nl/' => 'schande',
 		//'http://mehellll.web-log.nl/' => 'melanie',
-		'http://moniquearntz.web-log.nl/' => 'monique'
 		);
 
 $skel['nav_morphix'] = array(
@@ -139,8 +137,8 @@ $skel['nav_collectiveblogs'] = array(
 		'http://planet.livecd.net/' => 'planet livecd',
 		'http://www.boingboing.net/' => 'boingboing',
 		'http://www.linuxchix.org/live/' => 'linuxchix',
+		'http://www.engadget.com/' => 'engadget',
 		'http://www.mobilewhack.com/' => 'mobilewhack',
-		'http://www.engadget.com/' => 'engadget'
 		);
 
 $skel['nav_webdev'] = array(
@@ -154,6 +152,11 @@ $skel['nav_photo'] = array(
 		'http://basvandijk.eu/blog/' => 'bas\' photolog'
 		);
 
+$skel['nav_memorable'] = array(
+		'http://www.1976design.com/blog/' => '1976design',
+		'http://www.jaypinkerton.com/blog/' => 'jay pinkerton',
+		);
+
 
 /* All sections to iterate over */
 $skel['nav_sections'] = array(
@@ -161,7 +164,8 @@ $skel['nav_sections'] = array(
 		'nav_photo' => 'photography',
 		'nav_morphix' => 'morphix',
 		'nav_collectiveblogs' => 'collective',
-		'nav_webdev' => 'webdev'
+		'nav_webdev' => 'webdev',
+		'nav_memorable' => 'memorable'
 		);
 
 /*** Educated guess for location when adding new rant or blogmark ***/

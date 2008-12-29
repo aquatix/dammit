@@ -391,7 +391,8 @@ blockquote
 		list-style-image: url(images/bullet.gif);
 	}
 
-	#main-content-nav .images
+	/*#main-content-nav .images*/
+	.images
 	{
 		/*border-top: 1px solid #707070;*/
 		border: none;

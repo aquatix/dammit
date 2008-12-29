@@ -261,6 +261,12 @@ if ( $subpage == 'plan' )
 		}
 	}
 
+} else if ( $subpage == 'kudos' )
+{
+	$page_name = 'kudos';
+	$page_body .= "<h1>Kudos</h1>\n";
+	$page_body .= "<p>A lovely link page that takes you back to the 1990's, but enables me to give some <a href=\"http://en.wikipedia.org/wiki/Kudos\">Kudos</a> to weblogs I read, people I like, news sites I crave and hobbies I love.</p>\n";
+	$page_body .= buildKudos($skel);
 } else if ( $subpage == 'archive' )
 {
 	$year = getRequestParam('year', date('Y')); /* Default to current year */

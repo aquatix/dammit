@@ -153,6 +153,7 @@ function buildNavigation($skel)
 	$page .= "\t\t<li><a href=\"./\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
 	$page .= "\t\t<li><a href=\"index.php?page=archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
 	$page .= "\t\t<li><a href=\"blogmarks.php\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
+	$page .= "\t\t<li><a href=\"index.php?page=kudos\" accesskey=\"k\" title=\"View a list of links that deserve kudos\">kudos</a></li>\n";
 	$page .= "\t\t<li><a href=\"index.php?page=about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
 	$page .= "\t</ul>\n";
 
@@ -180,7 +181,11 @@ function buildNavigation($skel)
 	$page .= "\t\t\t<li><a href=\"blog_comments.rdf\" title=\"Get my feed with comments into your reader :)\"><img src=\"images/logos/rsscomments.gif\" alt=\"RSS feed with comments\"/></a></li>\n";
 	$page .= "\t\t\t<li><a href=\"marks.rdf\" title=\"Get my blogmarks into your reader :)\"><img src=\"images/logos/rss_marks.png\" alt=\"RSS feed - blogmarks\"/></a></li>\n";
 	$page .= "\t\t</ul>\n\t</div>\n";
+	return $page;
+}
 
+function buildKudos($skel)
+{
 	/*
 	$page .= '<script type="text/javascript" src="http://www.google.com/reader/ui/publisher.js"></script>
 	<script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/00682473562631681597/state/com.google/broadcast?n=5&callback=GRC_p(%7Bc%3A\'blue\'%2Ct%3A\'Michiel%5C047s%20shared%20items\'%2Cs%3A\'false\'%7D)%3Bnew%20GRC"></script>';
@@ -191,12 +196,12 @@ function buildNavigation($skel)
 	// disabled at 20071213 <script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/00682473562631681597/state/com.google/broadcast?n=10&amp;callback=GRC_p(%7Bc%3A\'-\'%2Ct%3A\'Michiel%5C047s%20shared%20items\'%2Cs%3A\'false\'%7D)%3Bnew%20GRC"></script>';
 	// disabled at 20071213 $page .= "<p><a href=\"http://www.google.com/reader/public/atom/user/00682473562631681597/state/com.google/broadcast\">Feed</a></p>\n";
 
+	$page = '';
+
 	/* Generate links-menu */
-/*
 	foreach ( array_keys($skel['nav_sections']) as $navsection_name )
 	{
-		//
-		$page .= "\t\t<div class=\"nav-header\">" . $skel['nav_sections'][$navsection_name] . "</div>\n";
+		$page .= "\t\t<h3>" . $skel['nav_sections'][$navsection_name] . "</h3>\n";
 		$page .= "\t\t<ul>\n";
 		foreach ( array_keys($skel[$navsection_name]) as $navitem_name )
 		{
@@ -204,9 +209,7 @@ function buildNavigation($skel)
 		}
 		$page .= "\t\t</ul>\n";
 	}
-*/
-/*
-	$page .= "\t\t<div class=\"nav-header\">kudos</div>\n";
+	$page .= "\t\t<h3>images</h3>\n";
 	$page .= "\t\t<div class=\"images\">\n";
 	$page .= "\t\t\t<ul>\n";
 	$page .= "\t\t\t\t<li><a href=\"http://www.debian.org/\" title=\"Debian GNU/Linux\"><img src=\"images/logos/debian.png\" alt=\"Debian GNU/Linux\"/></a></li>\n";
@@ -241,7 +244,6 @@ function buildNavigation($skel)
 	$page .= "\t\t\t\t<li><a href=\"http://eldred.cc/\"><img src=\"images/logos/create_like_its_1790.gif\" title=\"Save Orphan Works\" alt=\"create like it's 1790\" width=\"88\" height=\"31\" /></a></li>\n";
 	$page .= "\t\t\t</ul>\n";
 	$page .= "\t\t</div>\n";
-*/
 
 	return $page;
 }
