@@ -42,16 +42,33 @@ h2
 	font-size: 130%;
 	font-weight: bold; 
 	color: #707070;
+	color: #FFF;
 	background: inherit;
+	background: #FFB200;
+	background: #B37D00;
+	background: #B35A00;
 	padding-bottom: 0;
 	margin-bottom: 0;
 	margin-top: .5em;
 	margin-top: 1.5em;
 	margin-top: 2em;
 	padding-top: 0;
+	padding: .2em;
 }
 
-	h2 a, h3 a
+	h2 a, h2 a:hover
+	{
+		color: #707070;
+		color: #FFF;
+		border-bottom: 1px dotted #FFF;
+	}
+
+	h2 a:hover
+	{
+		border-bottom: 1px solid #FFF;
+	}
+
+	h3 a
 	{
 		color: #707070;
 	}
@@ -67,6 +84,11 @@ h3
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
+	form h3
+	{
+		margin-top: 0;
+		padding-top: 0;
+	}
 
 h4
 { 
@@ -109,8 +131,9 @@ a
 a:hover
 {
 	color: #15317E;
+	color: #5C6448;
 	background: transparent;
-	border-bottom: 1px solid #15317E;
+	border-bottom: 1px solid #5C6448;
 }
 
 	.ranttitle a, .ranttitle a:hover
@@ -199,6 +222,7 @@ textarea
 input:focus, textarea:focus
 {
 	border: 1px solid #15317E;
+	border: 1px solid #000;
 	color: inherit;
 	background: #FFFFFF;
 }
@@ -206,6 +230,7 @@ input:focus, textarea:focus
 em
 {
 	color:#4076a3;
+	color:#B35A00;
 	background: transparent;
 }
 
@@ -285,6 +310,7 @@ blockquote
 .page
 {
 	width: 780px;
+	width: 880px;
 	/*max-width: 945px;*/
 	margin: 1em auto 1em auto;
 	padding: 0;
@@ -338,6 +364,7 @@ blockquote
 	min-height: 140em;
 /*	max-width: 750px;*/
 	width: 540px;
+	width: 640px;
 	background: #FFFFFF;
 	color: inherit;
 	line-height: 1.4; /* IE-bug workaround */
@@ -358,6 +385,7 @@ blockquote
 	.ie-warning
 	{
 		border: 1px solid #FF0000;
+		border: 1px solid #B35A00;
 		padding: 5px;
 	}
 
@@ -496,7 +524,6 @@ blockquote
 	#main-nav a
 	{
 		color: #FFF;
-		width: 100%;
 		display: block;
 		padding: 3px 4px 3px 4px;
 	}
@@ -580,10 +607,18 @@ p.globalmessage
 {
 	font-size: 75%;
 	margin-top: .3em;
+	margin-top: 0;
+	margin-bottom: .5em;
 	padding: .2em;
+	padding-top: 0;
+/*
 	background: #e4ebff;
 	background: #838F67;
+	background: #FFB200;
 	color: #FFF;
+*/
+	background: transparent;
+	border-bottom: 1px dotted #838F67;
 }
 
 .related
@@ -607,7 +642,7 @@ p.globalmessage
 .weeklyblogmarks
 {
 	font-size: 75%;
-	color: #909090;
+/*	color: #909090;*/
 /*	padding-left: 1em;*/
 }
 
@@ -791,7 +826,7 @@ p.globalmessage
 	background: transparent;
 	color: inherit;
 	padding: 2px 1px 2px 1px;
-	border-top: 2px solid #838F67;
+	border-top: 1px solid #838F67;
 	text-align: right;
 }
 

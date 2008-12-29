@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2008-12-28';
-$skel['page_version'] = '0.6.01';
+$skel['lastmodified'] = '2008-12-29';
+$skel['page_version'] = '0.6.02';
 $skel['dateofcreation'] = '2003-12-21';
 
 $page_name = 'home';
@@ -143,8 +143,8 @@ if ( $subpage == 'plan' )
 				$url = '<a href="' . $comment_url . '">' . $comment_name . '</a>';
 			}
 
-			$comment_preview .= "<h1>Comment preview</h1><div id=\"commentpreview\"><div class=\"comment\">\n<div class=\"comment_info\"><span class=\"comment_datestamp\">Posted at yyyy-mm-dd hh:mm:ss</span>&nbsp;<span class=\"comment_name\">by " . $url . "</span></div>\n";
-			$comment_preview .= "<div class=\"comment_message\">" . $message = str_replace("\n", "<br/>\n", htmlentities($comment_comment)) . "</div></div>\n";
+			$comment_preview .= "<h1>Comment preview</h1>\n<div id=\"commentpreview\">\n\t<div class=\"comment\">\n\t\t<div class=\"comment_info\"><span class=\"comment_datestamp\">Posted at yyyy-mm-dd hh:mm:ss</span>&nbsp;<span class=\"comment_name\">by " . $url . "</span></div>\n";
+			$comment_preview .= "\t\t<div class=\"comment_message\">" . $message = str_replace("\n", "<br/>\n", htmlentities($comment_comment)) . "</div>\n\t</div>\n</div>\n";
 		} else
 		{
 			$page_body .= "<h1>Error!</h1><p>An unknown action was received.</p>\n";
@@ -213,12 +213,16 @@ if ( $subpage == 'plan' )
 				$page_body .= "HTML will be escaped, so you won't be able to add links. Post the URL instead. Line breaks will be converted to breaks.</p>\n";
 				/* post to current page */
 				$page_body .= "<form action=\"index.php?rantid=" . $rantid . "#addcomment\" method=\"post\">\n";
-				$page_body .= $comment_error_name . "<p><input type=\"text\" name=\"name\" size=\"30\" maxlength=\"150\" value=\"" . $comment_name . "\"/> <span class=\"heading\">Name</span></p>\n";
-				$page_body .= $comment_error_email . "<p><input type=\"text\" name=\"email\" size=\"30\" maxlength=\"150\" value=\"" . $comment_email . "\"/> <span class=\"heading\">E-mail address</span><br/><input type=\"checkbox\" name=\"wantnotifications\"" . $comment_notify_text . "/> Mail me when someone else comments too<br />\nYour address <em>won't</em> be shown in your comment</p>\n";
-				$page_body .= "<p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\"/> <span class=\"heading\">WWW</span><br />\nLeave empty if you don't want to provide a url</p>\n";
+				$page_body .= "<h3>Name</h3>\n";
+				$page_body .= $comment_error_name . "<p><input type=\"text\" name=\"name\" size=\"30\" maxlength=\"150\" value=\"" . $comment_name . "\" /></p>\n";
+				$page_body .= "<h3>E-mail address</h3>\n";
+				$page_body .= $comment_error_email . "<p><input type=\"text\" name=\"email\" size=\"30\" maxlength=\"150\" value=\"" . $comment_email . "\" /><br/><input type=\"checkbox\" name=\"wantnotifications\"" . $comment_notify_text . "/> Mail me when someone else comments too<br />\nYour address <em>won't</em> be shown in your comment</p>\n";
+				$page_body .= "<h3>WWW</h3>\n";
+				$page_body .= "<p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\" /><br />\nLeave empty if you don't want to provide a url</p>\n";
 				//$page_body .= "<h2>Comment</h2><p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
 				$page_body .= $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
-				$page_body .= $comment_error_spammerchallenge . "<p><input type=\"text\" name=\"spammer\" size=\"30\" maxlength=\"150\" value=\"" . $comment_spammer . "\"/> <span class=\"heading\">Are you a spammer (yes/no)?</span></p>\n";
+				$page_body .= "<h3>Are you a spammer (yes/no)?</h3>\n";
+				$page_body .= $comment_error_spammerchallenge . "<p><input type=\"text\" name=\"spammer\" size=\"30\" maxlength=\"150\" value=\"" . $comment_spammer . "\" /></p>\n";
 				$page_body .= '<p>Be sure to <em>save your comment</em> after you\'ve previewed it!</p>';
 				$page_body .= "<p><input name=\"submitbtn\" value=\"Preview\" type=\"submit\"/>\n";
 				if ($commenting === true)
