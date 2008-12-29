@@ -154,7 +154,9 @@ if ( $subpage == 'plan' )
 	if ($submitting == false)
 	{
 		$rant = getRantById($skel, $rantid);
-		$page_body .= '<h1>' . $skel['siteName'] . " home</h1>\n";
+		//$page_body .= '<h1>' . $skel['siteName'] . " home</h1>\n";
+		//$page_body .= "<h1>Home</h1>\n";
+		$page_body .= "<h1>Posting</h1>\n";
 		if (null != $skel['globalmessage'])
 		{
 			$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
@@ -375,7 +377,8 @@ if ( $subpage == 'plan' )
 } else
 {
 	/*** Show the homepage ***/
-	$page_body .= "<h1>" . $skel['siteName'] . " home</h1>\n";
+	//$page_body .= "<h1>" . $skel['siteName'] . " home</h1>\n";
+	$page_body .= "<h1>Home</h1>\n";
 	if (null != $skel['globalmessage'])
 	{
 		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";

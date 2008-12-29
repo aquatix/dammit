@@ -47,6 +47,7 @@ h2
 	background: #FFB200;
 	background: #B37D00;
 	background: #B35A00;
+	background: #39414F;
 	padding-bottom: 0;
 	margin-bottom: 0;
 	margin-top: .5em;
@@ -58,7 +59,6 @@ h2
 
 	h2 a, h2 a:hover
 	{
-		color: #707070;
 		color: #FFF;
 		border-bottom: 1px dotted #FFF;
 	}
@@ -70,7 +70,7 @@ h2
 
 	h3 a
 	{
-		color: #707070;
+		color: #FFF;
 	}
 
 h3
@@ -79,15 +79,28 @@ h3
 	font-size: 110%; 
 	font-weight: bold; 
 	background: transparent;
+	background: #B35A00;
+	background: #39414F;
 	color: #707070;
+	color: #FFF;
 	border: none;
 	margin-bottom: 0;
 	padding-bottom: 0;
+	padding: .2em;
 }
 	form h3
 	{
 		margin-top: 0;
 		padding-top: 0;
+		padding: 0;
+		color: #000;
+		background: transparent;
+	}
+
+	h3 a, h3 a:hover
+	{
+		color: #FFF;
+		border: 0;
 	}
 
 h4
@@ -122,18 +135,18 @@ h6
 /*** Various html objects ***/
 a
 {
-	color: #222;
+	color: #5C6448;
+	color: #39414F;
 	background: transparent;
 	text-decoration: none;
-	border-bottom: 1px dotted #15317E;
+	border-bottom: 1px dotted #39414F;
 }
 
 a:hover
 {
-	color: #15317E;
-	color: #5C6448;
+	color: #39414F;
 	background: transparent;
-	border-bottom: 1px solid #5C6448;
+	border-bottom: 1px solid #39414F;
 }
 
 	.ranttitle a, .ranttitle a:hover
@@ -151,6 +164,7 @@ th
 	font-weight: bold;
 	text-align: left;
 	background: #0F2258;
+	background: #39414F;
 	color: #FFF;
 }
 
@@ -178,20 +192,21 @@ a img, .images a
 }
 
 /* If the link is one to an external page, add the link icon [breaks the validation, but it's cool enough to keep] */
+/*
 a[href^="http:"]
 {
-	/*background: transparent url("http://www.cs.vu.nl/~mbscholt/images/link.gif") 100% 50% no-repeat;*/
 	background: transparent url("images/link.gif") 100% 50% no-repeat;
 	padding-right: 10px;
 }
-
+*/
 /* otherwise, don't [breaks the validation, but it's cool enough to keep] */
+/*
 a[class^="plain"], a[href^="http://aquariusoft.org/~mbscholt/"], .images a, #license a, #main-content-nav a
 {
 	background: inherit;
-/*	color: inherit;*/
 	padding-right: 0px;
 }
+*/
 
 abbr, acronym
 {
@@ -223,6 +238,7 @@ input:focus, textarea:focus
 {
 	border: 1px solid #15317E;
 	border: 1px solid #000;
+	border: 1px solid #39414F;
 	color: inherit;
 	background: #FFFFFF;
 }
@@ -231,6 +247,7 @@ em
 {
 	color:#4076a3;
 	color:#B35A00;
+	color: #39414F;
 	background: transparent;
 }
 
@@ -256,6 +273,11 @@ p
 	margin: 0;
 }
 
+form p
+{
+	padding-bottom: .2em;
+}
+
 ul li
 {
 	list-style-type: square;
@@ -275,6 +297,7 @@ blockquote
 	border-left: 6px solid #0F2258;
 	border-left: 6px solid #e4ebff;
 	border-left: 4px solid #15317E;
+	border-left: 4px solid #5C6448;
 	margin-left: 15px;
 	margin-right: 0;
 	padding-left: 25px;
@@ -327,11 +350,17 @@ blockquote
 /*** Various blocks ***/
 #logo
 {
-	top: 25px;
+/*	top: 25px;*/
 /*	position: absolute;*/
+/*
 	left: 8px;
 	width: 300px;
 	height: 75px;
+	*/
+/*	margin-left: 10px;
+	height: 107px;*/
+	height: 127px;
+	height: 140px;
 /*	z-index: 5;*/
 
 	padding: 0;
@@ -385,7 +414,6 @@ blockquote
 	.ie-warning
 	{
 		border: 1px solid #FF0000;
-		border: 1px solid #B35A00;
 		padding: 5px;
 	}
 
@@ -398,6 +426,7 @@ blockquote
 	width: 200px;
 	/*border-left: 1px dotted #838F67;*/
 	padding: 0.5em;
+	padding-top: 0;
 
 	/* Make it glassed, so if the window is made too narrow, the bar has a translucent background */
 /*	background-image: url('images/alpha.png');*/
@@ -619,6 +648,7 @@ p.globalmessage
 */
 	background: transparent;
 	border-bottom: 1px dotted #838F67;
+	border-bottom: 1px dotted #39414F;
 }
 
 .related
@@ -646,11 +676,24 @@ p.globalmessage
 /*	padding-left: 1em;*/
 }
 
+/*
 	.weeklyblogmarks a
 	{
 		color: #909090;
 	}
+*/
+	.weeklyblogmarks h3, .weeklyblogmarks h3 a, .weeklyblogmarks h3 a:hover
+	{
+		background: transparent;
+		color: #5C6448;
+		color: #39414F;
+		padding: 0;
+	}
 
+	.weeklyblogmarks h3 a:hover
+	{
+		border-bottom: 1px solid #39414F;
+	}
 
 /* Date field in archive listing */
 .date
@@ -866,6 +909,7 @@ p.globalmessage
 		padding: .5em;
 		background: #FFF;
 		border: 1px solid #EEE;
+		color: #39414F;
 	}
 
 	.rootblock h3
@@ -892,7 +936,9 @@ p.globalmessage
 	a.button:hover
 	{
 		color: #5C6448;
+		color: #39414F;
 		border: 1px solid #5C6448;
+		border: 1px solid #39414F;
 		background: #FFF;
 	}	
 
