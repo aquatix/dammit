@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$skel['lastmodified'] = '2008-12-30';
-$skel['page_version'] = '0.6.03';
+$skel['lastmodified'] = '2008-12-31';
+$skel['page_version'] = '0.6.04';
 $skel['dateofcreation'] = '2003-12-22';
 
 $section_name = 'root';
@@ -74,7 +74,7 @@ if ((isLoggedIn() == false) && (isset($_POST['user']) && $_POST['user'] != '') &
 		$_SESSION['userid'] = $userid;
 	} else
 	{
-		$page_body .= "<h1>Error!</h1>\n<p>Not a valid user/pass combo!</p>\n<p><a href=\"root.php\">Go back</a></p>\n<br /><br /><br /><br />\n";
+		$page_body .= "<h1>Error!</h1>\n<p>Not a valid user/pass combo!</p>\n<p><a href=\"root.php\" class=\"button\">&laquo; Back</a></p>\n<br /><br /><br /><br />\n";
 		include "inc/inc_pagetemplate.php";
 		exit;
 	}
@@ -124,7 +124,7 @@ if (isset($_GET['action']) && isLoggedIn())
 			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 			$page_body .= $root_nav;
 			$page_body .= "<h1>root / rant added!</h1>\n";
-			$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+			$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>";
 		} else
 		{
 			$page_body .= $root_nav;
@@ -154,7 +154,7 @@ if (isset($_GET['action']) && isLoggedIn())
 					$showform = false;
 					$page_body .= $root_nav;
 					$page_body .= "<h1>root / rant edited</h1>\n";
-					$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
+					$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>\n";
 					//check $result
 				} else
 				{
@@ -190,7 +190,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		{
 			$page_body .= $root_nav;
 			$page_body .= "<h1>root / error!</h1>\n";
-			$page_body .= "<p>Posting does not belong to you, so you can't edit it. <a href=\"root.php\">Go back to root</a></p>\n";
+			$page_body .= "<p>Posting does not belong to you, so you can't edit it.</p><p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n";
 		}
 	} else if ('listunpublished' == $action)
 	{
@@ -200,7 +200,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		$page_body .= $root_nav;
 		if (null == $unpublished_rants)
 		{
-			$page_body .= "<h1>root / sorry</h1>\n<p>No unpublished rants where found. <a href=\"root.php\">Go back to root</a></p>\n";
+			$page_body .= "<h1>root / sorry</h1>\n<p>No unpublished rants where found.</p><p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n";
 		} else
 		{
 			$page_body .= buildRants($unpublished_rants);
@@ -209,13 +209,13 @@ if (isset($_GET['action']) && isLoggedIn())
 	{
 		$page_body .= $root_nav;
 		$page_body .= "<h1>root / comments</h1>\n";
-		$page_body .= "<p><a href=\"root.php\" class=\"button\">&laquo; Root</a></p>\n";
+		$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n";
 		$latestComments = getLatestComments($skel, 50, true);
 		//$page_body .= "<h3>Latest</h3>\n";
 		$page_body .= "<ul>\n";
 		$page_body .= buildCommentsList($latestComments);
 		$page_body .= "</ul>\n";
-		$page_body .= "<p><a href=\"root.php\" class=\"button\">&laquo; Root</a></p>\n";
+		$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n";
 	} else if ('addmark' == $action)
 	{
 		$mark_title = getRequestParam('title', '');
@@ -246,7 +246,7 @@ if (isset($_GET['action']) && isLoggedIn())
 			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 			$page_body .= $root_nav;
 			$page_body .= "<h1>root / blogmark added!</h1>\n";
-			$page_body .= "<p><a href=\"root.php\" class=\"button\">&laquo; Root</a></p>\n<br/><br/><br/><br/>";
+			$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>";
 		} else
 		{
 			$page_body .= "<h1>Error!</h1>\n<p>Not a valid blogmark submitted :)</p>\n<br /><br /><br /><br />\n";
@@ -257,10 +257,10 @@ if (isset($_GET['action']) && isLoggedIn())
 		if ('' == $result)
 		{
 			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
-			$page_body .= "<h1>root / rant with blogmarks of this week added</h1>\n<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
+			$page_body .= "<h1>root / rant with blogmarks of this week added</h1>\n<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>\n";
 		} else
 		{
-			$page_body .= '<h1>root / rant with blogmarks of this week NOT added</h1>\n<p>' . $result . "</p><p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
+			$page_body .= '<h1>root / rant with blogmarks of this week NOT added</h1>\n<p>' . $result . "</p><p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>\n";
 		}
 	} else if ($action == "disablecomment")
 	{
@@ -283,7 +283,7 @@ if (isset($_GET['action']) && isLoggedIn())
 				if ($commentRantID > 0)
 				{
 					$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&rantid=" . $commentRantID . "\">Disable comments for the parent posting</a></p>\n";
-					$page_body .= "<p><a href=\"index.php?rantid=" . $commentRantID . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+					$page_body .= "<p><a href=\"index.php?rantid=" . $commentRantID . "\">Go back to the posting</a> / <a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>";
 				}
 				//$page_body .= '<p><a href="index.php?rantid=' . getRantForComment($skel, $commentid) . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
 			}
@@ -311,10 +311,10 @@ if (isset($_GET['action']) && isLoggedIn())
 				$page_body .= $root_nav;
 				$page_body .= "<h1>root / recover [enable] comment</h1>\n";
 				$page_body .= "<p>Comment #" . $commentid . " recovered and comment feed updated</p>\n";
-				$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+				$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>";
 				if ($commentRantID > 0)
 				{
-					$page_body .= "<p><a href=\"index.php?rantid=" . $commentRantID . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+					$page_body .= "<p><a href=\"index.php?rantid=" . $commentRantID . "\">Go back to the posting</a> / <a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>";
 				}
 			}
 		} else
@@ -339,7 +339,7 @@ if (isset($_GET['action']) && isLoggedIn())
 				$page_body .= $root_nav;
 				$page_body .= "<h1>root / disable comments for posting</h1>\n";
 				$page_body .= "<p>Disabled commenting for posting #" . $rantid . "</p>\n";
-				$page_body .= "<p><a href=\"index.php?rantid=" . $rantid . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+				$page_body .= "<p><a href=\"index.php?rantid=" . $rantid . "\" class=\"button\">&laquo; Back to the posting</a> <a href=\"root.php\" class=\"button\">Root &raquo;</a></p>\n<br/><br/><br/><br/>";
 			}
 		} else
 		{
@@ -363,7 +363,7 @@ if (isset($_GET['action']) && isLoggedIn())
 				$page_body .= $root_nav;
 				$page_body .= "<h1>root / [re]enable comments for posting</h1>\n";
 				$page_body .= "<p>Enabled commenting for posting #" . $rantid . "</p>\n";
-				$page_body .= "<p><a href=\"index.php?rantid=" . $rantid . "\">Go back to the posting</a> / <a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+				$page_body .= "<p><a href=\"index.php?rantid=" . $rantid . "\" class=\"button\">&laquo; Back to the posting</a> <a href=\"root.php\" class=\"button\">Root &raquo;</a></p>\n<br/><br/><br/><br/>";
 			}
 		} else
 		{
@@ -379,7 +379,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 		updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
 		updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
-		$page_body .= "<p>Feeds refreshed.</p>\n<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+		$page_body .= "<p>Feeds refreshed.</p>\n<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>";
 	} else if ( $action == "viewlog" )
 	{
 		$page_body .= $root_nav;
@@ -390,7 +390,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		//print_r(getNumberOfViewsOverviewPerPage( $skel, $start_date, $end_date ));
 		$page_body .= toTable(getNumberOfViewsOverviewPerDay( $skel, $start_date, $end_date ));
 		$page_body .= "<p><a href=\"root.php?action=getlogperday\">Download this overview</a></p>\n";
-		$page_body .= "<p><a href=\"root.php\" class=\"button\">&laquo; Back to Root</a></p>\n<br/><br/><br/><br/>\n";
+		$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>\n";
 	} else if ( $action == 'getlogperday' )
 	{
 		$start_date = "2007-12-31";
@@ -407,7 +407,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	{
 		$page_body .= $root_nav;
 		$page_body .= "<h1>root / view comments log</h1>\n";
-		$page_body .= "<p>Not implemented yet!</p><p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>\n";
+		$page_body .= "<p>Not implemented yet!</p><p><a href=\"root.php\" class=\"button\">Root &laquo; Rootraquo;</a></p>\n<br/><br/><br/><br/>\n";
 	} else if ( $action == "logout" )
 	{
 		/* user wants to log out */
@@ -417,12 +417,12 @@ if (isset($_GET['action']) && isLoggedIn())
 		session_destroy();
 		$user_name = null;
 		$user_pass = null;
-		$page_body .= "<h1>Logged out!</h1>\n<p><a href=\"index.php\">Go back to rantbox</a></p>\n<br/><br/><br/><br/>";
+		$page_body .= "<h1>Logged out!</h1>\n<p><a href=\"index.php\" class=\"button\">Go back to rantbox &raquo;</a></p>\n<br/><br/><br/><br/>";
 	} else
 	{
 		$page_body .= $root_nav;
 		$page_body .= "<h1>root / error!</h1>\n";
-		$page_body .= "<p>Not a valid action!</p>\n<br /><br /><br /><br />\n";
+		$page_body .= "<p>Not a valid action!</p>\n<p><a href=\"index.php\" class=\"button\">Go back to rantbox &raquo;</a></p>\n<br /><br /><br /><br />\n";
 	}
 } else if (isLoggedIn())
 {
@@ -494,7 +494,7 @@ if (isset($_GET['action']) && isLoggedIn())
 {
 	$page_body .= "<h1>Got root?</h1>\n";
 	$page_body .= "<h2>Please log in</h2>\n";
-	$page_body .= "<p><a href=\"https://aquariusoft.org/~mbscholt/root.php\">If you are using unencrypted http, please go to the secured https site</a></p>\n";
+	//$page_body .= "<p><a href=\"https://aquariusoft.org/~mbscholt/root.php\">If you are using unencrypted http, please go to the secured https site</a></p>\n";
 	$page_body .= "<div id=\"loginform\">\n";
 	$page_body .= "<form action=\"root.php\" method=\"post\">\n";
 	//$page_body .= "User<br/><input type=\"text\" name=\"user\" size=\"16\" maxlength=\"16\" /><br/>\n";
