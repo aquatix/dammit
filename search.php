@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2008-12-28';
-$skel['page_version'] = '0.6.01';
+$skel['lastmodified'] = '2008-12-30';
+$skel['page_version'] = '0.6.02';
 $skel['dateofcreation'] = '2005-01-11';
 
 $section_name = 'home';
@@ -27,7 +27,7 @@ $page_name = 'search';
 
 include 'modules/init.php';
 
-addToLog( $skel, $section_name, $page_name, $page_version );
+addToLog( $skel, $section_name, $page_name, $skel['page_version'] );
 
 $page_body = "<h1>Search</h1>\n";
 

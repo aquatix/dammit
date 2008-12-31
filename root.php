@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$skel['lastmodified'] = '2008-12-29';
-$skel['page_version'] = '0.6.02';
+$skel['lastmodified'] = '2008-12-30';
+$skel['page_version'] = '0.6.03';
 $skel['dateofcreation'] = '2003-12-22';
 
 $section_name = 'root';
@@ -209,11 +209,13 @@ if (isset($_GET['action']) && isLoggedIn())
 	{
 		$page_body .= $root_nav;
 		$page_body .= "<h1>root / comments</h1>\n";
+		$page_body .= "<p><a href=\"root.php\" class=\"button\">&laquo; Root</a></p>\n";
 		$latestComments = getLatestComments($skel, 50, true);
 		//$page_body .= "<h3>Latest</h3>\n";
 		$page_body .= "<ul>\n";
 		$page_body .= buildCommentsList($latestComments);
 		$page_body .= "</ul>\n";
+		$page_body .= "<p><a href=\"root.php\" class=\"button\">&laquo; Root</a></p>\n";
 	} else if ('addmark' == $action)
 	{
 		$mark_title = getRequestParam('title', '');
@@ -244,7 +246,7 @@ if (isset($_GET['action']) && isLoggedIn())
 			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 			$page_body .= $root_nav;
 			$page_body .= "<h1>root / blogmark added!</h1>\n";
-			$page_body .= "<p><a href=\"root.php\">Go back to Root</a></p>\n<br/><br/><br/><br/>";
+			$page_body .= "<p><a href=\"root.php\" class=\"button\">&laquo; Root</a></p>\n<br/><br/><br/><br/>";
 		} else
 		{
 			$page_body .= "<h1>Error!</h1>\n<p>Not a valid blogmark submitted :)</p>\n<br /><br /><br /><br />\n";
@@ -435,6 +437,8 @@ if (isset($_GET['action']) && isLoggedIn())
 */
 	$page_body .= "\t<p><a href=\"root.php?action=addrant\" class=\"button\">Add rant</a>\n";
 	$page_body .= "\t  <a href=\"root.php?action=listunpublished\" class=\"button\">Unpublished rants</a></p>\n";
+
+	$page_body .= "\t<p>Rants written: " . getNrOfRants($skel) . "</p>\n";
 	$page_body .= "\t<h3>Drafts</h3>\n";
 	$offset = 0;
 	$number = 3;
@@ -454,13 +458,16 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<h2>Blogmarks</h2>\n";
 	$page_body .= "\t<p><a href=\"root.php?action=addmark\" class=\"button\">Add blogmark</a></p>\n";
 	$latestComments = getLatestComments($skel, 3, true);
+	$page_body .= "</div>\n";
+	$page_body .= "<div class=\"rootblock\">\n";
+	$page_body .= "<h2>Comments</h2>\n";
 	$page_body .= "<h3>Latest</h3>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= buildCommentsList($latestComments);
 	$page_body .= "\t<li><a href=\"root.php?action=listcomments\">Show 50 latest comments</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "</div>\n";
-	$page_body .= "<div class=\"column_left\">\n";
+	//$page_body .= "<div class=\"column_left\">\n";
 	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>Logs</h2>\n";
 	$page_body .= "<ul>\n";
@@ -469,20 +476,18 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "\t<li><a href=\"root.php?action=viewcommentlog\">View comments log</a></li>\n";
 	$page_body .= "</ul>\n";
 	$page_body .= "</div>\n";
-	$page_body .= "</div>\n";
-	$page_body .= "<div class=\"column_right\">\n";
+	//$page_body .= "</div>\n";
+	//$page_body .= "<div class=\"column_right\">\n";
 	$page_body .= "<div class=\"rootblock\">\n";
-	$page_body .= "<h2>General</h2>\n";
-	$page_body .= "\t<p><a href=\"root.php?action=logout\" class=\"button\">Log out</a></p>\n";
-	$page_body .= "<ul>\n";
-	$page_body .= "\t<li><a href=\"root.php?action=generatefeeds\">Generate RSS feed[s]</a></li>\n";
-	$page_body .= "\t<li><a href=\"root.php?action=markstorant\">Wrap up the blogmarks of the last 7 days to a new rant</a></li>\n";
-	$page_body .= "\t<li><a href=\"http://www.technorati.com/developers/ping.html?name=dammIT&amp;url=http%3A%2F%2Faquariusoft.org%2F%7Embscholt%2F\">Ping Technorati that site has been updated</a></li>\n";
-	$page_body .= "\t<li><a href=\"https://aquariusoft.org/~mbscholt/root.php\">If you are using unencrypted http, please go to the secured https site</a></li>\n";
-	$page_body .= "</ul>\n";
+	//$page_body .= "<h2>General</h2>\n";
+	//$page_body .= "\t<p><a href=\"root.php?action=logout\" class=\"button\">Log out</a></p>\n";
+	$page_body .= "\t<p><a href=\"root.php?action=generatefeeds\" class=\"button\" title=\"Generate RSS feed[s]\">Generate RSS</a>";
+	$page_body .= "     <a href=\"root.php?action=markstorant\" class=\"button\" title=\"Wrap up the blogmarks of the last 7 days to a new rant\">Blogmarks post</a>";
+	$page_body .= "     <a href=\"http://www.technorati.com/developers/ping.html?name=dammIT&amp;url=http%3A%2F%2Faquariusoft.org%2F%7Embscholt%2F\" class=\"button\" title=\"Ping Technorati that site has been updated\">Ping</a>";
+	$page_body .= "</p>\n";
 	$page_body .= "</div>\n";
-	$page_body .= "</div>\n";
-	$page_body .= "<br style=\"clear: both;\" />\n";
+	//$page_body .= "</div>\n";
+	//$page_body .= "<br style=\"clear: both;\" />\n";
 	$page_body .= "<br />\n";
 
 } else

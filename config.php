@@ -34,9 +34,10 @@ $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
 $skel['siteName'] = 'dammIT';
 $skel['mainEmail'] = 'dammit@aquariusoft.org';
+$skel['tagline'] = 'Curiosity is a virtue';
 $skel['siteKeywords'] = 'Michiel Scholten,michiel,scholten,web,log,weblog,blog,rantbox,rant,rants,frustrations,personal,homepage,netherlands,nederland,nederlands,the netherlands,website,cool,dammit,damn,it,damnit,blah,linux,unix,script,scripts,shell,bash,web';
 $skel['siteDescription'] = 'This is the rantbox of Michiel Scholten, Netherlands. It\'s my blog, so you can read about my frustrations and surf the links I share with the rest of the world :)';
-$skel['feedDescription'] = 'Michiel\'s weblog // "A country that replaces freedom with security deserves neither" (Thomas Jefferson)';
+$skel['feedDescription'] = 'Michiel\'s weblog // Those who would give up Essential Liberty to purchase a little Temporary Safety, deserve neither Liberty nor Safety (Benjamin Franklin)';
 
 /* Message to be shown on the main page, archive page and individual posting pages */
 //$skel['globalmessage'] = 'dammIT is getting tweaked';
@@ -85,6 +86,7 @@ if ((date('m') == 9 && date('d') > 20) || (date('m') <= 12))
 if ((date('m') == 12 && date('d') > 10) || (date('m') < 4))
 {
 	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
+	//$skel['logo'] = 'images/dammit_rietsigaar_tagline.jpg';
 	$skel['logoWidth'] = 880;
 	$skel['logoHeight'] = 140;
 }
@@ -115,8 +117,8 @@ $skel['nav_blogs'] = array(
 		'http://chongq.blogspot.com/' => 'chongqing',
 		'http://diveintomark.org/' => 'dive into mark',
 		'http://moniquearntz.web-log.nl/' => 'monique',
-		'http://bloempje.nl/' => 'roosje',
 		'http://www.randsinrepose.com/' => 'rands in repose',
+		'http://bloempje.nl/' => 'roosje',
 		'http://tisseenschande.nl/' => 'schande',
 		//'http://mehellll.web-log.nl/' => 'melanie',
 		);
@@ -148,8 +150,8 @@ $skel['nav_webdev'] = array(
 		);
 
 $skel['nav_photo'] = array(
+		'http://basvandijk.eu/blog/' => 'bas\' photolog',
 		'http://aquariusoft.org/photolog/' => 'my photolog',
-		'http://basvandijk.eu/blog/' => 'bas\' photolog'
 		);
 
 $skel['nav_memorable'] = array(

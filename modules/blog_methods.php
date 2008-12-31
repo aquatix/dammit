@@ -3,7 +3,6 @@
  * $Id$
  *
  * Weblog module - methods
- * Version: 0.5.06 2008-08-19
  *
  * Copyright 2003-2008 mbscholt at aquariusoft.org
  *

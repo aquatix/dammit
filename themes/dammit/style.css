@@ -19,6 +19,7 @@ body
 h1
 {
 	color: #454545;
+	color: #39414F;
 	background: transparent;
 	font-size: 175%;
 	font-weight: bold;
@@ -70,12 +71,13 @@ h3
 	padding-bottom: 0;
 	padding: .2em;
 }
-	form h3
+
+	form h3, form h2
 	{
 		margin-top: 0;
 		padding-top: 0;
 		padding: 0;
-		color: #000;
+		color: #39414F;
 		background: transparent;
 	}
 
@@ -194,7 +196,7 @@ abbr, acronym
 	cursor: help;
 }
 
-input, textarea, button
+/*input, textarea, button
 {
 	border:1px solid #5C6448;
 	background: #FAFFED;
@@ -205,19 +207,19 @@ input, textarea, button
 	{
 		width: 150px;
 	}
-
+*/
 textarea
 {
 	width: 100%;
 }
-
+/*
 input:focus, textarea:focus
 {
 	border: 1px solid #39414F;
 	color: inherit;
 	background: #FFFFFF;
 }
-
+*/
 em
 {
 	color: #39414F;
@@ -244,6 +246,7 @@ p
 	padding: 2px 4px 2px 0;
 	padding: .2em .2em 1em 0;
 	margin: 0;
+	margin-top: .2em;
 }
 
 form p
@@ -401,9 +404,9 @@ blockquote
 	#main-content-nav .nav-header
 	{
 		margin-top: 1em;
-		color: #000;
+		color: #39414F;
 		font-weight: bold;
-		border-bottom: 1px solid #000000;
+		border-bottom: 1px solid #39414F;
 		padding-bottom: 0px;
 	}
 
@@ -707,13 +710,12 @@ p.globalmessage
 	.comment_info
 	{
 		padding: .2em;
-		color: #707070;
-		font-size: 90%;
+		font-size: 75%;
 	}
 
 	.comment_nr
 	{
-		color: #707070;
+		color: #5C6448;
 		width: 25px;
 		font-size: 1.5em;
 		font-style: italic;
@@ -813,24 +815,36 @@ p.globalmessage
 	{
 		margin: 0;
 		padding-left: 1em;
+		background: transparent;
+		color: #39414F;
 	}
 
-.button
+	.rootblock p
+	{
+		text-align: left;
+	}
+
+.button, input, textarea, button
 {
 	-moz-border-radius-bottomleft:3px;
 	-moz-border-radius-bottomright:3px;
 	-moz-border-radius-topleft:3px;
 	-moz-border-radius-topright:3px;
 	margin: 0;
-	margin-top: 1em;
-	padding: .5em;
+/*	margin-top: 1em;*/
+	padding: .2em .5em .2em .5em;
 	background: #FFF;
 	border: 1px solid #EEE;
 	font-weight: bold;
 	color: #707070;
 }
 
-	a.button:hover
+	input, textarea, button
+	{
+		font-weight: normal;
+	}
+
+	a.button:hover, input:focus, textarea:focus, button:focus
 	{
 		color: #5C6448;
 		color: #39414F;
@@ -838,6 +852,11 @@ p.globalmessage
 		border: 1px solid #39414F;
 		background: #FFF;
 	}	
+
+	input.searchfield
+	{
+		width: 125px;
+	}
 
 /*** Notes ***/
 /*

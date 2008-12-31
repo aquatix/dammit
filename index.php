@@ -19,7 +19,7 @@
  */
 
 $skel['lastmodified'] = '2008-12-29';
-$skel['page_version'] = '0.6.02';
+$skel['page_version'] = '0.6.03';
 $skel['dateofcreation'] = '2003-12-21';
 
 $page_name = 'home';
@@ -126,7 +126,7 @@ if ( $subpage == 'plan' )
 			{
 				updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfRantsPerPage']));
 				$page_body .= "<h1>Comment added!</h1>\n";
-				$page_body .= "<p>Thank you for showing interest in my little rantbox :) <a href=\"index.php?rantid=" . $_POST['rantid'] . "&amp;view\">Go back to the posting</a></p>\n";
+				$page_body .= "<p>Thank you for showing interest in my little rantbox :)</p><p><a href=\"index.php?rantid=" . $_POST['rantid'] . "&amp;view\" class=\"button\">&laquo; Go back to the posting</a></p>\n";
 			} else
 			{
 				$page_body .= "<h1>Error</h1>\n";
@@ -143,8 +143,10 @@ if ( $subpage == 'plan' )
 				$url = '<a href="' . $comment_url . '">' . $comment_name . '</a>';
 			}
 
-			$comment_preview .= "<h1>Comment preview</h1>\n<div id=\"commentpreview\">\n\t<div class=\"comment\">\n\t\t<div class=\"comment_info\"><span class=\"comment_datestamp\">Posted at yyyy-mm-dd hh:mm:ss</span>&nbsp;<span class=\"comment_name\">by " . $url . "</span></div>\n";
-			$comment_preview .= "\t\t<div class=\"comment_message\">" . $message = str_replace("\n", "<br/>\n", htmlentities($comment_comment)) . "</div>\n\t</div>\n</div>\n";
+			//$comment_preview .= "<h1>Comment preview</h1>\n<div id=\"commentpreview\">\n\t<div class=\"comment\">\n\t\t<div class=\"comment_info\"><span class=\"comment_datestamp\">Posted at yyyy-mm-dd hh:mm:ss</span>&nbsp;<span class=\"comment_name\">by " . $url . "</span></div>\n";
+			//$comment_preview .= "\t\t<div class=\"comment_message\">" . $message = str_replace("\n", "<br/>\n", htmlentities($comment_comment)) . "</div>\n\t</div>\n</div>\n";
+			$comment_preview .= "<h1>Comment preview</h1>\n<div id=\"commentpreview\">\n\t<div>\n<span class=\"comment_nr\">N.&nbsp;</span><span class=\"comment_info\">Posted at yyyy-mm-dd hh:mm:ss&nbsp;by " . $url . " [ Permalink ]</span></div>\n";
+			$comment_preview .= "\t\t<div class=\"comment_message\">" . $message = str_replace("\n", "<br/>\n", htmlentities($comment_comment)) . "\n\t</div>\n</div>\n";
 		} else
 		{
 			$page_body .= "<h1>Error!</h1><p>An unknown action was received.</p>\n";
@@ -241,15 +243,16 @@ if ( $subpage == 'plan' )
 			}
 			if (isLoggedIn())
 			{
+				$page_body .= "<h2>Admin</h2>\n";
 				if ($commentsenabled)
 				{
-					$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&amp;rantid=" . $rantid . "\">Disable comments for this posting</a></p>\n";
+					$page_body .= "<p><a href=\"root.php?action=disablecommentsforpost&amp;rantid=" . $rantid . "\" class=\"button\">Disable comments for this posting</a></p>\n";
 				} else
 				{
-					$page_body .= "<p><a href=\"root.php?action=enablecommentsforpost&amp;rantid=" . $rantid . "\">[Re]enable comments for this posting</a></p>\n";
+					$page_body .= "<p><a href=\"root.php?action=enablecommentsforpost&amp;rantid=" . $rantid . "\" class=\"button\">[Re]enable comments for this posting</a></p>\n";
 				}
 				$referers = getReferers( $skel, $section_name, $page_log );
-				$page_body .= "<h1>Referers</h1>\n";
+				$page_body .= "<h3>Referers</h3>\n";
 				if (0 < count($referers))
 				{
 					$page_body .= buildReferers( $skel, $referers );
