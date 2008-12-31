@@ -112,6 +112,7 @@ $skel['nav_shared'] = array(
 $skel['nav_blogs'] = array(
 		//'http://www.manuzhai.nl/' => 'manuzhai',
 		'http://anneliesje.nl/' => 'annelies',
+		'http://basvandijk.eu/blog/' => 'bas\' osiblog',
 		'http://www.rousette.org.uk/' => 'but she\'s a girl',
 		'http://www.chipx86.com/blog/' => 'chipx86',
 		'http://chongq.blogspot.com/' => 'chongqing',
@@ -150,7 +151,8 @@ $skel['nav_webdev'] = array(
 		);
 
 $skel['nav_photo'] = array(
-		'http://basvandijk.eu/blog/' => 'bas\' photolog',
+		'http://dpreview.com' => 'dpreview',
+		'http://www.diyphotography.net/' => 'dyi photography',
 		'http://aquariusoft.org/photolog/' => 'my photolog',
 		);
 
