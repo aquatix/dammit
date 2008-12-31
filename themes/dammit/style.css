@@ -196,30 +196,11 @@ abbr, acronym
 	cursor: help;
 }
 
-/*input, textarea, button
-{
-	border:1px solid #5C6448;
-	background: #FAFFED;
-	color: #000000;
-}
-
-	input.searchfield
-	{
-		width: 150px;
-	}
-*/
 textarea
 {
 	width: 100%;
 }
-/*
-input:focus, textarea:focus
-{
-	border: 1px solid #39414F;
-	color: inherit;
-	background: #FFFFFF;
-}
-*/
+
 em
 {
 	color: #39414F;
@@ -835,6 +816,7 @@ p.globalmessage
 	padding: .2em .5em .2em .5em;
 	background: #FFF;
 	border: 1px solid #EEE;
+	border: 1px solid #39414F;
 	font-weight: bold;
 	color: #707070;
 }
@@ -846,16 +828,14 @@ p.globalmessage
 
 	a.button:hover, input:focus, textarea:focus, button:focus
 	{
-		color: #5C6448;
 		color: #39414F;
-		border: 1px solid #5C6448;
-		border: 1px solid #39414F;
+		border: 1px solid #000;
 		background: #FFF;
 	}	
 
 	input.searchfield
 	{
-		width: 125px;
+		width: 135px;
 	}
 
 /*** Notes ***/
