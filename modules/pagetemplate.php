@@ -55,7 +55,9 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 
 	$page .= "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS\" href=\"http://aquariusoft.org/~mbscholt/blog.rdf\" />\n";
 
-	$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css?20081231\"/>\n";
+	//$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css?20081231\"/>\n";
+	$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/style.css\"/>\n";
+	$page .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel["cssTheme"] . "/handheld.css\" media=\"handheld\" />\n";
 	$page .= "<!--[if gte ie 5.5000]><link rel=\"stylesheet\" type=\"text/css\" href=\"themes/" . $skel['cssTheme'] . "/ie.css\" /><![endif]-->\n";
 
 	$page .= "</head>\n";

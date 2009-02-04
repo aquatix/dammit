@@ -224,7 +224,7 @@ if ( $subpage == 'plan' )
 				$page_body .= "<h3>WWW</h3>\n";
 				$page_body .= "<p><input type=\"text\" name=\"url\" size=\"30\" maxlength=\"255\" value=\"" . $comment_url . "\" /><br />\nLeave empty if you don't want to provide a url</p>\n";
 				//$page_body .= "<h2>Comment</h2><p>Be sure to <em>save your comment</em> after you've previewed it!</p>" . $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
-				$page_body .= $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\" style=\"width: 100%\">" . $comment_comment . "</textarea></p>\n";
+				$page_body .= $comment_error_comment . "<p><textarea name=\"comment\" rows=\"8\" cols=\"80\">" . $comment_comment . "</textarea></p>\n";
 				$page_body .= "<h3>Are you a spammer (yes/no)?</h3>\n";
 				$page_body .= $comment_error_spammerchallenge . "<p><input type=\"text\" name=\"spammer\" size=\"30\" maxlength=\"150\" value=\"" . $comment_spammer . "\" /></p>\n";
 				$page_body .= '<p>Be sure to <em>save your comment</em> after you\'ve previewed it!</p>';

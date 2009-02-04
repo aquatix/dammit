@@ -75,7 +75,7 @@ if ((isLoggedIn() == false) && (isset($_POST['user']) && $_POST['user'] != '') &
 	} else
 	{
 		$page_body .= "<h1>Error!</h1>\n<p>Not a valid user/pass combo!</p>\n<p><a href=\"root.php\" class=\"button\">&laquo; Back</a></p>\n<br /><br /><br /><br />\n";
-		include "inc/inc_pagetemplate.php";
+		echo buildPage($skel, $section_name, $page_name, $page_body);
 		exit;
 	}
 }
@@ -449,6 +449,7 @@ if (isset($_GET['action']) && isLoggedIn())
 		$page_body .= "\t\t\t<li><span class=\"note\">" . $unpublished_rants[$i]['initiated'] . " -</span> <a href=\"root.php?action=editrant&amp;rantid=" . $unpublished_rants[$i]['messageID'] . "\">" .  $unpublished_rants[$i]['title'] . "</a></li>\n";
 	}
 	$nrUnpublishedRants = max(getNrUnpublishedRants($skel) - 3, 0);
+	$rantsMultiple = '';
 	if ($nrUnpublishedRants != 1) { $rantsMultiple = 's'; }
 	$page_body .= "\t\t\t<li>" . $nrUnpublishedRants . " additional unpublished rant" . $rantsMultiple . "</li>\n";
 	$page_body .= "\t\t</ul>\n";
@@ -510,5 +511,5 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "<br />\n";
 }
 
-echo buildPage($skel, $section_name, $page_name, $page_body)
+echo buildPage($skel, $section_name, $page_name, $page_body);
 ?>
