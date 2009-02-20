@@ -438,7 +438,8 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "\t<p><a href=\"root.php?action=addrant\" class=\"button\">Add rant</a>\n";
 	$page_body .= "\t  <a href=\"root.php?action=listunpublished\" class=\"button\">Unpublished rants</a></p>\n";
 
-	$page_body .= "\t<p>Rants written: " . getNrOfRants($skel) . "</p>\n";
+	$nrRantsWritten = getNrOfRants($skel);
+	$page_body .= "\t<p>Rants written: " . $nrRantsWritten . "</p>\n";
 	$page_body .= "\t<h3>Drafts</h3>\n";
 	$offset = 0;
 	$number = 3;
@@ -462,6 +463,9 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "</div>\n";
 	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>Comments</h2>\n";
+	$nrCommentsTotal = getNrOfComments($skel);
+	$nrCommentsDisabled = getNrOfDisabledComments($skel);
+	$page_body .= "<p>Total comments: " . $nrCommentsTotal . " of which " . $nrCommentsDisabled . " are disabled (netting " . ($nrCommentsTotal - $nrCommentsDisabled) . ", averaging " . number_format(($nrCommentsTotal - $nrCommentsDisabled) / $nrRantsWritten, 2) . " per rant)</p>\n";
 	$page_body .= "<h3>Latest</h3>\n";
 	$page_body .= "<ul>\n";
 	$page_body .= buildCommentsList($latestComments);

@@ -114,9 +114,42 @@ function getNrOfRants($skel)
 /*
  * Get nr of comments for a smplog_rant entry [only where State=1, e.g. non-deleted ones]
  */
-function getNrOfComments( $skel, $rantId )
+function getNrOfComments( $skel, $rantId = -1 )
 {
-	$query = 'SELECT count(*) FROM smplog_comment WHERE smplog_comment.rantid = ' . $rantId . ' AND smplog_comment.state=1;';
+
+	if ($rantId > -1)
+	{
+		$query = 'SELECT count(*) FROM smplog_comment WHERE smplog_comment.rantid = ' . $rantId . ' AND smplog_comment.state=1;';
+
+		$result = mysql_query( $query, $skel['dbLink'] );
+		if ( mysql_num_rows( $result ) > 0 )
+		{
+			$row = mysql_fetch_row($result);
+			return $row[0];
+		} else
+		{
+			return -1;
+		}
+	} else
+	{
+		/* We want the total number of comments ever posted */
+		$query = 'SELECT count(*) FROM smplog_comment;';
+
+		$result = mysql_query( $query, $skel['dbLink'] );
+		if ( mysql_num_rows( $result ) > 0 )
+		{
+			$row = mysql_fetch_row($result);
+			return $row[0];
+		} else
+		{
+			return -1;
+		}
+	}
+}
+
+function getNrOfDisabledComments( $skel )
+{
+	$query = 'SELECT count(*) FROM smplog_comment WHERE smplog_comment.state=0;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	if ( mysql_num_rows( $result ) > 0 )
