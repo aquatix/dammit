@@ -1,10 +1,13 @@
 <?php
-/*
- * $Id$
- *
+/**
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
+ * $Id$
  * 
  * Copyright 2003-2009 mbscholt at aquariusoft.org
+ *
+ * simplog is the legal property of its developer, Michiel Scholten
+ * [mbscholt at aquariusoft.org]
+ * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

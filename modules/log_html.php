@@ -1,12 +1,13 @@
 <?php
-/*
+/**
+ * Log module - HTML methods
  * $Id$
  * 
- * Log module - HTML methods
- * Version: 0.5.02 2008-08-19
- * Created: 2005-02-13
- * 
- * Copyright 2003-2008 mbscholt at aquariusoft.org
+ * Copyright 2005-2009 mbscholt at aquariusoft.org
+ *
+ * simplog is the legal property of its developer, Michiel Scholten
+ * [mbscholt at aquariusoft.org]
+ * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

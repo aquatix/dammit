@@ -1,8 +1,13 @@
 <?php
-/*
+/**
+ * Page listing public bookmarks posted on the weblog
  * $Id$
  *
- * Copyright 2003-2008 mbscholt at aquariusoft.org
+ * Copyright 2003-2009 mbscholt at aquariusoft.org
+ *
+ * simplog is the legal property of its developer, Michiel Scholten
+ * [mbscholt at aquariusoft.org]
+ * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +23,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2008-12-28';
-$skel['page_version'] = '0.6.01';
+$skel['lastmodified'] = '2009-03-09';
+$skel['page_version'] = '0.6.02';
 $skel['dateofcreation'] = '2003-12-21';
 
 $section_name = 'blogmarks';
@@ -70,7 +75,6 @@ if (isset($_GET['year']) && myIsInt($_GET['year']))
 }
 
 /*** Show the blogmark overview ***/
-//$page_body .= "<h1>Blogmarks</h1>\n<h2>Interesting stuff I came across</h2>\n<p>This section contains my blogmarks: links to interesting sites I stumbled apon, or pictures I liked.</p>\n";
 $page_body .= "<h1>Blogmarks</h1>\n";
 $offset = 0;
 $nrBack = 0;

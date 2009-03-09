@@ -1,8 +1,13 @@
 <?php
-/*
+/**
+ * Complete admin module for the weblog
  * $Id$
  *
  * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Please refer to the COPYRIGHT file distributed with this source distribution.
+ *
+ * simplog is the legal property of its developer, Michiel Scholten
+ * [mbscholt at aquariusoft.org]
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
