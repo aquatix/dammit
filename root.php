@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright 2003-2008 mbscholt at aquariusoft.org
+ * Copyright 2003-2009 mbscholt at aquariusoft.org
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -22,8 +22,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$skel['lastmodified'] = '2008-12-31';
-$skel['page_version'] = '0.6.04';
+$skel['lastmodified'] = '2009-03-09';
+$skel['page_version'] = '0.6.07';
 $skel['dateofcreation'] = '2003-12-22';
 
 $section_name = 'root';
@@ -256,7 +256,9 @@ if (isset($_GET['action']) && isLoggedIn())
 		$result = marksToRant($skel);
 		if ('' == $result)
 		{
-			updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
+			updateWeblogFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+			updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfItemsInFeed']));
+			//updateWebmarksFeed($skel, getMarks($skel, 0, $skel['nrOfItemsInFeed']));
 			$page_body .= "<h1>root / rant with blogmarks of this week added</h1>\n<p><a href=\"root.php\" class=\"button\">Root &raquo;</a></p>\n<br/><br/><br/><br/>\n";
 		} else
 		{

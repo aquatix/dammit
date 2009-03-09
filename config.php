@@ -3,9 +3,8 @@
  * $Id$
  *
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * Version: 0.5.07 2008-08-19
  * 
- * Copyright 2003-2008 mbscholt at aquariusoft.org
+ * Copyright 2003-2009 mbscholt at aquariusoft.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -178,7 +177,7 @@ $skel['locations'] = array(
 		'192.168.*.*' => 'Home',
 		'82.169.46.26' => 'Home',
 		'213.84.100.*' => 'Work',
-		'62.41.246.173' => 'Work',
+		'62.41.246.*' => 'Work',
 		'130.37.*.*' => 'Vrije Universiteit',
 		'130.37.24.*' => 'Vrije Universiteit - Computer lab',
 		'130.37.26.*' => 'Vrije Universiteit - Laptop over wifi',
@@ -206,7 +205,7 @@ $skel['cssTheme'] = 'dammit';
 
 
 /* Automated tasks, like the posting of the blogmarks of this week, are restricted to IP: */
-$skel['restricttoip'] = '127.0.0.1';
+$skel['restricttoip'] = '94.142.246.68';	// typically 127.0.0.1
 
 
 /*
