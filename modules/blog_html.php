@@ -443,7 +443,7 @@ function buildCommentsList( $comments )
 		//$commentsHTML .= "</span></div>\n";
 		$commentsHTML .= "</span>\n";
 
-		$commentsHTML .= '<br />' . textSnippet($message, 120) . "</li>\n";
+		$commentsHTML .= '<br />' . textSnippet($message, 160) . "</li>\n";
 	
 	}
 
