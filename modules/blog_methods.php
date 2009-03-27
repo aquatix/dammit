@@ -364,7 +364,7 @@ function findRants( $skel, $searchkey )
 	/* Generate list with smplog_rants, newest first, starting with $first' item in DB, with a max of $number items */
 	$rants = array();
 
-	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE ispublic=1 AND message LIKE "%' . $searchkey . '%" OR title LIKE "%' . $searchkey . '%" ORDER BY date DESC;';
+	$query = 'SELECT ' . $skel['rantproperties'] . ' FROM smplog_rant WHERE ispublic=1 AND (message LIKE "%' . $searchkey . '%" OR title LIKE "%' . $searchkey . '%") ORDER BY date DESC;';
 
 	$result = mysql_query( $query, $skel['dbLink'] );
 	return resultsetToRants($skel, $result);
