@@ -117,6 +117,7 @@ $skel['nav_blogs'] = array(
 		'http://diveintomark.org/' => 'dive into mark',
 		'http://languagelog.ldc.upenn.edu/nll/' => 'language log',
 		'http://moniquearntz.web-log.nl/' => 'monique',
+		'http://nugigeruli.com/' => 'nugigeruli',
 		'http://www.randsinrepose.com/' => 'rands in repose',
 		'http://bloempje.nl/' => 'roosje',
 		'http://tisseenschande.nl/' => 'schande',
