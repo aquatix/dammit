@@ -74,6 +74,7 @@ if ((date('m') == 3 && date('d') > 20) || (date('m') < 7))
 {
 	/* If summer */
 	$skel['logo'] = 'images/dammit_stones.png';
+	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
 } else if ((date('m') == 9 && date('d') > 20) || (date('m') <= 12))
 {
 	/* If autumn */
@@ -156,6 +157,11 @@ $skel['nav_photo'] = array(
 		'http://aquariusoft.org/photolog/' => '<em>my photolog</em>',
 		);
 
+$skel['nav_patents'] = array(
+		'http://www.freepatentsonline.com' => 'free patents online',
+		'http://www.sumobrain.com' => 'sumobrain patent searching',
+		);
+
 $skel['nav_memorable'] = array(
 		'http://www.1976design.com/blog/' => '1976design',
 		'http://www.jaypinkerton.com/blog/' => 'jay pinkerton',
@@ -168,6 +174,7 @@ $skel['nav_sections'] = array(
 		'nav_photo' => 'photography',
 		'nav_morphix' => 'morphix',
 		'nav_collectiveblogs' => 'collective',
+		'nav_patents' => 'patent research',
 		'nav_webdev' => 'webdev',
 		'nav_memorable' => 'memorable'
 		);
