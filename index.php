@@ -116,7 +116,7 @@ if ( $subpage == 'plan' )
 		$comment_spammer = getRequestParam("spammer", null);
 		if (strtolower($comment_spammer) != 'no')
 		{
-			$comment_error_spammerchallenge = 'Get lost, spammer';
+			$comment_error_spammerchallenge = '<em>Get lost, spammer</em>';
 			$comment_error = true;
 		}
 		$comment_url = getRequestParam("url", null);
