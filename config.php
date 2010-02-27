@@ -80,7 +80,7 @@ if ((date('m') == 3 && date('d') > 20) || (date('m') < 7))
 	/* If autumn */
 	//$skel['logo'] = 'images/dammit_autumn_path.png';
 	$skel['logo'] = 'images/dammit_autumn.png';
-	//$skel['logo'] = 'images/dammit_rietsigaar.jpg';
+	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
 } else if ((date('m') == 12 && date('d') > 10) || (date('m') < 4))
 {
 	/* If winter */
@@ -213,6 +213,7 @@ $skel['cssTheme'] = 'dammit';
 
 /* Automated tasks, like the posting of the blogmarks of this week, are restricted to IP: */
 $skel['restricttoip'] = '94.142.246.68';	// typically 127.0.0.1
+$skel['restricttoip'] = '2a02:898:62:f6::44';	// typically 127.0.0.1
 
 
 /*
