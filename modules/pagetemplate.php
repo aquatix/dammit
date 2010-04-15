@@ -140,8 +140,19 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	\t\t<requires rdf:resource=\"http://web.resource.org/cc/ShareAlike\" />
 	\t</License>
 	\t</rdf:RDF>
-	-->
-	";
+	-->\n";
+
+	/* Google Analytics stuff */
+	$page .= "<script type=\"text/javascript\">\n";
+	$page .= "var gaJsHost = ((\"https:\" == document.location.protocol) ? \"https://ssl.\" : \"http://www.\");\n";
+	$page .= "document.write(unescape(\"%3Cscript src='\" + gaJsHost + \"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E\"));\n";
+	$page .= "</script>\n";
+	$page .= "<script type=\"text/javascript\">\n";
+	$page .= "try {\n";
+	$page .= "var pageTracker = _gat._getTracker(\"UA-10643901-2\");\n";
+	$page .= "pageTracker._trackPageview();\n";
+	$page .= "} catch(err) {}</script>\n";
+
 	$page .= "</body></html>\n";
 
 
