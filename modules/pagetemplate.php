@@ -163,7 +163,7 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 function buildNavigation($skel)
 {
 	/*** Navigation part ***/
-	$page = "\t\t<div class=\"outtake\">\n";
+//	$page = "\t\t<div class=\"outtake\">\n";
 	$page .= "<div id=\"main-navbar\">\n";
 	//$page .= "\t<div class=\"nav-header\">dammIT</div>\n";
 	$page .= "\t<ul id=\"main-nav\">\n";
@@ -177,7 +177,7 @@ function buildNavigation($skel)
 	/* Version information */
 	$page .= "\t<div class=\"pageversion\">v" . $skel['page_version'] . "</div>\n</div>\n";
 
-	$page .= "\t\t</div>\n";
+//	$page .= "\t\t</div>\n";
 
 	/*** Links-menu ***/
 	/* Search field */
