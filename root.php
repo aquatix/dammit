@@ -42,6 +42,9 @@ addToLog( $skel, $section_name, $page_name, $skel['page_version'] );
 $page_body = '';
 $page_name = 'root';
 
+session_name($skel['session_name']);
+session_start();
+
 if ('weeklymarks' == getRequestParam('action', '') && getenv('REMOTE_ADDR') == $skel['restricttoip'])
 {
 	$result = marksToRant($skel);
@@ -69,12 +72,12 @@ if ((isLoggedIn() == false) && (isset($_POST['user']) && $_POST['user'] != '') &
 	{
 		/* Login successfull! */
 		/* Start new session */
-		session_name($skel['session_name']);
+/*		session_name($skel['session_name']);
 		if (!isset($_SESSION))
 		{
 			session_start();
 		}
-
+*/
 		$_SESSION['username'] = $user;
 		$_SESSION['userid'] = $userid;
 	} else
