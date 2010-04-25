@@ -841,10 +841,11 @@ p.globalmessage
 	border: 1px solid #838F67;
 	background: #838F67;
 */
-	border: 1px solid #5C6448;
+	border: 2px solid #5C6448;
 	background: #5C6448;
 	color: #fff;
-	margin-right: 2px;
+/*	margin-right: 2px;*/
+	margin: 0;
 }
 
 	input, textarea, button
@@ -857,31 +858,39 @@ p.globalmessage
 		padding: .2em .5em .2em .5em;
 	}
 
-/*	a.button:hover, input:focus, textarea:focus, button:focus*/
-	input:focus, textarea:focus, button:focus
+/*	a.button:hover, input:focus, textarea:focus, button:focus
+	input:focus, textarea:focus, button:focus*/
+	input:focus, button:focus
 	{
 /*
 		color: #39414F;
 		border: 1px solid #000;
 		background: #FFF;
-*/
 		border: 1px solid #5C6448;
-		border: 1px solid: #838F67;
+*/
+		border: 2px solid: #838F67;
 		background: #838F67;
 	}	
 
 	a.button:hover
 	{
 		padding: .2em .5em .2em .5em;
-		border: 1px solid: #838F67;
+		border: 2px solid: #838F67;
 		background: #838F67;
 		color: #fff;
 	}
 
+/*	input.searchfield, textarea:focus*/
+	input.searchfield, textarea, input[type=text]
+	{
+		background: #FFF;
+		color: #222;
+
+	}
+
 	input.searchfield
 	{
-		width: 135px;
-		width: 145px;
+		width: 150px;
 	}
 
 /*** Notes ***/
