@@ -881,7 +881,7 @@ p.globalmessage
 	}
 
 /*	input.searchfield, textarea:focus*/
-	input.searchfield, textarea, input[type=text]
+	input.searchfield, textarea, input[type=text], input[type=password]
 	{
 		background: #FFF;
 		color: #222;

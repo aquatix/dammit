@@ -170,7 +170,7 @@ function buildNavigation($skel)
 	$page .= "\t\t<li><a href=\"./\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
 	$page .= "\t\t<li><a href=\"index.php?page=archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
 	$page .= "\t\t<li><a href=\"blogmarks.php\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
-	$page .= "\t\t<li><a href=\"index.php?page=kudos\" accesskey=\"k\" title=\"View a list of links that deserve kudos\">kudos</a></li>\n";
+	$page .= "\t\t<li><a href=\"index.php?page=kudos\" accesskey=\"k\" title=\"View a list of sites that deserve kudos\">kudos</a></li>\n";
 	$page .= "\t\t<li><a href=\"index.php?page=about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
 	$page .= "\t</ul>\n";
 
