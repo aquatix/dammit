@@ -65,27 +65,22 @@ $skel['logoWidth'] = 176;
 $skel['logoHeight'] = 71;
 $skel['license_uri'] = 'http://creativecommons.org/licenses/by-nc-sa/2.0/';
 
-/* If spring */
 if ((date('m') == 3 && date('d') > 20) || (date('m') < 7))
 {
-	$skel['logo'] = 'images/dammit_cornflower.png';
+	/* If spring */
 	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
 } else if ((date('m') == 6 && date('d') > 20) || (date('m') < 10))
 {
 	/* If summer */
-	$skel['logo'] = 'images/dammit_stones.png';
-	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
+	$skel['logo'] = 'images/dammit_namibia.jpg';
 } else if ((date('m') == 9 && date('d') > 20) || (date('m') <= 12))
 {
 	/* If autumn */
-	//$skel['logo'] = 'images/dammit_autumn_path.png';
-	$skel['logo'] = 'images/dammit_autumn.png';
-	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
+	$skel['logo'] = 'images/dammit_mountains.jpg';
 } else if ((date('m') == 12 && date('d') > 10) || (date('m') < 4))
 {
 	/* If winter */
 	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
-	//$skel['logo'] = 'images/dammit_rietsigaar_tagline.jpg';
 	$skel['logoWidth'] = 880;
 	$skel['logoHeight'] = 140;
 }
