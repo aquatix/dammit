@@ -48,9 +48,12 @@ $skel['globalmessage'] = null; /* Use when you don't want such a message */
 $skel['nrOfRantsPerPage'] = 10;	//varying between 10 and 15 :)
 $skel['nrOfMarksPerPage'] = 20;
 $skel['nrOfMarksInNav'] = 15;
-$skel['servername'] = 'aquariusoft.org';
-$skel['baseHref'] = '/~mbscholt/';
-$skel['basePath'] = '/home/mbscholt/www/';
+#$skel['servername'] = 'aquariusoft.org';
+$skel['servername'] = 'dammit.nl';
+#$skel['baseHref'] = '/~mbscholt/';
+$skel['baseHref'] = '/';
+#$skel['basePath'] = '/home/mbscholt/www/';
+$skel['basePath'] = '/var/local/www/dammit.nl/';
 if (true == $skel['testing'])
 {
 	/*

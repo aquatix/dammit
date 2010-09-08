@@ -63,10 +63,10 @@ function buildRants( $rants, $groupedOnDate = false )
 		//$rantsHTML .= '<h3>' . $rants[$i]['title'] . "</h3>\n";
 		if ($groupedOnDate)
 		{
-			$rantsHTML .= '<h3 class="ranttitle"><a href="index.php?rantid=' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h3>\n";
+			$rantsHTML .= '<h3 class="ranttitle"><a href="' . $skel['baseHref'] . 'p/' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h3>\n";
 		} else
 		{
-			$rantsHTML .= '<h2 class="ranttitle"><a href="index.php?rantid=' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h2>\n";
+			$rantsHTML .= '<h2 class="ranttitle"><a href="' . $skel['baseHref'] . 'p/' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h2>\n";
 		}
 		if (count($rants) > 1 && substr($rants[$i]['title'], 0, 13) == 'Blogmarks for')
 		{
@@ -113,7 +113,8 @@ function buildRants( $rants, $groupedOnDate = false )
 		$rantsHTML .= 'Posted by ' . $rants[$i]['username'] . ' | ';
 
 		//$rantsHTML .= '<div><a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_link.gif" alt="Search for related articles" title="Search for related articles" /></a></div>';
-		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="images/technorati_related.gif" alt="Search for related articles" /></a> | ';
+		//$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="images/technorati_related.gif" alt="Search for related articles" /></a> | ';
+		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://dammit.nl/' . $skel['baseHref'] . 'p/' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="images/technorati_related.gif" alt="Search for related articles" /></a> | ';
 
 		if ($rants[$i]['modified'] > 0)
 		{
@@ -137,7 +138,7 @@ function buildRants( $rants, $groupedOnDate = false )
 		{
 			$rantsHTML .= '<span class="strike" title="Commenting has been disabled for this post">';
 		}
-		$rantsHTML .= '<a href="index.php?rantid=' . $rants[$i]['messageID'] . '">' . $rants[$i]['nrOfComments'] . ' ' . $commentText . '&nbsp;&raquo;</a>';
+		$rantsHTML .= '<a href="' . $skel['baseHref'] . 'p/' . $rants[$i]['messageID'] . '#comments">' . $rants[$i]['nrOfComments'] . ' ' . $commentText . '&nbsp;&raquo;</a>';
 		if (0 == $rants[$i]['commentsenabled'])
 		{
 			$rantsHTML .= '</span>';
@@ -179,7 +180,7 @@ function buildRantlist($rants, $enableyear)
 				$html .= '<h2>' . getYear($rants[$i]['date']) . " &gt; " . getMonthName($thisMonth) . "</h2>\n";
 			} else
 			{
-				$html .= '<h2><a href="index.php?month=' . getYear($rants[$i]['date']) . $thisMonth . '">' . getMonthName($thisMonth) . "</a></h2>\n";
+				$html .= '<h2><a href="' . $skel['baseHref'] . 'p/archive/month/' . getYear($rants[$i]['date']) . $thisMonth . '">' . getMonthName($thisMonth) . "</a></h2>\n";
 			}
 			$html .= "<ul class=\"archive\">\n";
 			$previousMonth = $thisMonth;
@@ -193,7 +194,7 @@ function buildRantlist($rants, $enableyear)
 			$html .= '<li><span class="date">&nbsp;</span>';
 		}
 		/* Title */
-		$html .= "<a href=\"index.php?rantid=" . $rants[$i]['messageID'] . "\">" . $rants[$i]['title'] . "</a>";
+		$html .= "<a href=\"" . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "\">" . $rants[$i]['title'] . "</a>";
 
 		$html .= "</li>\n";
 	}
@@ -422,7 +423,7 @@ function buildCommentsList( $comments )
 			$commentsHTML .= '<span class="comment_listitem">';
 		}
 		$commentsHTML .= $comments[$i]['date'] . '&nbsp;by ' . $uri;
-		$commentsHTML .= ' | <a href="index.php?rantid=' . $comments[$i]['rantId'] . '#comment' . $comments[$i]['id'] . '">link</a> ';
+		$commentsHTML .= ' | <a href="' . $skel['baseHref'] . 'p/' . $comments[$i]['rantId'] . '/#comment' . $comments[$i]['id'] . '">link</a> ';
 
 			$commentsHTML .= "| Notify ";
 			if ($comments[$i]["wantnotifications"] == 0)
@@ -523,7 +524,7 @@ function updateWeblogFeed($skel, $rants)
 	/* count($rants) should be $nrOfRantsPerPage */
 	for ($i = 0; $i < count($rants); $i++)
 	{
-		$feed .= "\t\t\t\t<rdf:li rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "\" />\n";
+		$feed .= "\t\t\t\t<rdf:li rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "p/" . $rants[$i]['messageID'] . "\" />\n";
 	}
 	$feed .= "\t\t\t</rdf:Seq>\n\t\t</items>\n";
 
@@ -532,12 +533,12 @@ function updateWeblogFeed($skel, $rants)
 	{
 		$feed .= "\t\t<item>\n";
 		$feed .= "\t\t\t<title>" . $rants[$i]['title'] . "</title>\n";
-		$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</link>\n";
-		$feed .= "\t\t\t<guid>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</guid>\n";
+		$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "p/" . $rants[$i]['messageID'] . "</link>\n";
+		$feed .= "\t\t\t<guid>http://" . $skel["servername"] . $skel["baseHref"] . "p/" . $rants[$i]['messageID'] . "</guid>\n";
 		$feed .= "\t\t\t<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>]]></content:encoded>\n";
 		$feed .= "\t\t\t<dc:subject></dc:subject>\n";
 		$feed .= "\t\t\t<dc:creator>" . $skel["authorShortname"] . "</dc:creator>\n";
-		$feed .= "\t\t\t<comments>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "#comments</comments>\n";
+		$feed .= "\t\t\t<comments>http://" . $skel["servername"] . $skel["baseHref"] . "p/" . $rants[$i]['messageID'] . "#comments</comments>\n";
 		$feed .= "\t\t\t<dc:date>" . getRSSDateTime($rants[$i]['date']) . "</dc:date>\n";
 		$feed .= "\t\t</item>\n";
 	}
@@ -555,7 +556,7 @@ function updateWeblogCommentsFeed($skel, $rants)
 
 	for ($i = 0; $i < count($rants); $i++)
 	{
-		$feed .= "\t\t\t<rdf:li rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "\" />\n";
+		$feed .= "\t\t\t<rdf:li rdf:resource=\"http://" . $skel["servername"] . $skel["baseHref"] . "p/" . $rants[$i]['messageID'] . "\" />\n";
 	}
 	$feed .= "\t\t\t</rdf:Seq>\n\t\t</items>\n";
 
@@ -585,11 +586,11 @@ function updateWeblogCommentsFeed($skel, $rants)
 		}
 		$feed .= "\t\t<item>\n";
 		$feed .= "\t\t\t<title>" . $rants[$i]['title'] . "</title>\n";
-		$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "</link>\n";
+		$feed .= "\t\t\t<link>http://" . $skel["servername"] . $skel["baseHref"] . "p/" . $rants[$i]['messageID'] . "</link>\n";
 		$feed .= "\t\t\t<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>" . $rantcomments . "]]></content:encoded>\n";
 		$feed .= "\t\t\t<dc:subject></dc:subject>\n";
 		$feed .= "\t\t\t<dc:creator>" . $skel["authorShortname"] . "</dc:creator>\n";
-		$feed .= "\t\t\t<comments>http://" . $skel["servername"] . $skel["baseHref"] . "index.php?rantid=" . $rants[$i]['messageID'] . "#comments</comments>\n";
+		$feed .= "\t\t\t<comments>http://" . $skel["servername"] . $skel["baseHref"] . "p/" . $rants[$i]['messageID'] . "#comments</comments>\n";
 		$feed .= "\t\t\t<dc:date>" . getRSSDateTime($rants[$i]['date']) . "</dc:date>\n";
 		$feed .= "\t\t</item>\n";
 	}

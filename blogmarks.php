@@ -89,7 +89,8 @@ for ($i = 0; $i < count($months); $i++)
 		$browse_nav .= ' | <span class="heading">' . $months[$i] . ' (' . getMonthName($months[$i]) . ')</span>';
 	} else
 	{
-		$browse_nav .= ' | <a href="blogmarks.php?year=' . $year . '&amp;month=' . $months[$i] . '">' . $months[$i] . '</a>';
+		//$browse_nav .= ' | <a href="blogmarks.php?year=' . $year . '&amp;month=' . $months[$i] . '">' . $months[$i] . '</a>';
+		$browse_nav .= ' | <a href="' . $skel['baseHref'] . 'm/' . $year . '/' . $months[$i] . '">' . $months[$i] . '</a>';
 	}
 }
 $browse_nav .= " ]</div>\n";
@@ -106,7 +107,8 @@ $page_body .= "<ul>\n";
 $nrOfMarksByMonth = getMarksPerMonth( $skel, $year );
 for ($i = 0; $i < count($nrOfMarksByMonth); $i++)
 {
-	$page_body .= "<li><a href=\"blogmarks.php?year=" . $year . "&amp;month=" . $nrOfMarksByMonth[$i]["month"] . "\">" . getMonthName($nrOfMarksByMonth[$i]["month"]) . "</a> (" . $nrOfMarksByMonth[$i]["nrofpostings"] . ")</li>\n";
+	//$page_body .= "<li><a href=\"blogmarks.php?year=" . $year . "&amp;month=" . $nrOfMarksByMonth[$i]["month"] . "\">" . getMonthName($nrOfMarksByMonth[$i]["month"]) . "</a> (" . $nrOfMarksByMonth[$i]["nrofpostings"] . ")</li>\n";
+	$page_body .= "<li><a href=\"" . $skel['baseHref'] . "m/" . $year . "/" . $nrOfMarksByMonth[$i]["month"] . "\">" . getMonthName($nrOfMarksByMonth[$i]["month"]) . "</a> (" . $nrOfMarksByMonth[$i]["nrofpostings"] . ")</li>\n";
 }
 $page_body .= "</ul>\n";
 
@@ -116,7 +118,8 @@ $page_body .= "<ul>\n";
 $nrOfMarksByYear = getMarksPerYear( $skel );
 for ($i = 0; $i < count($nrOfMarksByYear); $i++)
 {
-	$page_body .= "<li><a href=\"blogmarks.php?year=" . $nrOfMarksByYear[$i]["year"] . "\">" . $nrOfMarksByYear[$i]["year"] . "</a> (" . $nrOfMarksByYear[$i]["nrofpostings"] . ")</li>\n";
+	//$page_body .= "<li><a href=\"blogmarks.php?year=" . $nrOfMarksByYear[$i]["year"] . "\">" . $nrOfMarksByYear[$i]["year"] . "</a> (" . $nrOfMarksByYear[$i]["nrofpostings"] . ")</li>\n";
+	$page_body .= "<li><a href=\"" . $skel['baseHref'] . "m/" . $nrOfMarksByYear[$i]["year"] . "\">" . $nrOfMarksByYear[$i]["year"] . "</a> (" . $nrOfMarksByYear[$i]["nrofpostings"] . ")</li>\n";
 }
 $page_body .= "</ul>\n";
 

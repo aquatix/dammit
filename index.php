@@ -23,8 +23,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2009-03-09';
-$skel['page_version'] = '0.6.04';
+$skel['lastmodified'] = '2010-09-06';
+$skel['page_version'] = '0.7.01';
 $skel['dateofcreation'] = '2003-12-21';
 
 $page_name = 'home';
@@ -45,6 +45,53 @@ if (-1 < $rantid)
 	$page_log = 'posting.' . $rantid;
 }
 $month = getRequestParam('month', null);
+
+$url_pieces = parse_url(getenv('SCRIPT_URI'));
+//print_r($url_pieces);
+//var_dump($_SERVER);
+//exit;
+//$pagequery = $_SERVER['QUERY_STRING'];
+$pagequery = $_SERVER['REQUEST_URI'];
+//print($pagequery);
+//print($skel['baseHref']);
+//if (isset($url_pieces['query']) && '' != $url_pieces['query'])
+
+if (isset($pagequery) && '' != $pagequery && ('' != strstr($pagequery, 'index.php') || '?' == $pagequery[1]))
+{
+        // Redirect. Check for url injections
+        header('HTTP/1.1 301 Moved Permanently');
+        $redir = 'http://' . $skel['servername'] . $skel['baseHref'] . 'p/';
+	if (-1 < $rantid)
+	{
+        	$redir .= $rantid . '/';
+//	}
+//	if ($subpage == null || $subpage == '') 
+//	{   
+//		$redir = $skel['base_server'] . '/';
+	} else if (NULL != $subpage)
+	{   
+		//$redir .= $page . '/';
+		//$redir = 'http://' . $skel['servername'] . $skel['baseHref'] . 'p/' . $page . '/';
+        	//$redir .= $subpage . '/';
+        	$redir .= $subpage;
+	}   
+
+        header('Location: ' . $redir);
+        //addToLog($skel, $section, $page, 301);
+        exit;
+}
+// else if ($url_pieces['path'] == '/page/')
+//{
+//        header('HTTP/1.1 301 Moved Permanently');
+//        $redir = $skel['base_server'] . '/';
+//        header('Location: ' . $redir);
+//        addToLog($skel, '', '', 301);
+//        exit;
+//}
+
+//print_r($url_pieces['query']);
+
+
 
 addToLog( $skel, $section_name, $page_log, $skel['page_version'] );
 
@@ -131,7 +178,7 @@ if ( $subpage == 'plan' )
 			{
 				updateWeblogCommentsFeed($skel, getRants($skel, 0, $skel['nrOfRantsPerPage']));
 				$page_body .= "<h1>Comment added!</h1>\n";
-				$page_body .= "<p>Thank you for showing interest in my little rantbox :)</p><p><a href=\"index.php?rantid=" . $_POST['rantid'] . "&amp;view\" class=\"button\">&laquo; Go back to the posting</a></p>\n";
+				$page_body .= "<p>Thank you for showing interest in my little rantbox :)</p><p><a href=\"" . $skel['baseHref'] . "p/" . $_POST['rantid'] . "&amp;view\" class=\"button\">&laquo; Go back to the posting</a></p>\n";
 			} else
 			{
 				$page_body .= "<h1>Error</h1>\n";
@@ -172,7 +219,8 @@ if ( $subpage == 'plan' )
 		{
 			/* Rant was not found; in the second case, it wasn't published yet, so doesn't exist yet for the public */
 			$page_name = 'Rant not found';
-			$page_body .= "<h2>Sorry</h2><p>The requested rant was not found. <a href=\"index.php\">Go to the homepage</a> or start searching in <a href=\"index.php?page=archive\">the archive</a>.</p>\n";
+			//$page_body .= "<h2>Sorry</h2><p>The requested rant was not found. <a href=\"index.php\">Go to the homepage</a> or start searching in <a href=\"index.php?page=archive\">the archive</a>.</p>\n";
+			$page_body .= "<h2>Sorry</h2><p>The requested rant was not found. <a href=\"index.php\">Go to the homepage</a> or start searching in <a href=\"" . $skel['baseHref'] . "p/archive\">the archive</a>.</p>\n";
 		} else
 		{
 			$page_name = strip_tags($rant[0]['title']);
@@ -181,18 +229,18 @@ if ( $subpage == 'plan' )
 			$prev = '';
 			if (isset($prevNext['prev']['title']) && '' != $prevNext['prev']['title'])
 			{
-				$prev = "<a href=\"index.php?rantid=" . $prevNext['prev']['messageID'] . "\">&laquo;&nbsp;" . $prevNext['prev']['title'] . "</a>";
+				$prev = "<a href=\"" . $skel['baseHref'] . "p/" . $prevNext['prev']['messageID'] . "\">&laquo;&nbsp;" . $prevNext['prev']['title'] . "</a>";
 			} else
 			{
-				$prev = "<a href=\"index.php\">Home</a>";
+				$prev = "<a href=\"" . $skel['baseHref'] . "\">Home</a>";
 			}
 			$next = '';
 			if (isset($prevNext['next']['title']) && '' != $prevNext['next']['title'])
 			{
-				$next = "<a href=\"index.php?rantid=" . $prevNext['next']['messageID'] . "\">" . $prevNext['next']['title'] . "&nbsp;&raquo;</a>";
+				$next = "<a href=\"" . $skel['baseHref'] . "p/" . $prevNext['next']['messageID'] . "\">" . $prevNext['next']['title'] . "&nbsp;&raquo;</a>";
 			} else
 			{
-				$next = "<a href=\"index.php\">Home</a>";
+				$next = "<a href=\"" . $skel['baseHref'] . "\">Home</a>";
 			}
 
 			$page_body .= "<div class=\"browsenav\"><span class=\"previous\">" . $prev . "</span><span class=\"next\">&nbsp;" . $next . "</span></div>\n";
@@ -221,7 +269,7 @@ if ( $subpage == 'plan' )
 				$page_body .= "<p>You need to provide a valid e-mail address to comment here, but it will not be displayed on this website. ";
 				$page_body .= "HTML will be escaped, so you won't be able to add links. Post the URL instead. Line breaks will be converted to breaks.</p>\n";
 				/* post to current page */
-				$page_body .= "<form action=\"index.php?rantid=" . $rantid . "#addcomment\" method=\"post\">\n";
+				$page_body .= "<form action=\"" . $skel['baseHref'] . "p/" . $rantid . "#addcomment\" method=\"post\">\n";
 				$page_body .= "<h3>Name</h3>\n";
 				$page_body .= $comment_error_name . "<p><input type=\"text\" name=\"name\" size=\"30\" maxlength=\"150\" value=\"" . $comment_name . "\" /></p>\n";
 				$page_body .= "<h3>E-mail address</h3>\n";
@@ -291,10 +339,12 @@ if ( $subpage == 'plan' )
 	{
 		if ($years[$i] == $year)
 		{
-			$yearsnav .= ' | <span class="heading"><a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a></span>';
+			//$yearsnav .= ' | <span class="heading"><a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a></span>';
+			$yearsnav .= ' | <span class="heading"><a href="' . $skel['baseHref'] . 'p/archive/' . $years[$i] . '">' . $years[$i] . '</a></span>';
 		} else
 		{
-			$yearsnav .= ' | <a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a>';
+			//$yearsnav .= ' | <a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a>';
+			$yearsnav .= ' | <a href="' . $skel['baseHref'] . 'p/archive/' . $years[$i] . '">' . $years[$i] . '</a>';
 		}
 	}
 	$yearsnav .= " ]</div>\n";
@@ -314,7 +364,8 @@ if ( $subpage == 'plan' )
 	{
 		/* Not a valid month, as those are of the form yyyymm */
 		$page_body .= "<h1>Browse by month</h1>\n";
-		$page_body .= "<p>Not a valid month chosen, <a href=\"index.php?page=archive\">see the archive for all entries</a>.</p>\n";
+		//$page_body .= "<p>Not a valid month chosen, <a href=\"index.php?page=archive\">see the archive for all entries</a>.</p>\n";
+		$page_body .= "<p>Not a valid month chosen, <a href=\"" . $skel['baseHref'] . "p/archive\">see the archive for all entries</a>.</p>\n";
 	} else
 	{
 		$year = substr($month, 0, 4);
@@ -400,7 +451,8 @@ if ( $subpage == 'plan' )
 
 	$page_body .= buildRants(getRants($skel, 0, $skel['nrOfRantsPerPage']));
 	//$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel['nrOfRantsPerPage'] . "\">Old rants</a> ]</p>\n";
-	$page_body .= "<p><a href=\"index.php?page=archive\" class=\"button\">&laquo; Old rants</a></p>\n";
+	//$page_body .= "<p><a href=\"index.php?page=archive\" class=\"button\">&laquo; Old rants</a></p>\n";
+	$page_body .= "<p><a href=\"" . $skel['baseHref'] . "p/archive\" class=\"button\">&laquo; Old rants</a></p>\n";
 
 } /* End of page-switcher */
 

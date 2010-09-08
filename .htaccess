@@ -1,13 +1,38 @@
-	#RewriteRule /projects/blog/([0-9]+) /projects/blog/index.php?rantid=$1
-	#UserDir /home/*/www
-	RewriteEngine On
-	#RewriteBase /projects/blog
-	#RewriteRule /([0-9]+) /index.php?rantid=$1
-	#RewriteRule ^archive/([0-9]+) index.php?rantid=$1
-	RewriteRule ^archive/([0-9]+) index.php?rantid=$1
-	#RewriteRule ^archive/(.*)/$ index.php?rantid=$1
-	RewriteRule page/([A-z]+) index.php?page=$1
-	#RewriteRule /~mbscholt/page/([A-z]+) index.php?page=$1
+#<Files ~ "/site">
+#	Order allow,deny
+#	Deny from all
+#</Files>
 
-	RewriteCond %{SERVER_PORT} ^80$
-	RewriteRule ^/~mbscholt/root\.php$ https://%{SERVER_NAME}/~mbscholt/root.php [R,L]
+<Files ~ ".desc">
+	Order allow,deny
+	Deny from all
+</Files>
+
+<Files ~ ".section">
+	Order allow,deny
+	Deny from all
+</Files>
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^p/kudos index.php?page=kudos
+	RewriteRule ^p/about index.php?page=about
+	RewriteRule ^p/archive/month/([^/]+) index.php?month=$1
+	RewriteRule ^p/archive/([^/]+)/([^/]+) index.php?page=archive&year=$1&month=$2
+	RewriteRule ^p/archive/([^/]+) index.php?page=archive&year=$1
+	RewriteRule ^p/archive index.php?page=archive
+#	RewriteRule ^page/error/([^/]+)/ index.php?section=error&page=$1
+#	RewriteRule ^page/viewlog/hitsperdate/([^/]+)/([^/]+)/ index.php?action=viewlog&logaction=hitsperdate&date=$1&offset=$2
+#	RewriteRule ^page/viewlog/hitsperdate/([^/]+)/ index.php?action=viewlog&logaction=hitsperdate&date=$1
+#	RewriteRule ^page/viewlog/([^/]+)/([^/]+) index.php?action=viewlog&logaction=$1&offset=$2
+#	RewriteRule ^page/viewlog/([^/]+)/ index.php?action=viewlog&logaction=$1
+#	RewriteRule ^page/viewlog index.php?action=viewlog
+#	RewriteRule ^viewimage/thumb/(.*) image.php?action=makethumb&filename=$1
+#	RewriteRule ^viewimage/gallery/thumb/([^/]+)/([0-9]+)/ index.php?action=makethumb&kind=gallery&gallery=$1&file=$2
+#	RewriteRule ^gallery/([^/]+)/([0-9]+)/ index.php?action=viewgallery&gallery=$1&file=$2
+#	RewriteRule ^page/([^/]+)/([^/]+) index.php?section=$1&page=$2
+	RewriteRule ^p/([^/]+) index.php?rantid=$1
+	RewriteRule ^m/([^/]+)/([^/]+) blogmarks.php?year=$1&month=$2
+	RewriteRule ^m/([^/]+) blogmarks.php?year=$1
+	RewriteRule ^m blogmarks.php
+</IfModule>
