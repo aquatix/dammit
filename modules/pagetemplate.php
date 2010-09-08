@@ -39,11 +39,11 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 
 	$page .= "<head>\n";
 	$page .= "<title>" . $page_name . ' | ' . $skel['siteName'] . "</title>\n";
-	//$page .= "<base href=\"http://" . $skel["servername"] . $skel["baseHref"] . "\"/>\n";
+	//$page .= "<base href=\"http://" . $skel['servername'] . $skel['baseHref'] . "\"/>\n";
 	$page .= "<meta name=\"robots\" content=\"index, follow\"/>\n";
 	$page .= "<meta name=\"generator\" content=\"Err... Myself :) Read: vim\"/>\n";
 	//$page .= "<meta name=\"author\" content=\"Michiel Scholten\"/>\n";
-	//$page .= "<meta name=\"author\" link=\"" . $skel["baseHref"] . "about.php\" title=\"Michiel Scholten\"/>\n";
+	//$page .= "<meta name=\"author\" link=\"" . $skel['baseHref'] . "about.php\" title=\"Michiel Scholten\"/>\n";
 	//$page .= "<meta name=\"author\" link=\"about.php\" title=\"Michiel Scholten\"/>\n";
 	$page .= "<meta name=\"keywords\" content=\"" . $skel['siteKeywords'] . "\"/>\n";
 	$page .= "<meta name=\"description\" content=\"" . $skel['siteDescription'] . "\"/>\n";
@@ -72,7 +72,7 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	$page .= "<div class=\"wrapperbox\"><div class=\"page\">\n";
 
 
-	$page .= "<div id=\"logo\" title=\"Rantbox of a natural geek\"><a href=\"" . $skel["baseHref"] . "\"><img src=\"" . $skel['baseHref'] . $skel["logo"] . "\" alt=\"logo\"/></a></div>\n";
+	$page .= "<div id=\"logo\" title=\"Rantbox of a natural geek\"><a href=\"" . $skel['baseHref'] . "\"><img src=\"" . $skel['baseHref'] . $skel["logo"] . "\" alt=\"logo\"/></a></div>\n";
 
 
 	/*** Main content block ***/
@@ -119,7 +119,7 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	\t<rdf:RDF xmlns=\"http://web.resource.org/cc/\"
 	\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"
 	\txmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">
-	\t<Work rdf:about=\"http://" . $skel["servername"] . $skel["baseHref"] . "\">
+	\t<Work rdf:about=\"http://" . $skel['servername'] . $skel['baseHref'] . "\">
 	\t<dc:title>" . $skel['siteName'] . ", weblog of " . $skel["author"] . "</dc:title>
 	\t<dc:date>2003-12-24</dc:date>
 	\t<dc:description>A weblog maintained by " . $skel["author"] . "</dc:description>

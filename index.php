@@ -58,27 +58,27 @@ $pagequery = $_SERVER['REQUEST_URI'];
 
 if (isset($pagequery) && '' != $pagequery && ('' != strstr($pagequery, 'index.php') || '?' == $pagequery[1]))
 {
-        // Redirect. Check for url injections
-        header('HTTP/1.1 301 Moved Permanently');
-        $redir = 'http://' . $skel['servername'] . $skel['baseHref'] . 'p/';
+	// Redirect. Check for url injections
+	header('HTTP/1.1 301 Moved Permanently');
+	$redir = 'http://' . $skel['servername'] . $skel['baseHref'] . 'p/';
 	if (-1 < $rantid)
 	{
-        	$redir .= $rantid . '/';
+		$redir .= $rantid . '/';
 //	}
-//	if ($subpage == null || $subpage == '') 
-//	{   
+//	if ($subpage == null || $subpage == '')
+//	{
 //		$redir = $skel['base_server'] . '/';
 	} else if (NULL != $subpage)
-	{   
+	{
 		//$redir .= $page . '/';
 		//$redir = 'http://' . $skel['servername'] . $skel['baseHref'] . 'p/' . $page . '/';
-        	//$redir .= $subpage . '/';
-        	$redir .= $subpage;
-	}   
+		//$redir .= $subpage . '/';
+		$redir .= $subpage;
+	}
 
-        header('Location: ' . $redir);
-        //addToLog($skel, $section, $page, 301);
-        exit;
+	header('Location: ' . $redir);
+	//addToLog($skel, $section, $page, 301);
+	exit;
 }
 // else if ($url_pieces['path'] == '/page/')
 //{
@@ -90,7 +90,6 @@ if (isset($pagequery) && '' != $pagequery && ('' != strstr($pagequery, 'index.ph
 //}
 
 //print_r($url_pieces['query']);
-
 
 
 addToLog( $skel, $section_name, $page_log, $skel['page_version'] );
@@ -245,7 +244,7 @@ if ( $subpage == 'plan' )
 
 			$page_body .= "<div class=\"browsenav\"><span class=\"previous\">" . $prev . "</span><span class=\"next\">&nbsp;" . $next . "</span></div>\n";
 
-			$page_body .= buildRants($rant);
+			$page_body .= buildRants($skel, $rant);
 
 			/* Show all comments */
 			$allComments = getComments($skel, $rantid);
@@ -354,7 +353,7 @@ if ( $subpage == 'plan' )
 		$page_body .= '<h2>Sorry</h2><p>No rants found for this year.</p>';
 	} else
 	{
-		$page_body .= buildRantlist(getRantsFromYear($skel, $year), false);
+		$page_body .= buildRantlist($skel, getRantsFromYear($skel, $year), false);
 	}
 	$page_body .= $yearsnav;
 } else if ( null != $month )
@@ -378,7 +377,7 @@ if ( $subpage == 'plan' )
 			$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 		}
 
-		$page_body .= buildRants(getRantsForMonth($skel, $year, $month));
+		$page_body .= buildRants($skel, getRantsForMonth($skel, $year, $month));
 	}
 } else if ( $subpage == 'browse' )
 {
@@ -436,7 +435,7 @@ if ( $subpage == 'plan' )
 	/* Show the nav */
 	$page_body .= $browse_nav;
 	/* Show the rants */
-	$page_body .= buildRants(getRants($skel, $offset, $skel['nrOfRantsPerPage']));
+	$page_body .= buildRants($skel, getRants($skel, $offset, $skel['nrOfRantsPerPage']));
 	/* Show the nav again */
 	$page_body .= $browse_nav;
 } else
@@ -449,7 +448,7 @@ if ( $subpage == 'plan' )
 		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 	}
 
-	$page_body .= buildRants(getRants($skel, 0, $skel['nrOfRantsPerPage']));
+	$page_body .= buildRants($skel, getRants($skel, 0, $skel['nrOfRantsPerPage']));
 	//$page_body .= "<p>[ <a href=\"index.php?page=browse&amp;offset=" . $skel['nrOfRantsPerPage'] . "\">Old rants</a> ]</p>\n";
 	//$page_body .= "<p><a href=\"index.php?page=archive\" class=\"button\">&laquo; Old rants</a></p>\n";
 	$page_body .= "<p><a href=\"" . $skel['baseHref'] . "p/archive\" class=\"button\">&laquo; Old rants</a></p>\n";

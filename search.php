@@ -49,7 +49,7 @@ if ('' != $searchkey)
 	$page_body .= "<h2>weblog entries</h2>\n";
 	if ($searched_weblogentries != null)
 	{
-		$page_body .= buildRantlist($searched_weblogentries, true);
+		$page_body .= buildRantlist($skel, $searched_weblogentries, true);
 	} else
 	{
 		$page_body .= "<p>No matching posts found</p>\n";
