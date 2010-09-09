@@ -15,6 +15,7 @@
 
 <IfModule mod_rewrite.c>
 	RewriteEngine On
+	RewriteCond %{REQUEST_URI} !^(root.php)
 	RewriteRule ^p/kudos index.php?page=kudos
 	RewriteRule ^p/about index.php?page=about
 	RewriteRule ^p/archive/month/([^/]+) index.php?month=$1
@@ -32,6 +33,7 @@
 #	RewriteRule ^gallery/([^/]+)/([0-9]+)/ index.php?action=viewgallery&gallery=$1&file=$2
 #	RewriteRule ^page/([^/]+)/([^/]+) index.php?section=$1&page=$2
 	RewriteRule ^p/([^/]+) index.php?rantid=$1
+	RewriteRule ^p/ http://dammit.nl/
 	RewriteRule ^m/([^/]+)/([^/]+) blogmarks.php?year=$1&month=$2
 	RewriteRule ^m/([^/]+) blogmarks.php?year=$1
 	RewriteRule ^m blogmarks.php
