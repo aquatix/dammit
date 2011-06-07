@@ -38,4 +38,6 @@
 	RewriteRule ^m/([^/]+)/([^/]+) blogmarks.php?year=$1&month=$2
 	RewriteRule ^m/([^/]+) blogmarks.php?year=$1
 	RewriteRule ^m blogmarks.php
+	RewriteRule ^search/([^/]+) search.php?searchkey=$1
+	RewriteRule ^search search.php
 </IfModule>

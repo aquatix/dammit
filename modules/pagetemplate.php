@@ -197,7 +197,7 @@ function buildNavigation($skel)
 	{
 		$searchkey = '';
 	} 
-	$page .= "\t\t<form style=\"margin-top: 1em;\" action=\"search.php\" method=\"post\"><div><input type=\"text\" class=\"searchfield\" name=\"searchkey\" size=\"12\" maxlength=\"250\" value=\"" . $searchkey . "\" /><input name=\"searchbtn\" value=\"Find\" type=\"submit\" /></div></form>\n";
+	$page .= "\t\t<form style=\"margin-top: 1em;\" action=\"" . $skel['baseHref'] . "search\" method=\"post\"><div><input type=\"text\" class=\"searchfield\" name=\"searchkey\" size=\"12\" maxlength=\"250\" value=\"" . $searchkey . "\" /><input name=\"searchbtn\" value=\"Find\" type=\"submit\" /></div></form>\n";
 
 
 	$page .= "\t\t<div class=\"nav-header\">distracted by</div>\n";
