@@ -3,7 +3,7 @@
  * The page template of the dammIT webblog
  * $Id$
  * 
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2011 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -151,7 +151,8 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	$page .= "</script>\n";
 	$page .= "<script type=\"text/javascript\">\n";
 	$page .= "try {\n";
-	$page .= "var pageTracker = _gat._getTracker(\"UA-10643901-2\");\n";
+	//$page .= "var pageTracker = _gat._getTracker(\"UA-10643901-2\");\n";
+	$page .= "var pageTracker = _gat._getTracker(\"UA-10643901-3\");\n";
 	$page .= "pageTracker._trackPageview();\n";
 	$page .= "} catch(err) {}</script>\n";
 
@@ -180,6 +181,7 @@ function buildNavigation($skel)
 	$page .= "\t\t<li><a href=\"" . $skel['baseHref'] . "\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
 	$page .= "\t\t<li><a href=\"" . $skel['baseHref'] . "p/archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
 	$page .= "\t\t<li><a href=\"" . $skel['baseHref'] . "m\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
+	$page .= "\t\t<li><a href=\"" . $skel['baseHref'] . "p/books\" accesskey=\"b\" title=\"View interesting links\">books</a></li>\n";
 	$page .= "\t\t<li><a href=\"" . $skel['baseHref'] . "p/kudos\" accesskey=\"k\" title=\"View a list of sites that deserve kudos\">kudos</a></li>\n";
 	$page .= "\t\t<li><a href=\"" . $skel['baseHref'] . "p/about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
 	$page .= "\t</ul>\n";

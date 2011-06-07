@@ -99,6 +99,7 @@ $skel['rssEmail'] = 'mbscholt@aquariusoft.notforspambastards.org';
 
 $skel['.plan'] = $skel['basePath'] . 'pages/plan.html';
 $skel['about'] = $skel['basePath'] . 'pages/about.html';
+$skel['books'] = $skel['basePath'] . 'pages/books.html';
 
 /*** Navigation ***/
 /*
@@ -180,9 +181,10 @@ $skel['nav_sections'] = array(
 /*** Educated guess for location when adding new rant or blogmark ***/
 $skel['locations'] = array(
 		'192.168.*.*' => 'Home',
-		'82.169.46.26' => 'Home',
-		'213.84.100.*' => 'Work',
-		'62.41.246.*' => 'Work',
+		//'94.208.231.130' => 'Home',
+		'83.82.64.55' => 'Home',
+		//'213.84.100.*' => 'Work',
+		'62.69.187.5' => 'Work',
 		'130.37.*.*' => 'Vrije Universiteit',
 		'130.37.24.*' => 'Vrije Universiteit - Computer lab',
 		'130.37.26.*' => 'Vrije Universiteit - Laptop over wifi',

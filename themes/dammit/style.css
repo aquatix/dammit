@@ -762,6 +762,18 @@ p.globalmessage
 	}
 
 
+.label
+{
+	font-size: .8em;
+	color: #FFF;
+	background-color: #838F67;
+/*	background-color: #5C6448;*/
+	padding: .1em;
+	padding-left: .3em;
+	padding-right: .3em;
+}
+
+
 #footer
 {
 	margin-top: 10px;

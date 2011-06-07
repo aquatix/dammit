@@ -23,8 +23,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2010-09-06';
-$skel['page_version'] = '0.7.01';
+$skel['lastmodified'] = '2011-06-07';
+$skel['page_version'] = '0.7.02';
 $skel['dateofcreation'] = '2003-12-21';
 
 $page_name = 'home';
@@ -108,6 +108,14 @@ if ( $subpage == 'plan' )
 } else if ( $subpage == 'about' )
 {
 	$lines = file($skel['about']);
+	for ($i = 0; $i < count($lines); $i++)
+	{
+		$page_body .= $lines[$i];
+	}
+
+} else if ( $subpage == 'books' )
+{
+	$lines = file($skel['books']);
 	for ($i = 0; $i < count($lines); $i++)
 	{
 		$page_body .= $lines[$i];

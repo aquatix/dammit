@@ -18,6 +18,7 @@
 	RewriteCond %{REQUEST_URI} !^(root.php)
 	RewriteRule ^p/kudos index.php?page=kudos
 	RewriteRule ^p/about index.php?page=about
+	RewriteRule ^p/books index.php?page=books
 	RewriteRule ^p/archive/month/([^/]+) index.php?month=$1
 	RewriteRule ^p/archive/([^/]+)/([^/]+) index.php?page=archive&year=$1&month=$2
 	RewriteRule ^p/archive/([^/]+) index.php?page=archive&year=$1
