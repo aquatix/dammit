@@ -880,14 +880,14 @@ p.globalmessage
 		background: #FFF;
 		border: 1px solid #5C6448;
 */
-		border: 2px solid: #838F67;
+		border: 2px solid #838F67;
 		background: #838F67;
 	}	
 
 	a.button:hover
 	{
 		padding: .2em .5em .2em .5em;
-		border: 2px solid: #838F67;
+		border: 2px solid #838F67;
 		background: #838F67;
 		color: #fff;
 	}
