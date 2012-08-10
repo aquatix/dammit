@@ -1,9 +1,8 @@
 <?php
 /*
  * The page template of the dammIT webblog
- * $Id$
  * 
- * Copyright 2003-2011 michiel at aquariusoft.org
+ * Copyright 2003-2012 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -155,6 +154,22 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	$page .= "var pageTracker = _gat._getTracker(\"UA-10643901-3\");\n";
 	$page .= "pageTracker._trackPageview();\n";
 	$page .= "} catch(err) {}</script>\n";
+
+$page .= <<<'EOD'
+<!-- Piwik --> 
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://aquariusoft.org/r00t/webstats/" : "http://aquariusoft.org/r00t/webstats/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://aquariusoft.org/r00t/webstats/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
+EOD;
+
 
 	$page .= "</body></html>\n";
 
