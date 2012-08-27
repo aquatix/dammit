@@ -1,9 +1,8 @@
 <?php
 /**
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
- * $Id$
  * 
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2012 mbscholt at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -38,7 +37,7 @@ $skel['siteName'] = 'dammIT';
 $skel['mainEmail'] = 'dammit@aquariusoft.org';
 $skel['tagline'] = 'Curiosity is a virtue';
 $skel['siteKeywords'] = 'Michiel Scholten,michiel,scholten,web,log,weblog,blog,rantbox,rant,rants,frustrations,personal,homepage,netherlands,nederland,nederlands,the netherlands,website,cool,dammit,damn,it,damnit,blah,linux,unix,script,scripts,shell,bash,web';
-$skel['siteDescription'] = 'This is the rantbox of Michiel Scholten, Netherlands. It\'s my blog, so you can read about my frustrations and surf the links I share with the rest of the world :)';
+$skel['siteDescription'] = 'This is the rantbox of Michiel Scholten, Netherlands. It\'s my blog, so you can read about my findings, interests, frustrations and surf the links I share with the rest of the world :)';
 $skel['feedDescription'] = 'Michiel\'s weblog // Those who would give up Essential Liberty to purchase a little Temporary Safety, deserve neither Liberty nor Safety (Benjamin Franklin)';
 
 /* Message to be shown on the main page, archive page and individual posting pages */
@@ -48,18 +47,13 @@ $skel['globalmessage'] = null; /* Use when you don't want such a message */
 $skel['nrOfRantsPerPage'] = 10;	//varying between 10 and 15 :)
 $skel['nrOfMarksPerPage'] = 20;
 $skel['nrOfMarksInNav'] = 15;
-#$skel['servername'] = 'aquariusoft.org';
 $skel['servername'] = 'dammit.nl';
-#$skel['baseHref'] = '/~mbscholt/';
 $skel['baseHref'] = '/';
-#$skel['basePath'] = '/home/mbscholt/www/';
 $skel['basePath'] = '/var/local/www/dammit.nl/';
 if (true == $skel['testing'])
 {
-	/*
-	$skel['baseHref'] = '/projects/blog/';
-	$skel['basePath'] = '/var/www/projects/blog/';
-	*/
+	$skel['baseHref'] = '/';
+	$skel['basePath'] = '/var/local/www/delta.dammit.nl/';
 }
 
 $skel['startyear'] = '2003';
