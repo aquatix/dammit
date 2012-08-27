@@ -2,8 +2,6 @@
  * dammIT stylesheet
  * Created by Michiel Scholten
  * mbscholt at aquariusoft dot org
- * 
- * $Id$
  */
 
 html
@@ -27,10 +25,17 @@ body
 /*** Headers ***/
 h1
 {
+/*
 	color: #454545;
 	color: #39414F;
+*/
+	color: #FFF;
+	color: #39414F;
+	text-shadow: 1px 1px 3px #CCC;
+
 	background: transparent;
 	font-size: 175%;
+	font-size: 200%;
 	font-weight: bold;
 	margin-top: .7em;
 	margin-bottom: 1em;
@@ -41,19 +46,28 @@ h2
 { 
 	font-size: 130%;
 	font-weight: bold; 
+/*
 	color: #FFF;
 	background: #39414F;
+*/
+
 	padding-bottom: 0;
+	margin: 2em 0 0 0;
+/*
 	margin-bottom: 0;
 	margin-top: .5em;
 	margin-top: 1.5em;
 	margin-top: 2em;
+*/
 	padding: .2em;
+	padding: .2em 0;
 }
 
 	h2 a, h2 a:hover
 	{
 		color: #FFF;
+		color: #39414F;
+		text-shadow: 1px 1px 3px #CCC;
 		border-bottom: 1px dotted #FFF;
 	}
 
@@ -561,12 +575,19 @@ p.globalmessage
 .info
 {
 	font-size: 75%;
+/*
 	margin-top: 0;
 	margin-bottom: .5em;
+*/
+	margin: .5em 0;
 	padding: .2em;
 	padding-top: 0;
 	background: transparent;
+/*
 	border-bottom: 1px dotted #39414F;
+*/
+	color: #838F67;
+	color: #5C6448;
 }
 
 .related
