@@ -235,7 +235,6 @@ pre
 	margin: 5px 0 5px 0;
 	padding: .3em 0 .3em 1em;
 	overflow: auto;
-	background: transparent;
 	font: 1em "Courier New", monospace;
 }
 
@@ -273,13 +272,16 @@ blockquote
 	background-repeat: no-repeat;
 	color: #FFF;
 	color: inherit;
-	padding-top: 10px;
 	text-align: justify;
 	border-left: 4px solid #5C6448;
 	margin-left: 15px;
 	margin-right: 0;
-	padding-left: 20px;
-	padding-right: .5em;
+	padding: 10px .5em 10px 20px;
+}
+
+pre, blockquote
+{
+	background-color: #eaefde;
 }
 
 .strike
