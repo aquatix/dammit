@@ -281,7 +281,8 @@ blockquote
 
 pre, blockquote
 {
-	background-color: #eaefde;
+/*	background-color: #eaefde;*/
+	box-shadow: 0 0 5px -2px #8895A0;
 }
 
 .strike
