@@ -684,6 +684,7 @@ p.globalmessage
 
 
 /* Image with a nice border and dropshadow */
+/*
 .content-image
 {
 	float: left;
@@ -698,13 +699,17 @@ p.globalmessage
 		background: url("images/shadow2.gif") no-repeat left top;
 		padding: 0px 5px 5px 0px;
 	}
-
+*/
 	.content-image img
 	{
+/*
 		background-color: #fff;
 		border: 1px solid #a9a9a9;
 
 		padding: 4px;
+*/
+		margin-left: -13px;
+		width: 653px;
 	}
 
 	.content-image a
