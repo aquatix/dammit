@@ -174,7 +174,9 @@ function buildRants( $skel, $rants, $showcomments = false )
 	*/
 	}
 	//return $rantsHTML;
-	return ob_get_contents();
+	$result = ob_get_contents();
+	ob_end_clean();
+	return $result;
 }
 
 
