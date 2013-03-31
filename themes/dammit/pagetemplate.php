@@ -65,9 +65,10 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 
 	$page .= "\t<div id=\"main-content-nav\">\n";
 */
+
 	include 'sidebar.php';
 
-	$page .= buildNavigation($skel);
+	//$page .= buildNavigation($skel);
 
 
 
