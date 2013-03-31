@@ -2,10 +2,10 @@
 /**
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
  * 
- * Copyright 2003-2012 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
- * [mbscholt at aquariusoft.org]
+ * [michiel at aquariusoft.org]
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -47,9 +47,9 @@ $skel['globalmessage'] = null; /* Use when you don't want such a message */
 
 $skel['rssEmail'] = 'mbscholt@aquariusoft.notforspambastards.org';
 
-$skel['.plan'] = $skel['basePath'] . 'pages/plan.html';
-$skel['about'] = $skel['basePath'] . 'pages/about.html';
-$skel['books'] = $skel['basePath'] . 'pages/books.html';
+$skel['plan'] = $skel['base_dir'] . 'pages/plan.html';
+$skel['about'] = $skel['base_dir'] . 'pages/about.html';
+$skel['books'] = $skel['base_dir'] . 'pages/books.html';
 
 
 /*** Educated guess for location when adding new rant or blogmark ***/

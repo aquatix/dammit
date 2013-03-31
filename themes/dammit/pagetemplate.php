@@ -295,4 +295,3 @@ function buildKudos($skel)
 
 	return $page;
 }
-?>

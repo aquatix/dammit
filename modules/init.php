@@ -173,5 +173,6 @@ include 'modules/log_html.php';
 include 'modules/log_methods.php';
 
 /* Theme */
+include 'themes/' . $skel['theme'] . '/templates.php';
 include 'themes/' . $skel['theme'] . '/pagetemplate.php';
 ?>

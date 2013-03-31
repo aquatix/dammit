@@ -1282,5 +1282,3 @@ function getRequestParam($paramname, $default)
 		return $default;
 	}
 }
-
-?>
