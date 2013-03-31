@@ -49,6 +49,18 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 		$thisRant = $rants[$i];
 		$thisDate = getNormalDate($thisRant['date']);
 		
+		if (CONTENT_MARKDOWN == $rants[$i]['contenttype'])
+		{
+			$rantsHTML .= Markdown($rants[$i]['message']) . "\n";
+		}
+		else if (CONTENT_PLAINTEXT == $rants[$i]['contenttype'])
+		{
+			$rantsHTML .= plaintext2HTML($rants[$i]['message']) . "\n";
+		} else
+		{
+			$rantsHTML .= $rants[$i]['message'] . "\n";
+		}
+		
 		include 'article.php';
 /*
 		if ($groupedOnDate && $thisDate != $previousDate)
