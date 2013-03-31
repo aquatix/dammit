@@ -46,7 +46,11 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 
 	for ($i = 0; $i < count($rants); $i++)
 	{
-		$thisDate = getNormalDate($rants[$i]['date']);
+		$thisRant = $rants[$i];
+		$thisDate = getNormalDate($thisRant['date']);
+		
+		include 'article.php';
+/*
 		if ($groupedOnDate && $thisDate != $previousDate)
 		{
 			if ('0000-00-00 00:00:00' != $previousDate)
@@ -58,8 +62,7 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 			$previousDate = $thisDate;
 		}
 		$blogmarksContent = false;
-		/* Title */
-		//$rantsHTML .= '<h3>' . $rants[$i]['title'] . "</h3>\n";
+		// Title
 		if ($groupedOnDate)
 		{
 			$rantsHTML .= '<h3 class="ranttitle"><a href="' . $skel['base_uri'] . 'p/' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h3>\n";
@@ -71,7 +74,7 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 		{
 			$blogmarksContent = true;
 		}
-		/* Info about the rant entry */
+		// Info about the rant entry
 		$rantsHTML .= "<div class=\"info\">";
 		$rantsHTML .= $rants[$i]['location'] . " | ";
 		//if (isLoggedIn())
@@ -87,7 +90,7 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 			$rantsHTML .= "Posted " . $postedDate . getTime($rants[$i]['date']) . "</div>\n";
 		//}
 		//$rantsHTML .= "Posted " . getTime($rants[$i]['date']) . " | Watched " . $rants[$i]['nrviews'] . " times</div>\n";
-		/* Rant itself */
+		// Rant itself
 		$rantsHTML .= "<div class=\"rant\">\n";
 		if ($blogmarksContent) { $rantsHTML .= '<div id="posting' . $rants[$i]['messageID'] . '" class="weeklyblogmarks">'; }
 		if (CONTENT_MARKDOWN == $rants[$i]['contenttype'])
@@ -111,13 +114,11 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 
 		$rantsHTML .= 'Posted by ' . $rants[$i]['username'] . ' | ';
 
-		//$rantsHTML .= '<div><a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_link.gif" alt="Search for related articles" title="Search for related articles" /></a></div>';
-		//$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="images/technorati_related.gif" alt="Search for related articles" /></a> | ';
 		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://dammit.nl/' . $skel['base_uri'] . 'p/' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="' . $skel['base_uri'] . 'images/technorati_related.gif" alt="Search for related articles" /></a> | ';
 
 		if ($rants[$i]['modified'] > 0)
 		{
-			/* Modified at least once */
+			// Modified at least once
 			if ($rants[$i]['modified'] == 1)
 			{
 				$rantsHTML .= 'Modified 1 time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
@@ -146,10 +147,12 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 		$rantsHTML .= "</div>\n";
 		$rantsHTML .= "</div>\n\n";
 	}
-	/* Close the grouped div */
+	// Close the grouped div
 	if ($groupedOnDate)
 	{
 		$rantsHTML .= "</div>\n";
+	}
+	*/
 	}
 	return $rantsHTML;
 }
