@@ -1,10 +1,11 @@
 	<article>
 		<header>
 		<h1><a href="<?php echo $skel['base_uri'] . 'p/' . $thisRant['messageID'];?>"><?php echo $thisRant['title']; ?></a></h1>
-		<p><time pubdate="pubdate"> </time></p>
+		<p><time pubdate="pubdate"><?php echo $thisRant['date']; ?></time></p>
 		</header>
 		
 		<?php echo $rantsHTML; ?>
+
 
 		<?php if ($thisRant['nrOfComments'] > 0 && isset($rantsComments)) { ?>
 
