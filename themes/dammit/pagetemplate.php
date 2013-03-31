@@ -66,6 +66,9 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	$page .= "\t<div id=\"main-content-nav\">\n";
 */
 
+
+	echo $page_body;
+
 	include 'sidebar.php';
 
 	//$page .= buildNavigation($skel);
@@ -77,6 +80,7 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	 * Note: if you license it under something else as by-nc-sa, see http://creativecommons.org/technology/licenseoutput for the right
 	 * license requires/permits/prohibits lines
 	 */
+/*
 	$page .= "
 	<!--
 	\t<rdf:RDF xmlns=\"http://web.resource.org/cc/\"
@@ -106,44 +110,9 @@ function buildPage($skel, $section_name, $page_name, $page_body)
 	\t</License>
 	\t</rdf:RDF>
 	-->\n";
-
-	if (false === $skel['testing'])
-	{
-		/* Analytics; only when live */
-
-		/* Google Analytics stuff */
-		$page .= "<script type=\"text/javascript\">\n";
-		$page .= "var gaJsHost = ((\"https:\" == document.location.protocol) ? \"https://ssl.\" : \"http://www.\");\n";
-		$page .= "document.write(unescape(\"%3Cscript src='\" + gaJsHost + \"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E\"));\n";
-		$page .= "</script>\n";
-		$page .= "<script type=\"text/javascript\">\n";
-		$page .= "try {\n";
-		//$page .= "var pageTracker = _gat._getTracker(\"UA-10643901-2\");\n";
-		$page .= "var pageTracker = _gat._getTracker(\"UA-10643901-3\");\n";
-		$page .= "pageTracker._trackPageview();\n";
-		$page .= "} catch(err) {}</script>\n";
-
-		$page .= <<<'EOD'
-<!-- Piwik --> 
-<script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://aquariusoft.org/r00t/webstats/" : "http://aquariusoft.org/r00t/webstats/");
-document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script type="text/javascript">
-try {
-var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
-piwikTracker.trackPageView();
-piwikTracker.enableLinkTracking();
-} catch( err ) {}
-</script><noscript><p><img src="http://aquariusoft.org/r00t/webstats/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Tracking Code -->
-EOD;
-	}
+*/
 
 	include 'footer.php';
-
-
-	/****** Now finally print the contents of the page to the browser ******/
-	return $page;
 }
 
 

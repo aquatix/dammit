@@ -96,6 +96,8 @@ addToLog( $skel, $section_name, $page_log, $skel['page_version'] );
 
 $page_body = '';
 
+ob_start();
+
 /* Page-switcher */
 if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel['page_' . $subpage]))
 {
@@ -446,6 +448,8 @@ if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel[
 	$page_body .= "<p><a href=\"" . $skel['base_uri'] . "p/archive\" class=\"button\">&laquo; Old rants</a></p>\n";
 
 } /* End of page-switcher */
+
+$page_body = ob_get_contents();
 
 /* Now build the page */
 echo buildPage($skel, $section_name, $page_name, $page_body);
