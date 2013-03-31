@@ -1,6 +1,6 @@
 <?php
 /**
- * Configuration file for 'Michiel Scholten's blog aka rantbox'
+ * Configuration file for theme dammIT 'Michiel Scholten's blog aka rantbox'
  * 
  * Copyright 2003-2013 michiel at aquariusoft.org
  *
@@ -22,31 +22,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-$skel['author'] = 'Michiel Scholten';
-$skel['authorShortname'] = 'Michiel';
-$skel['siteName'] = 'dammIT';
-$skel['mainEmail'] = 'dammit@aquariusoft.org';
-$skel['tagline'] = 'Curiosity is a virtue';
-$skel['siteKeywords'] = 'Michiel Scholten,michiel,scholten,web,log,weblog,blog,rantbox,rant,rants,frustrations,personal,homepage,netherlands,nederland,nederlands,the netherlands,website,cool,dammit,damn,it,damnit,blah,linux,unix,script,scripts,shell,bash,web';
-$skel['siteDescription'] = 'This is the rantbox of Michiel Scholten, Netherlands. It\'s my blog, so you can read about my findings, interests, frustrations and surf the links I share with the rest of the world :)';
-$skel['feedDescription'] = 'Michiel\'s weblog // Those who would give up Essential Liberty to purchase a little Temporary Safety, deserve neither Liberty nor Safety (Benjamin Franklin)';
-
-/* Message to be shown on the main page, archive page and individual posting pages */
-//$skel['globalmessage'] = 'dammIT is getting tweaked';
-$skel['globalmessage'] = null; /* Use when you don't want such a message */
-
 $skel['nrOfRantsPerPage'] = 10;	//varying between 10 and 15 :)
 $skel['nrOfMarksPerPage'] = 20;
 $skel['nrOfMarksInNav'] = 15;
-$skel['servername'] = 'dammit.nl';
-$skel['baseHref'] = '/';
-$skel['basePath'] = '/var/local/www/dammit.nl/';
-if (true == $skel['testing'])
-{
-	$skel['baseHref'] = '/';
-	$skel['basePath'] = '/var/local/www/delta.dammit.nl/';
-}
 
 $skel['startyear'] = '2003';
 $skel['logo'] = 'images/dammit_logo.png';
@@ -73,19 +51,6 @@ if ((date('m') == 3 && date('d') > 20) || (date('m') < 7))
 	$skel['logoWidth'] = 880;
 	$skel['logoHeight'] = 140;
 }
-
-/*
- * Real path to rdf file [path used on server, like /var/www/blog.rdf]
- * Files should be writable for the webapp [chmod o+rw <filename>]
- */
-$skel['rssFilename'] = $skel['basePath'] . 'blog.rdf';
-$skel['rssWithCommentsFilename'] = $skel['basePath'] . 'blog_comments.rdf';
-$skel['rssMarksFilename'] = $skel['basePath'] . 'marks.rdf';
-$skel['rssEmail'] = 'mbscholt@aquariusoft.notforspambastards.org';
-
-$skel['.plan'] = $skel['basePath'] . 'pages/plan.html';
-$skel['about'] = $skel['basePath'] . 'pages/about.html';
-$skel['books'] = $skel['basePath'] . 'pages/books.html';
 
 /*** Navigation ***/
 /*
@@ -164,44 +129,6 @@ $skel['nav_sections'] = array(
 		'nav_memorable' => 'memorable'
 		);
 
-/*** Educated guess for location when adding new rant or blogmark ***/
-$skel['locations'] = array(
-		'192.168.*.*' => 'Home',
-		//'94.208.231.130' => 'Home',
-		'83.82.64.55' => 'Home',
-		//'213.84.100.*' => 'Work',
-		'62.69.187.5' => 'Work',
-		'130.37.*.*' => 'Vrije Universiteit',
-		'130.37.24.*' => 'Vrije Universiteit - Computer lab',
-		'130.37.26.*' => 'Vrije Universiteit - Laptop over wifi',
-		'84.80.247.120' => 'Mother-in-law\'s place'
-		);
-
-
-/*** Session identification ***/
-$skel['session_name'] = 'WEBLOGSESSID';
-
-
-/*** Path used for sending mail ***/
-$skel['mailPath'] = '/usr/sbin/sendmail -t';
-$skel['mailFrom'] = $skel['mainEmail'];
-$skel['mailFromName'] = 'dammIT';
-$skel['mailTo'] = 'mbscholt@aquariusoft.org';
-/* Notification for weblog owner */
-$skel['mailSubject'] = '[dammIT] New comment';
-/* Notification for other posters */
-$skel['mailNotificationSubject'] = '[dammIT] New comment posted';
-
-
-/*** Stylesheet filename ***/
-$skel['cssTheme'] = 'dammit';
-
-
-/* Automated tasks, like the posting of the blogmarks of this week, are restricted to IP: */
-$skel['restricttoip'] = '94.142.246.68';	// typically 127.0.0.1
-$skel['restricttoip'] = '2a02:898:62:f6::44';	// typically 127.0.0.1
-
-
 /*
  * Sort of hack - If browser is NetFront [used on pda's], get the plain, simpler css
  * Add useragents if you want them to use the simpler stylesheet to:
@@ -214,12 +141,3 @@ if (eregi('NetFront', getenv('HTTP_USER_AGENT'))|| eregi('Motorola A1000', geten
 	$skel['cssTheme'] = 'plain';
 }
 /* End of simpler css 'hack' */
-
-
-/*** Database settings ***/
-$db_url = 'localhost';
-$db_name = 'dammit_weblog';
-$db_user = 'blog';
-$db_pass = 'blogPs666!';
-
-?>
