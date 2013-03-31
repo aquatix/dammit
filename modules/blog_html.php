@@ -91,13 +91,13 @@ function generateFeed($skel, $filename, $feedtitle, $body)
 
 	$feed .= "\t<channel>\n";
 	$feed .= "\t\t<title>" . $feedtitle . "</title>\n";
-	$feed .= "\t\t<link>http://" . $skel['servername'] . $skel['baseHref'] . "</link>\n";
+	$feed .= "\t\t<link>" . $skel['base_server'] . $skel['base_uri'] . "</link>\n";
 	$feed .= "\t\t<description>" . $skel["feedDescription"] . "</description>\n";
 
 	$feed .= "\t\t<image>\n";
 	$feed .= "\t\t\t<title>" . $skel["siteName"] . "</title>\n";
-	$feed .= "\t\t\t<url>http://" . $skel['servername'] . $skel['baseHref'] . $skel["logo"] . "</url>\n";
-	$feed .= "\t\t\t<link>http://" . $skel['servername'] . $skel['baseHref'] . "</link>\n";
+	$feed .= "\t\t\t<url>" . $skel['base_server'] . $skel['base_uri'] . $skel["logo"] . "</url>\n";
+	$feed .= "\t\t\t<link>" . $skel['base_server'] . $skel['base_uri'] . "</link>\n";
 	$feed .= "\t\t\t<width>" . $skel["logoWidth"] . "</width>\n";
 	$feed .= "\t\t\t<height>" . $skel["logoHeight"] . "</height>\n";
 	$feed .= "\t\t\t<description>" . $skel["siteName"] . "</description>\n";
@@ -107,7 +107,7 @@ function generateFeed($skel, $filename, $feedtitle, $body)
 	$feed .= "\t\t<dc:rights>Copyright " . $skel["startyear"] . "-" . date("Y") . " " .$skel["author"] . "</dc:rights>\n";
 	$feed .= "\t\t<dc:creator>" . $skel["rssEmail"] . "</dc:creator>\n";
 	$feed .= "\t\t<dc:date>" . date('Y-m-d\TH:i:s+01:00') . "</dc:date>\n";
-	$feed .= "\t\t<admin:generatorAgent rdf:resource=\"http://" . $skel['servername'] . $skel['baseHref'] . "\" />\n";
+	$feed .= "\t\t<admin:generatorAgent rdf:resource=\"" . $skel['base_server'] . $skel['base_uri'] . "\" />\n";
 	$feed .= "\t\t<sy:updatePeriod>hourly</sy:updatePeriod>\n";
 	$feed .= "\t\t<sy:updateFrequency>1</sy:updateFrequency>\n";
 	$feed .= "\t\t<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>\n";
@@ -145,7 +145,7 @@ function updateWeblogFeed($skel, $rants)
 	/* count($rants) should be $nrOfRantsPerPage */
 	for ($i = 0; $i < count($rants); $i++)
 	{
-		$feed .= "\t\t\t\t<rdf:li rdf:resource=\"http://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "\" />\n";
+		$feed .= "\t\t\t\t<rdf:li rdf:resource=\"" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rants[$i]['messageID'] . "\" />\n";
 	}
 	$feed .= "\t\t\t</rdf:Seq>\n\t\t</items>\n";
 
@@ -154,12 +154,12 @@ function updateWeblogFeed($skel, $rants)
 	{
 		$feed .= "\t\t<item>\n";
 		$feed .= "\t\t\t<title>" . $rants[$i]['title'] . "</title>\n";
-		$feed .= "\t\t\t<link>http://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "</link>\n";
-		$feed .= "\t\t\t<guid>http://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "</guid>\n";
+		$feed .= "\t\t\t<link>" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rants[$i]['messageID'] . "</link>\n";
+		$feed .= "\t\t\t<guid>" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rants[$i]['messageID'] . "</guid>\n";
 		$feed .= "\t\t\t<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>]]></content:encoded>\n";
 		$feed .= "\t\t\t<dc:subject></dc:subject>\n";
 		$feed .= "\t\t\t<dc:creator>" . $skel["authorShortname"] . "</dc:creator>\n";
-		$feed .= "\t\t\t<comments>http://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "#comments</comments>\n";
+		$feed .= "\t\t\t<comments>" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rants[$i]['messageID'] . "#comments</comments>\n";
 		$feed .= "\t\t\t<dc:date>" . getRSSDateTime($rants[$i]['date']) . "</dc:date>\n";
 		$feed .= "\t\t</item>\n";
 	}
@@ -177,7 +177,7 @@ function updateWeblogCommentsFeed($skel, $rants)
 
 	for ($i = 0; $i < count($rants); $i++)
 	{
-		$feed .= "\t\t\t<rdf:li rdf:resource=\"http://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "\" />\n";
+		$feed .= "\t\t\t<rdf:li rdf:resource=\"" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rants[$i]['messageID'] . "\" />\n";
 	}
 	$feed .= "\t\t\t</rdf:Seq>\n\t\t</items>\n";
 
@@ -207,11 +207,11 @@ function updateWeblogCommentsFeed($skel, $rants)
 		}
 		$feed .= "\t\t<item>\n";
 		$feed .= "\t\t\t<title>" . $rants[$i]['title'] . "</title>\n";
-		$feed .= "\t\t\t<link>http://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "</link>\n";
+		$feed .= "\t\t\t<link>" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rants[$i]['messageID'] . "</link>\n";
 		$feed .= "\t\t\t<content:encoded><![CDATA[" . $rants[$i]['message'] . "<p>Location: " . $rants[$i]['location'] . "</p>" . $rantcomments . "]]></content:encoded>\n";
 		$feed .= "\t\t\t<dc:subject></dc:subject>\n";
 		$feed .= "\t\t\t<dc:creator>" . $skel["authorShortname"] . "</dc:creator>\n";
-		$feed .= "\t\t\t<comments>http://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "#comments</comments>\n";
+		$feed .= "\t\t\t<comments>" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rants[$i]['messageID'] . "#comments</comments>\n";
 		$feed .= "\t\t\t<dc:date>" . getRSSDateTime($rants[$i]['date']) . "</dc:date>\n";
 		$feed .= "\t\t</item>\n";
 	}
@@ -240,7 +240,7 @@ function updateWebmarksFeed($skel, $marks)
 	$feed  = "\t\t<items>\n\t\t\t<rdf:Seq>\n";
 	for ($i = 0; $i < count($marks); $i++)
 	{
-		$feed .= "\t\t\t<rdf:li rdf:resource=\"http://" . $skel['servername'] . $skel['baseHref'] . "blogmarks.php?markid=" . $marks[$i]["id"] . "\" />\n";
+		$feed .= "\t\t\t<rdf:li rdf:resource=\"" . $skel['base_server'] . $skel['base_uri'] . "blogmarks.php?markid=" . $marks[$i]["id"] . "\" />\n";
 	}
 	$feed .= "\t\t\t</rdf:Seq>\n\t\t</items>\n";
 

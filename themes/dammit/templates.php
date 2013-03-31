@@ -62,10 +62,10 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 		//$rantsHTML .= '<h3>' . $rants[$i]['title'] . "</h3>\n";
 		if ($groupedOnDate)
 		{
-			$rantsHTML .= '<h3 class="ranttitle"><a href="' . $skel['baseHref'] . 'p/' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h3>\n";
+			$rantsHTML .= '<h3 class="ranttitle"><a href="' . $skel['base_uri'] . 'p/' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h3>\n";
 		} else
 		{
-			$rantsHTML .= '<h2 class="ranttitle"><a href="' . $skel['baseHref'] . 'p/' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h2>\n";
+			$rantsHTML .= '<h2 class="ranttitle"><a href="' . $skel['base_uri'] . 'p/' . $rants[$i]['messageID'] . '">' . $rants[$i]['title'] . "</a></h2>\n";
 		}
 		if (count($rants) > 1 && substr($rants[$i]['title'], 0, 13) == 'Blogmarks for')
 		{
@@ -113,7 +113,7 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 
 		//$rantsHTML .= '<div><a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '"><img src="images/technorati_link.gif" alt="Search for related articles" title="Search for related articles" /></a></div>';
 		//$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://aquariusoft.org/~mbscholt/index.php' . '?rantid=' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="images/technorati_related.gif" alt="Search for related articles" /></a> | ';
-		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://dammit.nl/' . $skel['baseHref'] . 'p/' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="' . $skel['baseHref'] . 'images/technorati_related.gif" alt="Search for related articles" /></a> | ';
+		$rantsHTML .= '<a href="http://www.technorati.com/search/' . 'http://dammit.nl/' . $skel['base_uri'] . 'p/' . $rants[$i]['messageID'] . '" title="Search for related articles"><img src="' . $skel['base_uri'] . 'images/technorati_related.gif" alt="Search for related articles" /></a> | ';
 
 		if ($rants[$i]['modified'] > 0)
 		{
@@ -137,7 +137,7 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 		{
 			$rantsHTML .= '<span class="strike" title="Commenting has been disabled for this post">';
 		}
-		$rantsHTML .= '<a href="' . $skel['baseHref'] . 'p/' . $rants[$i]['messageID'] . '#comments">' . $rants[$i]['nrOfComments'] . ' ' . $commentText . '&nbsp;&raquo;</a>';
+		$rantsHTML .= '<a href="' . $skel['base_uri'] . 'p/' . $rants[$i]['messageID'] . '#comments">' . $rants[$i]['nrOfComments'] . ' ' . $commentText . '&nbsp;&raquo;</a>';
 		if (0 == $rants[$i]['commentsenabled'])
 		{
 			$rantsHTML .= '</span>';
@@ -179,7 +179,7 @@ function buildRantlist($skel, $rants, $enableyear)
 				$html .= '<h2>' . getYear($rants[$i]['date']) . " &gt; " . getMonthName($thisMonth) . "</h2>\n";
 			} else
 			{
-				$html .= '<h2><a href="' . $skel['baseHref'] . 'p/archive/month/' . getYear($rants[$i]['date']) . $thisMonth . '">' . getMonthName($thisMonth) . "</a></h2>\n";
+				$html .= '<h2><a href="' . $skel['base_uri'] . 'p/archive/month/' . getYear($rants[$i]['date']) . $thisMonth . '">' . getMonthName($thisMonth) . "</a></h2>\n";
 			}
 			$html .= "<ul class=\"archive\">\n";
 			$previousMonth = $thisMonth;
@@ -193,7 +193,7 @@ function buildRantlist($skel, $rants, $enableyear)
 			$html .= '<li><span class="date">&nbsp;</span>';
 		}
 		/* Title */
-		$html .= "<a href=\"" . $skel['baseHref'] . "p/" . $rants[$i]['messageID'] . "\">" . $rants[$i]['title'] . "</a>";
+		$html .= "<a href=\"" . $skel['base_uri'] . "p/" . $rants[$i]['messageID'] . "\">" . $rants[$i]['title'] . "</a>";
 
 		$html .= "</li>\n";
 	}
@@ -374,7 +374,7 @@ function buildCommentsList( $skel, $comments )
 			$commentsHTML .= '<span class="comment_listitem">';
 		}
 		$commentsHTML .= $comments[$i]['date'] . '&nbsp;by ' . $uri;
-		$commentsHTML .= ' | <a href="' . $skel['baseHref'] . 'p/' . $comments[$i]['rantId'] . '/#comment' . $comments[$i]['id'] . '">link</a> ';
+		$commentsHTML .= ' | <a href="' . $skel['base_uri'] . 'p/' . $comments[$i]['rantId'] . '/#comment' . $comments[$i]['id'] . '">link</a> ';
 
 			$commentsHTML .= "| Notify ";
 			if ($comments[$i]["wantnotifications"] == 0)
