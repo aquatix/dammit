@@ -128,16 +128,3 @@ $skel['nav_sections'] = array(
 		'nav_webdev' => 'webdev',
 		'nav_memorable' => 'memorable'
 		);
-
-/*
- * Sort of hack - If browser is NetFront [used on pda's], get the plain, simpler css
- * Add useragents if you want them to use the simpler stylesheet to:
- * if (eregi('NetFront', getenv('HTTP_USER_AGENT')) || eregi('someotherbrowser', getenv('HTTP_USER_AGENT')))
- * But use with care so you don't exclude capable browsers.
- */
-if (eregi('NetFront', getenv('HTTP_USER_AGENT'))|| eregi('Motorola A1000', getenv('HTTP_USER_AGENT')))
-{
-	/* @TODO: update the plain theme */
-	$skel['cssTheme'] = 'plain';
-}
-/* End of simpler css 'hack' */
