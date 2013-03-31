@@ -39,7 +39,7 @@
  * location
  * nrOfComments
  */
-function buildRants( $skel, $rants, $groupedOnDate = false )
+function buildRants( $skel, $rants, $showcomments = false )
 {
 	$rantsHTML = '';
 	$previousDate = '0000-00-00 00:00:00';
@@ -59,6 +59,11 @@ function buildRants( $skel, $rants, $groupedOnDate = false )
 		} else
 		{
 			$rantsHTML .= $rants[$i]['message'] . "\n";
+		}
+		
+		if (true === $showcomments)
+		{
+			$rantsComments = getComments($skel, $rantid);
 		}
 		
 		include 'article.php';

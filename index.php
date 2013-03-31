@@ -235,16 +235,17 @@ if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel[
 
 			$page_body .= "<div class=\"browsenav\"><span class=\"previous\">" . $prev . "</span><span class=\"next\">&nbsp;" . $next . "</span></div>\n";
 
-			$page_body .= buildRants($skel, $rant);
+			$page_body .= buildRants($skel, $rant, true);
 
 			/* Show all comments */
+			/*
 			$allComments = getComments($skel, $rantid);
 			if (0 < count($allComments))
 			{
 				$page_body .= "<h2 id=\"comments\">Comments</h2>\n";
 				//$page_body .= buildComments(getComments($skel, $rantid));
 				$page_body .= buildComments($allComments);
-			}
+			}*/
 
 			/* Show input fields for additional comments */
 			if ($commentsenabled)
