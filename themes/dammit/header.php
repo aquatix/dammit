@@ -52,7 +52,7 @@
 	<!-- concatenate and minify for production -->
 	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/reset.css" />
 	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/style.css" />
-<!--	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/style.css" />-->
+	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/dammit.css" />
 	
 	<!-- This is an un-minified, complete version of Modernizr. 
 		 Before you move to production, you should generate a custom build that only has the detects you need. -->
@@ -86,20 +86,3 @@
 		<h1><a href="/"><?php echo $skel['page_title']; ?></a></h1>
 	
 	</header>
-<!--
-	<header>
-		
-		<h1><a href="/">Page Title</a></h1>
-		
-		<nav>
-		
-			<ol>
-				<li><a href="">Nav Link 1</a></li>
-				<li><a href="">Nav Link 2</a></li>
-				<li><a href="">Nav Link 3</a></li>
-			</ol>
-		
-		</nav>
-	
-	</header>
--->
