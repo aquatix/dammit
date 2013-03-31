@@ -81,6 +81,12 @@
 
 <div class="wrapper"><!-- not needed? up to you: http://camendesign.com/code/developpeurs_sans_frontieres -->
 
+<div id="header">
+dammIT
+</div>
+
+<div id="content">
+
 	<header>
 		
 		<h1><a href="<?php echo $skel['page_permalink']; ?>"><?php echo $skel['page_title']; ?></a></h1>
