@@ -44,6 +44,8 @@ function buildRants( $skel, $rants, $showcomments = false )
 	$rantsHTML = '';
 	$previousDate = '0000-00-00 00:00:00';
 
+	ob_start();
+
 	for ($i = 0; $i < count($rants); $i++)
 	{
 		$thisRant = $rants[$i];
@@ -171,7 +173,8 @@ function buildRants( $skel, $rants, $showcomments = false )
 	}
 	*/
 	}
-	return $rantsHTML;
+	//return $rantsHTML;
+	return ob_get_contents();
 }
 
 
