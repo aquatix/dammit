@@ -83,6 +83,6 @@
 
 	<header>
 		
-		<h1><a href="/"><?php echo $skel['page_title']; ?></a></h1>
+		<h1><a href="<?php echo $skel['page_permalink']; ?>"><?php echo $skel['page_title']; ?></a></h1>
 	
 	</header>
