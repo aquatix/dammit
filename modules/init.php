@@ -101,6 +101,16 @@ $skel['rssWithCommentsFilename'] = $skel['basePath'] . 'blog_comments.rdf';
 $skel['rssMarksFilename'] = $skel['basePath'] . 'marks.rdf';
 
 
+/*** Path used for sending mail ***/
+$skel['mailPath'] = '/usr/sbin/sendmail -t';
+$skel['mailFrom'] = $skel['mainEmail'];
+$skel['mailFromName'] = $skel['siteName'];
+$skel['mailTo'] = $skel['mainEmail'];
+/* Notification for weblog owner */
+$skel['mailSubject'] = '[' . $skel['siteName'] . '] New comment';
+/* Notification for other posters */
+$skel['mailNotificationSubject'] = '[' . $skel['siteName'] . '] New comment posted';
+
 
 if (!isset($skel['globalmessage']))
 {

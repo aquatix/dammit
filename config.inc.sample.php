@@ -35,6 +35,7 @@ $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
 $skel['siteName'] = 'dammIT';
 $skel['mainEmail'] = 'dammit@aquariusoft.org';
+$skel['rssEmail'] = 'dammit@aquariusoft.notforspambastards.org';
 $skel['tagline'] = 'Curiosity is a virtue';
 $skel['siteKeywords'] = 'Michiel Scholten,michiel,scholten,web,log,weblog,blog,rantbox,rant,rants,frustrations,personal,homepage,netherlands,nederland,nederlands,the netherlands,website,cool,dammit,damn,it,damnit,blah,linux,unix,script,scripts,shell,bash,web';
 $skel['siteDescription'] = 'This is the rantbox of Michiel Scholten, Netherlands. It\'s my blog, so you can read about my findings, interests, frustrations and surf the links I share with the rest of the world :)';
@@ -45,8 +46,7 @@ $skel['feedDescription'] = 'Michiel\'s weblog // Those who would give up Essenti
 $skel['globalmessage'] = null; /* Use when you don't want such a message */
 
 
-$skel['rssEmail'] = 'mbscholt@aquariusoft.notforspambastards.org';
-
+/*** Extra pages ***/
 $skel['plan'] = $skel['base_dir'] . 'pages/plan.html';
 $skel['about'] = $skel['base_dir'] . 'pages/about.html';
 $skel['books'] = $skel['base_dir'] . 'pages/books.html';
@@ -64,18 +64,6 @@ $skel['locations'] = array(
 		'130.37.26.*' => 'Vrije Universiteit - Laptop over wifi',
 		'84.80.247.120' => 'Mother-in-law\'s place'
 		);
-
-
-/*** Path used for sending mail ***/
-$skel['mailPath'] = '/usr/sbin/sendmail -t';
-$skel['mailFrom'] = $skel['mainEmail'];
-$skel['mailFromName'] = 'dammIT';
-$skel['mailTo'] = 'mbscholt@aquariusoft.org';
-/* Notification for weblog owner */
-$skel['mailSubject'] = '[dammIT] New comment';
-/* Notification for other posters */
-$skel['mailNotificationSubject'] = '[dammIT] New comment posted';
-
 
 /*** Stylesheet filename ***/
 $skel['theme'] = 'dammit';
