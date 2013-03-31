@@ -12,6 +12,7 @@ body
 {
 	/*font: 13px Helmet, Freesans, sans-serif;*/
 	font: 13px Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
+	background-color: #838F67;
 }
 
 /* using local fonts? make sure to read up on Paul Irish's 
@@ -42,6 +43,29 @@ input:-moz-placeholder { color:#a9a9a9; }
 textarea:-moz-placeholder { color:#a9a9a9; }
 
 
+#wrapper
+{
+	background-color: #FFF;
+}
+
+#wrapper footer
+{
+	clear: both;
+}
+
+#content
+{
+}
+
+aside
+{
+}
+
+aside ul
+{
+	font-size: .8em;
+}
+
 
 /* Print styles!
 -------------------------------------------------------------------------------*/
@@ -56,6 +80,25 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 -------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 480px)
+{
+	#header
+	{
+		height: auto;
+	}
+
+	h1
+	{
+		font-size: 24px;
+	}
+
+	aside
+	{
+		/* display: none; */
+	}
+
+}
+
+@media screen and (max-width: 700px)
 {
 	
 	#content
@@ -74,9 +117,10 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 
 @media screen and (max-width: 980px)
 {
-	.wrapper
+	#wrapper
 	{
-		width: 94%;
+		width: 96%;
+		margin: 0 auto;
 	}
 
 	#header
@@ -93,6 +137,6 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 	aside
 	{
 		width: 30%;
-		float: left;
+		float: right;
 	}
 }
