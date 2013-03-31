@@ -181,6 +181,8 @@ include 'modules/blog_methods.php';
 include 'modules/log_html.php';
 include 'modules/log_methods.php';
 
+$skel['isloggedin'] = isLoggedIn();
+
 /* Theme */
 include 'themes/' . $skel['theme'] . '/config.inc.php';
 include 'themes/' . $skel['theme'] . '/templates.php';
