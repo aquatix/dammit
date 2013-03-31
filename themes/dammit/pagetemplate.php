@@ -146,55 +146,6 @@ EOD;
 	return $page;
 }
 
-function buildNavigation($skel)
-{
-	/*** Navigation part ***/
-/*
-	$page .= "<div id=\"main-navbar\">\n";
-	$page .= "\t<ul id=\"main-nav\">\n";
-	$page .= "\t\t<li><a href=\"./\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
-	$page .= "\t\t<li><a href=\"index.php?page=archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
-	$page .= "\t\t<li><a href=\"blogmarks.php\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
-	$page .= "\t\t<li><a href=\"index.php?page=kudos\" accesskey=\"k\" title=\"View a list of sites that deserve kudos\">kudos</a></li>\n";
-	$page .= "\t\t<li><a href=\"index.php?page=about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
-	$page .= "\t</ul>\n";
-*/
-	$page .= "<div id=\"main-navbar\">\n";
-	$page .= "\t<ul id=\"main-nav\">\n";
-	$page .= "\t\t<li><a href=\"" . $skel['base_uri'] . "\" accesskey=\"h\" title=\"Home\">home</a></li>\n";
-	$page .= "\t\t<li><a href=\"" . $skel['base_uri'] . "p/archive\" accesskey=\"a\" title=\"View all post titles in the archive\">archive</a></li>\n";
-	$page .= "\t\t<li><a href=\"" . $skel['base_uri'] . "m\" accesskey=\"m\" title=\"View interesting links\">blogmarks</a></li>\n";
-	$page .= "\t\t<li><a href=\"" . $skel['base_uri'] . "p/books\" accesskey=\"b\" title=\"View interesting links\">books</a></li>\n";
-	$page .= "\t\t<li><a href=\"" . $skel['base_uri'] . "p/kudos\" accesskey=\"k\" title=\"View a list of sites that deserve kudos\">kudos</a></li>\n";
-	$page .= "\t\t<li><a href=\"" . $skel['base_uri'] . "p/about\" accesskey=\"?\" title=\"Information about the author\">about</a></li>\n";
-	$page .= "\t</ul>\n";
-
-	/* Version information */
-	$page .= "\t<div class=\"pageversion\">v" . $skel['page_version'] . "</div>\n</div>\n";
-
-//	$page .= "\t\t</div>\n";
-
-	/*** Links-menu ***/
-	/* Search field */
-	if (!isset($searchkey))
-	{
-		$searchkey = '';
-	} 
-	$page .= "\t\t<form style=\"margin-top: 1em;\" action=\"" . $skel['base_uri'] . "search\" method=\"post\"><div><input type=\"text\" class=\"searchfield\" name=\"searchkey\" size=\"12\" maxlength=\"250\" value=\"" . $searchkey . "\" /><input name=\"searchbtn\" value=\"Find\" type=\"submit\" /></div></form>\n";
-
-
-	$page .= "\t\t<div class=\"nav-header\">distracted by</div>\n";
-	$page .= buildSimpleMarks(getMarks($skel, 0, $skel["nrOfMarksInNav"]));
-
-	/* Images */
-	$page .= "\t<div class=\"images\">\n";
-	$page .= "\t\t<ul>\n";
-	$page .= "\t\t\t<li><a href=\"blog.rdf\" title=\"Get my feed into your reader :)\"><img src=\"" . $skel['base_uri'] . "images/logos/rss_20.png\" alt=\"RSS feed\"/></a></li>\n";
-	$page .= "\t\t\t<li><a href=\"blog_comments.rdf\" title=\"Get my feed with comments into your reader :)\"><img src=\"" . $skel['base_uri'] . "images/logos/rsscomments.gif\" alt=\"RSS feed with comments\"/></a></li>\n";
-	$page .= "\t\t\t<li><a href=\"marks.rdf\" title=\"Get my blogmarks into your reader :)\"><img src=\"" . $skel['base_uri'] . "images/logos/rss_marks.png\" alt=\"RSS feed - blogmarks\"/></a></li>\n";
-	$page .= "\t\t</ul>\n\t</div>\n";
-	return $page;
-}
 
 function buildKudos($skel)
 {
