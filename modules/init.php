@@ -95,9 +95,9 @@ if (!isset($url_pieces['scheme']))
  * Real path to rdf file [path used on server, like /var/www/blog.rdf]
  * Files should be writable for the webapp [chmod o+rw <filename>]
  */
-$skel['rssFilename'] = $skel['basePath'] . 'blog.rdf';
-$skel['rssWithCommentsFilename'] = $skel['basePath'] . 'blog_comments.rdf';
-$skel['rssMarksFilename'] = $skel['basePath'] . 'marks.rdf';
+$skel['rssFilename'] = $skel['base_dir'] . 'blog.rdf';
+$skel['rssWithCommentsFilename'] = $skel['base_dir'] . 'blog_comments.rdf';
+$skel['rssMarksFilename'] = $skel['base_dir'] . 'marks.rdf';
 
 
 /*** Path used for sending mail ***/
