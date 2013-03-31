@@ -2,14 +2,17 @@
 	
 		<h2>Sidebar Content</h2>
 		
-		<ul id="main-nav">
-			<li><a href="<?php echo $skel['base_uri'];?>" accesskey="h" title="Home">home</a></li>
-			<li><a href="<?php echo $skel['base_uri'];?>p/archive" accesskey="a" title="View all post titles in the archive">archive</a></li>
-			<li><a href="<?php echo $skel['base_uri'];?>m" accesskey="m" title="View interesting links">blogmarks</a></li>
-			<li><a href="<?php echo $skel['base_uri'];?>p/books" accesskey="b" title="View interesting links">books</a></li>
-			<li><a href="<?php echo $skel['base_uri'];?>p/kudos" accesskey="k" title="View a list of sites that deserve kudos">kudos</a></li>
-			<li><a href="<?php echo $skel['base_uri'];?>p/about" accesskey="?" title="Information about the author">about</a></li>
-		</ul>
+		<nav>
+			<ol>
+				<li><a href="<?php echo $skel['base_uri'];?>" accesskey="h" title="Home">home</a></li>
+				<li><a href="<?php echo $skel['base_uri'];?>p/archive" accesskey="a" title="View all post titles in the archive">archive</a></li>
+				<li><a href="<?php echo $skel['base_uri'];?>m" accesskey="m" title="View interesting links">blogmarks</a></li>
+				<li><a href="<?php echo $skel['base_uri'];?>p/books" accesskey="b" title="View interesting links">books</a></li>
+				<li><a href="<?php echo $skel['base_uri'];?>p/kudos" accesskey="k" title="View a list of sites that deserve kudos">kudos</a></li>
+				<li><a href="<?php echo $skel['base_uri'];?>p/about" accesskey="?" title="Information about the author">about</a></li>
+			</ol>
+		</nav>
+
 		<div class="pageversion">v<?php echo $skel['page_version']; ?></div>
 		
 		<?php if (!isset($searchkey)) { $searchkey = ''; } ?>
