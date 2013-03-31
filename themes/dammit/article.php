@@ -6,8 +6,8 @@
 		
 		<?php echo $rantsHTML; ?>
 
-
 		<?php if ($thisRant['nrOfComments'] > 0 && isset($rantsComments)) { ?>
+
 		<section>
 			<h2>Comments</h2>
 			<?php if (0 === $rants[$i]['commentsenabled']) { ?>
