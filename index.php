@@ -97,9 +97,9 @@ addToLog( $skel, $section_name, $page_log, $skel['page_version'] );
 $page_body = '';
 
 /* Page-switcher */
-if (isset($subpage) && in_array($subpage, $skel) && file_exists($skel[$subpage]))
+if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel['page_' . $subpage]))
 {
-	$lines = file($skel[$subpage]);
+	$lines = file($skel['page_' . $subpage]);
 	for ($i = 0; $i < count($lines); $i++)
 	{
 		$page_body .= $lines[$i];

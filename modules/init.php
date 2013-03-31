@@ -24,6 +24,8 @@
 
 $skel['starttime'] = microtime();
 
+$skel['base_dir'] = dirname(dirname(__FILE__)); // go up one directory, out of the modules dir
+
 /* Load the settings for this web log */
 if (!file_exists('config.inc.php'))
 {
@@ -88,9 +90,6 @@ if (!isset($url_pieces['scheme']))
 {
 	$skel['base_server'] = $url_pieces['scheme'] . '://' . $url_pieces['host'];
 }
-
-$skel['base_dir'] = dirname(dirname(__FILE__)); // go up one directory, out of the modules dir
-
 
 /*
  * Real path to rdf file [path used on server, like /var/www/blog.rdf]

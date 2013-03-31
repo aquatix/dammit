@@ -41,15 +41,25 @@ $skel['siteKeywords'] = 'Michiel Scholten,michiel,scholten,web,log,weblog,blog,r
 $skel['siteDescription'] = 'This is the rantbox of Michiel Scholten, Netherlands. It\'s my blog, so you can read about my findings, interests, frustrations and surf the links I share with the rest of the world :)';
 $skel['feedDescription'] = 'Michiel\'s weblog // Those who would give up Essential Liberty to purchase a little Temporary Safety, deserve neither Liberty nor Safety (Benjamin Franklin)';
 
+/* Your Google Analytics code. Set to null if you don't have one */
+//$skel['googleAnalyticsCode'] = null;
+$skel['googleAnalyticsCode'] = 'UA-10643901-3';
+
 /* Message to be shown on the main page, archive page and individual posting pages */
 //$skel['globalmessage'] = 'dammIT is getting tweaked';
 $skel['globalmessage'] = null; /* Use when you don't want such a message */
 
 
+/*** Stylesheet filename ***/
+/* ./themes/NAME/ */
+$skel['theme'] = 'dammit';
+
+
 /*** Extra pages ***/
-$skel['plan'] = $skel['base_dir'] . 'pages/plan.html';
-$skel['about'] = $skel['base_dir'] . 'pages/about.html';
-$skel['books'] = $skel['base_dir'] . 'pages/books.html';
+/* Syntax: $skel['page_SLUG'] = $skel['base_dir'] . 'pages/SLUG.html'; */
+$skel['page_plan'] = $skel['base_dir'] . 'pages/plan.html';
+$skel['page_about'] = $skel['base_dir'] . 'pages/about.html';
+$skel['page_books'] = $skel['base_dir'] . 'pages/books.html';
 
 
 /*** Educated guess for location when adding new rant or blogmark ***/
@@ -65,10 +75,6 @@ $skel['locations'] = array(
 		'84.80.247.120' => 'Mother-in-law\'s place'
 		);
 
-/*** Stylesheet filename ***/
-$skel['theme'] = 'dammit';
-
-
 /* Automated tasks, like the posting of the blogmarks of this week, are restricted to IP: */
 $skel['restricttoip'] = '94.142.246.68';	// typically 127.0.0.1
 $skel['restricttoip'] = '2a02:898:62:f6::44';	// typically 127.0.0.1
@@ -79,5 +85,3 @@ $db_url = 'localhost';
 $db_name = 'dammit_weblog';
 $db_user = 'blog';
 $db_pass = 'blogPs666!';
-
-?>
