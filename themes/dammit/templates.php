@@ -63,7 +63,7 @@ function buildRants( $skel, $rants, $showcomments = false )
 		
 		if (true === $showcomments)
 		{
-			$rantsComments = getComments($skel, $rantid);
+			$rantsComments = getComments($skel, $thisRant['messageID']);
 		}
 		
 		include 'article.php';

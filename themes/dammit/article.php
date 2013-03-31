@@ -12,7 +12,7 @@
 			<h2>Comments</h2>
 			<?php if (0 === $rants[$i]['commentsenabled']) { ?>
 				<span class="strike" title="Commenting has been disabled for this post">
-			<?php else {
+			<?php } else {
 				$commentCounter = 1;
 				foreach($rantsComments as $comment)
 				{
