@@ -33,6 +33,21 @@
 </script>
 <?php } ?>
 
+<?php if(isset($skel['piwikURL']) && isset($skel['piwikSiteID']) && false === $skel['testing']) { ?>
+<!-- Piwik --> 
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://<?php echo $skel['piwikURL']; ?>" : "http://<?php echo $skel['piwikURL']; ?>");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://<?php echo $skel['piwikURL']; ?>piwik.php?idsite=<?php echo $skel['piwikSiteID']; ?>" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
+<?php } ?>
+
 <!-- rendered in <?php echo (microtime() - $skel['starttime'])?> sec -->
   
 </body>

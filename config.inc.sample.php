@@ -25,7 +25,7 @@
 
 /*** Site settings ***/
 $skel['testing'] = false;
-//$skel['testing'] = true;
+$skel['testing'] = true;
 
 /* Global comments enabled yes/no toggle */
 $skel['commentsenabled'] = true;
@@ -44,6 +44,9 @@ $skel['feedDescription'] = 'Michiel\'s weblog // Those who would give up Essenti
 /* Your Google Analytics code. Set to null if you don't have one */
 //$skel['googleAnalyticsCode'] = null;
 $skel['googleAnalyticsCode'] = 'UA-10643901-3';
+
+$skel['piwikURL'] = 'aquariusoft.org/r00t/webstats/';
+$skel['piwikSiteID'] = '2';
 
 /* Message to be shown on the main page, archive page and individual posting pages */
 //$skel['globalmessage'] = 'dammIT is getting tweaked';

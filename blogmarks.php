@@ -23,8 +23,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2009-03-09';
-$skel['page_version'] = '0.6.02';
+$skel['lastmodified'] = '2013-03-31';
+$skel['page_version'] = '0.8.01';
 $skel['dateofcreation'] = '2003-12-21';
 
 $section_name = 'blogmarks';
@@ -76,6 +76,7 @@ if (isset($_GET['year']) && myIsInt($_GET['year']))
 
 /*** Show the blogmark overview ***/
 $page_body .= "<h1>Blogmarks</h1>\n";
+$skel['page_title'] = 'Blogmarks';
 $offset = 0;
 $nrBack = 0;
 $nrForward = $skel['nrOfMarksPerPage'];
