@@ -84,8 +84,7 @@ if (!isset($url_pieces['scheme']))
 	$skel['base_server'] = $url_pieces['scheme'] . '://' . $url_pieces['host'];
 }
 
-$skel['base_dir'] = dirname(__FILE__);
-echo $skel['base_dir'];
+$skel['base_dir'] = dirname(dirname(__FILE__)); // go up one directory, out of the modules dir
 
 
 /*
@@ -98,7 +97,7 @@ $skel['rssMarksFilename'] = $skel['basePath'] . 'marks.rdf';
 
 
 
-if (!isset['globalmessage'])
+if (!isset($skel['globalmessage']))
 {
 	/* Message to be shown on the main page, archive page and individual posting pages */
 	//$skel['globalmessage'] = 'This weblog is getting tweaked';
