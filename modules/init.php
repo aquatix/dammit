@@ -25,14 +25,19 @@
 $skel['starttime'] = microtime();
 
 /* Load the settings for this web log */
-include 'config.php';
+if (!file_exists('config.inc.php'))
+{
+	echo "Copy config.inc.sample.php to config.inc.php and configure your weblog settings";
+	exit();
+}
+include 'config.inc.php';
 
 if (!isset($skel['restricttoip']))
 {
 	$skel['restricttoip'] = '';
 }
 
-if (true == $skel['testing'])
+if (isset($skel['testing']) && true === $skel['testing'])
 {
 	//error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 	//error_reporting( 0 );
