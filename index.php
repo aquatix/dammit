@@ -1,9 +1,9 @@
 <?php
 /**
+ * Index page
  * Shows the main page of the weblog, older postings, discrete postings and comments
- * $Id$
  *
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -23,8 +23,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2011-06-07';
-$skel['page_version'] = '0.7.02';
+$skel['lastmodified'] = '2013-03-31';
+$skel['page_version'] = '0.8.01';
 $skel['dateofcreation'] = '2003-12-21';
 
 $page_name = 'home';

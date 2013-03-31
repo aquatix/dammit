@@ -1,9 +1,8 @@
 <?php
 /**
  * Initialization module
- * $Id$
  * 
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 mbscholt at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -44,9 +43,74 @@ if (true == $skel['testing'])
 	error_reporting( 0 );
 }
 
+
+
+/*
+$skel['servername'] = 'dammit.nl';
+$skel['baseHref'] = '/';
+$skel['basePath'] = '/var/local/www/dammit.nl/';
+if (true == $skel['testing'])
+{
+	$skel['baseHref'] = '/';
+	$skel['basePath'] = '/var/local/www/delta.dammit.nl/';
+}
+
+baseHref -> base_uri
+servername -> base_server (now including protocol)
+basePath -> base_dir
+*/
+
+
+$skel['base_uri'] = dirname($_SERVER['PHP_SELF']) . '/';
+if ('//' == $skel['base_uri'])
+{
+	/* Site is located in the root, compensate for the extra slash */
+	$skel['base_uri'] = '/';
+}
+if (isset($skel['base_uri_mask']))
+{
+	//$skel['base_uri'] = substr($skel['base_uri'], strlen($skel['base_uri_mask']));
+	$skel['base_uri'] = str_replace($skel['base_uri_mask'], '', $skel['base_uri']);
+}
+
+$url_pieces = parse_url(getenv('SCRIPT_URI'));
+$skel['base_server'] = '';
+if (!isset($url_pieces['scheme']))
+{
+	//$url_pieces = parse_url($_SERVER['SCRIPT_URI']);
+	$skel['base_server'] = 'http://' . $_SERVER['SERVER_NAME'];
+} else
+{
+	$skel['base_server'] = $url_pieces['scheme'] . '://' . $url_pieces['host'];
+}
+
+$skel['base_dir'] = dirname(__FILE__);
+echo $skel['base_dir'];
+
+
+/*
+ * Real path to rdf file [path used on server, like /var/www/blog.rdf]
+ * Files should be writable for the webapp [chmod o+rw <filename>]
+ */
+$skel['rssFilename'] = $skel['basePath'] . 'blog.rdf';
+$skel['rssWithCommentsFilename'] = $skel['basePath'] . 'blog_comments.rdf';
+$skel['rssMarksFilename'] = $skel['basePath'] . 'marks.rdf';
+
+
+
+if (!isset['globalmessage'])
+{
+	/* Message to be shown on the main page, archive page and individual posting pages */
+	//$skel['globalmessage'] = 'This weblog is getting tweaked';
+	$skel['globalmessage'] = null; /* Use when you don't want such a message */
+}
+
 /* RSS feeds by default have 10 items in them [standardized] */
 $skel['nrOfItemsInFeed'] = 10;
 
+
+/*** Session identification ***/
+$skel['session_name'] = 'WEBLOGSESSID';
 
 // session check
 if (isset($_REQUEST[$skel['session_name']]))

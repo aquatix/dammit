@@ -1,9 +1,8 @@
 <?php
 /**
  * Weblog module - methods
- * $Id$
  *
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]

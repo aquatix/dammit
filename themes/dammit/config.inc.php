@@ -2,7 +2,7 @@
 /**
  * Configuration file for 'Michiel Scholten's blog aka rantbox'
  * 
- * Copyright 2003-2012 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -22,14 +22,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-/*** Site settings ***/
-$skel['testing'] = false;
-//$skel['testing'] = true;
-
-/* Global comments enabled yes/no toggle */
-$skel['commentsenabled'] = true;
-//$skel['commentsenabled'] = false;
 
 $skel['author'] = 'Michiel Scholten';
 $skel['authorShortname'] = 'Michiel';
