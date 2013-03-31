@@ -60,7 +60,7 @@ if (isset($pagequery) && '' != $pagequery && ('' != strstr($pagequery, 'index.ph
 {
 	// Redirect. Check for url injections
 	header('HTTP/1.1 301 Moved Permanently');
-	$redir = 'http://' . $skel['servername'] . $skel['baseHref'] . 'p/';
+	$redir = $skel['base_server'] . $skel['base_uri'] . 'p/';
 	if (-1 < $rantid)
 	{
 		$redir .= $rantid . '/';
