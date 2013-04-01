@@ -158,6 +158,17 @@ section article header
 	list-style-color: #39414F;
 }
 
+.label
+{
+	font-size: .8em;
+	color: #FFF;
+	background-color: #838F67;
+/*      background-color: #5C6448;*/
+	padding: .1em;
+	padding-left: .3em;
+	padding-right: .3em;
+}
+
 article header
 {
 	margin: 1em 0;
