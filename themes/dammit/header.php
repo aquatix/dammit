@@ -51,7 +51,7 @@
 	
 	<!-- concatenate and minify for production -->
 	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/reset.css" />
-	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/style.css" />
+<!--	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/style.css" />-->
 	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/dammit.css" />
 	
 	<!-- This is an un-minified, complete version of Modernizr. 
