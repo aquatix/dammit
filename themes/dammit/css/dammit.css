@@ -218,7 +218,9 @@ article section header
 	margin-left: 8%;
 }
 
-#content input, #content textarea
+#content input[type='text'], #content input[type='password'],
+#content input[type='button'], #content input[type='submit'],
+#content textarea
 {
 	width: 100%;
 }
@@ -373,6 +375,11 @@ nav
 		float: none;
 	}
 
+	#content h1
+	{
+		font-size: 1.8em;
+	}
+
 	aside
 	{
 		width: auto;
@@ -400,6 +407,11 @@ nav
 	{
 		width: 73%;
 		float: left;
+	}
+
+	#content h1
+	{
+		font-size: 1.8em;
 	}
 
 	aside
