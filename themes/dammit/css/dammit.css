@@ -25,8 +25,6 @@ body, select, input, textarea
 
 }
 
-a {color: #03f;}
-a:hover {color: #69f;}
 
 /* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
 ::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
@@ -43,18 +41,58 @@ input:-moz-placeholder { color:#a9a9a9; }
 textarea:-moz-placeholder { color:#a9a9a9; }
 
 
+#header
+{
+	background: #5C6448;
+}
+
 #wrapper
 {
 	background-color: #FFF;
 }
 
-#wrapper footer
-{
-	clear: both;
-}
+	#wrapper footer
+	{
+		clear: both;
+	}
 
 #content
 {
+	padding-bottom: 1em;
+}
+
+#content a, .content a
+{
+	/*color: #03f;*/
+	color: #39414F;
+	text-decoration: none;
+	border-bottom: 1px dotted #39414F;
+}
+	#content a:hover, .content a:hover
+	{
+		/*color: #69f;*/
+		color: #39414F;
+		text-decoration: none;
+		border-bottom: 1px solid #39414F;
+	}
+
+#content p
+{
+	margin-left: 1em;
+	/*text-align: justify;*/
+}
+
+
+article section
+{
+	margin-left: 1em;
+}
+
+#wrapper > footer
+{
+	border-top: 1px solid #5C6448;
+	padding: 0 5px 5px 5px;
+	text-align: right;
 }
 
 aside
@@ -66,32 +104,46 @@ nav
 	background-color: #5C6448;
 }
 
-nav ol
-{
-	list-style: none;
-}
+	nav ol
+	{
+		list-style: none;
+	}
 
-/*
-nav ol li
-{
-	color: #FFF;
-}
-*/
+	/*
+	nav ol li
+	{
+		color: #FFF;
+	}
+	*/
 
-nav a
-{
-	display: block;
-	font-size: 0.85em;
-	font-weight: bold;
-	color: #FFF;
-	text-decoration: none;
-	padding: 5px;
-}
+	nav a
+	{
+		display: block;
+		font-size: 0.85em;
+		font-weight: bold;
+		color: #FFF;
+		text-decoration: none;
+		padding: 5px;
+	}
 
-aside ul
-{
-	font-size: .8em;
-}
+	.pageversion
+	{
+		background-color: #5C6448;
+		border-top: 1px dotted #FFF;
+		padding: 5px;
+		color: #FFF;
+		font-size: .8em;
+	}
+
+	aside ul
+	{
+		/*font-size: .8em;*/
+	}
+
+	aside ul li
+	{
+		padding: 0 .5em .5em 0;
+	}
 
 
 /* Print styles!
@@ -106,11 +158,13 @@ aside ul
 /* Media queries!
 -------------------------------------------------------------------------------*/
 
-@media screen and (max-width: 480px)
+/*@media screen and (max-width: 480px)*/
+@media only screen and (min-device-width : 360px) and (max-device-width : 598px)
 {
 	#header
 	{
 		height: auto;
+		background-color: #0F0;
 	}
 
 	h1
@@ -118,8 +172,22 @@ aside ul
 		font-size: 24px;
 	}
 
+	#content
+	{
+		width: auto;
+		width: 100%;
+		float: none;
+	}
+
+	nav a
+	{
+		font-size: 1em;
+	}
+
 	aside
 	{
+		width: auto;
+		float: none;
 		/* display: none; */
 	}
 
@@ -146,8 +214,10 @@ aside ul
 {
 	#wrapper
 	{
+/*
 		width: 96%;
 		margin: 0 auto;
+*/
 	}
 
 	#header
@@ -157,7 +227,7 @@ aside ul
 
 	#content
 	{
-		width: 70%;
+		width: 73%;
 		float: left;
 	}
 
@@ -165,6 +235,11 @@ aside ul
 	{
 		width: 25%;
 		float: right;
+	}
+
+	aside .blogmarkmeta
+	{
+		display: none;
 	}
 }
 
@@ -173,8 +248,10 @@ aside ul
 {
 	#wrapper
 	{
+/*
 		width: 980px;
 		margin: 0 auto;
+*/
 	}
 
 	#header
@@ -184,13 +261,28 @@ aside ul
 
 	#content
 	{
-		width: 70%;
+		width: 64%;
 		float: left;
 	}
 
 	aside
 	{
-		width: 25%;
+		width: 35%;
 		float: right;
+	}
+
+	aside .blogmarkmeta
+	{
+		display: block;
+	}
+
+}
+
+@media screen and (min-width: 1600px)
+{
+
+	#content
+	{
+		max-width: 1600px;
 	}
 }
