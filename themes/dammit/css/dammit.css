@@ -61,14 +61,14 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 	padding-bottom: 1em;
 }
 
-#content a, .content a
+#content a, .content a, #wrapper > footer a
 {
 	/*color: #03f;*/
 	color: #39414F;
 	text-decoration: none;
 	border-bottom: 1px dotted #39414F;
 }
-	#content a:hover, .content a:hover
+	#content a:hover, .content a:hover, #wrapper > footer a:hover
 	{
 		/*color: #69f;*/
 		color: #39414F;
@@ -92,6 +92,7 @@ article section
 {
 	border-top: 1px solid #5C6448;
 	padding: 0 5px 5px 5px;
+	padding: 0 5px 2px 5px;
 	text-align: right;
 }
 

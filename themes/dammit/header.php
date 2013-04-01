@@ -7,7 +7,7 @@
 <!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. --> 
 
-<head id="www-sitename-com" data-template-set="html5-reset">
+<head id="dammit-nl" data-template-set="html5-reset">
 
 	<meta charset="utf-8">
 	
@@ -82,7 +82,7 @@
 <div id="wrapper"><!-- not needed? up to you: http://camendesign.com/code/developpeurs_sans_frontieres -->
 
 <div id="header">
-dammIT
+<img src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/img/dammit.svg" alt="dammIT logo" />
 </div>
 
 <div id="content">
