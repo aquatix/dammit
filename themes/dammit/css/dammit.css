@@ -43,7 +43,27 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 
 #header
 {
-	background: #5C6448;
+}
+
+#header figure
+{
+	/*padding-top: 26.25%;*/ /* 420/1600 */
+	padding-top: 33.75%; /* 540/1600 */
+	/*background: #5C6448;*/
+/*	background-size: 100%;*/
+	background-size: cover;
+	-moz-background-size: cover;  /* Firefox 3.6 */
+	background-position: center;  /* Internet Explorer 7/8 */
+	background-repeat:no-repeat;
+}
+
+#header .logo
+{
+/*	float: left;
+	margin-top: 33.75%;*/
+/*	margin-top: -50%;*/
+	position: absolute;
+	top: 1em;
 }
 
 #wrapper
@@ -76,16 +96,84 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 		border-bottom: 1px solid #39414F;
 	}
 
-#content p
+#content h1, #content h2, #content h3, #content h4
 {
-	margin-left: 1em;
-	/*text-align: justify;*/
+	color: #39414F;
+}
+
+#content h1
+{
+	margin: 1em 0;
+	font-size: 2em;
+	padding: 0 1em;
+}
+
+#content h2
+{
+	font-size: 1.2em;
+}
+
+#content h1 a
+{
+	border: 0;
 }
 
 
+.browsenav, .mininav
+{
+	font-size: 75%;
+	background: transparent;
+	color: inherit;
+	padding-bottom: .3em;
+}
+
+	.browsenav .previous
+	{
+		float: left;
+		width: 49%;
+		text-align: right;
+	}
+
+	.browsenav .next
+	{
+		float: right;
+		width: 50%;
+		text-align: left;
+	}
+
+#content p, #content pre, #content blockquote,
+#content h2, #content h3, #content h4,
+#content ol, #content ul,
+.mininav,
+section article header
+{
+	margin: 1em 4em 1em 4em;
+	margin: 1em 8% 1em 8%;
+	/*text-align: justify;*/
+}
+
+#content ul
+{
+	list-style: square;
+	list-style-color: #39414F;
+}
+
+article header
+{
+	margin: 1em 0;
+}
+
 article section
 {
+/*
 	margin-left: 1em;
+*/
+}
+
+article section header
+{
+	//
+	margin-left: 8%;
 }
 
 #wrapper > footer
@@ -98,6 +186,11 @@ article section
 
 aside
 {
+}
+
+aside h2
+{
+	margin: 1em 0;
 }
 
 nav
@@ -155,7 +248,12 @@ nav
 
 	aside ul li
 	{
-		padding: 0 .5em .5em 0;
+		padding: 0 1em 1em 0;
+	}
+
+	aside ul li a
+	{
+		font-weight: bold;
 	}
 
 
@@ -185,7 +283,8 @@ nav
 
 	h1
 	{
-		font-size: 24px;
+/*		font-size: 24px;*/
+		color: #F00;
 	}
 
 	#content
@@ -207,6 +306,15 @@ nav
 		/* display: none; */
 	}
 
+	aside ul li a
+	{
+		font-weight: normal;
+	}
+
+	aside .blogmarkmeta
+	{
+		display: none;
+	}
 }
 
 @media screen and (max-width: 700px)
@@ -251,6 +359,11 @@ nav
 	{
 		width: 25%;
 		float: right;
+	}
+
+	aside ul li a
+	{
+		font-weight: normal;
 	}
 
 	aside .blogmarkmeta

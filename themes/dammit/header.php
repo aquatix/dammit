@@ -81,8 +81,9 @@
 
 <div id="wrapper"><!-- not needed? up to you: http://camendesign.com/code/developpeurs_sans_frontieres -->
 
-<div id="header" style="background-image:url('<?php echo $skel['logo']; ?>');">
-<img src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/img/dammit.svg" alt="dammIT logo" />
+<div id="header">
+<figure style="background-image:url('<?php echo $skel['base_uri'] . 'themes/' . $skel['theme'] . '/' . $skel['logo']; ?>');"></figure>
+<a href="<?php echo $skel['base_uri']; ?>"><img class="logo" src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/img/dammit.svg" alt="dammIT logo" /></a>
 </div>
 
 <div id="content">
