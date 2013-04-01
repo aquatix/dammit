@@ -61,6 +61,33 @@ aside
 {
 }
 
+nav
+{
+	background-color: #5C6448;
+}
+
+nav ol
+{
+	list-style: none;
+}
+
+/*
+nav ol li
+{
+	color: #FFF;
+}
+*/
+
+nav a
+{
+	display: block;
+	font-size: 0.85em;
+	font-weight: bold;
+	color: #FFF;
+	text-decoration: none;
+	padding: 5px;
+}
+
 aside ul
 {
 	font-size: .8em;
@@ -125,18 +152,45 @@ aside ul
 
 	#header
 	{
-		background: #F00;
+		background: #5C6448;
 	}
 
 	#content
 	{
-		width: 65%;
+		width: 70%;
 		float: left;
 	}
 
 	aside
 	{
-		width: 30%;
+		width: 25%;
+		float: right;
+	}
+}
+
+
+@media screen and (min-width: 980px)
+{
+	#wrapper
+	{
+		width: 980px;
+		margin: 0 auto;
+	}
+
+	#header
+	{
+		background: #5C6448;
+	}
+
+	#content
+	{
+		width: 70%;
+		float: left;
+	}
+
+	aside
+	{
+		width: 25%;
 		float: right;
 	}
 }
