@@ -41,13 +41,12 @@
  */
 function buildRants( $skel, $rants, $showcomments = false )
 {
-	$rantsHTML = '';
+	$result = '';
 	$previousDate = '0000-00-00 00:00:00';
-
-	ob_start();
 
 	for ($i = 0; $i < count($rants); $i++)
 	{
+		$rantsHTML = '';
 		$thisRant = $rants[$i];
 		$thisDate = getNormalDate($thisRant['date']);
 		
@@ -68,7 +67,10 @@ function buildRants( $skel, $rants, $showcomments = false )
 			$rantsComments = getComments($skel, $thisRant['messageID']);
 		}
 		
+		ob_start();
 		include 'article.php';
+		$result .= ob_get_contents();
+		ob_end_clean();
 /*
 		if ($groupedOnDate && $thisDate != $previousDate)
 		{
@@ -173,9 +175,6 @@ function buildRants( $skel, $rants, $showcomments = false )
 	}
 	*/
 	}
-	//return $rantsHTML;
-	$result = ob_get_contents();
-	ob_end_clean();
 	return $result;
 }
 
