@@ -96,7 +96,13 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 		border-bottom: 1px solid #39414F;
 	}
 
-#content h1, #content h2, #content h3, #content h4
+.content-image a
+{
+	border: 0 !important;
+}
+
+#content h1, #content h2, #content h3, #content h4,
+aside h2
 {
 	color: #39414F;
 }
@@ -149,7 +155,12 @@ section article header
 {
 	margin: 1em 4em 1em 4em;
 	margin: 1em 8% 1em 8%;
-	/*text-align: justify;*/
+	text-align: justify;
+}
+
+#content pre
+{
+	margin-left: 10%;
 }
 
 #content ul
@@ -172,6 +183,11 @@ section article header
 	float: left;
 }
 
+time
+{
+	font-family: monospace;
+	font-size: .9em;
+}
 
 .label
 {
@@ -200,6 +216,11 @@ article section header
 {
 	//
 	margin-left: 8%;
+}
+
+#content input, #content textarea
+{
+	width: 100%;
 }
 
 #wrapper > footer
