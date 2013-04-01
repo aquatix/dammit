@@ -35,7 +35,7 @@ $skel['license_uri'] = 'http://creativecommons.org/licenses/by-nc-sa/2.0/';
 if ((date('m') == 3 && date('d') > 20) || (date('m') < 7))
 {
 	/* If spring */
-	$skel['logo'] = 'images/dammit_rietsigaar.jpg';
+	$skel['logo'] = 'img/header_daffodil.jpg';
 } else if ((date('m') == 6 && date('d') > 20) || (date('m') < 10))
 {
 	/* If summer */
