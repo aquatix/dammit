@@ -158,6 +158,21 @@ section article header
 	list-style-color: #39414F;
 }
 
+#content ul.archive li
+{
+	list-style-type: none;
+	list-style-image: none;
+}
+
+.date
+{
+	width: 3em;
+	font-weight: bold;
+	display: block;
+	float: left;
+}
+
+
 .label
 {
 	font-size: .8em;
