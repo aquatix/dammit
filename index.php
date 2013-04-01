@@ -23,7 +23,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2013-03-31';
+$skel['lastmodified'] = '2013-04-01';
 $skel['page_version'] = '0.8.01';
 $skel['dateofcreation'] = '2003-12-21';
 
@@ -47,14 +47,7 @@ if (-1 < $rantid)
 $month = getRequestParam('month', null);
 
 $url_pieces = parse_url(getenv('SCRIPT_URI'));
-//print_r($url_pieces);
-//var_dump($_SERVER);
-//exit;
-//$pagequery = $_SERVER['QUERY_STRING'];
 $pagequery = $_SERVER['REQUEST_URI'];
-//print($pagequery);
-//print($skel['base_uri']);
-//if (isset($url_pieces['query']) && '' != $url_pieces['query'])
 
 if (isset($pagequery) && '' != $pagequery && ('' != strstr($pagequery, 'index.php') || '?' == $pagequery[1]))
 {
@@ -64,33 +57,14 @@ if (isset($pagequery) && '' != $pagequery && ('' != strstr($pagequery, 'index.ph
 	if (-1 < $rantid)
 	{
 		$redir .= $rantid . '/';
-//	}
-//	if ($subpage == null || $subpage == '')
-//	{
-//		$redir = $skel['base_server'] . '/';
 	} else if (NULL != $subpage)
 	{
-		//$redir .= $page . '/';
-		//$redir = 'http://' . $skel['servername'] . $skel['base_uri'] . 'p/' . $page . '/';
-		//$redir .= $subpage . '/';
 		$redir .= $subpage;
 	}
 
 	header('Location: ' . $redir);
-	//addToLog($skel, $section, $page, 301);
 	exit;
 }
-// else if ($url_pieces['path'] == '/page/')
-//{
-//        header('HTTP/1.1 301 Moved Permanently');
-//        $redir = $skel['base_server'] . '/';
-//        header('Location: ' . $redir);
-//        addToLog($skel, '', '', 301);
-//        exit;
-//}
-
-//print_r($url_pieces['query']);
-
 
 addToLog( $skel, $section_name, $page_log, $skel['page_version'] );
 
