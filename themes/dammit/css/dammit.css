@@ -41,6 +41,28 @@ input:-moz-placeholder { color:#a9a9a9; }
 textarea:-moz-placeholder { color:#a9a9a9; }
 
 
+@font-face {
+    font-family: 'EntypoRegular';
+    src: url('../font/entypo.eot');
+    src: url('../font/entypo.eot?#iefix') format('embedded-opentype'),
+         url('../font/entypo.woff') format('woff'),
+         url('../font/entypo.ttf') format('truetype'),
+         url('../font/entypo.svg#EntypoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EntypoSocial';
+    src: url('../font/entypo-social.eot');
+    src: url('../font/entypo-social.eot?#iefix') format('embedded-opentype'),
+         url('../font/entypo-social.woff') format('woff'),
+         url('../font/entypo-social.ttf') format('truetype'),
+         url('../font/entypo-social.svg#EntypoSocial') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #header
 {
 }
@@ -305,6 +327,23 @@ nav
 		font-weight: bold;
 	}
 
+.glyph
+{
+	font-family: EntypoRegular;
+}
+
+.social
+{
+	font-family: EntypoSocial;
+}
+
+
+.glyph, .social
+{
+	text-decoration: none;
+	color: #39414F;
+	font-size: 4em;
+}
 
 /* Print styles!
 -------------------------------------------------------------------------------*/

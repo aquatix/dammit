@@ -41,6 +41,13 @@ $skel['siteKeywords'] = 'Michiel Scholten,michiel,scholten,web,log,weblog,blog,r
 $skel['siteDescription'] = 'This is the rantbox of Michiel Scholten, Netherlands. It\'s my blog, so you can read about my findings, interests, frustrations and surf the links I share with the rest of the world :)';
 $skel['feedDescription'] = 'Michiel\'s weblog // Those who would give up Essential Liberty to purchase a little Temporary Safety, deserve neither Liberty nor Safety (Benjamin Franklin)';
 
+/* Social. Uncomment and fill in as you please */
+$skel['twitter_username'] = 'michielscholten';
+$skel['gplus_username'] = '112196316359193473289';
+$skel['flickr_username'] = 'aquatix';
+//$skel['picasa_username'] = '';
+$skel['linkedin_username'] = 'mbscholten';
+
 /* Your Google Analytics code. Set to null if you don't have one */
 //$skel['googleAnalyticsCode'] = null;
 $skel['googleAnalyticsCode'] = 'UA-10643901-3';
