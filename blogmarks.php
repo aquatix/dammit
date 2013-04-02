@@ -75,7 +75,6 @@ if (isset($_GET['year']) && myIsInt($_GET['year']))
 }
 
 /*** Show the blogmark overview ***/
-$page_body .= "<h1>Blogmarks</h1>\n";
 $skel['page_title'] = 'Blogmarks';
 $offset = 0;
 $nrBack = 0;

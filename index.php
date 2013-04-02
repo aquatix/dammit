@@ -172,7 +172,7 @@ if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel[
 	if (false === $submitting)
 	{
 		$rant = getRantById($skel, $rantid);
-		$skel['page_title'] = 'Posting';
+		//$skel['page_title'] = 'Posting';
 		$skel['page_permalink'] = $skel['base_server'] . $skel['base_uri'] . 'p/' . $rantid;
 		if (null != $skel['globalmessage'])
 		{

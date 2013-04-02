@@ -125,7 +125,7 @@ aside h2
 }
 
 
-.browsenav, .mininav
+.browsenav, .mininav, .info
 {
 	font-size: 75%;
 	background: transparent;
@@ -150,7 +150,7 @@ aside h2
 #content p, #content pre, #content blockquote,
 #content h2, #content h3, #content h4,
 #content ol, #content ul,
-.mininav,
+.mininav, .info,
 section article header
 {
 	margin: 1em 4em 1em 4em;
@@ -318,10 +318,19 @@ nav
 /* Media queries!
 -------------------------------------------------------------------------------*/
 
+/* Galaxy Nexus (portrait) ----------- */
+@media only screen and (max-width : 360px) and (orientation: portrait) {
+	h1 { background: purple; }
+}
+
 /*@media screen and (max-width: 480px)*/
 @media screen and (max-width: 480px)
 /*
 @media only screen and (min-device-width : 360px) and (max-device-width : 598px)
+*/
+/*
+@media screen and ((max-width: 480px)
+or ((min-device-width : 360px) and (max-device-width : 598px)))
 */
 {
 	#header
