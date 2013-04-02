@@ -240,6 +240,12 @@ article section header
 	margin-left: 8%;
 }
 
+.commentnr
+{
+	font-size: 1.5em;
+	color: #39414F;
+}
+
 #content input[type='text'], #content input[type='password'],
 #content input[type='button'], #content input[type='submit'],
 #content textarea
