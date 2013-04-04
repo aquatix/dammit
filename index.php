@@ -71,8 +71,11 @@ addToLog( $skel, $section_name, $page_log, $skel['page_version'] );
 $page_body = '';
 
 /* Page-switcher */
-if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel['page_' . $subpage]))
+//if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel['page_' . $subpage]))
+if (isset($subpage) && isset($skel['page_' . $subpage]) && file_exists($skel['page_' . $subpage]))
 {
+	$skel['page_title'] = 'Page'; // @TODO: fix with real title
+	$skel['page_permalink'] = $skel['base_server'] . $skel['base_uri'] . 'p/' . $subpage;
 	$lines = file($skel['page_' . $subpage]);
 	for ($i = 0; $i < count($lines); $i++)
 	{
@@ -283,15 +286,19 @@ if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel[
 
 } else if ( $subpage == 'kudos' )
 {
+	$skel['page_title'] = 'Kudos';
+	$skel['page_permalink'] = $skel['base_server'] . $skel['base_uri'] . 'p/' . $subpage;
 	$page_name = 'kudos';
-	$page_body .= "<h1>Kudos</h1>\n";
+	//$page_body .= "<h1>Kudos</h1>\n";
 	$page_body .= "<p>A lovely link page that takes you back to the 1990's, but enables me to give some <a href=\"http://en.wikipedia.org/wiki/Kudos\">Kudos</a> to weblogs I read, people I like, news sites I crave and hobbies I love.</p>\n";
 	$page_body .= buildKudos($skel);
 } else if ( $subpage == 'archive' )
 {
 	$year = getRequestParam('year', date('Y')); /* Default to current year */
+	$skel['page_title'] = 'Archive - ' . $year;
+	$skel['page_permalink'] = $skel['base_server'] . $skel['base_uri'] . 'p/archive/' . $year;
 	$page_name = 'archive - ' . $year;
-	$page_body .= '<h1>Archive - ' . $year . "</h1>\n";
+	//$page_body .= '<h1>Archive - ' . $year . "</h1>\n";
 	if (null != $skel['globalmessage'])
 	{
 		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
