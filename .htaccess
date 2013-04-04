@@ -72,3 +72,6 @@ SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip
 <IfModule mod_headers.c>
 	Header append Vary User-Agent env=!dont-vary
 </IfModule>
+
+# http://stackoverflow.com/questions/13233810/etags-misconfigured
+FileETag none
