@@ -19,7 +19,7 @@
 		<?php if (!isset($searchkey)) { $searchkey = ''; } ?>
 		<form style="margin-top: 1em;" action="<?php echo $skel['base_uri'];?>search" method="post"><div><input type="text" class="searchfield" name="searchkey" size="12" maxlength="250" value="<?php echo $searchkey;?>" /><input name="searchbtn" value="Find" type="submit" /></div></form>
 		
-		<h2>distracted by</h2>
+		<h2>Distracted by</h2>
 		<?php //echo buildSimpleMarks(getMarks($skel, 0, $skel['nrOfMarksInNav'])); ?>
 		<?php echo buildMarksList(getMarks($skel, 0, $skel['nrOfMarksInNav'])); ?>
 
