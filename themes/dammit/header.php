@@ -37,7 +37,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	-->
 
-	<link rel="shortcut icon" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/img/favicon.ico" />
+<!-- @TODO	<link rel="shortcut icon" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/img/favicon.ico" />-->
 	<!-- This is the traditional favicon.
 		 - size: 16x16 or 32x32
 		 - transparency is OK
@@ -56,7 +56,8 @@
 	
 	<!-- This is an un-minified, complete version of Modernizr. 
 		 Before you move to production, you should generate a custom build that only has the detects you need. -->
-	<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr-2.6.2.dev.js"></script>
+	<!--<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr-2.6.2.dev.js"></script>-->
+	<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr.dammit.js"></script>
 	
 	<!-- Application-specific meta tags -->
 	<!-- Windows 8 -->

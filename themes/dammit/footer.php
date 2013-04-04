@@ -16,7 +16,7 @@
 
 <!-- this is where we put our custom functions -->
 <!-- don't forget to concatenate and minify if needed -->
-<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/functions.js"></script>
+<!-- @TODO: enable when needed <script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/functions.js"></script>-->
 
 <?php if(isset($skel['googleAnalyticsCode']) && false === $skel['testing']) { ?>
 <script>
