@@ -36,6 +36,7 @@
 	<!-- Uncomment to use; use thoughtfully!
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- @TODO	<link rel="shortcut icon" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/img/favicon.ico" />-->
 	<!-- This is the traditional favicon.
