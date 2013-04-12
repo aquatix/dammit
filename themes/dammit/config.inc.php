@@ -30,7 +30,8 @@ $skel['startyear'] = '2003';
 $skel['logo'] = 'images/dammit_logo.png';
 $skel['logoWidth'] = 176;
 $skel['logoHeight'] = 71;
-$skel['license_uri'] = 'http://creativecommons.org/licenses/by-nc-sa/2.0/';
+$skel['license_uri'] = 'http://creativecommons.org/licenses/by-nc-sa/3.0/';
+$skel['license_text'] = '<acronym title="Creative Commons">CC</acronym> License</a>';
 
 if ((date('m') == 3 && date('d') > 20) || (date('m') < 7))
 {

@@ -1,6 +1,6 @@
 	<footer>
 		
-		<p><small>&copy; <?php echo $skel['startyear'] . "-" . date('Y') . " <a href=\"" . $skel['base_uri'] . "p/about\">" . $skel['author'] . "</a> under a <a href=\"" . $skel['license_uri'] . "\"><acronym title=\"Creative Commons\">CC</acronym> License</a>";?> ]</small></p>
+		<p><small>&copy; <?php echo $skel['startyear'] . "-" . date('Y') . " <a href=\"" . $skel['base_uri'] . "p/about\">" . $skel['author'] . "</a> under a <a href=\"" . $skel['license_uri'] . "\">" . $skel['license_text'];?> ]</small></p>
 
 	</footer>
 
