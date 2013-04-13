@@ -347,7 +347,7 @@ nav
 		font-size: .8em;
 	}
 
-	aside h2, aside ul, aside form, aside div
+	aside h2, aside ul, aside div
 	{
 		padding: 0 2%;
 	}
@@ -570,13 +570,14 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 
 	#content
 	{
-		width: 64%;
+		/*width: 64%;*/
+		width: 69%;
 		float: left;
 	}
 
 	aside
 	{
-		width: 35%;
+		width: 30%;
 		float: right;
 	}
 
