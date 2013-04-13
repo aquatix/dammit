@@ -28,14 +28,15 @@ body, select, input, textarea
 
 
 /* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
-::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
-::selection {background: #fcd700; color: #fff; text-shadow: none;} 
+/* original colour: #fcd700, replace with the lighter green #838F67 */
+::-moz-selection{background: #838F67; color: #fff; text-shadow: none;}
+::selection {background: #838F67; color: #fff; text-shadow: none;} 
 
 /*	j.mp/webkit-tap-highlight-color */
-a:link {-webkit-tap-highlight-color: #fcd700;} 
+a:link {-webkit-tap-highlight-color: #838F67;} 
 
-ins {background-color: #fcd700; color: #000; text-decoration: none;}
-mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
+ins {background-color: #838F67; color: #000; text-decoration: none;}
+mark {background-color: #838F67; color: #000; font-style: italic; font-weight: bold;}
 
 /* Mozilla dosen't style place holders by default */
 input:-moz-placeholder { color:#a9a9a9; }
@@ -175,7 +176,7 @@ aside h2
 
 .browsenav, .mininav, .info
 {
-	font-size: 75%;
+	/*font-size: 75%;*/
 	background: transparent;
 	color: inherit;
 	padding-bottom: .3em;
@@ -204,6 +205,23 @@ section article header
 	margin: 1em 4em 1em 4em;
 	margin: 1em 8% 1em 8%;
 	text-align: justify;
+}
+
+#content blockquote
+{
+	quotes: '"' '"';
+	quotes: '\201C' '\201D';
+}
+
+#content blockquote :first-child:before
+{
+	/*content: '"';*/
+	content: open-quote;
+	margin-left: -.2em;
+	font-size: 3em;
+/*	margin-left: -1em;*/
+	margin-right: .3em;
+
 }
 
 #content pre
@@ -247,6 +265,11 @@ time
 	padding: .1em;
 	padding-left: .3em;
 	padding-right: .3em;
+}
+
+article
+{
+	clear: both;
 }
 
 article header
