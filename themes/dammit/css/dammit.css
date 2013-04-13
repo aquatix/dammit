@@ -475,7 +475,7 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 
 
 /*@media screen and (min-width: 710px)*/
-@media screen and (min-width: 800px)
+@media screen and (min-width: 810px)
 {
 	#wrapper
 	{
