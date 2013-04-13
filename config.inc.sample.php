@@ -68,8 +68,11 @@ $skel['theme'] = 'dammit';
 /*** Extra pages ***/
 /* Syntax: $skel['page_SLUG'] = $skel['base_dir'] . 'pages/SLUG.html'; */
 $skel['page_plan'] = $skel['base_dir'] . '/pages/plan.html';
+$skel['page_plan_title'] = '.plan';
 $skel['page_about'] = $skel['base_dir'] . '/pages/about.html';
+$skel['page_about_title'] = 'About';
 $skel['page_books'] = $skel['base_dir'] . '/pages/books.html';
+$skel['page_books_title'] = 'Books';
 
 
 /*** Educated guess for location when adding new rant or blogmark ***/

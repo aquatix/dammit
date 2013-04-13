@@ -74,7 +74,11 @@ $page_body = '';
 //if (isset($subpage) && in_array('page_' . $subpage, $skel) && file_exists($skel['page_' . $subpage]))
 if (isset($subpage) && isset($skel['page_' . $subpage]) && file_exists($skel['page_' . $subpage]))
 {
-	$skel['page_title'] = 'Page'; // @TODO: fix with real title
+	$skel['page_title'] = 'Page';
+	if (isset($skel['page_' . $subpage . '_title']))
+	{
+		$skel['page_title'] = $skel['page_' . $subpage . '_title'];
+	}
 	$skel['page_permalink'] = $skel['base_server'] . $skel['base_uri'] . 'p/' . $subpage;
 	$lines = file($skel['page_' . $subpage]);
 	for ($i = 0; $i < count($lines); $i++)
