@@ -347,6 +347,11 @@ nav
 		font-size: .8em;
 	}
 
+	aside h2, aside ul, aside form, aside div
+	{
+		padding: 0 2%;
+	}
+
 	aside ul
 	{
 		/*font-size: .8em;*/
@@ -458,6 +463,11 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 		/* display: none; */
 	}
 
+	aside ul
+	{
+		padding: 0;
+	}
+
 	aside ul li a
 	{
 		font-weight: normal;
@@ -526,6 +536,11 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 		float: right;
 	}
 
+	aside h2, aside ul, aside form, aside div
+	{
+		padding: 0;
+	}
+
 	aside ul li a
 	{
 		font-weight: normal;
@@ -563,6 +578,11 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 	{
 		width: 35%;
 		float: right;
+	}
+
+	aside ul li a
+	{
+		font-weight: bold;
 	}
 
 	aside .blogmarkmeta
