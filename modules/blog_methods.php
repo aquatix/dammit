@@ -896,7 +896,8 @@ function getNrOfMarks($skel)
 
 function markUri($mark)
 {
-	return 'blogmarks.php?year=' . getYear($mark['date']) . '&amp;month=' . getMonth($mark['date']) . '#uri' . $mark['id'];
+	//return 'blogmarks.php?year=' . getYear($mark['date']) . '&amp;month=' . getMonth($mark['date']) . '#uri' . $mark['id'];
+	return getYear($mark['date']) . '/' . getMonth($mark['date']) . '#uri' . $mark['id'];
 }
 
 
