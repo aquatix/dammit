@@ -390,7 +390,7 @@ nav
 		font-weight: bold;
 	}
 
-.glyph
+.glyph, .license
 {
 	font-family: EntypoRegular;
 }
@@ -406,6 +406,11 @@ nav
 	text-decoration: none;
 	color: #39414F;
 	font-size: 4em;
+}
+
+.license
+{
+	font-size: 2em;
 }
 
 nav .glyph, nav .social
