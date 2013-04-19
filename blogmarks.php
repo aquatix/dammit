@@ -1,12 +1,11 @@
 <?php
 /**
  * Page listing public bookmarks posted on the weblog
- * $Id$
  *
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
- * [mbscholt at aquariusoft.org]
+ * [michiel at aquariusoft.org]
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -23,7 +22,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2013-03-31';
+$skel['lastmodified'] = '2013-04-15';
 $skel['page_version'] = '0.8.01';
 $skel['dateofcreation'] = '2003-12-21';
 
@@ -90,7 +89,7 @@ for ($i = 0; $i < count($months); $i++)
 	} else
 	{
 		//$browse_nav .= ' | <a href="blogmarks.php?year=' . $year . '&amp;month=' . $months[$i] . '">' . $months[$i] . '</a>';
-		$browse_nav .= ' | <a href="' . $skel['baseHref'] . 'm/' . $year . '/' . $months[$i] . '">' . $months[$i] . '</a>';
+		$browse_nav .= ' | <a href="' . $skel['base_uri'] . 'm/' . $year . '/' . $months[$i] . '">' . $months[$i] . '</a>';
 	}
 }
 $browse_nav .= " ]</div>\n";
@@ -108,7 +107,7 @@ $nrOfMarksByMonth = getMarksPerMonth( $skel, $year );
 for ($i = 0; $i < count($nrOfMarksByMonth); $i++)
 {
 	//$page_body .= "<li><a href=\"blogmarks.php?year=" . $year . "&amp;month=" . $nrOfMarksByMonth[$i]["month"] . "\">" . getMonthName($nrOfMarksByMonth[$i]["month"]) . "</a> (" . $nrOfMarksByMonth[$i]["nrofpostings"] . ")</li>\n";
-	$page_body .= "<li><a href=\"" . $skel['baseHref'] . "m/" . $year . "/" . $nrOfMarksByMonth[$i]["month"] . "\">" . getMonthName($nrOfMarksByMonth[$i]["month"]) . "</a> (" . $nrOfMarksByMonth[$i]["nrofpostings"] . ")</li>\n";
+	$page_body .= "<li><a href=\"" . $skel['base_uri'] . "m/" . $year . "/" . $nrOfMarksByMonth[$i]["month"] . "\">" . getMonthName($nrOfMarksByMonth[$i]["month"]) . "</a> (" . $nrOfMarksByMonth[$i]["nrofpostings"] . ")</li>\n";
 }
 $page_body .= "</ul>\n";
 
@@ -119,7 +118,7 @@ $nrOfMarksByYear = getMarksPerYear( $skel );
 for ($i = 0; $i < count($nrOfMarksByYear); $i++)
 {
 	//$page_body .= "<li><a href=\"blogmarks.php?year=" . $nrOfMarksByYear[$i]["year"] . "\">" . $nrOfMarksByYear[$i]["year"] . "</a> (" . $nrOfMarksByYear[$i]["nrofpostings"] . ")</li>\n";
-	$page_body .= "<li><a href=\"" . $skel['baseHref'] . "m/" . $nrOfMarksByYear[$i]["year"] . "\">" . $nrOfMarksByYear[$i]["year"] . "</a> (" . $nrOfMarksByYear[$i]["nrofpostings"] . ")</li>\n";
+	$page_body .= "<li><a href=\"" . $skel['base_uri'] . "m/" . $nrOfMarksByYear[$i]["year"] . "\">" . $nrOfMarksByYear[$i]["year"] . "</a> (" . $nrOfMarksByYear[$i]["nrofpostings"] . ")</li>\n";
 }
 $page_body .= "</ul>\n";
 
