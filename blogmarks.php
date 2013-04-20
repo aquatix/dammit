@@ -22,8 +22,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2013-04-15';
-$skel['page_version'] = '0.8.01';
+$skel['lastmodified'] = '2013-04-20';
+$skel['page_version'] = '0.8.02';
 $skel['dateofcreation'] = '2003-12-21';
 
 $section_name = 'blogmarks';
@@ -52,11 +52,14 @@ if (isset($_GET['year']) && myIsInt($_GET['year']))
 {
 	$year = $_GET['year'];
 
+	$page_name .= ' ' . $year;
+
 	$months = getMarkMonths( $skel, $year );
 
 	if (isset($_GET['month']) && myIsInt($_GET['month']))
 	{
 		$month = $_GET['month'];
+		$page_name .= '-' . $month;
 	} else
 	{
 		$month = max($months);

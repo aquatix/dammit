@@ -23,8 +23,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2013-04-01';
-$skel['page_version'] = '0.8.01';
+$skel['lastmodified'] = '2013-04-20';
+$skel['page_version'] = '0.8.02';
 $skel['dateofcreation'] = '2003-12-21';
 
 $page_name = 'home';
@@ -307,15 +307,15 @@ if (isset($subpage) && isset($skel['page_' . $subpage]) && file_exists($skel['pa
 	{
 		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
 	}
-	$yearsnav = "<div class=\"mininav\">[ <span class=\"heading\">year</span> ";
+	$yearsnav = "<div class=\"mininav\">[ <span class=\"active\">year</span> ";
 	/* Get all years this blog is running */
 	$years = getRantYears($skel);
 	for ($i = 0; $i < count($years); $i++)
 	{
 		if ($years[$i] == $year)
 		{
-			//$yearsnav .= ' | <span class="heading"><a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a></span>';
-			$yearsnav .= ' | <span class="heading"><a href="' . $skel['base_uri'] . 'p/archive/' . $years[$i] . '">' . $years[$i] . '</a></span>';
+			//$yearsnav .= ' | <span class="active"><a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a></span>';
+			$yearsnav .= ' | <span class="active"><a href="' . $skel['base_uri'] . 'p/archive/' . $years[$i] . '">' . $years[$i] . '</a></span>';
 		} else
 		{
 			//$yearsnav .= ' | <a href="index.php?page=archive&amp;year=' . $years[$i] . '">' . $years[$i] . '</a>';
@@ -364,7 +364,7 @@ if (isset($subpage) && isset($skel['page_' . $subpage]) && file_exists($skel['pa
 	$nrForward = $skel['nrOfRantsPerPage'];
 	$nrOfRants = getNrOfRants($skel);
 
-	$browse_nav = "<div class=\"mininav\">[ <span class=\"heading\">browse rants</span> | ";
+	$browse_nav = "<div class=\"mininav\">[ <span class=\"active\">browse rants</span> | ";
 
 	if (isset($_GET['offset']))
 	{

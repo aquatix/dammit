@@ -196,6 +196,11 @@ aside h2
 		text-align: left;
 	}
 
+	.mininav .active
+	{
+		font-weight: bold;
+	}
+
 #content p, #content pre, #content blockquote,
 #content h2, #content h3, #content h4,
 #content ol, #content ul,

@@ -185,6 +185,4 @@ $skel['isloggedin'] = isLoggedIn();
 
 /* Theme */
 include 'themes/' . $skel['theme'] . '/config.inc.php';
-include 'themes/' . $skel['theme'] . '/templates.php';
-include 'themes/' . $skel['theme'] . '/pagetemplate.php';
-?>
+include 'themes/' . $skel['theme'] . '/theme.php';
