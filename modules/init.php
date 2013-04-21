@@ -1,9 +1,8 @@
 <?php
 /**
  * Initialization module
- * $Id$
  * 
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 mbscholt at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -25,15 +24,22 @@
 
 $skel['starttime'] = microtime();
 
+$skel['base_dir'] = dirname(dirname(__FILE__)); // go up one directory, out of the modules dir
+
 /* Load the settings for this web log */
-include 'config.php';
+if (!file_exists('config.inc.php'))
+{
+	echo "Copy config.inc.sample.php to config.inc.php and configure your weblog settings";
+	exit();
+}
+include 'config.inc.php';
 
 if (!isset($skel['restricttoip']))
 {
 	$skel['restricttoip'] = '';
 }
 
-if (true == $skel['testing'])
+if (isset($skel['testing']) && true === $skel['testing'])
 {
 	//error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 	//error_reporting( 0 );
@@ -44,9 +50,80 @@ if (true == $skel['testing'])
 	error_reporting( 0 );
 }
 
+
+
+/*
+$skel['servername'] = 'dammit.nl';
+$skel['baseHref'] = '/';
+$skel['basePath'] = '/var/local/www/dammit.nl/';
+if (true == $skel['testing'])
+{
+	$skel['baseHref'] = '/';
+	$skel['basePath'] = '/var/local/www/delta.dammit.nl/';
+}
+
+baseHref -> base_uri
+servername -> base_server (now including protocol)
+basePath -> base_dir
+*/
+
+
+$skel['base_uri'] = dirname($_SERVER['PHP_SELF']) . '/';
+if ('//' == $skel['base_uri'])
+{
+	/* Site is located in the root, compensate for the extra slash */
+	$skel['base_uri'] = '/';
+}
+if (isset($skel['base_uri_mask']))
+{
+	//$skel['base_uri'] = substr($skel['base_uri'], strlen($skel['base_uri_mask']));
+	$skel['base_uri'] = str_replace($skel['base_uri_mask'], '', $skel['base_uri']);
+}
+
+$url_pieces = parse_url(getenv('SCRIPT_URI'));
+$skel['base_server'] = '';
+if (!isset($url_pieces['scheme']))
+{
+	//$url_pieces = parse_url($_SERVER['SCRIPT_URI']);
+	$skel['base_server'] = 'http://' . $_SERVER['SERVER_NAME'];
+} else
+{
+	$skel['base_server'] = $url_pieces['scheme'] . '://' . $url_pieces['host'];
+}
+
+/*
+ * Real path to rdf file [path used on server, like /var/www/blog.rdf]
+ * Files should be writable for the webapp [chmod o+rw <filename>]
+ */
+$skel['rssFilename'] = $skel['base_dir'] . 'blog.rdf';
+$skel['rssWithCommentsFilename'] = $skel['base_dir'] . 'blog_comments.rdf';
+$skel['rssMarksFilename'] = $skel['base_dir'] . 'marks.rdf';
+
+
+/*** Path used for sending mail ***/
+$skel['mailPath'] = '/usr/sbin/sendmail -t';
+$skel['mailFrom'] = $skel['mainEmail'];
+$skel['mailFromName'] = $skel['siteName'];
+$skel['mailTo'] = $skel['mainEmail'];
+/* Notification for weblog owner */
+$skel['mailSubject'] = '[' . $skel['siteName'] . '] New comment';
+/* Notification for other posters */
+$skel['mailNotificationSubject'] = '[' . $skel['siteName'] . '] New comment posted';
+
+
+if (!isset($skel['globalmessage']))
+{
+	/* Message to be shown on the main page, archive page and individual posting pages */
+	//$skel['globalmessage'] = 'This weblog is getting tweaked';
+	$skel['globalmessage'] = null; /* Use when you don't want such a message */
+}
+
 /* RSS feeds by default have 10 items in them [standardized] */
 $skel['nrOfItemsInFeed'] = 10;
 
+
+/*** Session identification ***/
+$skel['session_name'] = 'WEBLOGSESSID';
 
 // session check
 if (isset($_REQUEST[$skel['session_name']]))
@@ -103,5 +180,9 @@ include 'modules/blog_html.php';
 include 'modules/blog_methods.php';
 include 'modules/log_html.php';
 include 'modules/log_methods.php';
-include 'modules/pagetemplate.php';
-?>
+
+$skel['isloggedin'] = isLoggedIn();
+
+/* Theme */
+include 'themes/' . $skel['theme'] . '/config.inc.php';
+include 'themes/' . $skel['theme'] . '/theme.php';

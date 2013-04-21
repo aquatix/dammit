@@ -1,0 +1,636 @@
+/* apply a natural box layout model to all elements */
+/* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.chromeframe {position: absolute; top: 0;}
+
+/* Ok, this is where the fun starts.
+-------------------------------------------------------------------------------*/
+
+/* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
+body
+{
+	/*font: 13px Helmet, Freesans, sans-serif;*/
+	/*font: 13px Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;*/
+	font: 13px 'Open Sans', sans-serif;
+	background-color: #838F67;
+}
+
+/* using local fonts? make sure to read up on Paul Irish's 
+	Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
+
+/* we like off-black for text */
+body, select, input, textarea
+{
+	color: #333;
+
+}
+
+
+/* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
+/* original colour: #fcd700, replace with the lighter green #838F67 */
+::-moz-selection{background: #838F67; color: #fff; text-shadow: none;}
+::selection {background: #838F67; color: #fff; text-shadow: none;} 
+
+/*	j.mp/webkit-tap-highlight-color */
+a:link {-webkit-tap-highlight-color: #838F67;} 
+
+ins {background-color: #838F67; color: #000; text-decoration: none;}
+mark {background-color: #838F67; color: #000; font-style: italic; font-weight: bold;}
+
+/* Mozilla dosen't style place holders by default */
+input:-moz-placeholder { color:#a9a9a9; }
+textarea:-moz-placeholder { color:#a9a9a9; }
+
+/* Copied to local from http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700 */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Open Sans Light'), local('OpenSans-Light'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: italic;
+	font-weight: 400;
+	src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'EntypoRegular';
+    src: url('../font/entypo.eot');
+    src: url('../font/entypo.eot?#iefix') format('embedded-opentype'),
+         url('../font/entypo.woff') format('woff'),
+         url('../font/entypo.ttf') format('truetype'),
+         url('../font/entypo.svg#EntypoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EntypoSocial';
+    src: url('../font/entypo-social.eot');
+    src: url('../font/entypo-social.eot?#iefix') format('embedded-opentype'),
+         url('../font/entypo-social.woff') format('woff'),
+         url('../font/entypo-social.ttf') format('truetype'),
+         url('../font/entypo-social.svg#EntypoSocial') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#header
+{
+}
+
+#header figure
+{
+	/*padding-top: 26.25%;*/ /* 420/1600 */
+	padding-top: 33.75%; /* 540/1600 */
+	/*background: #5C6448;*/
+/*	background-size: 100%;*/
+	background-size: cover;
+	-moz-background-size: cover;  /* Firefox 3.6 */
+	background-position: center;  /* Internet Explorer 7/8 */
+	background-repeat:no-repeat;
+}
+
+#header .logo
+{
+/*	float: left;
+	margin-top: 33.75%;*/
+/*	margin-top: -50%;*/
+	position: absolute;
+	top: 1em;
+}
+
+#wrapper
+{
+	background-color: #FFF;
+}
+
+	#wrapper footer
+	{
+		clear: both;
+	}
+
+#content
+{
+	padding-bottom: 1em;
+}
+
+#content a, .content a, #wrapper > footer a
+{
+	/*color: #03f;*/
+	color: #39414F;
+	text-decoration: none;
+	border-bottom: 1px dotted #39414F;
+}
+	#content a:hover, .content a:hover, #wrapper > footer a:hover
+	{
+		/*color: #69f;*/
+		color: #39414F;
+		text-decoration: none;
+		border-bottom: 1px solid #39414F;
+	}
+
+.content-image a
+{
+	border: 0 !important;
+}
+
+#content h1, #content h2, #content h3, #content h4,
+aside h2
+{
+	color: #39414F;
+}
+
+#content h1
+{
+	margin: 1em 0;
+	font-size: 2em;
+	padding: 0 1em;
+}
+
+#content h2, aside h2
+{
+	font-size: 1.2em;
+}
+
+#content h1 a
+{
+	border: 0;
+}
+
+
+.browsenav, .mininav, .info
+{
+	/*font-size: 75%;*/
+	background: transparent;
+	color: inherit;
+	padding-bottom: .3em;
+}
+
+	.browsenav .previous
+	{
+		float: left;
+		width: 49%;
+		text-align: right;
+	}
+
+	.browsenav .next
+	{
+		float: right;
+		width: 50%;
+		text-align: left;
+	}
+
+	.mininav .active
+	{
+		font-weight: bold;
+	}
+
+#content p, #content pre, #content blockquote,
+#content h2, #content h3, #content h4,
+#content ol, #content ul,
+.mininav, .info,
+section article header
+{
+	margin: 1em 4em 1em 4em;
+	margin: 1em 8% 1em 8%;
+	text-align: justify;
+}
+
+#content blockquote
+{
+	quotes: '"' '"';
+	quotes: '\201C' '\201D';
+}
+
+#content blockquote :first-child:before
+{
+	/*content: '"';*/
+	content: open-quote;
+	margin-left: -.2em;
+	font-size: 3em;
+/*	margin-left: -1em;*/
+	margin-right: .3em;
+
+}
+
+#content pre
+{
+	margin-left: 10%;
+	overflow: auto;
+}
+
+#content ul
+{
+	list-style: square;
+	list-style-color: #39414F;
+}
+
+#content ul.archive li
+{
+	list-style-type: none;
+	list-style-image: none;
+}
+
+.date
+{
+	width: 3em;
+	font-weight: bold;
+	display: block;
+	float: left;
+}
+
+time
+{
+	font-family: monospace;
+	font-size: .9em;
+}
+
+.label
+{
+	font-size: .8em;
+	color: #FFF;
+	background-color: #838F67;
+/*      background-color: #5C6448;*/
+	padding: .1em;
+	padding-left: .3em;
+	padding-right: .3em;
+}
+
+article
+{
+	clear: both;
+}
+
+article header
+{
+	margin: 1em 0;
+}
+
+article section
+{
+/*
+	margin-left: 1em;
+*/
+}
+
+article section header
+{
+	//
+	margin-left: 8%;
+}
+
+.commentnr
+{
+	font-size: 1.5em;
+	color: #39414F;
+}
+
+#content input[type='text'], #content input[type='password'],
+#content input[type='button'], #content input[type='submit'],
+#content textarea
+{
+	width: 100%;
+}
+
+#wrapper > footer
+{
+	border-top: 1px solid #5C6448;
+	padding: 0 5px 5px 5px;
+	padding: 0 5px 2px 5px;
+	text-align: right;
+}
+
+aside
+{
+}
+
+aside h2
+{
+	margin: 1em 0;
+}
+
+nav
+{
+	background-color: #5C6448;
+}
+
+	nav ol
+	{
+		list-style: none;
+	}
+
+	/*
+	nav ol li
+	{
+		color: #FFF;
+	}
+	*/
+
+	nav a
+	{
+		display: block;
+		/*font-size: 0.85em;*/
+		font-size: 1em;
+		font-weight: bold;
+		color: #FFF;
+		text-decoration: none;
+		padding: 5px;
+		padding: 2px 10px;
+	}
+
+	nav a:hover, nav a:focus
+	{
+		color: #FFF;
+		background-color: #838F67;
+	}
+
+	nav a:hover::after, nav a:focus::after
+	{
+		color: #5C6448;
+		content: " [" attr(accesskey) "]";
+	}
+
+	.pageversion
+	{
+		background-color: #5C6448;
+		border-top: 1px dotted #FFF;
+		padding: 5px;
+		color: #FFF;
+		font-size: .8em;
+	}
+
+	aside h2, aside ul, aside div
+	{
+		padding: 0 2%;
+	}
+
+	aside ul
+	{
+		/*font-size: .8em;*/
+	}
+
+	aside ul li
+	{
+		padding: 0 1em 1em 0;
+	}
+
+	aside ul li a
+	{
+		font-weight: bold;
+	}
+
+.glyph, .license
+{
+	font-family: EntypoRegular;
+}
+
+.social
+{
+	font-family: EntypoSocial;
+}
+
+
+.glyph, .social
+{
+	text-decoration: none;
+	color: #39414F;
+	font-size: 4em;
+}
+
+.license
+{
+	font-size: 2em;
+}
+
+nav .glyph, nav .social
+{
+	color: #FFF;
+	font-size: 3em;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: normal;
+	width: 0.8em;
+/*	margin-right: .2em;*/
+}
+
+.searchbtn
+{
+	font-family: EntypoRegular;
+	font-size: 2em;
+}
+
+/* Print styles!
+-------------------------------------------------------------------------------*/
+@media print {
+
+
+
+}
+
+
+/* Media queries!
+-------------------------------------------------------------------------------*/
+
+/* Galaxy Nexus (portrait) ----------- */
+/*
+@media only screen and (max-width : 360px) and (orientation: portrait) {
+	h1 { background: purple; }
+}
+*/
+
+/*@media screen and (max-width: 480px)*/
+/*@media screen and (max-width: 480px)*/
+@media screen and (min-width: 11480px)
+/*
+@media only screen and (min-device-width : 360px) and (max-device-width : 598px)
+*/
+/*
+@media screen and ((max-width: 480px)
+or ((min-device-width : 360px) and (max-device-width : 598px)))
+*/
+{
+	#header
+	{
+		height: auto;
+		background-color: #0F0;
+	}
+
+	h1
+	{
+/*		font-size: 24px;*/
+		color: #F00;
+	}
+
+	#content
+	{
+		width: auto;
+		width: 100%;
+		float: none;
+	}
+
+	nav a
+	{
+		font-size: 1em;
+	}
+
+	aside
+	{
+		width: auto;
+		float: none;
+		/* display: none; */
+	}
+
+	aside ul
+	{
+		padding: 0;
+	}
+
+	aside ul li a
+	{
+		font-weight: normal;
+	}
+
+	aside .blogmarkmeta
+	{
+		display: none;
+	}
+}
+
+/*
+@media screen and (max-width: 700px)
+{
+	
+	#content
+	{
+		width: auto;
+		float: none;
+	}
+
+	#content h1
+	{
+		font-size: 1.8em;
+	}
+
+	aside
+	{
+		width: auto;
+		float: none;
+	}
+}
+*/
+
+
+/*@media screen and (min-width: 710px)*/
+@media screen and (min-width: 810px)
+{
+	#wrapper
+	{
+/*
+		width: 96%;
+		margin: 0 auto;
+*/
+	}
+
+	#header
+	{
+		background: #5C6448;
+	}
+
+	#content
+	{
+		width: 73%;
+		float: left;
+	}
+
+	#content h1
+	{
+		font-size: 1.8em;
+	}
+
+	aside
+	{
+		width: 25%;
+		float: right;
+	}
+
+	aside h2, aside ul, aside form, aside div
+	{
+		padding: 0;
+	}
+
+	aside ul li a
+	{
+		font-weight: normal;
+	}
+
+	aside .blogmarkmeta
+	{
+		display: none;
+	}
+}
+
+
+@media screen and (min-width: 980px)
+{
+	#wrapper
+	{
+/*
+		width: 980px;
+		margin: 0 auto;
+*/
+	}
+
+	#header
+	{
+		background: #5C6448;
+	}
+
+	#content
+	{
+		/*width: 64%;*/
+		width: 69%;
+		float: left;
+	}
+
+	aside
+	{
+		width: 30%;
+		float: right;
+	}
+
+	aside ul li a
+	{
+		font-weight: bold;
+	}
+
+	aside .blogmarkmeta
+	{
+		display: block;
+	}
+
+}
+
+@media screen and (min-width: 1600px)
+{
+
+	#content
+	{
+		max-width: 1600px;
+	}
+}

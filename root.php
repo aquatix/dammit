@@ -1,13 +1,12 @@
 <?php
 /**
- * Complete admin module for the weblog
- * $Id$
+ * The admin module for the weblog
  *
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 michiel at aquariusoft.org
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * simplog is the legal property of its developer, Michiel Scholten
- * [mbscholt at aquariusoft.org]
+ * [michiel at aquariusoft.org]
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,8 +26,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$skel['lastmodified'] = '2009-03-09';
-$skel['page_version'] = '0.6.07';
+$skel['lastmodified'] = '2013-03-31';
+$skel['page_version'] = '0.8.01';
 $skel['dateofcreation'] = '2003-12-22';
 
 $section_name = 'root';
@@ -526,4 +525,3 @@ if (isset($_GET['action']) && isLoggedIn())
 }
 
 echo buildPage($skel, $section_name, $page_name, $page_body);
-?>

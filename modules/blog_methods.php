@@ -1,9 +1,8 @@
 <?php
 /**
  * Weblog module - methods
- * $Id$
  *
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -897,7 +896,8 @@ function getNrOfMarks($skel)
 
 function markUri($mark)
 {
-	return 'blogmarks.php?year=' . getYear($mark['date']) . '&amp;month=' . getMonth($mark['date']) . '#uri' . $mark['id'];
+	//return 'blogmarks.php?year=' . getYear($mark['date']) . '&amp;month=' . getMonth($mark['date']) . '#uri' . $mark['id'];
+	return getYear($mark['date']) . '/' . getMonth($mark['date']) . '#uri' . $mark['id'];
 }
 
 
@@ -1086,7 +1086,7 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 		$email = "no e-mail address provided";
 	}
 	// Mail configuration
-	$body = "\nA comment has been added by " . $name . " [" . $email . "].\nTime of comment: " . $time . "\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $rantsInfo[0]['title'] . " [date: " . $rantsInfo[0]['date'] . "]\nhttp://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rantId . "\n\n";
+	$body = "\nA comment has been added by " . $name . " [" . $email . "].\nTime of comment: " . $time . "\nPoster's uri: " . $uri . "\nPoster wants notifications: " . $wantnotificationsString . "\n\n== Posting ======\n" . $rantsInfo[0]['title'] . " [date: " . $rantsInfo[0]['date'] . "]\n" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rantId . "\n\n";
 	$body .= "== comment ======\n" . $unescapedMessage . "\n";
 
 	$emailresult = sendEmail($skel['mailFrom'], $skel['mailFromName'], $skel['mailTo'], $skel['mailSubject'] . " about \"" . $rantsInfo[0]['title'] . "\"", $body);
@@ -1097,7 +1097,7 @@ function addComment($skel, $rantId, $name, $email, $wantnotifications, $uri, $me
 	}
 
 	/* Now send everybody that reacted on the post and wanted a notification an e-mail */
-	$body = "\nA comment has been added by " . $name . " to posting\n" . $rantsInfo[0]['title'] . " [posted " . $rantsInfo[0]['date'] . "]\nhttp://" . $skel['servername'] . $skel['baseHref'] . "p/" . $rantId . "\nTime of comment: " . $time . "\n\n== comment ======\n" . $unescapedMessage . "\n\n== End of comment ======\nIf you receive this message and don't know why you're getting it, please check the uri provided, http://" . $skel['servername'] . $skel['baseHref'] . " or e-mail to " . $skel['mainEmail'];
+	$body = "\nA comment has been added by " . $name . " to posting\n" . $rantsInfo[0]['title'] . " [posted " . $rantsInfo[0]['date'] . "]\n" . $skel['base_server'] . $skel['base_uri'] . "p/" . $rantId . "\nTime of comment: " . $time . "\n\n== comment ======\n" . $unescapedMessage . "\n\n== End of comment ======\nIf you receive this message and don't know why you're getting it, please check the uri provided, " . $skel['base_server'] . $skel['base_uri'] . " or e-mail to " . $skel['mainEmail'];
 
 	/* Get all e-mail addresses that had the checkbox checked */
 
@@ -1283,5 +1283,3 @@ function getRequestParam($paramname, $default)
 		return $default;
 	}
 }
-
-?>

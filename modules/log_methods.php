@@ -1,9 +1,8 @@
 <?php
 /**
  * Log module - methods
- * $Id$
  * 
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
  * [mbscholt at aquariusoft.org]
@@ -135,7 +134,7 @@ function getNumberOfViewsForPage( $skel, $section_name, $page_name )
 
 function getReferers( $skel, $section_name, $page_name )
 {
-	$webloghref = "http://" . $skel['servername'] . $skel['baseHref'];
+	$webloghref = $skel['base_server'] . $skel['base_uri'];
 
 	$query = 'SELECT referer, COUNT(*) FROM smplog_log ' .
 		'WHERE section="' . $section_name . '" AND page="' . $page_name . '" ' .
@@ -160,7 +159,7 @@ function getReferers( $skel, $section_name, $page_name )
 
 function getAllReferers( $skel )
 {
-	$webloghref = "http://" . $skel['servername'] . $skel['baseHref'];
+	$webloghref = $skel['base_server'] . $skel['base_uri'];
 	$query = 'SELECT Section, Page, Referer, COUNT(*) FROM Log ' .
 		'WHERE Referer NOT LIKE "' . $webloghref . '%" ' .
 		'AND Referer NOT LIKE "http://192.168.0.150/~mbscholt/%" AND Referer NOT LIKE "http://www.aquariusoft.org/~mbscholt/%" AND Referer NOT LIKE "http://aquariusoft.org/\%7E%" AND Referer NOT LIKE "http://xcalibur.aquariusoft.org/~mbscholt/%" ' .
