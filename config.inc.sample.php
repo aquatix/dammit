@@ -31,9 +31,9 @@ $skel['testing'] = true;
 $skel['commentsenabled'] = true;
 //$skel['commentsenabled'] = false;
 
-$skel['author'] = 'Michiel Scholten';
-$skel['authorShortname'] = 'Michiel';
-$skel['siteName'] = 'dammIT';
+$skel['author'] = 'Your Name';
+$skel['authorShortname'] = 'You';
+$skel['siteName'] = 'Yet Another Rantbox';
 $skel['mainEmail'] = 'dammit@aquariusoft.org';
 $skel['rssEmail'] = 'dammit@aquariusoft.notforspambastards.org';
 $skel['tagline'] = 'Curiosity is a virtue';
@@ -49,14 +49,14 @@ $skel['flickr_username'] = 'aquatix';
 $skel['linkedin_username'] = 'mbscholten';
 
 /* Your Google Analytics code. Set to null if you don't have one */
-//$skel['googleAnalyticsCode'] = null;
-$skel['googleAnalyticsCode'] = 'UA-10643901-3';
+$skel['googleAnalyticsCode'] = null;
+//$skel['googleAnalyticsCode'] = 'UA-0000000-0';
 
-$skel['piwikURL'] = 'aquariusoft.org/r00t/webstats/';
+$skel['piwikURL'] = 'example.com/piwik/';
 $skel['piwikSiteID'] = '2';
 
 /* Message to be shown on the main page, archive page and individual posting pages */
-//$skel['globalmessage'] = 'dammIT is getting tweaked';
+//$skel['globalmessage'] = 'This weblog is getting tweaked';
 $skel['globalmessage'] = null; /* Use when you don't want such a message */
 
 
@@ -95,6 +95,6 @@ $skel['restricttoip'] = '2a02:898:62:f6::44';	// typically 127.0.0.1
 
 /*** Database settings ***/
 $db_url = 'localhost';
-$db_name = 'dammit_weblog';
+$db_name = 'simple_weblog';
 $db_user = 'blog';
-$db_pass = 'blogPs666!';
+$db_pass = 'smplWblgPw!';
