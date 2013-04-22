@@ -158,9 +158,8 @@ aside h2
 
 #content h1
 {
-	margin: 1em 0;
+	margin: 1em 8%;
 	font-size: 2em;
-	padding: 0 1em;
 }
 
 #content h2, aside h2
