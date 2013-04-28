@@ -1,12 +1,11 @@
 <?php
 /**
  * Toolkit module - methods
- * $Id$
  *
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 mbscholt at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
- * [mbscholt at aquariusoft.org]
+ * [michiel at aquariusoft.org]
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -33,19 +32,27 @@ function myIsInt($x)
 }
 
 
-/*
+/**
  * Formats the given date to the human readable format used to group the rants
+ * Make something like "Mon 2003-12-22" from "2003-12-22 20:00:00"
  */
 function getNormalDate($datetime)
 {
-	/* Make something like "Mon 2003-12-22" from "2003-12-22 20:00:00" */
 	$dateAndTime = explode(" ", $datetime);	//split date and time
 	$date = explode("-", $dateAndTime[0]);	//split up the date in year, month and day
 	//	return date("D Y-m-d", mktime(0,0,0,$date[1],$date[2],$date[0]));	//"Mon 2003-12-22"
 	//return date("l, d F, Y", mktime(0,0,0,$date[1],$date[2],$date[0]));	//"Monday, 22 December, 2003"
 	return date("l d F Y", mktime(0,0,0,$date[1],$date[2],$date[0]));	//"Monday, 22 December, 2003"
 	//$date = getDate( $datetime );//$dateAndTime[0]
+}
 
+
+/**
+ * Formats "YYYY-MM-DD HH:MM:SS" into "YYYY-MM-DDTHH:MM:SSZ"
+ */
+function getDatetimeStamp($datetime)
+{
+	return str_replace(' ', 'T', $datetime) . 'Z';
 }
 
 
@@ -193,5 +200,3 @@ function textSnippet( $content, $maxlength )
 	if (strlen($content) > $maxlength) { $dots = '...'; }
 	return substr($content, 0, $maxlength) . $dots;
 }
-
-?>

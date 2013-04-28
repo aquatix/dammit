@@ -16,9 +16,9 @@
 	
 	<title><?php echo $page_name . ' | ' . $skel['siteName']; ?></title>
 	
-	<meta name="title" content="" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
+	<meta name="title" content="<?php echo $page_name; ?>" />
+	<meta name="description" content="<?php echo $skel['siteDescription']; ?>" />
+	<meta name="author" content="<?php echo $skel['author']; ?>" />
 	<!-- Google will often use this as its description of your page/site. Make it good. -->
 	
 	<meta name="google-site-verification" content="" />
@@ -60,7 +60,8 @@
 		 Before you move to production, you should generate a custom build that only has the detects you need. -->
 	<!--<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr-2.6.2.dev.js"></script>-->
 	<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr.dammit.js?ver=<?php echo $skel['theme_version']; ?>"></script>
-	
+
+<?php /*
 	<!-- Application-specific meta tags -->
 	<!-- Windows 8 -->
 	<meta name="application-name" content="" /> 
@@ -77,7 +78,7 @@
 	<meta property="og:description" content="" />
 	<meta property="og:url" content="" />
 	<meta property="og:image" content="" />
-
+*/ ?>
 </head>
 
 <body>
