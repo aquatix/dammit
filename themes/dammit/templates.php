@@ -320,7 +320,7 @@ function buildMarksList( $marks )
 
 	for ($i = 0; $i < count($marks); $i++)
 	{
-		$marksHTML .= "\t\t\t<li><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a> " . $marks[$i]['message'] . "</li>\n";
+		$marksHTML .= "\t\t\t<li><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a> <div class=\"blogmarkmeta\">" . $marks[$i]['message'] . "</div></li>\n";
 	}
 	$marksHTML .= "\t\t</ul>\n";
 	return $marksHTML;

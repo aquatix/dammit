@@ -307,6 +307,12 @@ article section header
 	width: 100%;
 }
 
+#content article footer
+{
+	border-top: 1px dotted #39414F;
+	margin: 0 8% 0 8%;
+}
+
 #wrapper > footer
 {
 	border-top: 1px solid #5C6448;
