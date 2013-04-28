@@ -1,12 +1,11 @@
 <?php
 /**
  * Toolkit module - methods
- * $Id$
  *
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2013 mbscholt at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
- * [mbscholt at aquariusoft.org]
+ * [michiel at aquariusoft.org]
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
