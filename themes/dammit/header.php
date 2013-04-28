@@ -60,7 +60,8 @@
 		 Before you move to production, you should generate a custom build that only has the detects you need. -->
 	<!--<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr-2.6.2.dev.js"></script>-->
 	<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr.dammit.js?ver=<?php echo $skel['theme_version']; ?>"></script>
-	
+
+<?php /*
 	<!-- Application-specific meta tags -->
 	<!-- Windows 8 -->
 	<meta name="application-name" content="" /> 
@@ -77,7 +78,7 @@
 	<meta property="og:description" content="" />
 	<meta property="og:url" content="" />
 	<meta property="og:image" content="" />
-
+*/ ?>
 </head>
 
 <body>
