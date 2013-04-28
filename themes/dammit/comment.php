@@ -5,7 +5,7 @@
 					<span class="commentnr"><?php echo $commentCounter; ?></span>
 					Posted at
 					<a href="<?php echo $skel['base_uri'] . 'p/' . $comment['rantId'] . '#comment' . $comment['id'];?>">
-						<time datetime="<?php echo getLongDate($comment['date']); ?>" pubdate><?php echo $comment['date']; ?></time>
+						<time datetime="<?php echo getDatetimeStamp($comment['date']); ?>"><?php echo $comment['date']; ?></time>
 					</a>
 					<?php
 						$uri = $comment['name'];
