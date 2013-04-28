@@ -1,7 +1,7 @@
 	<article>
 		<header>
 			<h1><a href="<?php echo $skel['base_uri'] . 'p/' . $thisRant['messageID'];?>"><?php echo $thisRant['title']; ?></a></h1>
-			<p><?php echo $thisRant['location']; ?> | <time datetime="<?php echo $thisRant['date']; ?>" pubdate="pubdate"><?php echo $thisRant['date']; ?></time></p>
+			<p><?php echo $thisRant['location']; ?> | <time datetime="<?php echo getLongDate($thisRant['date']); ?>" pubdate><?php echo $thisRant['date']; ?></time></p>
 		</header>
 		
 		<?php echo $rantsHTML; ?>
