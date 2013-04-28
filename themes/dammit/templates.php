@@ -318,12 +318,9 @@ function buildMarksList( $marks )
 	$marksHTML = "\t\t<ul class=\"content\">\n";
 	$previousDate = '0000-00-00 00:00:00';
 
-//var_dump($marks);
-
 	for ($i = 0; $i < count($marks); $i++)
 	{
-		//$marksHTML .= "\t\t\t<li><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a> <span class=\"note\">[<a href=\"" . markUri($marks[$i]) . "\">more</a>]</span></li>\n";
-		$marksHTML .= "\t\t\t<li><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a> <span class=\"blogmarkmeta\">" . $marks[$i]['message'] . "</span></li>\n";
+		$marksHTML .= "\t\t\t<li><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a> " . $marks[$i]['message'] . "</li>\n";
 	}
 	$marksHTML .= "\t\t</ul>\n";
 	return $marksHTML;
