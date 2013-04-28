@@ -16,9 +16,9 @@
 	
 	<title><?php echo $page_name . ' | ' . $skel['siteName']; ?></title>
 	
-	<meta name="title" content="" />
+	<meta name="title" content="<?php echo $page_name; ?>" />
 	<meta name="description" content="" />
-	<meta name="author" content="" />
+	<meta name="author" content="<?php echo $skel['author']; ?>" />
 	<!-- Google will often use this as its description of your page/site. Make it good. -->
 	
 	<meta name="google-site-verification" content="" />
