@@ -27,12 +27,12 @@ $skel['starttime'] = microtime();
 $skel['base_dir'] = dirname(dirname(__FILE__)); // go up one directory, out of the modules dir
 
 /* Load the settings for this web log */
-if (!file_exists('config.inc.php'))
+if (!file_exists($skel['base_dir'] . '/config.inc.php'))
 {
 	echo "Copy config.inc.sample.php to config.inc.php and configure your weblog settings";
 	exit();
 }
-include 'config.inc.php';
+include $skel['base_dir'] . '/config.inc.php';
 
 if (!isset($skel['restricttoip']))
 {
@@ -174,15 +174,15 @@ $result = mysql_query($query, $skel['dbLink']);
  */
 
 /****** Include the underlying methods ******/
-include 'modules/toolkit_html.php';
-include 'modules/toolkit_methods.php';
-include 'modules/blog_html.php';
-include 'modules/blog_methods.php';
-include 'modules/log_html.php';
-include 'modules/log_methods.php';
+include $skel['base_dir'] . '/modules/toolkit_html.php';
+include $skel['base_dir'] . '/modules/toolkit_methods.php';
+include $skel['base_dir'] . '/modules/blog_html.php';
+include $skel['base_dir'] . '/modules/blog_methods.php';
+include $skel['base_dir'] . '/modules/log_html.php';
+include $skel['base_dir'] . '/modules/log_methods.php';
 
 $skel['isloggedin'] = isLoggedIn();
 
 /* Theme */
-include 'themes/' . $skel['theme'] . '/config.inc.php';
-include 'themes/' . $skel['theme'] . '/theme.php';
+include $skel['base_dir'] . '/themes/' . $skel['theme'] . '/config.inc.php';
+include $skel['base_dir'] . '/themes/' . $skel['theme'] . '/theme.php';
