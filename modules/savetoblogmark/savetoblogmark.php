@@ -1,5 +1,4 @@
 <?php
-
 include '../init.php';
 
 $logfilename = 'logs/incoming.log';
@@ -22,34 +21,44 @@ var_dump($data);
 exit();
 */
 
-$dataJSON = file_get_contents('php://input');
-if (empty(trim($dataJSON))) { exit(); }
-//$dataJSON = '{"user":"aquatix","pass":"","title":"How to one-up the Samsung Galaxy S4 with a voice controlled call answer feature in Tasker","description":"<img src=\"http:\/\/www.pocketables.com\/images\/2013\/05\/proximity-voice-control-304x352.jpg\"><br><br>\nOk, so you already know how to replicate the Samsung Galaxy S4\u2032s wave-to-answer feature on any phone using Tasker. That\u2019s all good an well, but when you find yourself at that pool party with those obnoxious S4 users, you need something to one-up them, not just match them.<br><br>\nvia Pocket http:\/\/www.pocketables.com\/2013\/05\/how-to-one-up-the-s4-with-a-voice-controlled-call-answer-feature-in-tasker.html","categories":["IFTTT","Pocket"],"post_status":"publish"}';
-//$data = json_decode(file_get_contents('php://input')); #php
-$data = json_decode($dataJSON); #php
-$req_dump = print_r($data, TRUE);
-$fp = fopen($logfilename, 'a');
-fwrite($fp, $dataJSON . "\n");
-fwrite($fp, $req_dump . "\n");
+//if ($method !== HTTP_Request::GET)
+//{
+	$dataJSON = file_get_contents('php://input');
+	//$dataJSON = '{"user":"aquatix","pass":"","title":"How to one-up the Samsung Galaxy S4 with a voice controlled call answer feature in Tasker","description":"<img src=\"http:\/\/www.pocketables.com\/images\/2013\/05\/proximity-voice-control-304x352.jpg\"><br><br>\nOk, so you already know how to replicate the Samsung Galaxy S4\u2032s wave-to-answer feature on any phone using Tasker. That\u2019s all good an well, but when you find yourself at that pool party with those obnoxious S4 users, you need something to one-up them, not just match them.<br><br>\nvia Pocket http:\/\/www.pocketables.com\/2013\/05\/how-to-one-up-the-s4-with-a-voice-controlled-call-answer-feature-in-tasker.html","categories":["IFTTT","Pocket"],"post_status":"publish"}';
+	$data = json_decode($dataJSON); #php
+	$req_dump = print_r($data, TRUE);
+	$fp = fopen($logfilename, 'a');
+	fwrite($fp, $dataJSON . "\n");
+	fwrite($fp, $req_dump . "\n");
 
 
-$descpieces = explode('<br><br>', $data->description);
+	$descpieces = explode('<br><br>', $data->description);
 
-$markTitle = trim($data->title);
-$markURI = trim($descpieces[2]);
-$markURI = substr($markURI, 11);
-$markDescription = '<p>' . trim($descpieces[1]) . '</p>';
+	$markTitle = trim($data->title);
+	$markURI = trim($descpieces[2]);
+	$markURI = substr($markURI, 11);
+	$markDescription = '<p>' . trim($descpieces[1]) . '</p>';
 
-fwrite($fp, $markTitle . "\n");
-fwrite($fp, $markURI . "\n");
-fwrite($fp, $markDescription . "\n");
-$desc_dump = print_r($descpieces);
-fwrite($fp, $desc_dump );
-fclose($fp);
+	fwrite($fp, $markTitle . "\n");
+	fwrite($fp, $markURI . "\n");
+	fwrite($fp, $markDescription . "\n");
+	$desc_dump = print_r($descpieces);
+	fwrite($fp, $desc_dump );
 
-addMark($skel, $markTitle, $markURI, 'Pocket', $markDescription); 
-
-
+	if ('' == trim($markTitle))
+	{
+		fwrite($fp, "\nNOT adding blogmark, as submission is invalid\n" );
+		fclose($fp);
+		exit();
+	} else
+	{
+		fclose($fp);
+		addMark($skel, $markTitle, $markURI, 'Pocket', $markDescription); 
+	}
+//} else
+//{
+//	echo 'Only callable by JSON PUT';
+//}
 
 /*
 {
@@ -78,8 +87,3 @@ via Pocket http://singularityhub.com/2013/04/19/chinese-restaurant-owner-says-ro
     [post_status] => publish
 )
 */
-
-//$blogmark = $data->title
-
-//addMark($skel, getRequestParam('title', null), getRequestParam('uri', null), getRequestParam('location', null), getRequestParam('description', null)); 
-
