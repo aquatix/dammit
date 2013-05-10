@@ -42,17 +42,14 @@
 		
 		<?php } ?>
 
-		<footer>
-			<?php if ($thisRant['modified'] > 0) {
-				// Modified at least once
-				if ($rants[$i]['modified'] == 1)
-				{
-					echo 'Modified 1 time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
-				} else
-				{
-					echo 'Modified ' . $rants[$i]['modified'] . ' times, last time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
-				}
-			} ?>
-
-		</footer>
+		<?php if ($thisRant['modified'] > 0) {
+			// Modified at least once
+			if ($rants[$i]['modified'] == 1)
+			{
+				echo '<footer>Modified 1 time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']) . '</footer>';
+			} else
+			{
+				echo '<footer>Modified ' . $rants[$i]['modified'] . ' times, last time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']) . '</footer>';
+			}
+		} ?>
 	</article>
