@@ -24,6 +24,8 @@
 		<?php //echo buildSimpleMarks(getMarks($skel, 0, $skel['nrOfMarksInNav'])); ?>
 		<?php echo buildMarksList(getMarks($skel, 0, $skel['nrOfMarksInNav'])); ?>
 
+		<div class="content"><a href="<?php echo $skel['base_uri'];?>m">More blogmarks &raquo;</a></div>
+
 		<div>
 			<a href="<?php echo $skel['base_uri'];?>blog.rdf" title="Get my feed into your reader :)" class="glyph">&#59194;</a>
 			<?php if(isset($skel['twitter_username'])) { ?>

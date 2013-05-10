@@ -395,7 +395,12 @@ nav
 		padding: 0 1em 1em 0;
 	}
 
-	aside ul li a
+	aside a
+	{
+		font-weight: bold;
+	}
+
+	nav a
 	{
 		font-weight: bold;
 	}
@@ -423,6 +428,7 @@ nav
 	text-decoration: none;
 	color: #39414F;
 	font-size: 4em;
+	font-weight: normal;
 }
 
 .license
@@ -499,6 +505,7 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 	nav a
 	{
 		font-size: 1em;
+		font-weight: bold;
 	}
 
 	aside
@@ -513,7 +520,7 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 		padding: 0;
 	}
 
-	aside ul li a
+	aside a
 	{
 		font-weight: normal;
 	}
@@ -586,9 +593,14 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 		padding: 0;
 	}
 
-	aside ul li a
+	aside a
 	{
 		font-weight: normal;
+	}
+
+	nav a
+	{
+		font-weight: bold;
 	}
 
 	aside .blogmarkmeta
@@ -626,7 +638,12 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 		float: right;
 	}
 
-	aside ul li a
+	aside a
+	{
+		font-weight: bold;
+	}
+
+	nav a
 	{
 		font-weight: bold;
 	}
