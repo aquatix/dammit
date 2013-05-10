@@ -382,7 +382,7 @@ nav
 
 	aside h2, aside ul, aside div
 	{
-		padding: 0 2%;
+		padding: 0 8%;
 	}
 
 	aside ul
@@ -398,6 +398,13 @@ nav
 	aside ul li a
 	{
 		font-weight: bold;
+	}
+
+
+	aside .blogmarkmeta
+	{
+		text-align: justify;
+		padding: 0; /* reset the left/right paddings */
 	}
 
 .glyph, .license
