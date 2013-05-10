@@ -278,22 +278,28 @@ function buildMarks( $marks )
 	return $marksHTML;
 }
 
+/**
+ * Simple list of blogmarks to include in (weekly) post
+ */
 function buildInPostMarks( $marks )
 {
-	$marksHTML = '';
+	$marksHTML = '<ul class="blogmarks">';
 
 	for ($i = 0; $i < count($marks); $i++)
 	{
 		/* Title */
-		$marksHTML .= "<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
+		//$marksHTML .= "<h3><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a></h3>\n";
+		$marksHTML .= "<li><a href=\"" . $marks[$i]['uri'] . "\">" . $marks[$i]['title'] . "</a> ";
 		/* Rant itself */
-		$marksHTML .= $marks[$i]['message'] . "\n";
+		//$marksHTML .= $marks[$i]['message'] . "\n";
+		$marksHTML .= strip_tags($marks[$i]['message']) . "</li>\n";
 	}
+	$marksHTML .= "</ul>\n";
 	return $marksHTML;
 }
 
 
-/*
+/**
  * Build a simple list of webmarks [used for listing NN marks in the navigation]
  */
 function buildSimpleMarks( $marks )
