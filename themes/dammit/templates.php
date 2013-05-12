@@ -52,7 +52,10 @@ function buildRants( $skel, $rants, $showcomments = false )
 		
 		if (CONTENT_MARKDOWN == $rants[$i]['contenttype'])
 		{
-			$rantsHTML .= Markdown($rants[$i]['message']) . "\n";
+			# Get Markdown class
+			use \Michelf\Markdown;
+			//$rantsHTML .= Markdown($rants[$i]['message']) . "\n";
+			$rantsHTML .= Markdown::defaultTransform($rants[$i]['message']) . "\n";
 		}
 		else if (CONTENT_PLAINTEXT == $rants[$i]['contenttype'])
 		{
