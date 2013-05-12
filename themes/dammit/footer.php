@@ -18,7 +18,8 @@
 <!-- don't forget to concatenate and minify if needed -->
 <!-- @TODO: enable when needed <script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/functions.js"></script>-->
 
-<?php if(isset($skel['googleAnalyticsCode']) && false === $skel['testing']) { ?>
+<?php //if(isset($skel['googleAnalyticsCode']) && false === $skel['testing']) { ?>
+<?php if(isset($skel['googleAnalyticsCode'])) { ?>
 <script>
 
   var _gaq = _gaq || [];
@@ -33,7 +34,8 @@
 </script>
 <?php } ?>
 
-<?php if(isset($skel['piwikURL']) && isset($skel['piwikSiteID']) && false === $skel['testing']) { ?>
+<?php //if(isset($skel['piwikURL']) && isset($skel['piwikSiteID']) && false === $skel['testing']) { ?>
+<?php if(isset($skel['piwikURL']) && isset($skel['piwikSiteID'])) { ?>
 <!-- Piwik --> 
 <script type="text/javascript">
 var pkBaseURL = (("https:" == document.location.protocol) ? "https://<?php echo $skel['piwikURL']; ?>" : "http://<?php echo $skel['piwikURL']; ?>");
