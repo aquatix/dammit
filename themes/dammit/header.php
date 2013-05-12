@@ -17,7 +17,11 @@
 	<title><?php echo $page_name . ' | ' . $skel['siteName']; ?></title>
 	
 	<meta name="title" content="<?php echo $page_name; ?>" />
+	<?php if (isset($skel['pageDescription'])) { ?>
+	<meta name="description" content="<?php echo $skel['pageDescription']; ?>" />
+	<?php } else { ?>
 	<meta name="description" content="<?php echo $skel['siteDescription']; ?>" />
+	<?php } ?>
 	<meta name="author" content="<?php echo $skel['author']; ?>" />
 	<!-- Google will often use this as its description of your page/site. Make it good. -->
 	

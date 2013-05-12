@@ -193,10 +193,20 @@ function shortLine( $line, $maxlength )
 }
 
 
-function textSnippet( $content, $maxlength )
+/**
+ * Shorten $content to a maximum of $maxlength, taking words into account
+ */
+function textSnippet( $content, $maxlength, $shorteningToken = '...' )
 {
 	$content = strip_tags($content);
 	$dots = '';
-	if (strlen($content) > $maxlength) { $dots = '...'; }
-	return substr($content, 0, $maxlength) . $dots;
+        $output = substr($content, 0, $maxlength);
+        //If there exists any space just before the end of the chopped string take upto that portion only so words aren't mutilated:
+        if (substr($output, 0, strrpos($output, ' ')) != '') $output = substr($output, 0, strrpos($output, ' '));
+        if ('' !== $shorteningToken && $output != $content)
+        {   
+                $output .= $shorteningToken;
+        }   
+        return $output;
 }
+
