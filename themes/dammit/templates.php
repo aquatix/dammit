@@ -22,6 +22,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+# Get Markdown class
+use \Michelf\Markdown;
+
 
 /***    Rants   ***/
 
@@ -52,9 +55,6 @@ function buildRants( $skel, $rants, $showcomments = false )
 		
 		if (CONTENT_MARKDOWN == $rants[$i]['contenttype'])
 		{
-			# Get Markdown class
-			use \Michelf\Markdown;
-			//$rantsHTML .= Markdown($rants[$i]['message']) . "\n";
 			$rantsHTML .= Markdown::defaultTransform($rants[$i]['message']) . "\n";
 		}
 		else if (CONTENT_PLAINTEXT == $rants[$i]['contenttype'])
