@@ -195,6 +195,7 @@ if (isset($subpage) && isset($skel['page_' . $subpage]) && file_exists($skel['pa
 		{
 			$page_name = strip_tags($rant[0]['title']);
 			$prevNext = getNextPrevRant($skel, $rant[0]['date']);
+			$skel['pageDescription'] = getRantSnippet($skel, $rant[0]);
 
 			$prev = '';
 			if (isset($prevNext['prev']['title']) && '' != $prevNext['prev']['title'])

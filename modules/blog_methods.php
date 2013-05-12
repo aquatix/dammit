@@ -247,6 +247,15 @@ function resultsetToRants($skel, $result, $getNrOfComments = true)
 }
 
 
+/**
+ * R
+ */
+function getRantSnippet($skel, $rant)
+{
+	return substr($rant['message'], 0, 50);
+}
+
+
 /*
  * Fetches smplog_rants from DB, sorted on date/time, newest first. Starting from number $first, with a max of $number items
  * $rants:
