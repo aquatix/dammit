@@ -145,6 +145,11 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 		border-bottom: 1px solid #39414F;
 	}
 
+#content article li a
+{
+	font-weight: bold;
+}
+
 .content-image a
 {
 	border: 0 !important;
