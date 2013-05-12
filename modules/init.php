@@ -181,6 +181,12 @@ include $skel['base_dir'] . '/modules/blog_methods.php';
 include $skel['base_dir'] . '/modules/log_html.php';
 include $skel['base_dir'] . '/modules/log_methods.php';
 
+# Install PSR-0-compatible class autoloader
+spl_autoload_register(function($class){
+	//require $skel['base_dir'] . '/modules/' . preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
+	require dirname(dirname(__FILE__)) . '/modules/' . preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
+});
+
 $skel['isloggedin'] = isLoggedIn();
 
 /* Theme */
