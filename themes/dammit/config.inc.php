@@ -41,7 +41,8 @@ if ((date('m') == 3 && date('d') > 20) || (date('m') < 7))
 } else if ((date('m') == 6 && date('d') > 20) || (date('m') < 10))
 {
 	/* If summer */
-	$skel['logo'] = 'images/dammit_namibia.jpg';
+	//$skel['logo'] = 'images/dammit_namibia.jpg';
+	$skel['logo'] = 'images/header_butterfly.jpg';
 } else if ((date('m') == 9 && date('d') > 20) || (date('m') <= 12))
 {
 	/* If autumn */
