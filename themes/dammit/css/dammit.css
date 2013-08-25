@@ -663,8 +663,10 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 @media screen and (min-width: 1600px)
 {
 
-	#content
+	#wrapper
 	{
 		max-width: 1600px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
