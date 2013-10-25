@@ -47,7 +47,7 @@ if ((date('m') == 3 && date('d') > 20) || (date('m') < 7))
 {
 	/* If autumn */
 	//$skel['logo'] = 'images/dammit_mountains.jpg';
-	$skel['logo'] = 'img/header_orange_buttefly.jpg';
+	$skel['logo'] = 'img/header_orange_butterfly.jpg';
 } else if ((date('m') == 12 && date('d') > 10) || (date('m') < 4))
 {
 	/* If winter */
