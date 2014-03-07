@@ -23,7 +23,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2013-04-20';
+$skel['lastmodified'] = '2014-03-04';
 $skel['page_version'] = '0.8.02';
 $skel['dateofcreation'] = '2003-12-21';
 
@@ -419,7 +419,7 @@ if (isset($subpage) && isset($skel['page_' . $subpage]) && file_exists($skel['pa
 {
 	/*** Show the homepage ***/
 	//$page_body .= "<h1>" . $skel['siteName'] . " home</h1>\n";
-	$page_body .= "<h1>Home</h1>\n";
+	//$page_body .= "<h1>Home</h1>\n";
 	if (null != $skel['globalmessage'])
 	{
 		$page_body .= '<p class="globalmessage">' . $skel['globalmessage'] . "</p>\n";
