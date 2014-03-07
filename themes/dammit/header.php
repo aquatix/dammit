@@ -56,6 +56,7 @@
 	
 	<!-- concatenate and minify for production -->
 <!--	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>-->
+	<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/reset.css?ver=<?php echo $skel['theme_version']; ?>" />
 <!--	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/style.css" />-->
 	<link rel="stylesheet" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/css/dammit.css?ver=<?php echo $skel['theme_version']; ?>" />

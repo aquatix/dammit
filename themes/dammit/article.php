@@ -1,7 +1,7 @@
 	<article>
 		<header>
 			<h1><a href="<?php echo $skel['base_uri'] . 'p/' . $thisRant['messageID'];?>"><?php echo $thisRant['title']; ?></a></h1>
-			<p><?php echo $thisRant['location']; ?> | <time datetime="<?php echo getDatetimeStamp($thisRant['date']); ?>"><?php echo $thisRant['date']; ?></time></p>
+<?php /*			<p><?php echo $thisRant['location']; ?> | <time datetime="<?php echo getDatetimeStamp($thisRant['date']); ?>"><?php echo $thisRant['date']; ?></time></p> */ ?>
 		</header>
 		
 		<?php echo $rantsHTML; ?>
@@ -42,14 +42,18 @@
 		
 		<?php } ?>
 
+        <footer>
+            <?php echo $thisRant['username']; ?> | <?php echo $thisRant['location']; ?> | <time datetime="<?php echo getDatetimeStamp($thisRant['date']); ?>"><?php echo $thisRant['date']; ?></time>
+
 		<?php if ($thisRant['modified'] > 0) {
 			// Modified at least once
 			if ($rants[$i]['modified'] == 1)
 			{
-				echo '<footer>Modified 1 time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']) . '</footer>';
+				echo 'Modified 1 time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
 			} else
 			{
-				echo '<footer>Modified ' . $rants[$i]['modified'] . ' times, last time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']) . '</footer>';
+				echo 'Modified ' . $rants[$i]['modified'] . ' times, last time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
 			}
 		} ?>
+        </footer>
 	</article>

@@ -14,7 +14,6 @@ body
 	/*font: 13px Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;*/
 	font: 13px 'Open Sans', sans-serif;
 	background-color: #838F67;
-	background-color: #FFF;
 }
 
 /* using local fonts? make sure to read up on Paul Irish's 
@@ -160,6 +159,7 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 aside h2
 {
 	color: #39414F;
+	font-family: "Crete Round";
 }
 
 #content h1
@@ -185,6 +185,7 @@ aside h2
 	background: transparent;
 	color: inherit;
 	padding-bottom: .3em;
+	margin-bottom: 4em;
 }
 
 	.browsenav .previous
@@ -252,6 +253,11 @@ section article header
 	list-style-image: none;
 }
 
+code
+{
+	font-family: "monospace";
+}
+
 .date
 {
 	width: 3em;
@@ -262,8 +268,10 @@ section article header
 
 time
 {
+/*
 	font-family: monospace;
 	font-size: .9em;
+*/
 }
 
 .label
@@ -296,7 +304,6 @@ article section
 
 article section header
 {
-	//
 	margin-left: 8%;
 }
 
@@ -315,8 +322,7 @@ article section header
 
 #content article footer
 {
-	border-top: 1px dotted #39414F;
-	margin: 0 8% 0 8%;
+	margin: 2em 8% 4em 8%;
 }
 
 #wrapper > footer
