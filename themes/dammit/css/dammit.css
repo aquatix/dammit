@@ -325,6 +325,13 @@ article section header
 	margin: 2em 8% 4em 8%;
 }
 
+#content article footer ul
+{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 #wrapper > footer
 {
 	border-top: 1px solid #5C6448;
@@ -439,8 +446,16 @@ nav
 {
 	text-decoration: none;
 	color: #39414F;
-	font-size: 4em;
+    font-size: 4em;
 	font-weight: normal;
+}
+
+/* Glyphs in the (article) footer) */
+footer .glyph
+{
+    font-size: 2em;
+    margin-left: 0.4em;
+    margin-right: 0.1em;
 }
 
 .license
@@ -593,6 +608,11 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 	{
 		font-size: 1.8em;
 	}
+
+    #content article footer ul li
+    {
+        display: inline;
+    }
 
 	aside
 	{

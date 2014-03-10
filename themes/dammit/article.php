@@ -43,9 +43,13 @@
 		<?php } ?>
 
         <footer>
-            <?php echo $thisRant['username']; ?> | <?php echo $thisRant['location']; ?> | <time datetime="<?php echo getDatetimeStamp($thisRant['date']); ?>"><?php echo $thisRant['date']; ?></time>
+            <ul>
+                <li><span class="glyph">&#59170;</span> <?php echo $thisRant['username']; ?></li>
+                <li><span class="glyph">&#9873;</span> <?php echo $thisRant['location']; ?></li>
+                <li><span class="glyph">&#128340;</span> <time datetime="<?php echo getDatetimeStamp($thisRant['date']); ?>"><?php echo $thisRant['date']; ?></time></li>
 
 		<?php if ($thisRant['modified'] > 0) {
+            echo '<li><span class="glyph">&#9998;</span>';
 			// Modified at least once
 			if ($rants[$i]['modified'] == 1)
 			{
@@ -53,7 +57,9 @@
 			} else
 			{
 				echo 'Modified ' . $rants[$i]['modified'] . ' times, last time at ' . getLongDate($rants[$i]['modifiedDate']) . " " . getTime($rants[$i]['modifiedDate']);
-			}
+            }
+            echo '</li>';
 		} ?>
+            </ul>
         </footer>
 	</article>
