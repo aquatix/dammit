@@ -446,7 +446,7 @@ nav
 {
 	text-decoration: none;
 	color: #39414F;
-    font-size: 4em;
+    font-size: 4em; /* Size in the sidebar */
 	font-weight: normal;
 }
 
@@ -455,7 +455,7 @@ footer .glyph
 {
     font-size: 2em;
     margin-left: 0.4em;
-    margin-right: 0.1em;
+    margin-right: 0.2em;
 }
 
 .license
