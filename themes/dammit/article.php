@@ -44,9 +44,9 @@
 
         <footer>
             <ul>
-                <li><span class="glyph">&#59170;</span> <?php echo $thisRant['username']; ?></li>
-                <li><span class="glyph">&#9873;</span> <?php echo $thisRant['location']; ?></li>
-                <li><span class="glyph">&#128340;</span> <time datetime="<?php echo getDatetimeStamp($thisRant['date']); ?>"><?php echo $thisRant['date']; ?></time></li>
+                <li><span class="glyph" alt="Author">&#59170;</span> <?php echo $thisRant['username']; ?></li>
+                <li><span class="glyph" alt="Location">&#9873;</span> <?php echo $thisRant['location']; ?></li>
+                <li><span class="glyph" alt="Date">&#128340;</span> <time datetime="<?php echo getDatetimeStamp($thisRant['date']); ?>"><?php echo $thisRant['date']; ?></time></li>
 
 		<?php if ($thisRant['modified'] > 0) {
             echo '<li><span class="glyph">&#9998;</span>';
