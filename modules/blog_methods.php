@@ -37,6 +37,11 @@ $skel['rantproperties'] = 'messageid, date, user, ip, title, message, contenttyp
  */
 function login( $skel, $user, $pass )
 {
+    /* Lets first escape this to prevent injection
+     * @TODO: use mysqli or PDO prepared statements instead */
+    $user = mysql_real_escape_string($user);
+    $pass = mysql_real_escape_string($pass);
+
 	/* verify user/pass combo with db */
 	$query = 'SELECT smplog_user.pass, smplog_user.id FROM smplog_user WHERE smplog_user.username="' . $user . '";';
 	$result = mysql_query( $query, $skel['dbLink'] );

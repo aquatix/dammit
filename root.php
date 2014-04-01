@@ -26,8 +26,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$skel['lastmodified'] = '2013-03-31';
-$skel['page_version'] = '0.8.01';
+$skel['lastmodified'] = '2014-04-01';
+$skel['page_version'] = '0.8.02';
 $skel['dateofcreation'] = '2003-12-22';
 
 $section_name = 'root';
@@ -515,9 +515,9 @@ if (isset($_GET['action']) && isLoggedIn())
 	//$page_body .= "Pass<br/><input type=\"password\" name=\"pass\" size=\"16\" maxlength=\"16\" /><br/>\n";
 	//$page_body .= "<br/>\n";
 	$page_body .= "<h3>User</h3>\n";
-	$page_body .= "<p><input type=\"text\" name=\"user\" size=\"16\" maxlength=\"16\" /></p>\n";
+	$page_body .= "<p><input type=\"text\" name=\"user\" size=\"16\" /></p>\n";
 	$page_body .= "<h3>Pass</h3>\n";
-	$page_body .= "<p><input type=\"password\" name=\"pass\" size=\"16\" maxlength=\"16\" /><p>\n";
+	$page_body .= "<p><input type=\"password\" name=\"pass\" size=\"16\" /><p>\n";
 	$page_body .= "<input name=\"loginbtn\" value=\"Login\" type=\"submit\" />\n";
 	$page_body .= "</form>\n";
 	$page_body .= "</div>\n";
