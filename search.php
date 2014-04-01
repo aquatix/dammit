@@ -1,12 +1,11 @@
 <?php
 /**
  * Search page for the weblog, looking in postings and blogmarks
- * $Id$
  *
- * Copyright 2003-2009 mbscholt at aquariusoft.org
+ * Copyright 2003-2014 michiel at aquariusoft.org
  *
  * simplog is the legal property of its developer, Michiel Scholten
- * [mbscholt at aquariusoft.org]
+ * [michiel at aquariusoft.org]
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -23,8 +22,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$skel['lastmodified'] = '2009-03-09';
-$skel['page_version'] = '0.6.03';
+$skel['lastmodified'] = '2014-04-01';
+$skel['page_version'] = '0.8.01';
 $skel['dateofcreation'] = '2005-01-11';
 
 $section_name = 'home';
@@ -44,7 +43,7 @@ if ('' != $searchkey)
 	$searched_weblogentries = findRants($skel, $searchkey);
 	$searched_webmarks = findMarks($skel, $searchkey);
 
-	$page_body .= '<p>Searched for "' . $searchkey . "\"</p>\n";
+	$page_body .= '<p>Searched for "' . htmlentities($searchkey) . "\"</p>\n";
 
 	$page_body .= "<h2>weblog entries</h2>\n";
 	if ($searched_weblogentries != null)
