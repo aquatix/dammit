@@ -210,7 +210,7 @@ aside h2
 #content p, #content pre, #content blockquote,
 #content h2, #content h3, #content h4,
 #content ol, #content ul,
-.mininav, .info,
+.mininav, .info, .embeddedobject,
 section article header
 {
 	margin: 1em 4em 1em 4em;
