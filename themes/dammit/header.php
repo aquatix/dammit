@@ -77,6 +77,7 @@ if (!Modernizr.inlinesvg)
 
 <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 <?php /*
 	<!-- Application-specific meta tags -->
