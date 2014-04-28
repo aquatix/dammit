@@ -75,6 +75,9 @@ if (!Modernizr.inlinesvg)
 }
 </script>
 
+<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
 <?php /*
 	<!-- Application-specific meta tags -->
 	<!-- Windows 8 -->
