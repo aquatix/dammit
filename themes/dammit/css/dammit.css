@@ -207,6 +207,7 @@ aside h2
 		font-weight: bold;
 	}
 
+.content-image, /* don't maximise those images for the moment */
 #content p, #content pre, #content blockquote,
 #content h2, #content h3, #content h4,
 #content ol, #content ul,
