@@ -63,8 +63,17 @@
 	
 	<!-- This is an un-minified, complete version of Modernizr. 
 		 Before you move to production, you should generate a custom build that only has the detects you need. -->
-	<!--<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr-2.6.2.dev.js"></script>-->
 	<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr.dammit.js?ver=<?php echo $skel['theme_version']; ?>"></script>
+
+<script language="text/javascript">
+if (!Modernizr.inlinesvg)
+{
+    document.write(  
+        '<script type="text/javascript" src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/raphael-min.js"><\/script>',   
+        '<script type="text/javascript" src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/dammitlogo.js"><\/script>'
+    );  
+}
+</script>
 
 <?php /*
 	<!-- Application-specific meta tags -->
