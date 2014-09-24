@@ -2,7 +2,7 @@
 /**
  * The admin module for the weblog
  *
- * Copyright 2003-2013 michiel at aquariusoft.org
+ * Copyright 2003-2014 michiel at aquariusoft.org
  * Please refer to the COPYRIGHT file distributed with this source distribution.
  *
  * simplog is the legal property of its developer, Michiel Scholten
@@ -26,8 +26,8 @@
 /* Enable error reporting */
 //error_reporting( E_ERROR | E_WARNING | E_PARSE | E_NOTICE );
 
-$skel['lastmodified'] = '2014-04-01';
-$skel['page_version'] = '0.8.02';
+$skel['lastmodified'] = '2014-08-10';
+$skel['page_version'] = '0.8.03';
 $skel['dateofcreation'] = '2003-12-22';
 
 $section_name = 'root';
@@ -223,6 +223,35 @@ if (isset($_GET['action']) && isLoggedIn())
 		$page_body .= buildCommentsList($latestComments);
 		$page_body .= "</ul>\n";
 		$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &raquo;</a></p>\n";
+    } else if ('addcomment' == $action)
+    {
+        $page_body .= $root_nav;
+        $page_body .= "<h1>root / add comment from other source</h1>\n";
+		$page_body .= "<p><a href=\"root.php\" class=\"button\">Root &raquo;</a></p>\n";
+
+        $showform = true;
+        if (isset($_POST['submitting']) && $_POST['submitting'] == "true")
+        {
+            /* User submitted edited rant, check it now */
+            if (isset($_POST['title']) && isset($_POST['location']) && isset($_POST['rant']) && isset($_POST['id']))
+            {
+                /* Save/add */
+            } else
+            {
+                $page_body .= $root_nav;
+                $page_body .= "<h1>root / error!</h1>\n";
+                $page_body .= "<p>Something went wrong while adding the comment</p>\n";
+                $showform = false;
+            }
+        }
+
+        if ($showform)
+        {
+            //name, email, datetime, commentbody
+            $page_body .= "<form action=\"root.php?action=addcomment\" method=\"post\">\n";
+            $page_body .= "<p><input name=\"submitbtn\" value=\"Save\" type=\"submit\"/></p>\n";
+            $page_body .= "</form>\n";
+        }
 	} else if ('addmark' == $action)
 	{
 		$mark_title = getRequestParam('title', '');
@@ -472,6 +501,7 @@ if (isset($_GET['action']) && isLoggedIn())
 	$page_body .= "</div>\n";
 	$page_body .= "<div class=\"rootblock\">\n";
 	$page_body .= "<h2>Comments</h2>\n";
+	$page_body .= "\t<p><a href=\"root.php?action=addcomment\" class=\"button\">Add comment manually</a> (for example to import from other source)</p>\n";
 	$nrCommentsTotal = getNrOfComments($skel);
 	$nrCommentsDisabled = getNrOfDisabledComments($skel);
 	$page_body .= "<p>Total comments: " . $nrCommentsTotal . " of which " . $nrCommentsDisabled . " are disabled (netting " . ($nrCommentsTotal - $nrCommentsDisabled) . ", averaging " . number_format(($nrCommentsTotal - $nrCommentsDisabled) / $nrRantsWritten, 2) . " per rant)</p>\n";
