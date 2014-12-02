@@ -48,6 +48,8 @@
 		 - transparency is OK
 		 - see wikipedia for info on browser support: http://mky.be/favicon/ -->
 		 
+    <meta name="theme-color" content="#5C6448" />
+
 	<link rel="apple-touch-icon" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/img/apple-touch-icon.png" />
 	<!-- The is the icon for iOS's Web Clip.
 		 - size: 57x57 for older iPhones, 72x72 for iPads, 114x114 for iPhone4's retina display (IMHO, just go ahead and use the biggest one)
