@@ -16,7 +16,7 @@ body
 	background-color: #838F67;
 }
 
-/* using local fonts? make sure to read up on Paul Irish's 
+/* using local fonts? make sure to read up on Paul Irish's
 	Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
 
 /* we like off-black for text */
@@ -30,10 +30,10 @@ body, select, input, textarea
 /* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
 /* original colour: #fcd700, replace with the lighter green #838F67 */
 ::-moz-selection{background: #838F67; color: #fff; text-shadow: none;}
-::selection {background: #838F67; color: #fff; text-shadow: none;} 
+::selection {background: #838F67; color: #fff; text-shadow: none;}
 
 /*	j.mp/webkit-tap-highlight-color */
-a:link {-webkit-tap-highlight-color: #838F67;} 
+a:link {-webkit-tap-highlight-color: #838F67;}
 
 ins {background-color: #838F67; color: #000; text-decoration: none;}
 mark {background-color: #838F67; color: #000; font-style: italic; font-weight: bold;}
@@ -562,7 +562,7 @@ or ((min-device-width : 360px) and (max-device-width : 598px)))
 /*
 @media screen and (max-width: 700px)
 {
-	
+
 	#content
 	{
 		width: auto;
