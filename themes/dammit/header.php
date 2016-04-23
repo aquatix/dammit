@@ -48,7 +48,13 @@
 		 - transparency is OK
 		 - see wikipedia for info on browser support: http://mky.be/favicon/ -->
 		 
+    <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#5C6448" />
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#5C6448">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 	<link rel="apple-touch-icon" href="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/img/apple-touch-icon.png" />
 	<!-- The is the icon for iOS's Web Clip.
