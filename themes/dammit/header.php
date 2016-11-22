@@ -72,7 +72,7 @@
 	
 	<!-- This is an un-minified, complete version of Modernizr. 
 		 Before you move to production, you should generate a custom build that only has the detects you need. -->
-	<script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr.dammit.js?ver=<?php echo $skel['theme_version']; ?>"></script>
+	<!-- <script src="<?php echo $skel['base_uri'] . 'themes/' . $skel['theme']; ?>/js/modernizr.dammit.js?ver=<?php echo $skel['theme_version']; ?>"></script> -->
 
 <script language="text/javascript">
 if (!Modernizr.inlinesvg)
