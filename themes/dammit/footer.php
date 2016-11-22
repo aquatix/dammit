@@ -46,7 +46,7 @@ var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
 piwikTracker.trackPageView();
 piwikTracker.enableLinkTracking();
 } catch( err ) {}
-</script><noscript><p><img src="http://<?php echo $skel['piwikURL']; ?>piwik.php?idsite=<?php echo $skel['piwikSiteID']; ?>" style="border:0" alt="" /></p></noscript>
+</script><noscript><p><img src="//<?php echo $skel['piwikURL']; ?>piwik.php?idsite=<?php echo $skel['piwikSiteID']; ?>" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Tracking Code -->
 <?php } ?>
 
