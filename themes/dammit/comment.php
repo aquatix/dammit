@@ -1,5 +1,5 @@
 
-			<article>
+            <article id="comment<?php echo $comment['id'];?>">
 
 				<header>
 					<span class="commentnr"><?php echo $commentCounter; ?></span>
